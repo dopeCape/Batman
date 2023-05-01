@@ -27,6 +27,7 @@ export interface Content {
 export default function Generate() {
   const [loading, setLoading] = useState<boolean>(false);
   const [suggestions, setSuggestions] = useState<string[]>([]);
+  const [loadingContent, setLoadingContent] = useState<boolean>(false);
   const [content, setContent] = useState<Content | undefined>();
 
   const generateSuggestions = async (e: React.SyntheticEvent) => {
@@ -255,12 +256,6 @@ export default function Generate() {
             suggestions={suggestions}
             onClickGenerateOutline={generateContent}
           />
-        )}
-        {content && (
-          // <div>
-          <ContentDetails content={content} />
-          //   <p>{content.seoDescription}</p>
-          // </div>
         )}
       </div>
     </main>

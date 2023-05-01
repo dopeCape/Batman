@@ -1,0 +1,222 @@
+[
+  {
+    "name": "youtube",
+    "title": "Generate Youtube Video Idea",
+    "generatedText": "Generated Video Topic Ideas",
+    "initialPrompt": "Please generate 5 video topic ideas for a YouTube channel",
+    "keywordsPrompt": ", using the keywords: --value--",
+    "endPrompt": ". List the ideas in a numbered format, with each idea separated by a newline:",
+    "selection": [
+      {
+        "name": "videoStyle",
+        "text": "Select your video style",
+        "promptText": "with --value-- content",
+        "options": ["Shorts", "Long Form"]
+      },
+      {
+        "name": "niche",
+        "text": "Select your niche",
+        "promptText": "ocusing on the niche: --value--",
+        "options": [
+          "Comedy",
+          "Education",
+          "Gaming",
+          "Health & Fitness",
+          "Music",
+          "Technology",
+          "Travel"
+        ]
+      },
+      {
+        "name": "audience",
+        "text": "Select your target Audience",
+        "promptText": ", targeting the audience: --value--",
+        "options": [
+          "Kids",
+          "Teens",
+          "Young Adult",
+          "Middle-age Adults",
+          "Seniors"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "instagram",
+    "title": "Generate Instagram Content Ideas",
+    "generatedText": "Generated Instagram Content Topics",
+    "initialPrompt": "Please generate 5 Reels topic ideas for Instagram",
+    "keywordsPrompt": ", using the keywords: --value--",
+    "endPrompt": ". List the ideas in a numbered format, with each idea separated by a newline:",
+    "selection": [
+      {
+        "name": "contentType",
+        "text": "Select your content type",
+        "promptText": "focusing on the content type: --value--",
+        "options": ["Reels", "Images", "Carousels"]
+      },
+      {
+        "name": "niche",
+        "text": "Select your niche",
+        "promptText": " focusing on the niche: --value--",
+        "options": [
+          "Comedy",
+          "Education",
+          "Gaming",
+          "Health & Fitness",
+          "Music",
+          "Technology",
+          "Travel"
+        ]
+      },
+      {
+        "name": "audience",
+        "text": "Select your target Audience",
+        "promptText": ", targeting the audience: --value--",
+        "options": [
+          "Kids",
+          "Teens",
+          "Young Adult",
+          "Middle-age Adults",
+          "Seniors"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "tiktok",
+    "title": "Generate Tiktok Ideas",
+    "generatedText": "Generated Tiktok Ideas",
+    "initialPrompt": "Please generate 5 TikTok video ideas",
+    "keywordsPrompt": ", using the keywords: --value--",
+    "endPrompt": ". List the ideas in a numbered format, with each idea separated by a newline:",
+    "selection": [
+      {
+        "name": "contentLength",
+        "text": "Choose the length",
+        "promptText": "with a length of ${timer}",
+        "options": ["15 seconds", "60 seconds", "3 minutes"]
+      },
+      {
+        "name": "niche",
+        "text": "Select your niche",
+        "promptText": ", focusing on the niche: --value--",
+        "options": [
+          "Comedy",
+          "Education",
+          "Gaming",
+          "Health & Fitness",
+          "Music",
+          "Technology",
+          "Travel"
+        ]
+      },
+      {
+        "name": "audience",
+        "text": "Select your target Audience",
+        "promptText": ", targeting the audience: --value--",
+        "options": [
+          "Kids",
+          "Teens",
+          "Young Adult",
+          "Middle-age Adults",
+          "Seniors"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "twitter",
+    "title": "Generate Tweet Ideas",
+    "generatedText": "Generated Tweets",
+    "initialPrompt": "Please generate 5 tweet content ideas for a Twitter account",
+    "keywordsPrompt": ", using the keywords: --value--",
+    "endPrompt": ". List the ideas in a numbered format, with each idea separated by a newline:",
+    "selection": [
+      {
+        "name": "niche",
+        "text": "Select your niche",
+        "promptText": "focusing on the niche: --value--",
+        "options": [
+          "Comedy",
+          "Education",
+          "Gaming",
+          "Health & Fitness",
+          "Music",
+          "Technology",
+          "Travel"
+        ]
+      },
+      {
+        "name": "contentType",
+        "text": "Select your content type",
+        "promptText": ", it should be a --value--",
+        "options": ["Tweet", "Thread"]
+      },
+      {
+        "name": "audience",
+        "text": "Select your target Audience",
+        "promptText": ", targeting the audience: --value--",
+        "options": ["Teens", "Young Adult", "Middle-age Adults", "Seniors"]
+      },
+      {
+        "name": "style",
+        "text": "Select the tone or style",
+        "promptText": ", with a --value-- tone",
+        "options": [
+          "Informative",
+          "Entertaining",
+          "Conversational",
+          "Inspiring"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "linkedin",
+    "title": "Generate LinkedIn Post",
+    "generatedText": "Generated LinkedIn Post Ideas",
+    "initialPrompt": "Please generate 5 LinkedIn post topic ideas",
+    "keywordsPrompt": ", using the keywords: --value--",
+    "endPrompt": ". List the ideas in a numbered format, with each idea separated by a newline:",
+    "selection": [
+      {
+        "name": "industry",
+        "text": "Select your industry",
+        "promptText": " for the niche: --value--",
+        "options": [
+          "Finance",
+          "Heathcare",
+          "Technology",
+          "Marketing",
+          "Education",
+          "Consulting",
+          "Manufacturing"
+        ]
+      },
+      {
+        "name": "audience",
+        "text": "Select your target Audience",
+        "promptText": ", targeting the audience: --value--",
+        "options": [
+          "Students",
+          "Job Seekers",
+          "Professionals",
+          "Business Owners"
+        ]
+      },
+      {
+        "name": "postType",
+        "text": "Select post type",
+        "promptText": ", with the post type: --value--",
+        "options": [
+          "Industry Insights",
+          "Export Interview",
+          "Career Advice",
+          "Case Studies",
+          "Thought Leadershit Articles"
+        ]
+      }
+    ]
+  }
+]

@@ -5,8 +5,10 @@ const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
   return (
-    <main >
-      
+    <main>
+      {/* <div className="flex items-center justify-center">
+        <button>Create Content</button>
+      </div> */}
     </main>
   );
 }

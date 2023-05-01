@@ -1,20 +1,38 @@
 import React from "react";
 import { IoCreate as Create } from "react-icons/io5";
 import { AiOutlineSave as Save, AiOutlineCopy as Copy } from "react-icons/ai";
-import { Content } from "@/pages/generate";
 
 interface Props {
-  // content: Content;
-  children: JSX.Element;
+  title: string;
+  outline: any;
+  seoDescription: string;
+  tags: string;
+  thumbnailIdeas?: string[];
 }
 
-const ContentDetails = (props: Props) => {
-  // let { title, outline, seoDescription, tags, thumbnailIdeas } = props.content;
+const Youtube = ({
+  title,
+  outline,
+  seoDescription,
+  tags,
+  thumbnailIdeas,
+}: Props) => {
+  const lengthIndex = outline.indexOf("Length:");
+  const topicIndex = outline.indexOf("Topics:");
+  const scriptIndex = outline.indexOf("Script:");
+  const lengthText = outline
+    .slice(lengthIndex + "Length:".length, topicIndex)
+    .trim();
+  const topicsText = outline
+    .slice(topicIndex + "Topics:".length, scriptIndex)
+    .trim();
+  const scriptText = outline.slice(scriptIndex + "Script:".length).trim();
+
+  const generatedTags = tags.split(",").map((tag) => tag.trim());
 
   return (
-    <div className="rounded-lg border-b border-gray-200 bg-white shadow-xl p-4">
-      {props.children}
-      {/* <div className="flex justify-between">
+    <>
+      <div className="flex justify-between">
         <h1 className="text-2xl font-bold">Content Outline</h1>
         <button className="px-4 py-1 bg-blue-900 rounded-lg text-white hover:bg-blue-400">
           <div className="flex gap-2 justify-center items-center">
@@ -28,26 +46,26 @@ const ContentDetails = (props: Props) => {
           Title: <span className="font-normal">{title}</span>
         </h1>
         <h2 className="text-lg font-medium">
-          Length: <span className="font-normal">{outline.lengthText}</span>
+          Length: <span className="font-normal">{lengthText}</span>
         </h2>
         <h2 className="text-lg font-medium">Outline</h2>
-        <p className="whitespace-break-spaces">{outline.topicsText}</p>
+        <p className="whitespace-break-spaces">{topicsText}</p>
         <h2 className="text-lg font-medium">Script</h2>
-        <p className="whitespace-break-spaces">{outline.scriptText}</p>
+        <p className="whitespace-break-spaces">{scriptText}</p>
         <h2 className="text-lg font-medium">
           <div className="flex">
             SEO Description
-              <Copy color="gray" size={20} />
+            <Copy color="gray" size={20} />
           </div>
         </h2>
         <p className="whitespace-break-spaces">{seoDescription}</p>
         <h2 className="text-lg font-medium">Tags</h2>
         <p className="whitespace-break-spaces ">
-          <span>{tags}</span>
+          <span>{generatedTags}</span>
         </p>
-      </div> */}
-    </div>
+      </div>
+    </>
   );
 };
 
-export default ContentDetails;
+export default Youtube;
