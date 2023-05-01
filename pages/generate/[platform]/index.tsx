@@ -60,7 +60,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
   return {
     props: objectData[platformIndex], // will be passed to the page component as props
-    revalidate: true
+    revalidate: true,
   };
 };
 
@@ -128,9 +128,11 @@ export default function GeneratePlatform(props: IPlatform) {
 
   const generateContent = async (contentTitle: string) => {
     const title = contentTitle.substring(contentTitle.indexOf(".") + 1).trim();
+    setLoadingContent(true);
     console.log("GENERATING CONTENT FOR ", title);
     console.log("Generate Content content Title", title);
     setContent(await generateContentDetail(props.name, title, selected));
+    setLoadingContent(false);
   };
 
   return (
@@ -206,13 +208,12 @@ export default function GeneratePlatform(props: IPlatform) {
         {(loading || suggestions.length > 0) && (
           <SuggestionList
             loading={loading}
+            contentLoading={loadingContent}
             suggestions={suggestions}
             onClickGenerateOutline={generateContent}
           />
         )}
-        {content && (
-          <ContentDetails>{content}</ContentDetails>
-        )}
+        {content && <ContentDetails>{content}</ContentDetails>}
       </div>
     </div>
   );

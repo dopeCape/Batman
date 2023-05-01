@@ -4,12 +4,13 @@ import { AiOutlineLoading as Loading } from "react-icons/ai";
 
 interface Props {
   loading: boolean;
+  contentLoading: boolean;
   suggestions: string[];
   onClickGenerateOutline: (prompt: string) => void;
 }
 
 const SuggestionList = (props: Props) => {
-  let { loading, suggestions, onClickGenerateOutline } = props;
+  let { loading, contentLoading,  suggestions, onClickGenerateOutline } = props;
 
   return (
     <div className="rounded-lg border-b border-gray-200 bg-white shadow-xl p-4">
@@ -51,7 +52,11 @@ const SuggestionList = (props: Props) => {
                 onClick={() => onClickGenerateOutline(val)}
               >
                 <div className="flex gap-2 justify-center">
-                  <Create color="white" size={20} />
+                  {!contentLoading ? (
+                    <Create color="white" size={20} />
+                  ) : (
+                    <Loading className="animate-spin" color="white" size={20} />
+                  )}
                   Generate Outline
                 </div>
               </button>
