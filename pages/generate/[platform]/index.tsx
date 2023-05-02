@@ -140,7 +140,7 @@ export default function GeneratePlatform(props: IPlatform) {
       {/* Content Wizard */}
       <div className="w-3/4 flex flex-col gap-4">
         <div className="rounded-lg border-b border-gray-200 bg-white shadow-xl p-4 ">
-          <h1 className="text-2xl font-bold">{props.title}</h1>
+          <h1 className="text-2xl font-bold text-black">{props.title}</h1>
           <form
             className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-10 pt-4"
             onSubmit={generateSuggestions}
@@ -174,7 +174,7 @@ export default function GeneratePlatform(props: IPlatform) {
             <div>
               <label
                 htmlFor="keywords"
-                className="block text-sm font-medium leading-6 text-gray-900"
+                className="block text-sm font-medium leading-6 text-gray-900 "
               >
                 Content Keywords {`(Comma separated keywords)`}
               </label>

@@ -7,10 +7,7 @@ interface Props {
 }
 
 const Twitter = ({ content }: Props) => {
-  const ideas = content
-    .split("\n")
-    .filter((line) => line.trim().match(/^\d\./));
-  return <div>{content}</div>;
+  return <div className="text-black">{content}</div>;
 };
 
 export default Twitter;

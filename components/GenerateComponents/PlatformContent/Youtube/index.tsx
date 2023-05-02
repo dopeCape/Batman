@@ -33,7 +33,7 @@ const Youtube = ({
   return (
     <>
       <div className="flex justify-between">
-        <h1 className="text-2xl font-bold">Content Outline</h1>
+        <h1 className="text-2xl font-bold text-black">Content Outline</h1>
         <button className="px-4 py-1 bg-blue-900 rounded-lg text-white hover:bg-blue-400">
           <div className="flex gap-2 justify-center items-center">
             <Save color="white" size={20} />
@@ -42,25 +42,25 @@ const Youtube = ({
         </button>
       </div>
       <div className="flex flex-col gap-2">
-        <h1 className="text-lg font-medium">
+        <h1 className="text-lg font-medium text-black">
           Title: <span className="font-normal">{title}</span>
         </h1>
-        <h2 className="text-lg font-medium">
+        <h2 className="text-lg font-medium text-black">
           Length: <span className="font-normal">{lengthText}</span>
         </h2>
-        <h2 className="text-lg font-medium">Outline</h2>
-        <p className="whitespace-break-spaces">{topicsText}</p>
-        <h2 className="text-lg font-medium">Script</h2>
-        <p className="whitespace-break-spaces">{scriptText}</p>
-        <h2 className="text-lg font-medium">
+        <h2 className="text-lg font-medium text-black">Outline</h2>
+        <p className="whitespace-break-spaces text-black">{topicsText}</p>
+        <h2 className="text-lg font-medium text-black">Script</h2>
+        <p className="whitespace-break-spaces text-black">{scriptText}</p>
+        <h2 className="text-lg font-medium text-black">
           <div className="flex">
             SEO Description
             <Copy color="gray" size={20} />
           </div>
         </h2>
-        <p className="whitespace-break-spaces">{seoDescription}</p>
-        <h2 className="text-lg font-medium">Tags</h2>
-        <p className="whitespace-break-spaces ">
+        <p className="whitespace-break-spaces text-black">{seoDescription}</p>
+        <h2 className="text-lg font-medium text-black">Tags</h2>
+        <p className="whitespace-break-spaces text-black">
           <span>{generatedTags}</span>
         </p>
       </div>
