@@ -7,7 +7,7 @@ interface Props {
 }
 
 const LinkedIn = ({ content }: Props) => {
-  return <div>{content}</div>;
+  return <div><p className="text-black w-[90%] text-justify">{content}</p></div>;
 };
 
 export default LinkedIn;
