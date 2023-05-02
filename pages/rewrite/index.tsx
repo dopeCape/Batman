@@ -37,7 +37,7 @@ const Rewrite = () => {
       {/* Content Wizard */}
       <div className="w-3/4 flex flex-col gap-4">
         <div className="rounded-lg border-b border-gray-200 bg-white shadow-xl p-4 ">
-          <h1 className="text-2xl font-bold">Rewrite Content</h1>
+          <h1 className="text-2xl font-bold text-black">Rewrite Content</h1>
 
           <form onSubmit={rewriteContent}>
             <div className="grid grid-cols-2 gap-4">
