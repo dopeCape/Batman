@@ -8,12 +8,6 @@ interface Props {
 }
 
 const SideBar = ({ children }: Props) => {
-  const router = useRouter();
-
-  useEffect(() => {
-    console.log("Sidebar router", router);
-  }, []);
-
   return (
     <div className="min-h-screen flex flex-col">
       {/* <header className="bg-purple-200 sticky top-0 h-14 flex justify-center items-center font-semibold uppercase">

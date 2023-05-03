@@ -16,6 +16,8 @@ import generateContentDetail, {
   PlatformType,
 } from "@/components/HOC/generateContentDetail";
 
+import contentData from "../../../public/generatecontent.json";
+
 const inter = Inter({ subsets: ["latin"] });
 
 interface ISelection {
@@ -51,15 +53,15 @@ export interface IContent {
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const platform = (params as ParsedUrlQuery).platform;
   console.log("getStaticProps platform", platform);
-  const filePath = path.join(process.cwd(), "generatecontent.json");
-  const jsonData = await fsPromises.readFile(filePath);
-  const objectData = JSON.parse(jsonData.toString());
-  const platformIndex = objectData.findIndex(
+  // const filePath = path.join(process.cwd(), "generatecontent.json");
+  // const jsonData = await fsPromises.readFile(filePath);
+  // const objectData = JSON.parse(jsonData.toString());
+  const platformIndex = contentData.findIndex(
     (obj: any) => obj.name === platform
   );
 
   return {
-    props: objectData[platformIndex], // will be passed to the page component as props
+    props: contentData[platformIndex], // will be passed to the page component as props
     revalidate: true,
   };
 };
@@ -67,16 +69,16 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 export async function getStaticPaths() {
   // Return a list of possible value for id
 
-  const filePath = path.join(process.cwd(), "generatecontent.json");
-  const jsonData = await fsPromises.readFile(filePath);
-  const objectData = JSON.parse(jsonData.toString());
-  const paths = objectData.map((platform: any) => {
+  // const filePath = path.join(process.cwd(), "generatecontent.json");
+  // const jsonData = await fsPromises.readFile(filePath);
+  // const objectData = JSON.parse(jsonData.toString());
+  const paths = contentData.map((platform: any) => {
     return {
       params: { platform: platform.name },
     };
   });
 
-  return { paths, fallback: true };
+  return { paths, fallback: false };
 }
 
 export default function GeneratePlatform(props: IPlatform) {
