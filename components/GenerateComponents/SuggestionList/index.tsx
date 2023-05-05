@@ -43,12 +43,12 @@ const SuggestionList = (props: Props) => {
         {!loading &&
           suggestions.length > 0 &&
           suggestions.map((val, index) => (
-            <div key={`suggestion-${index}`} className="flex gap-10">
-              <div className="w-full sm:w-3/4 border-2 border-gray-300 h-10 rounded-lg flex items-center pl-2 ">
+            <div key={`suggestion-${index}`} className="flex gap-10 items-center">
+              <div className="w-full sm:w-3/4 border-2 border-gray-300 h-[100%] py-2 rounded-lg flex items-center pl-2 ">
                 <p className="text-black">{val}</p>
               </div>
               <button
-                className="w-1/4 px-4 bg-blue-900 rounded-lg text-white hover:bg-blue-400"
+                className="w-1/4 h-[100%] py-2 bg-blue-900 rounded-lg text-white hover:bg-blue-400"
                 onClick={() => onClickGenerateOutline(val)}
               >
                 <div className="flex gap-2 justify-center">
