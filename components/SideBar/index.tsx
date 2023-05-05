@@ -107,7 +107,7 @@ const SideBar = ({ children }: Props) => {
             </Link>
           </div>
           <button className={click ? "rotate-180 absolute left-52 bottom-[50%]" : "absolute left-20 bottom-[50%] w-52 h-52"}
-                onClick={() => setClick(!click)}
+             onClick={() => setClick(!click)}
               >
                 <Image className={click ? "w-6 h-6 duration-500" : "w-5 h-5 duration-500"} src={Arrow} alt="Arrow Logo" />
           </button>
