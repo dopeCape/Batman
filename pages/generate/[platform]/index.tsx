@@ -174,7 +174,7 @@ export default function GeneratePlatform(props: IPlatform) {
             <div>
               <label
                 htmlFor="keywords"
-                className="block text-sm font-medium leading-6 text-gray-900"
+                className="block text-sm font-medium leading-6 text-gray-900 "
               >
                 Content Keywords {`(Comma separated keywords)`}
               </label>

@@ -41,25 +41,25 @@ const Youtube = ({
           </div>
         </button>
       </div>
-      <div className="flex flex-col gapy">
-        <h1 className="text-lg font-medium text-black pt-2 w-[90%] text-justify">
-          <span className="text-black">Title:</span> <span className="font-normal text-black w-[90%] text-justify">{title}</span>
+      <div className="flex flex-col gap-2">
+        <h1 className="text-lg font-medium text-black">
+          Title: <span className="font-normal">{title}</span>
         </h1>
-        <h2 className="text-lg font-medium pt-1">
-        <span className="text-black">Length:</span> <span className="font-normal text-black w-[90%] text-justify">{lengthText}</span>
+        <h2 className="text-lg font-medium text-black">
+          Length: <span className="font-normal">{lengthText}</span>
         </h2>
-        <h1 className="text-[18px] font-medium text-black pt-2">Outline:</h1>
-        <p className="whitespace-break-spaces text-black w-[90%] text-justify">{topicsText}</p>
-        <h2 className="text-lg font-medium text-black pt-2">Script:</h2>
-        <p className="whitespace-break-spaces text-black w-[90%] text-justify">{scriptText}</p>
-        <h2 className="text-lg font-medium text-black pt-2">
-          <div className="flex items-center">
+        <h2 className="text-lg font-medium text-black">Outline</h2>
+        <p className="whitespace-break-spaces text-black">{topicsText}</p>
+        <h2 className="text-lg font-medium text-black">Script</h2>
+        <p className="whitespace-break-spaces text-black">{scriptText}</p>
+        <h2 className="text-lg font-medium text-black">
+          <div className="flex">
             SEO Description
             <Copy color="gray" size={20} />
           </div>
         </h2>
         <p className="whitespace-break-spaces text-black w-[90%] text-justify">{seoDescription}</p>
-        <h2 className="text-lg font-medium text-black pt-2">Tags:</h2>
+        <h2 className="text-lg font-medium text-black pt-2">Tags</h2>
         <p className="whitespace-break-spaces text-black w-[90%] text-justify">
           <span>{generatedTags}</span>
         </p>
