@@ -42,7 +42,11 @@ const SideBar = ({ children }: Props) => {
           {/* Navigation */}
           <div className={click ? "flex flex-col pt-5 pl-4 gap-7" : "flex flex-col pt-5 pl-2 gap-7"}>
             <div className="flex flex-col gap-7">
+            <Link
+               href="/Generate"
+               >
               <h1 className={click ? "text-lg text-white" : "text-[12px]"}>Generate Content</h1>
+              </Link>
               <Link
                href="/generate/youtube"
                >
@@ -96,8 +100,8 @@ const SideBar = ({ children }: Props) => {
             </div>
             </Link>
             <Link href="/rewrite">
-            <div className="flex items-center gap-x-3">
-            <Image className={click ? "w-5 h-5" : "w-8 h-8 pl-1"} src={Save} alt="linkedin Logo" />
+            <div className="flex items-center gap-x-[13px] ml-[3px]">
+            <Image className={click ? "w-[17px] h-[17px]" : "w-8 h-8 pl-1"} src={Save} alt="linkedin Logo" />
             <p className={click ? "text-left text-white text-lg" : "hidden"}>Saved Content</p>
             </div>
             </Link>
