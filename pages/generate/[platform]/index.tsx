@@ -14,7 +14,7 @@ import { GetServerSideProps } from "next";
 import { ParsedUrlQuery } from "querystring";
 import generateContentDetail from "@/components/HOC/generateContentDetail";
 import { getSession } from "next-auth/react";
-import { IPlatform, ISelection } from "./interface";
+import { IPlatform, ISelection } from "../../../interface/GenerateInterface";
 
 export const getServerSideProps: GetServerSideProps = async ({
   req,
