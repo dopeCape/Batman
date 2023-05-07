@@ -14,7 +14,6 @@ const Generate = () => {
   const Generate_Platforms_twitter = [[twitter]]
   const Generate_Platforms_linkedin = [[linkedin]]
 
-<<<<<<< HEAD
   return ( 
   <div className="h-[100%] flex flex-col justify-center items-center">
     <p className="text-#fff font-bold text-2xl pb-10 text-justify tracking-wide">Generate Content</p>
@@ -42,26 +41,3 @@ const Generate = () => {
 }
 
 export default Generate
-=======
-export default function Generate() {
-  const { data } = useSession();
-
-  return <main></main>;
-}
-
-export async function getServerSideProps({ req }: any) {
-  const session = await getSession({ req });
-
-  if (!session) {
-    return {
-      redirect: {
-        destination: "/",
-        permanent: false,
-      },
-    };
-  }
-  return {
-    props: { session },
-  };
-}
->>>>>>> origin/main
