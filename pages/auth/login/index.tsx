@@ -5,7 +5,6 @@ import type {
 import { getProviders, signIn } from "next-auth/react";
 import { getServerSession } from "next-auth/next";
 import React from "react";
-import { authOptions } from "../../api/auth/[...nextauth]";
 import Link from "next/link";
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
