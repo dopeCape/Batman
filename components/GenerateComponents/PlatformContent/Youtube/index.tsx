@@ -58,9 +58,9 @@ const Youtube = ({
             <Copy color="gray" size={20} />
           </div>
         </h2>
-        <p className="whitespace-break-spaces text-black">{seoDescription}</p>
-        <h2 className="text-lg font-medium text-black">Tags</h2>
-        <p className="whitespace-break-spaces text-black">
+        <p className="whitespace-break-spaces text-black w-[90%] text-justify">{seoDescription}</p>
+        <h2 className="text-lg font-medium text-black pt-2">Tags</h2>
+        <p className="whitespace-break-spaces text-black w-[90%] text-justify">
           <span>{generatedTags}</span>
         </p>
       </div>

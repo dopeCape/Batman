@@ -7,7 +7,9 @@ interface Props {
 }
 
 const Tiktok = ({ content }: Props) => {
-  return <div className="text-black">{content}</div>;
+  return <div>
+    <p className="text-black w-[90%] text-justify">{content}</p>
+    </div>;
 };
 
 export default Tiktok;

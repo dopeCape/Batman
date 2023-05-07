@@ -10,14 +10,14 @@ const Instagram = ({ content }: Props) => {
   const [contentIdea, script, audioSuggestion, captionsAndHashtags] = content;
   return (
     <div>
-      <h4 className="text-black">Content Idea:</h4>
-      <p className="text-black">{contentIdea}</p>
-      <h4 className="text-black">Script:</h4>
-      <p className="text-black">{script}</p>
-      <h4 className="text-black">Audio Suggestion:</h4>
-      <p className="text-black">{audioSuggestion}</p>
-      <h4 className="text-black">Captions and Hashtags:</h4>
-      <p className="text-black">{captionsAndHashtags}</p>
+      <h4 className="text-black text-[18px] font-bold">Content Idea:</h4>
+      <p className="text-black w-[90%] text-justify">{contentIdea}</p>
+      <h4 className="text-black text-[18px] pt-5 font-bold">Script:</h4>
+      <p className="text-black w-[90%] text-justify">{script}</p>
+      <h4 className="text-black text-[18px] pt-5 font-bold">Audio Suggestion:</h4>
+      <p className="text-black w-[90%] text-justify">{audioSuggestion}</p>
+      <h4 className="text-black text-[18px] pt-5 font-bold">Captions and Hashtags:</h4>
+      <p className="text-black w-[90%] text-justify">{captionsAndHashtags}</p>
     </div>
   );
 };
