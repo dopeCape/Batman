@@ -10,47 +10,19 @@ import { useRouter } from "next/router";
 import fsPromises from "fs/promises";
 
 import path from "path";
-import { GetStaticProps } from "next";
+import { GetServerSideProps } from "next";
 import { ParsedUrlQuery } from "querystring";
-import generateContentDetail, {
-  PlatformType,
-} from "@/components/HOC/generateContentDetail";
+import generateContentDetail from "@/components/HOC/generateContentDetail";
+import { getSession } from "next-auth/react";
+import { IPlatform, ISelection } from "../../../interface/GenerateInterface";
 
-const inter = Inter({ subsets: ["latin"] });
+export const getServerSideProps: GetServerSideProps = async ({
+  req,
+  query,
+}) => {
+  const session = await getSession({ req });
 
-interface ISelection {
-  name: string;
-  text: string;
-  promptText: string;
-  options: Array<string>;
-}
-interface IPlatform {
-  name: PlatformType;
-  title: string;
-  generatedText: string;
-  initialPrompt: string;
-  keywordsPrompt: string;
-  endPrompt: string;
-  selection: Array<ISelection>;
-}
-
-interface IOutline {
-  lengthText: string;
-  topicsText: string;
-  scriptText: string;
-}
-
-export interface IContent {
-  title: string;
-  outline: IOutline;
-  seoDescription: string;
-  tags: string[];
-  thumbnailIdeas: string[];
-}
-
-export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const platform = (params as ParsedUrlQuery).platform;
-  console.log("getStaticProps platform", platform);
+  const platform = query.platform;
   const filePath = path.join(process.cwd(), "generatecontent.json");
   const jsonData = await fsPromises.readFile(filePath);
   const objectData = JSON.parse(jsonData.toString());
@@ -58,26 +30,20 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     (obj: any) => obj.name === platform
   );
 
+  console.log({ ...objectData[platformIndex], ...{ session } });
+
+  if (!session) {
+    return {
+      redirect: {
+        destination: "/",
+        permanent: false,
+      },
+    };
+  }
   return {
-    props: objectData[platformIndex], // will be passed to the page component as props
-    revalidate: true,
+    props: { ...objectData[platformIndex], ...{ session } },
   };
 };
-
-export async function getStaticPaths() {
-  // Return a list of possible value for id
-
-  const filePath = path.join(process.cwd(), "generatecontent.json");
-  const jsonData = await fsPromises.readFile(filePath);
-  const objectData = JSON.parse(jsonData.toString());
-  const paths = objectData.map((platform: any) => {
-    return {
-      params: { platform: platform.name },
-    };
-  });
-
-  return { paths, fallback: false };
-}
 
 export default function GeneratePlatform(props: IPlatform) {
   const [loading, setLoading] = useState<boolean>(false);
