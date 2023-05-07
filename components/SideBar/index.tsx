@@ -2,6 +2,7 @@ import { Fragment, useEffect, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { useRouter } from "next/router";
 import Link from "next/link";
+import { useSession, signIn, signOut } from "next-auth/react";
 
 interface Props {
   children: JSX.Element;
@@ -9,10 +10,17 @@ interface Props {
 
 const SideBar = ({ children }: Props) => {
   const router = useRouter();
+  const { data, status } = useSession();
 
   useEffect(() => {
     console.log("Sidebar router", router);
   }, []);
+
+  if (status === "loading") return <h1> loading... please wait</h1>;
+
+  if (status === "unauthenticated") {
+    return <main className="flex-1">{children}</main>;
+  }
 
   return (
     <div className="min-h-screen flex flex-col">
