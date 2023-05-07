@@ -6,6 +6,7 @@ import { getProviders, signIn } from "next-auth/react";
 import { getServerSession } from "next-auth/next";
 import React from "react";
 import { authOptions } from "../../api/auth/[...nextauth]";
+import Link from "next/link";
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   const session = await getServerSession(context.req, context.res, authOptions);
@@ -93,19 +94,18 @@ const Login = ({ providers }: any) => {
               <button
                 // type="submit"
                 className="w-full border-black border-2 bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center "
-                onClick={()=>signIn("credentials",{callbackUrl:"/"})}
+                onClick={() => signIn("credentials", { callbackUrl: "/" })}
               >
                 Sign in
               </button>
               <p className="text-sm font-light text-gray-500 ">
                 Don’t have an account yet?{" "}
-                <a
+                <Link
                   href="/"
-                  // onClick={()=>signIn("credentials",{callbackUrl:"/"})}
                   className="font-medium text-primary-600 hover:underline"
                 >
                   Sign up
-                </a>
+                </Link>
               </p>
             </form>
             {Object.values(providers).length > 0 && (
