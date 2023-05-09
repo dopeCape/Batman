@@ -5,7 +5,7 @@ import React from 'react'
 
 function Main() {
   return (
-    <div className='flex justify-center gap-y-5 p-10 flex-wrap'>
+    <div className='flex justify-center bg-white gap-y-5 p-10 flex-wrap'>
       <FreeTrial />
       <LongForm />
       <CustomPlan />
