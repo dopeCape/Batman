@@ -2,7 +2,7 @@ import { Inter } from "next/font/google";
 import { TargetAudience, VideoCategory } from "@/utils/contants";
 import { IoCreate as Create } from "react-icons/io5";
 import { AiOutlineLoading as Loading } from "react-icons/ai";
-import { useEffect, useState } from "react";
+import { Dispatch, useEffect, useState } from "react";
 import SuggestionList from "@/components/GenerateComponents/SuggestionList";
 import { generateText } from "./../../../services/API/index";
 import ContentDetails from "@/components/GenerateComponents/ContentDetails";
@@ -10,76 +10,45 @@ import { useRouter } from "next/router";
 import fsPromises from "fs/promises";
 
 import path from "path";
-import { GetStaticProps } from "next";
+import { GetServerSideProps } from "next";
 import { ParsedUrlQuery } from "querystring";
-import generateContentDetail, {
-  PlatformType,
-} from "@/components/HOC/generateContentDetail";
+import generateContentDetail from "@/components/HOC/generateContentDetail";
+import { getSession } from "next-auth/react";
+import { IPlatform, ISelection } from "../../../interface/GenerateInterface";
 
-import contentData from "../../../public/generatecontent.json";
+import { getValue, fetchAndActivate } from "firebase/remote-config";
+import { remoteConfig } from "../../../firebaseConfig";
+import { useLocalStorage } from "@/hooks/useLocalStorage";
+import { getConfigValue } from "@/services/firebase/remoteConfig";
 
-const inter = Inter({ subsets: ["latin"] });
+export const getServerSideProps: GetServerSideProps = async ({
+  req,
+  query,
+}) => {
+  const session = await getSession({ req });
 
-interface ISelection {
-  name: string;
-  text: string;
-  promptText: string;
-  options: Array<string>;
-}
-interface IPlatform {
-  name: PlatformType;
-  title: string;
-  generatedText: string;
-  initialPrompt: string;
-  keywordsPrompt: string;
-  endPrompt: string;
-  selection: Array<ISelection>;
-}
-
-interface IOutline {
-  lengthText: string;
-  topicsText: string;
-  scriptText: string;
-}
-
-export interface IContent {
-  title: string;
-  outline: IOutline;
-  seoDescription: string;
-  tags: string[];
-  thumbnailIdeas: string[];
-}
-
-export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const platform = (params as ParsedUrlQuery).platform;
-  console.log("getStaticProps platform", platform);
-  // const filePath = path.join(process.cwd(), "generatecontent.json");
-  // const jsonData = await fsPromises.readFile(filePath);
-  // const objectData = JSON.parse(jsonData.toString());
-  const platformIndex = contentData.findIndex(
+  const platform = query.platform;
+  const filePath = path.join(process.cwd(), "generatecontent.json");
+  const jsonData = await fsPromises.readFile(filePath);
+  const objectData = JSON.parse(jsonData.toString());
+  const platformIndex = objectData.findIndex(
     (obj: any) => obj.name === platform
   );
 
+  console.log({ ...objectData[platformIndex], ...{ session } });
+
+  if (!session) {
+    return {
+      redirect: {
+        destination: "/",
+        permanent: false,
+      },
+    };
+  }
   return {
-    props: contentData[platformIndex], // will be passed to the page component as props
-    revalidate: true,
+    props: { ...objectData[platformIndex], ...{ session } },
   };
 };
-
-export async function getStaticPaths() {
-  // Return a list of possible value for id
-
-  // const filePath = path.join(process.cwd(), "generatecontent.json");
-  // const jsonData = await fsPromises.readFile(filePath);
-  // const objectData = JSON.parse(jsonData.toString());
-  const paths = contentData.map((platform: any) => {
-    return {
-      params: { platform: platform.name },
-    };
-  });
-
-  return { paths, fallback: false };
-}
 
 export default function GeneratePlatform(props: IPlatform) {
   const [loading, setLoading] = useState<boolean>(false);
@@ -87,6 +56,8 @@ export default function GeneratePlatform(props: IPlatform) {
   const [selected, setSelected] = useState<{ [key: string]: string }>({});
   const [loadingContent, setLoadingContent] = useState<boolean>(false);
   const [content, setContent] = useState<JSX.Element | null>();
+  const [platformPrompts, setPlatformPrompts] = useState<any>({});
+  const [promptCost, setPromptCost] = useState<any>({});
   const dynamicRoute = useRouter().asPath;
 
   useEffect(() => {
@@ -94,6 +65,44 @@ export default function GeneratePlatform(props: IPlatform) {
     setContent(null);
     setSelected({});
   }, [dynamicRoute]);
+
+  // const getConfigValue = async (
+  //   key: string,
+  //   setStateCallback: Dispatch<any>,
+  //   saveLocal: boolean = false
+  // ) => {
+  //   console.log(`Getitng Config for ${key}`);
+  //   const firebaseRemoteConfig = remoteConfig;
+  //   if (firebaseRemoteConfig) {
+  //     await fetchAndActivate(firebaseRemoteConfig).then(() => {
+  //       const data = JSON.parse(getValue(firebaseRemoteConfig, key).asString());
+  //       console.log(`Getitng Config for ${key}`, data);
+  //       setStateCallback(data);
+  //       if (saveLocal) {
+  //         localStorage.setItem(key, data);
+  //       }
+  //     });
+  //   }
+  // };
+
+  useEffect(() => {
+    (async () => {
+      const promptsConfig = localStorage.getItem("contentPrompts");
+      const costConfig = localStorage.getItem("metridashTokens");
+      console.log("Generate promptCost", promptCost);
+      console.log("Generate platformPrompts", platformPrompts);
+      if (!promptsConfig) {
+        await getConfigValue("contentPrompts", setPlatformPrompts, true);
+      } else {
+        setPlatformPrompts(JSON.parse(promptsConfig));
+      }
+      if (!costConfig) {
+        await getConfigValue("metridashTokens", setPromptCost, true);
+      } else {
+        setPromptCost(JSON.parse(costConfig));
+      }
+    })();
+  }, []);
 
   const generateSuggestions = async (e: React.SyntheticEvent) => {
     e.preventDefault();

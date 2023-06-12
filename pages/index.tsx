@@ -1,14 +1,18 @@
-import Image from "next/image";
-import { Inter } from "next/font/google";
+import { Blocks, Growing, Journey, Preview, Prompts } from "@/components/LandingPageComponents/Sections";
+import React from "react";
+// import LandingPage from "./LandingPage";
 
-const inter = Inter({ subsets: ["latin"] });
-
-export default function Home() {
+const Home = () => {
   return (
-    <main>
-      {/* <div className="flex items-center justify-center">
-        <button>Create Content</button>
-      </div> */}
-    </main>
+    <>
+      <Blocks />
+      <Growing />
+      <Preview />
+      <Prompts />
+      <Journey />
+
+    </>
   );
-}
+};
+
+export default Home;

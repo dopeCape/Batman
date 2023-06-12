@@ -2,6 +2,28 @@ import { generateText } from "@/services/API";
 import React, { useEffect, useState } from "react";
 import { IoCreate as Create } from "react-icons/io5";
 import { AiOutlineLoading as Loading } from "react-icons/ai";
+import { GetServerSideProps } from "next";
+import { getSession } from "next-auth/react";
+import path from "path";
+
+export const getServerSideProps: GetServerSideProps = async ({
+  req,
+  query,
+}) => {
+  const session = await getSession({ req });
+
+  if (!session) {
+    return {
+      redirect: {
+        destination: "/",
+        permanent: false,
+      },
+    };
+  }
+  return {
+    props: { session },
+  };
+};
 
 const Rewrite = () => {
   const [loading, setLoading] = useState<boolean>(false);
