@@ -18,7 +18,8 @@ const Blocks = () => {
     }
   }, [controls, inView]);
   return (
-    <div className="bg-[#3247CF] flex pl-[7%] pb-5">
+    <div className="bg-[#3247CF] flex pl-[7%] pb-5 w-full md:flex-row flex-col">
+      <Image className="md:hidden flex " src={DashBoard} alt="DashBoard" />
       <motion.div
         ref={ref}
         variants={textScrollVariants}
@@ -26,7 +27,7 @@ const Blocks = () => {
         className="w-[50%] flex flex-col gap-y-5 justify-center relative top-[-50px] transition-all duration-1000 ease-in-out"
         animate={controls}
       >
-        <h1 className="font-semibold text-[64px] leading-[92%] w-[408px] text-white">
+        <h1 className="font-semibold text-[64px] leading-[92%] w-[408px] text-white mt-4">
           Say BYE-BYE to creative blocks!
         </h1>
         <p className="text-white w-[447px] font-normal text-[24px] leading-[28px]">
@@ -50,7 +51,7 @@ const Blocks = () => {
         className="w-[50%] mt-5 relative top-[-50px] transition-all duration-1000 ease-in-out"
         animate={controls}
       >
-        <Image src={DashBoard} alt="DashBoard" />
+        <Image className="md:flex hidden" src={DashBoard} alt="DashBoard" />
       </motion.div>
     </div>
   );

@@ -9,7 +9,7 @@ interface Props {
 const NavigationBar = ({ children }: Props): JSX.Element => {
   const { data, status } = useSession();
 
-  if (status === "loading") return <h1> loading... please wait</h1>;
+  if (status === "loading") return <h1 className="flex justify-center place-self-center mt-60 "> loading... please wait</h1>;
 
   if (status === "unauthenticated") {
     return (

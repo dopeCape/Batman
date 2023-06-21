@@ -18,7 +18,7 @@ const Preview = () => {
     }
   }, [controls, inView]);
   return (
-    <div className="bg-white flex pl-[7%] mr-[3%]">
+    <div className="bg-white flex px-10  items-center justify-center py-20 mr-[3%]">
       <motion.div
         ref={ref}
         variants={textScrollVariants}
@@ -26,10 +26,11 @@ const Preview = () => {
         className="w-[50%] flex flex-col gap-y-5 justify-center relative right-[-50px] transition-all duration-1000 ease-in-out"
         animate={controls}
       >
-        <h1 className="text-[#3247CF] font-semibold text-[48px] leading-[48.09px] w-[447px]">
+        <Image src={PreviewImg} alt="Preview" className="sm:hidden flex" />
+        <h1 className="text-[#3247CF]  md:text-[48px] text-[48px] font-semibold leading-[48px] w-[300px]">
           We help you stay on top of your game!
         </h1>
-        <p className="font-normal text-[24px] leading-[28px] text-[#797979] w-[488px]">
+        <p className="font-normal text-[16px] leading-[18.75px] text-justify text-[#494949] w-[387px]">
           We have added our own proprietary algorithm to chat gpt and taken out
           the headache of finding a good prompt.
         </p>
@@ -41,7 +42,7 @@ const Preview = () => {
         className="w-[50%] mt-[5%] relative right-[-50px] transition-all duration-1000 ease-in-out"
         animate={controls}
       >
-        <Image src={PreviewImg} alt="Preview" />
+        <Image src={PreviewImg} alt="Preview" className="sm:flex hidden"/>
       </motion.div>
     </div>
   );

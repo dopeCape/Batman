@@ -68,14 +68,14 @@ const Journey = () => {
           ref={ref}
           variants={textScrollVariants}
           initial="hidden"
-          className="flex gap-x-5 relative right-[-200px] transition-all duration-1000 ease-in-out"
+          className="flex gap-x-5 relative right-[-200px] transition-all duration-1000 ease-in-out md:flex-row flex-col"
           animate={controls}
         >
           <input
             placeholder="Enter your Email here"
             className="bg-[#3247CF] border-white border-[1px] border-t-0 border-r-0 w-[400px] text-white border-l-0 h-12 focus:outline-none"
           />
-          <button className="bg-[#fff] w-[151px] h-[51px] flex justify-center items-center  rounded-lg">
+          <button className="bg-[#fff] w-[151px] h-[51px] flex justify-center items-center self-center md:mt-0 mt-10  rounded-lg">
             <p className="text-black underline underline-offset-auto font-medium">
               Join the Waitlist
             </p>

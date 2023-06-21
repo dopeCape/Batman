@@ -27,12 +27,12 @@ const Growing = () => {
       <h1 className="text-[#1E1E1E] font-semibold text-[48px] leading-[48px] text-center ">
         Never stop growing!
       </h1>
-      <div className="flex gap-x-5">
+      <div className="flex gap-x-5 md:flex-row flex-col justify-center align-center">
         <input
           placeholder="Enter your Email here"
-          className="bg-[#fff] border-[#2E353A] border-[1px] border-t-0 border-r-0 w-[400px] text-black border-l-0 h-12 focus:outline-none ::placeholder font-medium placeholder-[#2E353A]"
+          className="bg-[#fff] border-[#2E353A] border-[1px] border-t-0 border-r-0 w-[400px] text-black border-l-0 h-12 focus:outline-none ::placeholder font-medium placeholder-[#2E353A] pl-4 rounded-md"
         />
-        <button className="bg-[#3247CF] w-[151px] h-[51px] flex justify-center items-center  rounded-lg">
+        <button className="bg-[#3247CF] w-[151px] h-[51px] flex justify-center items-center  rounded-lg self-center md:mt-0 mt-4">
           <p className="text-white underline underline-offset-auto">
             Join the Waitlist
           </p>
