@@ -6,7 +6,10 @@ import { getProviders, signIn } from "next-auth/react";
 import { getServerSession } from "next-auth/next";
 import React from "react";
 import Link from "next/link";
-
+import { FaTwitter } from 'react-icons/fa';
+import { BsLinkedin,BsFacebook } from 'react-icons/bs';
+import { GrGoogle, } from 'react-icons/gr';
+import Image from "next/image";
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   const providers = await getProviders();
 
@@ -18,45 +21,20 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
 const Login = ({ providers }: any) => {
   return (
     <main className="bg-gray-50 dark:bg-gray-900 flex min-h-screen flex-col items-center justify-center p-24">
-      <div className="px-6 py-8">
+      <div className="px-14 py-8 bg-gray-800 rounded-lg	">
         <div className="flex flex-col items-center">
-          <h1>Mertidash</h1>
+          <h1 className="font-bold text-[25px]">Login</h1>
           <div className="w-full rounded-lg">
-            <h1 className="text-xl font-bold leading-tight text-gray-900">
-              Sign in to your account
-            </h1>
             <form action="#" className="space-y-4">
-              <div>
-                <label
-                  htmlFor="username"
-                  className="block mb-2 text-sm font-mono text-gray-900"
-                >
-                  Username
-                </label>
-                <input
-                  type="text"
-                  name="username"
-                  id="username"
-                  placeholder="username"
-                  className="bg-gray border border-gray-300 text-gray-900 rounded-lg focus:border-primary-600 block w-full p-2.5"
-                ></input>
+              <div className="mt-1 text-sm">
+                <label htmlFor="username" className="block text-gray-500 mb-1">Username</label>
+                <input type="text" name="username" id="username" className="w-full rounded-md border-gray-500 border px-4 py-3 bg-gray-900 text-gray-200 focus:border-purple-500 focus:outline-none" />
               </div>
-              <div>
-                <label
-                  htmlFor="password"
-                  className="block mb-2 text-sm font-mono text-gray-900"
-                >
-                  Password
-                </label>
-                <input
-                  type="password"
-                  name="password"
-                  id="password"
-                  placeholder="********"
-                  className="bg-gray border border-gray-300 text-gray-900 rounded-lg focus:border-primary-600 block w-full p-2.5"
-                ></input>
+              <div className="mt-1 text-sm">
+                <label htmlFor="password" className="block text-gray-500 mb-1">Password</label>
+                <input type="password" name="password" id="password" className="w-full rounded-md border-gray-500 border px-4 py-3 bg-gray-900 text-gray-200 focus:border-purple-500 focus:outline-none" />
               </div>
-              <div className="flex items-center justify-between">
+              <div className="flex items-center justify-between gap-x-5">
                 <div className="flex items-start">
                   <div className="flex items-center h-5">
                     <input
@@ -65,10 +43,10 @@ const Login = ({ providers }: any) => {
                       className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 "
                     />
                   </div>
-                  <div className="ml-3 text-sm">
+                  <div className="text-sm ml-1">
                     <label
                       htmlFor="remember"
-                      className="text-gray-500 dark:text-gray-300"
+                      className="text-gray-400 dark:text-gray-400"
                     >
                       Remember me
                     </label>
@@ -76,47 +54,40 @@ const Login = ({ providers }: any) => {
                 </div>
                 <a
                   href="#"
-                  className="text-sm font-medium text-primary-600 hover:underline "
+                  className="text-sm font-medium text-primary-600 hover:underline  text-gray-200"
                 >
                   Forgot password?
                 </a>
               </div>
+              
               <button
                 // type="submit"
-                className="w-full border-black border-2 bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center "
+                className="bg-violet-400 w-full py-2 rounded-lg text-black font-bold "
                 onClick={() => signIn("credentials", { callbackUrl: "/" })}
               >
                 Sign in
               </button>
-              <p className="text-sm font-light text-gray-500 ">
-                Don’t have an account yet?{" "}
+              <div className="flex items-center justify-center gap-x-5">
+                  <div className="bg-gray-600 h-[1px] w-8"></div>
+                  <p>Login with social accounts</p>
+                  <div className="bg-gray-600 h-[1px] w-8"></div>
+              </div>
+              <div className="flex gap-x-10 justify-center">
+              <GrGoogle className="w-5 h-5 text-white" />
+              <BsLinkedin className="w-5 h-5 text-white" />
+              <BsFacebook className="w-5 h-5 text-white" />
+              <FaTwitter className="w-5 h-5 text-white" />
+              </div>
+              <div className="flex gap-x-1 justify-center">
+              <p className="text-gray-400">Don't have an account?</p>
                 <Link
                   href="/"
-                  className="font-medium text-primary-600 hover:underline"
+                  className="font-semibold hover:underline"
                 >
                   Sign up
                 </Link>
-              </p>
-            </form>
-            {Object.values(providers).length > 0 && (
-              <div className="flex flex-col items-center pt-2">
-                <div>
-                  <p className="text-xs font-light text-gray-500 ">
-                    Other Sign in Options
-                  </p>
-                </div>
-                {Object.values(providers).map((provider: any) => (
-                  <div key={provider.name}>
-                    <button
-                      className="text-sm font-light text-gray-500 "
-                      onClick={() => signIn(provider.id)}
-                    >
-                      Sign in with {provider.name}
-                    </button>
-                  </div>
-                ))}
               </div>
-            )}
+            </form>
           </div>
         </div>
       </div>

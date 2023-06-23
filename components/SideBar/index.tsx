@@ -68,20 +68,18 @@ const SideBar = ({ children }: Props) => {
             }
           >
             <div className="flex flex-col gap-7">
-              <h1 className={click ? "text-lg text-white" : "text-[12px]"}>
-                Generate Content
-              </h1>
-              <Link href="/generate/youtube">
-                <div className="flex gap-x-2">
-                  <Image
-                    className={click ? "w-6 h-6" : "w-10 h-10"}
-                    src={Youtube}
-                    alt="YouTube Logo"
-                  />
-                  <p className={click ? "text-left text-white" : "hidden"}>
-                    YouTube
-                  </p>
-                </div>
+            <Link
+               href="/Generate"
+               >
+              <h1 className={click ? "text-lg text-white" : "text-[12px]"}>Generate Content</h1>
+              </Link>
+              <Link
+               href="/generate/youtube"
+               >
+              <div className="flex gap-x-2">
+              <Image className={click ? "w-6 h-6" : "w-10 h-10"} src={Youtube} alt="YouTube Logo" />
+                <p className={click ? "text-left text-white" : "hidden"}>YouTube</p>
+              </div>
               </Link>
               <Link href="/generate/instagram">
                 <div className="flex gap-x-2">
@@ -150,35 +148,16 @@ const SideBar = ({ children }: Props) => {
               </div>
             </Link>
             <Link href="/rewrite">
-              <div className="flex items-center gap-x-3">
-                <Image
-                  className={click ? "w-5 h-5" : "w-8 h-8 pl-1"}
-                  src={Save}
-                  alt="linkedin Logo"
-                />
-                <p
-                  className={click ? "text-left text-white text-lg" : "hidden"}
-                >
-                  Saved Content
-                </p>
-              </div>
+            <div className="flex items-center gap-x-[13px] ml-[3px]">
+            <Image className={click ? "w-[17px] h-[17px]" : "w-8 h-8 pl-1"} src={Save} alt="linkedin Logo" />
+            <p className={click ? "text-left text-white text-lg" : "hidden"}>Saved Content</p>
+            </div>
             </Link>
           </div>
-          <button
-            className={
-              click
-                ? "rotate-180 absolute left-52 bottom-[50%]"
-                : "absolute left-20 bottom-[50%] w-52 h-52"
-            }
-            onClick={() => setClick(!click)}
-          >
-            <Image
-              className={
-                click ? "w-6 h-6 duration-500" : "w-5 h-5 duration-500"
-              }
-              src={Arrow}
-              alt="Arrow Logo"
-            />
+          <button className={click ? "rotate-180 absolute left-52 bottom-[50%]" : "absolute left-20 bottom-[50%] w-52 h-52"}
+             onClick={() => setClick(!click)}
+              >
+                <Image className={click ? "w-6 h-6 duration-500" : "w-5 h-5 duration-500"} src={Arrow} alt="Arrow Logo" />
           </button>
         </aside>
         <main className="flex-1">{children}</main>
