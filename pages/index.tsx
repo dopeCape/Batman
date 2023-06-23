@@ -1,18 +1,27 @@
-import { Blocks, Growing, Journey, Preview, Prompts } from "@/components/LandingPageComponents/Sections";
-import React from "react";
-// import LandingPage from "./LandingPage";
+import Image from "next/image";
+import { Inter } from "next/font/google";
+import { useSession, signIn, signOut } from "next-auth/react";
+import Link from "next/link";
 
-const Home = () => {
+const inter = Inter({ subsets: ["latin"] });
+
+export default function Home() {
+  const { data, status } = useSession();
+  if (status === "loading") return <h1> loading... please wait</h1>;
+  if (status === "authenticated") {
+    return (
+      <main>
+        <div>
+          <button onClick={() => signOut()}>sign out</button>
+        </div>
+      </main>
+    );
+  }
   return (
-    <div className="w-screen flex flex-col ">
-      <Blocks />
-      <Growing />
-      <Preview />
-      <Prompts />
-      <Journey />
-
-    </div>
+    <main>
+      <div>
+        <button onClick={() => signIn()}>sign in</button>
+      </div>
+    </main>
   );
-};
-
-export default Home;
+}
