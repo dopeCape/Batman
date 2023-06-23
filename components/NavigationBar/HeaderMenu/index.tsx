@@ -28,7 +28,7 @@ const HeaderMenu = (props: Props) => {
   };
   return (
     <>
-      <div className="bg-[#3247CF] flex justify-between px-[7%] items-center h-10 py-10 w-screen">
+      <div className="bg-[#3247CF] flex justify-between px-[7%] items-center h-10 py-10 w-12/12">
         <h1 className="font-semibold text-[20px] leading-[23px] text-black">
           Metridash
         </h1>

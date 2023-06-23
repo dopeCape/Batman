@@ -32,7 +32,7 @@ const Prompts = () => {
   }, [controls2, inView2]);
   return (
     <div className="pb-10">
-      <div className="bg-white h-[500px] flex pl-[7%] mr-[3%]">
+      <div className="bg-white h-[500px] flex md:px-10 px-16 mr-[3%]">
         <motion.div
           ref={ref}
           variants={textScrollVariants}
@@ -42,7 +42,7 @@ const Prompts = () => {
         >
           <div className="md:hidden flex justify-center  ">
           <Image
-            className=" w-[278px] h-[180px] "
+            className=" w-[678px] h-[180px] "
             src={RImage1}
             alt="Preview"
           />
@@ -66,12 +66,12 @@ const Prompts = () => {
           animate={controls}
         >
           <Image
-            className="absolute w-[329px] h-[333px] md:flex hidden"
+            className="absolute w-[329px] h-[333px] md:flex hidden object-contain"
             src={Image1}
             alt="Preview"
           />
           <Image
-            className="absolute w-[238px] h-[209px] ml-[54%] mt-[25%] md:flex hidden"
+            className="absolute w-[238px] h-[209px] ml-[54%] mt-[25%] md:flex hidden object-contain"
             src={Image2}
             alt="Preview"
           />
@@ -86,12 +86,12 @@ const Prompts = () => {
           animate={controls2}
         >
           <Image
-            className="absolute w-[329px] h-[333px]"
+            className="absolute w-[329px] h-[333px] object-contain"
             src={Image3}
             alt="Preview"
           />
           <Image
-            className="absolute w-[238px] h-[209px] ml-[10.5%] mt-[11.8%]"
+            className="absolute w-[238px] h-[209px] ml-[10.5%] mt-[11.8%] object-contain"
             src={Image4}
             alt="Preview"
           />
@@ -105,7 +105,7 @@ const Prompts = () => {
           animate={controls2}
         >
           <Image
-            className=" w-[238px] h-[209px] ml-[10.5%] mt-[11.8%] md:hidden flex"
+            className=" w-[278px] h-[209px] ml-[10.5%] mt-[11.8%] md:hidden flex"
             src={RImage5}
             alt="Preview"
           />

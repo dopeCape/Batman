@@ -4,14 +4,14 @@ import React from "react";
 
 const Home = () => {
   return (
-    <>
+    <div className="w-screen flex flex-col ">
       <Blocks />
       <Growing />
       <Preview />
       <Prompts />
       <Journey />
 
-    </>
+    </div>
   );
 };
 

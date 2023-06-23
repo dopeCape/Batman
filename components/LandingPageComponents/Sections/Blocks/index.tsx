@@ -18,7 +18,7 @@ const Blocks = () => {
     }
   }, [controls, inView]);
   return (
-    <div className="bg-[#3247CF] flex pl-[7%] pb-5 w-full md:flex-row flex-col">
+    <div className="bg-[#3247CF] flex pl-[7%] pb-5 w-screen md:flex-row flex-col">
       <Image className="md:hidden flex " src={DashBoard} alt="DashBoard" />
       <motion.div
         ref={ref}
