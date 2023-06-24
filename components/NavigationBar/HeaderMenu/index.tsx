@@ -77,11 +77,22 @@ const HeaderMenu = (props: Props) => {
               }`}
               onClick={() => handleClick(4)}
             >
-              <Link href="/login">
-                  Login
+              <Link href="/auth/signin">
+                  Sign in
               </Link>
             </li>
+            
           )}
+          <li
+              className={`cursor-pointer mr-4 ${
+                active === "5" ? "text-[#fff]" : "text-[#8E9CF3]"
+              }`}
+              onClick={() => handleClick(5)}
+            >
+              <Link href="/auth/signup">
+                  Sign up
+              </Link>
+            </li>
         </ul>
         <div className='md:hidden flex relative'>
           
@@ -111,10 +122,14 @@ const HeaderMenu = (props: Props) => {
                               className='dropdown_link'
                               onClick={()=>{setToggleDropdown(false); handleClick(3)}}
                         >Contact Us</Link>
-                         <Link href='/login'
+                         <Link href='/auth/signin'
                               className='dropdown_link'
                               onClick={()=>{setToggleDropdown(false); handleClick(4)}}
-                        >Login</Link>
+                        >Sign in</Link>
+                         <Link href='/auth/signup'
+                              className='dropdown_link'
+                              onClick={()=>{setToggleDropdown(false); handleClick(4)}}
+                        >Sign up</Link>
                         
                     </div>
                   )}
