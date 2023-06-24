@@ -1,6 +1,6 @@
 import { useState, ChangeEvent } from 'react';
 import { useRouter } from 'next/router';
-import { createUserWithEmail, signInWithGoogle } from '../auth';
+import { createUserWithEmail, signInWithGoogle } from '../../../auth';
 
 const SignUp = () => {
   const [email, setEmail] = useState('');
