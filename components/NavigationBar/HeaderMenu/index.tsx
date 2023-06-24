@@ -39,7 +39,9 @@ const HeaderMenu = (props: Props) => {
             }`}
             onClick={() => handleClick(0)}
           >
+             <Link href="/">
             Home
+            </Link>
           </li>
           <li
             className={`cursor-pointer mr-4 ${
@@ -55,7 +57,10 @@ const HeaderMenu = (props: Props) => {
             }`}
             onClick={() => handleClick(2)}
           >
+            <Link href="/pricing">
             Pricing
+            </Link>
+            
           </li>
           <li
             className={`cursor-pointer mr-4 ${
@@ -72,7 +77,9 @@ const HeaderMenu = (props: Props) => {
               }`}
               onClick={() => handleClick(4)}
             >
-              Login
+              <Link href="/login">
+                  Login
+              </Link>
             </li>
           )}
         </ul>
@@ -96,7 +103,7 @@ const HeaderMenu = (props: Props) => {
                               className='dropdown_link'
                               onClick={()=>{setToggleDropdown(false); handleClick(1)}}
                         >Features</Link>
-                        <Link href='/profile'
+                        <Link href='/pricing'
                               className='dropdown_link'
                               onClick={()=>{setToggleDropdown(false); handleClick(2)}}
                         >Pricing</Link>

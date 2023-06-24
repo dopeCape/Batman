@@ -1,27 +1,20 @@
-import Image from "next/image";
-import { Inter } from "next/font/google";
-import { useSession, signIn, signOut } from "next-auth/react";
-import Link from "next/link";
+import { Blocks, Growing, Journey, Preview, Prompts } from "@/components/LandingPageComponents/Sections";
 
-const inter = Inter({ subsets: ["latin"] });
+import React from "react";
+// import LandingPage from "./LandingPage";
 
-export default function Home() {
-  const { data, status } = useSession();
-  if (status === "loading") return <h1> loading... please wait</h1>;
-  if (status === "authenticated") {
-    return (
-      <main>
-        <div>
-          <button onClick={() => signOut()}>sign out</button>
-        </div>
-      </main>
-    );
-  }
+const Home = () => {
   return (
-    <main>
-      <div>
-        <button onClick={() => signIn()}>sign in</button>
-      </div>
-    </main>
+    <>
+      
+      <Blocks />
+      <Growing />
+      <Preview />
+      <Prompts />
+      <Journey />
+
+    </>
   );
-}
+};
+
+export default Home;
