@@ -1,6 +1,6 @@
 import { useState, ChangeEvent } from 'react';
 import { useRouter } from 'next/router';
-import { signInWithEmail } from '../auth';
+import { signInWithEmail } from '../../../auth';
 
 const SignIn = () => {
   const [email, setEmail] = useState('');
