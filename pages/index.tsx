@@ -7,10 +7,9 @@ const Home = () => {
     <>
       <Blocks />
       <Growing />
-      <Preview />
+      {/* <Preview /> */}
       <Prompts />
       <Journey />
-
     </>
   );
 };

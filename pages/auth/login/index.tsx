@@ -17,12 +17,12 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
 
 const Login = ({ providers }: any) => {
   return (
-    <main className="bg-gray-50 dark:bg-gray-900 flex min-h-screen flex-col items-center justify-center p-24">
+    <main className="bg-gray-50 dark:bg-gray-900 flex min-h-screen flex-col items-center justify-center">
       <div className="px-6 py-8">
         <div className="flex flex-col items-center">
-          <h1>Mertidash</h1>
+          <h1>Metridash</h1>
           <div className="w-full rounded-lg">
-            <h1 className="text-xl font-bold leading-tight text-gray-900">
+            <h1 className="text-xl font-bold mb-5 leading-tight text-gray-900 text-center">
               Sign in to your account
             </h1>
             <form action="#" className="space-y-4">
@@ -64,15 +64,14 @@ const Login = ({ providers }: any) => {
                       type="checkbox"
                       className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 "
                     />
-                  </div>
-                  <div className="ml-3 text-sm">
                     <label
                       htmlFor="remember"
-                      className="text-gray-500 dark:text-gray-300"
+                      className="text-gray-500 ml-2 dark:text-gray-300"
                     >
-                      Remember me
+                      remember me
                     </label>
                   </div>
+                  <div className="ml-3"></div>
                 </div>
                 <a
                   href="#"
