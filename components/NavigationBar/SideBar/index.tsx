@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useSession, signIn, signOut } from "next-auth/react";
 import Image from "next/image";
 import { IconImages } from "@/constants/images";
+import HomeIcon from "@mui/icons-material/Home";
 
 interface Props {
   children: JSX.Element;
@@ -13,6 +14,7 @@ interface Props {
 const SideBar = ({ children }: Props) => {
   const { data, status } = useSession();
   const [click, setClick] = useState(true);
+  const router = useRouter();
 
   if (status === "loading") return <h1> loading... please wait</h1>;
 
@@ -62,6 +64,24 @@ const SideBar = ({ children }: Props) => {
                 <h1 className={click ? "text-lg text-white" : "text-[12px]"}>
                   Generate Content
                 </h1>
+                <Link href="/home">
+                  <button
+                    className="flex items-center gap-x-3"
+                    onClick={() => router.push("/home")}
+                  >
+                    <HomeIcon
+                      className={click ? "w-5 h-5" : "w-8 h-8 pl-1"}
+                      sx={{ fontSize: click ? "1.25rem" : "2rem" }}
+                    />
+                    <p
+                      className={
+                        click ? "text-left text-white text-lg" : "hidden"
+                      }
+                    >
+                      Home
+                    </p>
+                  </button>
+                </Link>
                 <Link href="/generate/youtube">
                   <div className="flex gap-x-2">
                     <Image
@@ -81,7 +101,6 @@ const SideBar = ({ children }: Props) => {
                       src={IconImages.instagram}
                       alt="Instagram Logo"
                     />
-
                     <p className={click ? "text-left text-white" : "hidden"}>
                       Instagram
                     </p>
@@ -94,7 +113,6 @@ const SideBar = ({ children }: Props) => {
                       src={IconImages.tiktok}
                       alt="Tiktok Logo"
                     />
-
                     <p className={click ? "text-left text-white" : "hidden"}>
                       Tiktok
                     </p>
@@ -200,4 +218,4 @@ const SideBar = ({ children }: Props) => {
   );
 };
 
-export default SideBar;
+export default SideBar;
