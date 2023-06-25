@@ -25,14 +25,8 @@
     "eventsource-parser": "^1.0.0",
     "firebase": "^9.21.0",
     "framer-motion": "^10.12.12",
-<<<<<<< HEAD
     "mui": "^0.0.1",
-=======
-<<<<<<< HEAD
     "mui": "^0.0.1",
-=======
->>>>>>> e1b7d0e9ee1af0e9fab7e6f99737282b7da848a1
->>>>>>> 5b2f1e4458de31c5e22dae73da0cc0429637d6f2
     "next": "13.3.0",
     "next-auth": "^4.22.1",
     "openai": "^3.2.1",
@@ -45,3 +39,5 @@
     "typescript": "5.0.4"
   }
 }
+
+
