@@ -2,6 +2,7 @@ import { useState, ChangeEvent } from 'react';
 import { useRouter } from 'next/router';
 import { signInWithEmail } from '../../../auth';
 
+
 const SignIn = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -20,6 +21,8 @@ const SignIn = () => {
     try {
       await signInWithEmail(email, password);
       setMessage('User signed in successfully');
+      router.push('/home')
+      
     } catch (error) {
       setMessage(`Error signing in: ${error.message}`);
     }
@@ -29,12 +32,14 @@ const SignIn = () => {
     <div>
       <h1>Sign In</h1>
       <input
+        className='text-black'
         type="email"
         placeholder="Enter your email"
         value={email}
         onChange={handleEmailChange}
       />
       <input
+        className='text-black'
         type="password"
         placeholder="Enter your password"
         value={password}
