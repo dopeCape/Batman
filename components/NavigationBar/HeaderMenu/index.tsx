@@ -4,12 +4,13 @@ import React, { useEffect, useState } from "react";
 import Image from 'next/image';
 import Link from 'next/link';
 import menu from '../../../public/Images/menu.png'
-
+import { useRouter } from "next/router";
 interface Props {
   children: JSX.Element;
 }
 
 const HeaderMenu = (props: Props) => {
+  const router = useRouter();
   const [active, setActive] = useState<string>("0");
   const [showLogin, setShowLogin] = useState<boolean>(false);
   const [toggleDropdown, setToggleDropdown] = useState<boolean>(false)
@@ -33,16 +34,26 @@ const HeaderMenu = (props: Props) => {
           Metridash
         </h1>
         <ul className=" justify-center gap-x-10 md:flex hidden">
+          
+        
+          {router.pathname == '/home'? 
+             <></>
+          : 
           <li
-            className={`cursor-pointer mr-4 ${
-              active === "0" ? "text-white" : "text-[#8E9CF3]"
-            }`}
-            onClick={() => handleClick(0)}
-          >
-             <Link href="/">
-            Home
-            </Link>
-          </li>
+          className={`cursor-pointer mr-4 ${
+            active === "0" ? "text-white" : "text-[#8E9CF3]"
+          }`}
+          onClick={() => handleClick(0)}
+        >
+           <Link href="/">
+          Home
+          </Link>
+        </li>
+          
+          }
+          {router.pathname == '/home'? 
+             <></>
+          : 
           <li
             className={`cursor-pointer mr-4 ${
               active === "1" ? "text-white" : "text-[#8E9CF3]"
@@ -51,17 +62,28 @@ const HeaderMenu = (props: Props) => {
           >
             Features
           </li>
+          
+          }
+           {router.pathname == '/home'? 
+             <></>
+          : 
           <li
-            className={`cursor-pointer mr-4 ${
-              active === "2" ? "text-white" : "text-[#8E9CF3]"
-            }`}
-            onClick={() => handleClick(2)}
-          >
-            <Link href="/pricing">
-            Pricing
-            </Link>
-            
-          </li>
+          className={`cursor-pointer mr-4 ${
+            active === "2" ? "text-white" : "text-[#8E9CF3]"
+          }`}
+          onClick={() => handleClick(2)}
+        >
+          <Link href="/pricing">
+          Pricing
+          </Link>
+          
+        </li>
+          
+          }
+
+          {router.pathname == '/home'? 
+             <></>
+          : 
           <li
             className={`cursor-pointer mr-4 ${
               active === "3" ? "text-[#fff]" : "text-[#8E9CF3]"
@@ -70,29 +92,62 @@ const HeaderMenu = (props: Props) => {
           >
             Contact Us
           </li>
-          {showLogin && (
+          
+          }  
+
+          
+          
+          
+          
+          {router.pathname == '/home'? 
+             <li
+             className={`cursor-pointer mr-4 ${
+               active === "4" ? "text-[#fff]" : "text-[#8E9CF3]"
+             }`}
+             onClick={() => handleClick(4)}
+           >
+             <Link href="/pricing">
+                 Dashboard
+             </Link>
+           </li>
+          : 
             <li
-              className={`cursor-pointer mr-4 ${
-                active === "4" ? "text-[#fff]" : "text-[#8E9CF3]"
-              }`}
-              onClick={() => handleClick(4)}
-            >
-              <Link href="/auth/signin">
-                  Sign in
-              </Link>
-            </li>
-            
-          )}
-          <li
-              className={`cursor-pointer mr-4 ${
-                active === "5" ? "text-[#fff]" : "text-[#8E9CF3]"
-              }`}
-              onClick={() => handleClick(5)}
-            >
-              <Link href="/auth/signup">
-                  Sign up
-              </Link>
-            </li>
+            className={`cursor-pointer mr-4 ${
+              active === "4" ? "text-[#fff]" : "text-[#8E9CF3]"
+            }`}
+            onClick={() => handleClick(4)}
+          >
+            <Link href="/auth/signin">
+                Sign in
+            </Link>
+          </li>
+          
+          }
+          {router.pathname == '/home'? 
+             <li
+             className={`cursor-pointer mr-4 ${
+               active === "5" ? "text-[#fff]" : "text-[#8E9CF3]"
+             }`}
+             onClick={() => handleClick(5)}
+           >
+             <Link href="/">
+                 Log out
+             </Link>
+           </li>
+          : 
+            <li
+            className={`cursor-pointer mr-4 ${
+              active === "5" ? "text-[#fff]" : "text-[#8E9CF3]"
+            }`}
+            onClick={() => handleClick(5)}
+          >
+            <Link href="/auth/signup">
+                Sign up
+            </Link>
+          </li>
+          
+          }
+         
         </ul>
         <div className='md:hidden flex relative'>
           

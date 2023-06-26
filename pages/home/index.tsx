@@ -11,6 +11,9 @@ import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import styled  from "styled-components";
 import { Alert, CardActionArea } from '@mui/material';
+import SideBar from "@/components/NavigationBar/SideBar";
+
+
 const socialMediaPlatforms = [
   {
     id: 1,
