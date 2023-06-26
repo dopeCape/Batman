@@ -258,7 +258,7 @@ const Home: NextPage = () => {
           </CardItemTitle>
           <DescriptionCard>
             
-            {youtubeContent.slice(0, 4).map((content, index) => {
+            {youtubeContent.slice(0, 4).map((content) => {
               
                 return (
                   <CardContents key={content.id} >
