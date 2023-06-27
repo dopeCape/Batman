@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useRouter } from 'next/router'
 
 
@@ -19,6 +19,7 @@ const Insta=()=>{
 }
 
 export default function ContentCreation() {
+    const [loading, setLoading] = useState(true)
     const router = useRouter()
     const {
         query: {
@@ -33,10 +34,10 @@ export default function ContentCreation() {
     }
 
     const Selector =()=>{
-         if (props.title==='twitter'){
+          if (props.title==='twitter'){
             return <Facebook></Facebook>
         }
-         else if(props.title==='instagram'){
+          else if(props.title==='instagram'){
             return <Insta></Insta>
         }
         else if(props.title==='twitter'){
@@ -45,7 +46,9 @@ export default function ContentCreation() {
         else{
             return <Twitter></Twitter>
         }
+        
     }
+    Selector()
   return (
     <div>
         <Selector></Selector>
