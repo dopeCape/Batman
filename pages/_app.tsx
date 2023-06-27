@@ -23,12 +23,16 @@ import { useEffect } from "react";
 import NavigationBar from "@/components/NavigationBar";
 
 export default function App({ Component, pageProps }: AppProps) {
+  
+
   useEffect(() => {
     console.log("pageProps.session", pageProps.session);
   }, [pageProps.session]);
+  
 
   return (
     <SessionProvider session={pageProps.session}>
+      
       <NavigationBar>
         <Component {...pageProps} />
       </NavigationBar>

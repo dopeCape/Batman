@@ -29,23 +29,24 @@ const SignIn = () => {
   };
 
   return (
-    <div>
-      <h1>Sign In</h1>
+    <div className='flex-col flex items-center justify-center h-screen'>
+       <div className=' bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 flex flex-col items-center justify-center px-10 py-8 rounded-2xl'>
+      <h1 className='text-center font-sans mb-10 font-semibold text-[30px] leading-[23px]'>Sign In</h1>
       <input
-        className='text-black'
+        className='text-black mb-6 px-4 py-2 w-72 rounded-md'
         type="email"
         placeholder="Enter your email"
         value={email}
         onChange={handleEmailChange}
       />
       <input
-        className='text-black'
+        className='text-black mb-6 px-4 py-2 w-72 rounded-md'
         type="password"
         placeholder="Enter your password"
         value={password}
         onChange={handlePasswordChange}
       />
-      <button onClick={handleSignIn}>Sign In</button>
+      <button className='bg-blue-500 rounded-md px-4 py-2 mb-6' onClick={handleSignIn}>Sign In</button>
       {message && <p>{message}</p>}
       <p>
         Don't have an account?{' '}
@@ -53,6 +54,7 @@ const SignIn = () => {
           Sign up
         </a>
       </p>
+      </div>
     </div>
   );
 };

@@ -64,31 +64,37 @@ const youtubeContent = [
     id: "m1",
     title: "Youtube Video Ideas",
     content: "Unlock a treasure trove of creative video concepts to captivate and grow your YouTube audience.",
+    platform: 'youtube'
   },
   {
     id: "m1",
     title: "Youtube Shorts Ideas",
     content: "Dive into bite-sized content creation with compelling ideas for YouTube Shorts that leave a lasting impact.",
+    platform: 'youtube'
   },
   {
     id: "m1",
     title: "YouTube Titles",
     content: "Optimize your video titles to attract more viewers and enhance engagement.",
+    platform: 'youtube'
   },
   {
     id: "m1",
     title: "YouTube Descriptions",
     content: "Write compelling descriptions that entice viewers to click and watch your videos.",
+    platform: 'youtube'
   },
   {
     id: "m1",
     title: "YouTube Tags",
     content: "Discover relevant tags to optimize your videos for better search rankings.",
+    platform: 'youtube'
   },
   {
     id: "m1",
     title: "Youtube Thumbnail Ideas",
     content: "Grab viewers' attention and increase click-through rates with eye-catching thumbnail ideas that make your YouTube videos stand out.",
+    platform: 'youtube'
   },
 ];
 
@@ -97,16 +103,19 @@ const tiktokContent = [
     id: "m1",
     title: "TikTok Video Ideas",
     content: "Unleash your creativity with trending video ideas that captivate your audience.",
+    platform: 'tiktok'
   },
   {
     id: "m1",
     title: "TikTok Hashtags",
     content: "Find the right hashtags to amplify your content and gain more visibility.",
+    platform: 'tiktok'
   },
   {
     id: "m1",
     title: "TikTok Captions",
     content: "Craft catchy captions that complement your TikTok videos and boost engagement.",
+    platform: 'tiktok'
   },
 ];
 
@@ -115,24 +124,28 @@ const InstagramContent = [
     id: "m1",
     title: "Instagram Reels Ideas",
     content: "Ignite your creativity and engage your audience with captivating Instagram Reel Ideas",
+    platform: 'instagram'
   },
   {
     id: "m2",
     title: "Instagram Captions",
     content:
       "Write scroll-stopping captions that encourage people to stop, look, and like.",
+      platform: 'instagram'
   },
   {
     id: "m1",
     title: "Instagram Hashtags",
     content:
       "Discover the perfect hashtags to boost your posts' reach and engagement.",
+      platform: 'instagram'
   },
   {
     id: "m2",
     title: "Instagram Bio",
     content:
       "Create an impressive bio that showcases your personality and attracts followers.",
+      platform: 'instagram'
   },
 ];
 
@@ -141,16 +154,19 @@ const linkedInContent = [
     id: "m2",
     title: "LinkedIn Post Ideas",
     content: "Generate professional post ideas to share industry insights and build connections.",
+    platform: 'linkedIn'
   },
   {
     id: "m2",
     title: "LinkedIn Profile Optimization",
     content: "Optimize your profile to impress potential employers or clients and stand out.",
+    platform: 'linkedIn'
   },
   {
     id: "m2",
     title: "LinkedIn Articles",
     content: "Craft well-written articles that establish you as an authoritative voice in your field.",
+    platform: 'linkedIn'
   },
 ];
 
@@ -159,16 +175,19 @@ const twitterContent = [
     id: "m2",
     title: "Twitter Tweets",
     content: "Compose attention-grabbing tweets that resonate with your followers and gain retweets.",
+    platform: 'twitter'
   },
   {
     id: "m2",
     title: "Twitter Hashtags",
     content: "Discover popular hashtags to increase your tweets' visibility and reach.",
+    platform: 'twitter'
   },
   {
     id: "m2",
     title: "Twitter Bio",
     content: "Create a compelling bio that showcases your uniqueness and attracts followers.",
+    platform: 'twitter'
   },
 ];
 
@@ -177,16 +196,19 @@ const facebookContent = [
     id: "m2",
     title: "Facebook Post Ideas",
     content: "Generate engaging post ideas that spark conversations and drive interactions.",
+    platform: 'facebook'
   },
   {
     id: "m2",
     title: "Facebook Ad Copy",
     content: "Create compelling ad copy that compels your target audience to take action.",
+    platform: 'facebook'
   },
   {
     id: "m2",
     title: "Facebook Page Description",
     content: "Craft an enticing page description that accurately represents your brand.",
+    platform: 'facebook'
   },
 ];
 
@@ -262,7 +284,13 @@ const Home: NextPage = () => {
             {youtubeContent.slice(0, 4).map((content) => {
               
                 return (
-                  <CardContents onClick={()=>router.push('/home/contentGeneration')} key={content.id} >
+                  <CardContents onClick={()=>router.push({
+                    pathname:'/home/contentGeneration',
+                    query: {
+                        platform: content.platform,
+                        title: content.title
+                    }
+                    })} key={content.id} >
                     
                     <CardItemTitle>
                       {content.title}
@@ -282,7 +310,13 @@ const Home: NextPage = () => {
             {youtubeContent.slice(4, 6).map((content, index) => {
               
                 return (
-                  <CardContents onClick={()=>router.push('/home/contentGeneration')} key={content.id} >
+                  <CardContents onClick={()=>router.push({
+                    pathname:'/home/contentGeneration',
+                    query: {
+                        platform: content.platform,
+                        title: content.title
+                    }
+                    })}  key={content.id} >
                     <CardItemTitle>
                       {content.title}
                     </CardItemTitle>
@@ -303,9 +337,15 @@ const Home: NextPage = () => {
             <h3>Twitter</h3>
           </CardItemTitle>
           <DescriptionCard>
-            {tiktokContent.map((content) => {
+            {twitterContent.map((content) => {
               return (
-                <CardContents onClick={()=>router.push('/home/contentGeneration')} key={content.id}>
+                <CardContents onClick={()=>router.push({
+                  pathname:'/home/contentGeneration',
+                  query: {
+                      platform: content.platform,
+                      title: content.title
+                  }
+                  })}  key={content.id}>
                   <CardItemTitle >
                     {content.title}
                   </CardItemTitle>
@@ -325,7 +365,13 @@ const Home: NextPage = () => {
           <DescriptionCard>
             {linkedInContent.map((content) => {
               return (
-                <CardContents onClick={()=>router.push('/home/contentGeneration')} key={content.id} >
+                <CardContents onClick={()=>router.push({
+                  pathname:'/home/contentGeneration',
+                  query: {
+                      platform: content.platform,
+                      title: content.title
+                  }
+                  })}  key={content.id} >
                   <CardItemTitle>
                     {content.title}
                   </CardItemTitle>
@@ -345,7 +391,39 @@ const Home: NextPage = () => {
           <DescriptionCard>
             {tiktokContent.map((content) => {
               return (
-                <CardContents onClick={()=>router.push('/home/contentGeneration')} key={content.id} >
+                <CardContents onClick={()=>router.push({
+                  pathname:'/home/contentGeneration',
+                  query: {
+                      platform: content.platform,
+                      title: content.title
+                  }
+                  })}  key={content.id} >
+                  <CardItemTitle>
+                    {content.title}
+                  </CardItemTitle>
+                  <Typography variant="body2" color="textPrimary">
+                    {content.content}
+                  </Typography>
+                </CardContents>
+              );
+            })}
+          </DescriptionCard>
+        </Cards>
+        <Cards>
+          <CardItemTitle>
+            <TikTokIcon />
+            <h3>Facebook</h3>
+          </CardItemTitle>
+          <DescriptionCard>
+            {facebookContent.map((content) => {
+              return (
+                <CardContents onClick={()=>router.push({
+                  pathname:'/home/contentGeneration',
+                  query: {
+                      platform: content.platform,
+                      title: content.title
+                  }
+                  })}  key={content.id} >
                   <CardItemTitle>
                     {content.title}
                   </CardItemTitle>
@@ -365,7 +443,13 @@ const Home: NextPage = () => {
           <DescriptionCard >
             {InstagramContent.map((content) => {
               return (
-                <CardContents onClick={()=>router.push('/home/contentGeneration')} key={content.id}>
+                <CardContents onClick={()=>router.push({
+                  pathname:'/home/contentGeneration',
+                  query: {
+                      platform: content.platform,
+                      title: content.title
+                  }
+                  })}  key={content.id}>
                   <CardItemTitle>
                     {content.title}
                   </CardItemTitle>
