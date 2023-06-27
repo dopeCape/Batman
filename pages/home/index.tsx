@@ -12,7 +12,7 @@ import Grid from '@mui/material/Grid';
 import styled  from "styled-components";
 import { Alert, CardActionArea } from '@mui/material';
 import SideBar from "@/components/NavigationBar/SideBar";
-
+import { useRouter } from 'next/router';
 
 const socialMediaPlatforms = [
   {
@@ -246,6 +246,7 @@ const Icon = styled(Typography)`
 
 
 const Home: NextPage = () => {
+  const router = useRouter();
 
 
   return (
@@ -261,7 +262,7 @@ const Home: NextPage = () => {
             {youtubeContent.slice(0, 4).map((content) => {
               
                 return (
-                  <CardContents key={content.id} >
+                  <CardContents onClick={()=>router.push('/home/contentGeneration')} key={content.id} >
                     
                     <CardItemTitle>
                       {content.title}
@@ -281,7 +282,7 @@ const Home: NextPage = () => {
             {youtubeContent.slice(4, 6).map((content, index) => {
               
                 return (
-                  <CardContents key={content.id} >
+                  <CardContents onClick={()=>router.push('/home/contentGeneration')} key={content.id} >
                     <CardItemTitle>
                       {content.title}
                     </CardItemTitle>
@@ -304,7 +305,7 @@ const Home: NextPage = () => {
           <DescriptionCard>
             {tiktokContent.map((content) => {
               return (
-                <CardContents key={content.id}>
+                <CardContents onClick={()=>router.push('/home/contentGeneration')} key={content.id}>
                   <CardItemTitle >
                     {content.title}
                   </CardItemTitle>
@@ -324,7 +325,7 @@ const Home: NextPage = () => {
           <DescriptionCard>
             {linkedInContent.map((content) => {
               return (
-                <CardContents key={content.id} >
+                <CardContents onClick={()=>router.push('/home/contentGeneration')} key={content.id} >
                   <CardItemTitle>
                     {content.title}
                   </CardItemTitle>
@@ -344,7 +345,7 @@ const Home: NextPage = () => {
           <DescriptionCard>
             {tiktokContent.map((content) => {
               return (
-                <CardContents key={content.id} >
+                <CardContents onClick={()=>router.push('/home/contentGeneration')} key={content.id} >
                   <CardItemTitle>
                     {content.title}
                   </CardItemTitle>
@@ -364,7 +365,7 @@ const Home: NextPage = () => {
           <DescriptionCard >
             {InstagramContent.map((content) => {
               return (
-                <CardContents>
+                <CardContents onClick={()=>router.push('/home/contentGeneration')} key={content.id}>
                   <CardItemTitle>
                     {content.title}
                   </CardItemTitle>

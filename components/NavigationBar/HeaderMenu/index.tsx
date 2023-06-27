@@ -36,7 +36,7 @@ const HeaderMenu = (props: Props) => {
         <ul className=" justify-center gap-x-10 md:flex hidden">
           
         
-          {router.pathname == '/home'? 
+          {router.pathname == '/home' && '/home/contentGeneration'? 
              <></>
           : 
           <li
