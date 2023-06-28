@@ -5,11 +5,11 @@ import TikTokIcon from "@mui/icons-material/ThumbUp";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import TwitterIcon from "@mui/icons-material/Twitter";
-import Card from '@mui/material/Card';
-import Typography from '@mui/material/Typography';
-import Grid from '@mui/material/Grid';
+import Card from "@mui/material/Card";
+import Typography from "@mui/material/Typography";
+import Grid from "@mui/material/Grid";
 import styled from "styled-components";
-import { useRouter } from 'next/router';
+import { useRouter } from "next/router";
 import youtubeContent from "@/data/youtube";
 import tiktokContent from "@/data/tiktok";
 import InstagramContent from "@/data/instagram";
@@ -66,21 +66,20 @@ const Cards = styled(Card)`
   margin: 15px;
   padding: 15px;
   display: flex;
-  flex-Direction: column;
-  justify-Content: center;
-  align-Items: center;
-  
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `;
 
 const CardContents = styled(Card)`
   text-align: center;
   margin: 10px 4px;
-  backgroundColor: white;
+  backgroundcolor: white;
   cursor: pointer;
   color: black;
   align-items: center;
   justify-content: center;
-  borderRadius: 10px;
+  borderradius: 10px;
   padding-left: 20px;
   padding-right: 20px;
   padding-top: 10px;
@@ -92,10 +91,8 @@ const CardContents = styled(Card)`
 const DescriptionCard = styled.div`
   display: flex;
   flex-direction: row;
-  align-self: flex-start
+  align-self: flex-start;
 `;
-
-
 
 const CardItemTitle = styled.h1`
   color: black;
@@ -104,22 +101,20 @@ const CardItemTitle = styled.h1`
   margin-top: 15px;
   align-self: center;
   text-align: center;
-
 `;
 
 const IconCard = styled(Card)`
   display: flex;
-  flexDirection: column;
+  flexdirection: column;
 `;
 
 const Icon = styled(Typography)`
-  fontSize: 48px;
-  marginBottom: 2px;
-`
+  fontsize: 48px;
+  marginbottom: 2px;
+`;
 
 const Home: NextPage = () => {
   const router = useRouter();
-
 
   return (
     <Grid>
@@ -130,168 +125,151 @@ const Home: NextPage = () => {
             <h3>YouTube</h3>
           </CardItemTitle>
           <DescriptionCard>
-
             {youtubeContent.slice(0, 4).map((content) => {
-
               return (
-                <CardContents onClick={() => {
-                  if (content.comp == 'video') {
-                    router.push({
-                      pathname: '/home/VideoGen',
-                      query: {
-                        platform: content.platform,
-                        title: content.title
-                      }
-                    })
-                  }
-                  else if (content.comp == 'caption') {
-                    router.push({
-                      pathname: '/home/CaptionGen',
-                      query: {
-                        platform: content.platform,
-                        title: content.title
-                      }
-                    })
-                  }
-                  else if (content.comp == 'desc') {
-                    router.push({
-                      pathname: '/home/DescGen',
-                      query: {
-                        platform: content.platform,
-                        title: content.title
-                      }
-                    })
-                  }
-                }} key={content.id} >
-
-                  <CardItemTitle>
-                    {content.title}
-                  </CardItemTitle>
+                <CardContents
+                  onClick={() => {
+                    if (content.comp == "video") {
+                      router.push({
+                        pathname: "/home/VideoGen",
+                        query: {
+                          platform: content.platform,
+                          title: content.title,
+                        },
+                      });
+                    } else if (content.comp == "caption") {
+                      router.push({
+                        pathname: "/home/CaptionGen",
+                        query: {
+                          platform: content.platform,
+                          title: content.title,
+                        },
+                      });
+                    } else if (content.comp == "desc") {
+                      router.push({
+                        pathname: "/home/DescGen",
+                        query: {
+                          platform: content.platform,
+                          title: content.title,
+                        },
+                      });
+                    }
+                  }}
+                  key={content.id}
+                >
+                  <CardItemTitle>{content.title}</CardItemTitle>
                   <Typography variant="body2" color="textPrimary">
                     {content.content}
                   </Typography>
-
                 </CardContents>
               );
-
-
-
             })}
           </DescriptionCard>
           <DescriptionCard>
             {youtubeContent.slice(4, 6).map((content, index) => {
-
               return (
-                <CardContents onClick={() => {
-                  if (content.comp == 'video') {
-                    router.push({
-                      pathname: '/home/VideoGen',
-                      query: {
-                        platform: content.platform,
-                        title: content.title
-                      }
-                    })
-                  }
-                  else if (content.comp == 'caption') {
-                    router.push({
-                      pathname: '/home/CaptionGen',
-                      query: {
-                        platform: content.platform,
-                        title: content.title
-                      }
-                    })
-                  }
-                  else if (content.comp == 'desc') {
-                    router.push({
-                      pathname: '/home/DescGen',
-                      query: {
-                        platform: content.platform,
-                        title: content.title
-                      }
-                    })
-                  }
-                  else if (content.comp == 'hashtag') {
-                    router.push({
-                      pathname: '/home/HashtagGen',
-                      query: {
-                        platform: content.platform,
-                        title: content.title
-                      }
-                    })
-                  }
-                }} key={content.id} >
-                  <CardItemTitle>
-                    {content.title}
-                  </CardItemTitle>
+                <CardContents
+                  onClick={() => {
+                    if (content.comp == "video") {
+                      router.push({
+                        pathname: "/home/VideoGen",
+                        query: {
+                          platform: content.platform,
+                          title: content.title,
+                        },
+                      });
+                    } else if (content.comp == "caption") {
+                      router.push({
+                        pathname: "/home/CaptionGen",
+                        query: {
+                          platform: content.platform,
+                          title: content.title,
+                        },
+                      });
+                    } else if (content.comp == "desc") {
+                      router.push({
+                        pathname: "/home/DescGen",
+                        query: {
+                          platform: content.platform,
+                          title: content.title,
+                        },
+                      });
+                    } else if (content.comp == "hashtag") {
+                      router.push({
+                        pathname: "/home/HashtagGen",
+                        query: {
+                          platform: content.platform,
+                          title: content.title,
+                        },
+                      });
+                    }
+                  }}
+                  key={content.id}
+                >
+                  <CardItemTitle>{content.title}</CardItemTitle>
                   <Typography variant="body2" color="textPrimary">
                     {content.content}
                   </Typography>
                 </CardContents>
               );
-
-
-
             })}
           </DescriptionCard>
         </Cards>
         <Cards>
-          <CardItemTitle >
+          <CardItemTitle>
             <TwitterIcon />
             <h3>Twitter</h3>
           </CardItemTitle>
           <DescriptionCard>
             {twitterContent.map((content) => {
               return (
-                <CardContents onClick={() => {
-                  if (content.comp == 'tweet') {
-                    router.push({
-                      pathname: '/home/Tweet',
-                      query: {
-                        platform: content.platform,
-                        title: content.title
-                      }
-                    })
-                  }
-                  else if (content.comp == 'caption') {
-                    router.push({
-                      pathname: '/home/CaptionGen',
-                      query: {
-                        platform: content.platform,
-                        title: content.title
-                      }
-                    })
-                  }
-                  else if (content.comp == 'desc') {
-                    router.push({
-                      pathname: '/home/DescGen',
-                      query: {
-                        platform: content.platform,
-                        title: content.title
-                      }
-                    })
-                  }
-                  else if (content.comp == 'hashtag') {
-                    router.push({
-                      pathname: '/home/HashtagGen',
-                      query: {
-                        platform: content.platform,
-                        title: content.title
-                      }
-                    })
-                  }
-                  else if (content.comp == 'bio') {
-                    router.push({
-                      pathname: '/home/BioGen',
-                      query: {
-                        platform: content.platform,
-                        title: content.title
-                      }
-                    })
-                  }
-                }} key={content.id}>
-                  <CardItemTitle >
-                    {content.title}
-                  </CardItemTitle>
+                <CardContents
+                  onClick={() => {
+                    if (content.comp == "tweet") {
+                      router.push({
+                        pathname: "/home/Tweet",
+                        query: {
+                          platform: content.platform,
+                          title: content.title,
+                        },
+                      });
+                    } else if (content.comp == "caption") {
+                      router.push({
+                        pathname: "/home/CaptionGen",
+                        query: {
+                          platform: content.platform,
+                          title: content.title,
+                        },
+                      });
+                    } else if (content.comp == "desc") {
+                      router.push({
+                        pathname: "/home/DescGen",
+                        query: {
+                          platform: content.platform,
+                          title: content.title,
+                        },
+                      });
+                    } else if (content.comp == "hashtag") {
+                      router.push({
+                        pathname: "/home/HashtagGen",
+                        query: {
+                          platform: content.platform,
+                          title: content.title,
+                        },
+                      });
+                    } else if (content.comp == "bio") {
+                      router.push({
+                        pathname: "/home/BioGen",
+                        query: {
+                          platform: content.platform,
+                          title: content.title,
+                        },
+                      });
+                    }
+                  }}
+                  key={content.id}
+                >
+                  <CardItemTitle>{content.title}</CardItemTitle>
                   <Typography variant="body2" color="textPrimary">
                     {content.content}
                   </Typography>
@@ -308,16 +286,19 @@ const Home: NextPage = () => {
           <DescriptionCard>
             {linkedInContent.map((content) => {
               return (
-                <CardContents onClick={() => router.push({
-                  pathname: '/home/contentGeneration',
-                  query: {
-                    platform: content.platform,
-                    title: content.title
+                <CardContents
+                  onClick={() =>
+                    router.push({
+                      pathname: "/home/contentGeneration",
+                      query: {
+                        platform: content.platform,
+                        title: content.title,
+                      },
+                    })
                   }
-                })} key={content.id} >
-                  <CardItemTitle>
-                    {content.title}
-                  </CardItemTitle>
+                  key={content.id}
+                >
+                  <CardItemTitle>{content.title}</CardItemTitle>
                   <Typography variant="body2" color="textPrimary">
                     {content.content}
                   </Typography>
@@ -334,47 +315,45 @@ const Home: NextPage = () => {
           <DescriptionCard>
             {tiktokContent.map((content) => {
               return (
-                <CardContents onClick={() => {
-                  if (content.comp == 'video') {
-                    router.push({
-                      pathname: '/home/VideoGen',
-                      query: {
-                        platform: content.platform,
-                        title: content.title
-                      }
-                    })
-                  }
-                  else if (content.comp == 'caption') {
-                    router.push({
-                      pathname: '/home/CaptionGen',
-                      query: {
-                        platform: content.platform,
-                        title: content.title
-                      }
-                    })
-                  }
-                  else if (content.comp == 'desc') {
-                    router.push({
-                      pathname: '/home/DescGen',
-                      query: {
-                        platform: content.platform,
-                        title: content.title
-                      }
-                    })
-                  }
-                  else if (content.comp == 'hashtag') {
-                    router.push({
-                      pathname: '/home/HashtagGen',
-                      query: {
-                        platform: content.platform,
-                        title: content.title
-                      }
-                    })
-                  }
-                }} key={content.id} >
-                  <CardItemTitle>
-                    {content.title}
-                  </CardItemTitle>
+                <CardContents
+                  onClick={() => {
+                    if (content.comp == "video") {
+                      router.push({
+                        pathname: "/home/VideoGen",
+                        query: {
+                          platform: content.platform,
+                          title: content.title,
+                        },
+                      });
+                    } else if (content.comp == "caption") {
+                      router.push({
+                        pathname: "/home/CaptionGen",
+                        query: {
+                          platform: content.platform,
+                          title: content.title,
+                        },
+                      });
+                    } else if (content.comp == "desc") {
+                      router.push({
+                        pathname: "/home/DescGen",
+                        query: {
+                          platform: content.platform,
+                          title: content.title,
+                        },
+                      });
+                    } else if (content.comp == "hashtag") {
+                      router.push({
+                        pathname: "/home/HashtagGen",
+                        query: {
+                          platform: content.platform,
+                          title: content.title,
+                        },
+                      });
+                    }
+                  }}
+                  key={content.id}
+                >
+                  <CardItemTitle>{content.title}</CardItemTitle>
                   <Typography variant="body2" color="textPrimary">
                     {content.content}
                   </Typography>
@@ -391,56 +370,53 @@ const Home: NextPage = () => {
           <DescriptionCard>
             {facebookContent.map((content) => {
               return (
-                <CardContents onClick={() => {
-                  if (content.comp == 'video') {
-                    router.push({
-                      pathname: '/home/VideoGen',
-                      query: {
-                        platform: content.platform,
-                        title: content.title
-                      }
-                    })
-                  }
-                  else if (content.comp == 'caption') {
-                    router.push({
-                      pathname: '/home/CaptionGen',
-                      query: {
-                        platform: content.platform,
-                        title: content.title
-                      }
-                    })
-                  }
-                  else if (content.comp == 'desc') {
-                    router.push({
-                      pathname: '/home/DescGen',
-                      query: {
-                        platform: content.platform,
-                        title: content.title
-                      }
-                    })
-                  }
-                  else if (content.comp == 'hashtag') {
-                    router.push({
-                      pathname: '/home/HashtagGen',
-                      query: {
-                        platform: content.platform,
-                        title: content.title
-                      }
-                    })
-                  }
-                  else if (content.comp == 'adCopy') {
-                    router.push({
-                      pathname: '/home/AdGen',
-                      query: {
-                        platform: content.platform,
-                        title: content.title
-                      }
-                    })
-                  }
-                }} key={content.id} >
-                  <CardItemTitle>
-                    {content.title}
-                  </CardItemTitle>
+                <CardContents
+                  onClick={() => {
+                    if (content.comp == "video") {
+                      router.push({
+                        pathname: "/home/VideoGen",
+                        query: {
+                          platform: content.platform,
+                          title: content.title,
+                        },
+                      });
+                    } else if (content.comp == "caption") {
+                      router.push({
+                        pathname: "/home/CaptionGen",
+                        query: {
+                          platform: content.platform,
+                          title: content.title,
+                        },
+                      });
+                    } else if (content.comp == "desc") {
+                      router.push({
+                        pathname: "/home/DescGen",
+                        query: {
+                          platform: content.platform,
+                          title: content.title,
+                        },
+                      });
+                    } else if (content.comp == "hashtag") {
+                      router.push({
+                        pathname: "/home/HashtagGen",
+                        query: {
+                          platform: content.platform,
+                          title: content.title,
+                        },
+                      });
+                    } else if (content.comp == "adCopy") {
+                      router.push({
+                        pathname: "/home/AdGen",
+                        query: {
+                          platform: content.platform,
+                          title: content.title,
+                        },
+                      });
+                    }
+                  }}
+                  key={content.id}
+                >
+                  <CardItemTitle>{content.title}</CardItemTitle>
                   <Typography variant="body2" color="textPrimary">
                     {content.content}
                   </Typography>
@@ -454,68 +430,64 @@ const Home: NextPage = () => {
             <InstagramIcon />
             <h3>Instagram</h3>
           </CardItemTitle>
-          <DescriptionCard >
+          <DescriptionCard>
             {InstagramContent.map((content) => {
               return (
-                <CardContents onClick={() => {
-                  if (content.comp == 'video') {
-                    router.push({
-                      pathname: '/home/VideoGen',
-                      query: {
-                        platform: content.platform,
-                        title: content.title
-                      }
-                    })
-                  }
-                  else if (content.comp == 'caption') {
-                    router.push({
-                      pathname: '/home/CaptionGen',
-                      query: {
-                        platform: content.platform,
-                        title: content.title
-                      }
-                    })
-                  }
-                  else if (content.comp == 'bio') {
-                    router.push({
-                      pathname: '/home/BioGen',
-                      query: {
-                        platform: content.platform,
-                        title: content.title
-                      }
-                    })
-                  }
-                  else if (content.comp == 'desc') {
-                    router.push({
-                      pathname: '/home/DescGen',
-                      query: {
-                        platform: content.platform,
-                        title: content.title
-                      }
-                    })
-                  }
-                  else if (content.comp == 'hashtag') {
-                    router.push({
-                      pathname: '/home/HashtagGen',
-                      query: {
-                        platform: content.platform,
-                        title: content.title
-                      }
-                    })
-                  }
-                  else if (content.comp == 'adCopy') {
-                    router.push({
-                      pathname: '/home/AdGen',
-                      query: {
-                        platform: content.platform,
-                        title: content.title
-                      }
-                    })
-                  }
-                }} key={content.id}>
-                  <CardItemTitle>
-                    {content.title}
-                  </CardItemTitle>
+                <CardContents
+                  onClick={() => {
+                    if (content.comp == "video") {
+                      router.push({
+                        pathname: "/home/VideoGen",
+                        query: {
+                          platform: content.platform,
+                          title: content.title,
+                        },
+                      });
+                    } else if (content.comp == "caption") {
+                      router.push({
+                        pathname: "/home/CaptionGen",
+                        query: {
+                          platform: content.platform,
+                          title: content.title,
+                        },
+                      });
+                    } else if (content.comp == "bio") {
+                      router.push({
+                        pathname: "/home/BioGen",
+                        query: {
+                          platform: content.platform,
+                          title: content.title,
+                        },
+                      });
+                    } else if (content.comp == "desc") {
+                      router.push({
+                        pathname: "/home/DescGen",
+                        query: {
+                          platform: content.platform,
+                          title: content.title,
+                        },
+                      });
+                    } else if (content.comp == "hashtag") {
+                      router.push({
+                        pathname: "/home/HashtagGen",
+                        query: {
+                          platform: content.platform,
+                          title: content.title,
+                        },
+                      });
+                    } else if (content.comp == "adCopy") {
+                      router.push({
+                        pathname: "/home/AdGen",
+                        query: {
+                          platform: content.platform,
+                          title: content.title,
+                        },
+                      });
+                    }
+                  }}
+                  key={content.id}
+                >
+                  <CardItemTitle>{content.title}</CardItemTitle>
                   <Typography variant="body2" color="textPrimary">
                     {content.content}
                   </Typography>
@@ -530,4 +502,3 @@ const Home: NextPage = () => {
 };
 
 export default Home;
-
