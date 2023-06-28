@@ -36,7 +36,7 @@ const HeaderMenu = (props: Props) => {
         <ul className=" justify-center gap-x-10 md:flex hidden">
           
         
-          {router.pathname == '/home' && '/home/contentGeneration'? 
+          {router.pathname == '/home'? 
              <></>
           : 
           <li
@@ -106,7 +106,7 @@ const HeaderMenu = (props: Props) => {
              }`}
              onClick={() => handleClick(4)}
            >
-             <Link href="/pricing">
+             <Link href="/home">
                  Dashboard
              </Link>
            </li>
@@ -126,9 +126,9 @@ const HeaderMenu = (props: Props) => {
           {router.pathname == '/home'? 
              <li
              className={`cursor-pointer mr-4 ${
-               active === "5" ? "text-[#fff]" : "text-[#8E9CF3]"
+               active === "0" ? "text-[#fff]" : "text-[#8E9CF3]"
              }`}
-             onClick={() => handleClick(5)}
+             onClick={() => handleClick(0)}
            >
              <Link href="/">
                  Log out

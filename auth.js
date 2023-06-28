@@ -3,7 +3,6 @@ import { getFirestore, doc, setDoc } from 'firebase/firestore';
 import { app } from './firebase';
 import { updateDoc } from 'firebase/firestore';
 
-
 const auth = getAuth(app);
 const firestore = getFirestore(app);
 

@@ -117,10 +117,6 @@ const Icon = styled(Typography)`
   marginBottom: 2px;
 `
 
-
-
-
-
 const Home: NextPage = () => {
   const router = useRouter();
 

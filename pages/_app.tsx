@@ -21,7 +21,7 @@ import type { AppProps } from "next/app";
 import { SessionProvider, useSession } from "next-auth/react";
 import { useEffect } from "react";
 import NavigationBar from "@/components/NavigationBar";
-
+import Head from "next/head";
 export default function App({ Component, pageProps }: AppProps) {
   
 
@@ -31,11 +31,16 @@ export default function App({ Component, pageProps }: AppProps) {
   
 
   return (
+    <>
+    <Head>
+      <title>Metridash</title>
+    </Head>
     <SessionProvider session={pageProps.session}>
       
       <NavigationBar>
         <Component {...pageProps} />
       </NavigationBar>
     </SessionProvider>
+    </>
   );
 }

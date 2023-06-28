@@ -24,7 +24,7 @@ const Growing = () => {
       className="flex flex-col justify-center items-center gap-y-20 py-10 relative top-[100px] transition-all duration-1000 ease-in-out"
       animate={controls}
     >
-      <h1 className="text-[#1E1E1E] font-semibold text-[48px] leading-[48px] text-center ">
+      <h1 className="font-semibold text-[48px] leading-[54px] text-center text-transparent bg-clip-text bg-gradient-to-r from-[#009FFD] to-[#2A2A72] ">
         Never stop growing!
       </h1>
       <div className="flex gap-x-5 md:flex-row flex-col justify-center align-center">
