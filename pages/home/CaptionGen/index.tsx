@@ -20,9 +20,9 @@ export default function CaptionGen() {
     setWord(event.target.value)
   };
 
-  const AddKeyword=()=>{
-      keywords.push(word);
-  }
+  // const AddKeyword=()=>{
+  //     keywords.push(word);
+  // }
 
   const KeywordsComp=()=>{
     return(
@@ -64,7 +64,7 @@ export default function CaptionGen() {
     <div className='flex justify-center items-center'>
       <div className='w-2/5 h-screen flex bg-gray-200 px-10 py-16 flex-col '>
         <h1 className='text-black font-sans text-2xl font-medium'>Generate {props.title}</h1>
-        <h3 className='text-black text-sm text-gray-500'>Optimise your captions for greater visibility and higher engagement.</h3>
+        <h3 className='text-sm text-gray-500'>Optimise your captions for greater visibility and higher engagement.</h3>
         <form onSubmit={(e)=>e.preventDefault()} className='my-4'>
           <h3 className='text-black text-base mb-2'>Whats your post about?*</h3>
           <input className='w-full px-2 py-2 rounded-lg border border-gray-300 text-black' type="text" placeholder='gaming, fashion, animals etc.'></input>
@@ -72,7 +72,7 @@ export default function CaptionGen() {
           <h3 className='text-black text-base mb-2 mt-3'>Keywords*</h3>
           <div className='flex flex-row  '>
             <input onChange={handleKeyword} className='w-4/5 px-2 py-2 border border-gray-300 rounded-lg text-black ' type="text" placeholder='gaming, fashion, animals'></input>
-            <button onClick={AddKeyword} className='cursor-pointer bg-white w-1/5  flex justify-center items-center border border-gray-300 rounded-lg  '>
+            <button  className='cursor-pointer bg-white w-1/5  flex justify-center items-center border border-gray-300 rounded-lg  '>
               <AddCircle className='bg-gray-500 rounded-xl '></AddCircle>
             </button>
 
