@@ -108,7 +108,7 @@ export default function CaptionGen() {
           Generate {props.title}
         </h1>
         <h3 className="text-black text-sm ">
-          Optimize your captions for greater visibility and higher engagement.
+          Optimize your videos for greater visibility and higher engagement.
         </h3>
         <form onSubmit={(e) => e.preventDefault()} className="my-4">
           <h3 className="text-black text-base mb-2">
