@@ -186,7 +186,7 @@ export default function CaptionGen() {
             </p>
           </div>
 
-          <button className="w-1/3 h-10 bg-black mt-10 rounded-lg bg-gradient-to-l from-[#009FFD] to-[#2A2A72]">
+          <button className="w-full h-10 bg-black mt-10 rounded-lg bg-gradient-to-l from-[#009FFD] to-[#2A2A72]">
             Generate (1 credit)
           </button>
         </form>
