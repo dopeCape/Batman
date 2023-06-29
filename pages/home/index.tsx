@@ -85,7 +85,7 @@ const CardContents = styled(Card)`
   padding-top: 10px;
   padding-bottom: 20px;
   max-width: 350px;
-  box-shadow: 0 16px 22px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.4);
 `;
 
 const DescriptionCard = styled.div`
