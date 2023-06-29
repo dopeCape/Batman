@@ -59,7 +59,7 @@ export default function CaptionGen() {
   const TextInput = () => {
     return (
       <input
-        className="w-full px-2 py-2 rounded-lg border border-gray-300 text-black mt-2"
+        className="w-full px-2 py-2 rounded-lg border border-gray-300 text-gray-500 mt-2"
         placeholder="Describe a tone"
         type="text"
       ></input>
@@ -111,22 +111,27 @@ export default function CaptionGen() {
           Optimize your videos for greater visibility and higher engagement.
         </h3>
         <form onSubmit={(e) => e.preventDefault()} className="my-4">
-          <h3 className="text-black text-base mb-2">
-            What's your post about?* ({postAboutCount}/800)
-          </h3>
-          <input
-            className="w-full px-2 py-2 rounded-lg border border-gray-300 text-black"
-            type="text"
-            placeholder="gaming, fashion, animals etc."
-            onChange={handlePostAboutChange}
-          ></input>
+          <div className="relative">
+            <h3 className="text-black text-base mb-2">
+              What's your post about?*
+            </h3>
+            <input
+              className="w-full px-2 py-2 rounded-lg border border-gray-300 text-gray-500"
+              type="text"
+              placeholder="gaming, fashion, animals etc."
+              onChange={handlePostAboutChange}
+            ></input>
+            <p className="text-gray-700 text-xs absolute right-0 top-[18px]">
+              {postAboutCount}/800
+            </p>
+          </div>
 
           <h3 className="text-black text-base mb-2 mt-3">Keywords*</h3>
           <div className="flex flex-row">
             <input
               onChange={handleKeyword}
               value={word}
-              className="w-4/5 px-2 py-2 border border-gray-300 rounded-lg text-black"
+              className="w-4/5 px-2 py-2 border border-gray-300 rounded-lg text-gray-500"
               type="text"
               placeholder="gaming, fashion, animals"
             ></input>
@@ -153,20 +158,33 @@ export default function CaptionGen() {
             options={options}
             sx={{ width: "60%", backgroundColor: "white" }}
             renderInput={(params) => (
-              <TextField {...params} label="Select Tone" />
+              <TextField
+                {...params}
+                label="Select Tone"
+                InputProps={{
+                  ...params.InputProps,
+                  style: {
+                    fontSize: "14px",
+                    color: "gray",
+                  },
+                }}
+              />
             )}
           />
           {inputValue === "Describe a tone" ? <TextInput /> : null}
 
-          <h3 className="text-black text-base mb-2 mt-3">
-            Target audience* ({targetAudienceCount}/200)
-          </h3>
-          <input
-            className="w-full px-2 py-2 rounded-lg border border-gray-300 text-black"
-            type="text"
-            placeholder="travellers, gamers etc."
-            onChange={handleTargetAudienceChange}
-          ></input>
+          <div className="relative">
+            <h3 className="text-black text-base mb-2 mt-3">Target audience*</h3>
+            <input
+              className="w-full px-2 py-2 rounded-lg border border-gray-300 text-gray-500"
+              type="text"
+              placeholder="travellers, gamers etc."
+              onChange={handleTargetAudienceChange}
+            ></input>
+            <p className="text-gray-700 text-xs absolute right-0 top-[18px]">
+              {targetAudienceCount}/200
+            </p>
+          </div>
 
           <button className="w-1/3 h-10 bg-black mt-10 rounded-lg bg-gradient-to-l from-[#009FFD] to-[#2A2A72]">
             Generate (1 credit)
