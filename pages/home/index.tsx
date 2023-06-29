@@ -287,15 +287,42 @@ const Home: NextPage = () => {
             {linkedInContent.map((content) => {
               return (
                 <CardContents
-                  onClick={() =>
+                onClick={() => {
+                  if (content.comp == "LinkedInPost") {
                     router.push({
-                      pathname: "/home/contentGeneration",
+                      pathname: "/home/LinkedInPostGen",
                       query: {
                         platform: content.platform,
                         title: content.title,
                       },
-                    })
+                    });
+                  } else if (content.comp == "caption") {
+                    router.push({
+                      pathname: "/home/CaptionGen",
+                      query: {
+                        platform: content.platform,
+                        title: content.title,
+                      },
+                    });
+                  } else if (content.comp == "desc") {
+                    router.push({
+                      pathname: "/home/DescGen",
+                      query: {
+                        platform: content.platform,
+                        title: content.title,
+                      },
+                    });
+                  } 
+                  else if (content.comp == "bio") {
+                    router.push({
+                      pathname: "/home/BioGen",
+                      query: {
+                        platform: content.platform,
+                        title: content.title,
+                      },
+                    });
                   }
+                }}
                   key={content.id}
                 >
                   <CardItemTitle>{content.title}</CardItemTitle>

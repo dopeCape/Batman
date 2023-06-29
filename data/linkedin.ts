@@ -11,7 +11,7 @@ const linkedInContent = [
       title: "LinkedIn Profile Optimization",
       content: "Optimize your profile to impress potential employers or clients and stand out.",
       platform: 'linkedIn',
-      comp: 'LinkedInPost'
+      comp: 'bio'
     },
     {
       id: "m2",
