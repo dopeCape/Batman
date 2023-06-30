@@ -225,7 +225,7 @@ const Home: NextPage = () => {
               return (
                 <CardContents
                   onClick={() => {
-                    if (content.comp == "tweet") {
+                    if (content.comp == "Tweets") {
                       router.push({
                         pathname: "/home/Tweet",
                         query: {
@@ -287,42 +287,41 @@ const Home: NextPage = () => {
             {linkedInContent.map((content) => {
               return (
                 <CardContents
-                onClick={() => {
-                  if (content.comp == "LinkedInPost") {
-                    router.push({
-                      pathname: "/home/LinkedInPostGen",
-                      query: {
-                        platform: content.platform,
-                        title: content.title,
-                      },
-                    });
-                  } else if (content.comp == "caption") {
-                    router.push({
-                      pathname: "/home/CaptionGen",
-                      query: {
-                        platform: content.platform,
-                        title: content.title,
-                      },
-                    });
-                  } else if (content.comp == "desc") {
-                    router.push({
-                      pathname: "/home/DescGen",
-                      query: {
-                        platform: content.platform,
-                        title: content.title,
-                      },
-                    });
-                  } 
-                  else if (content.comp == "bio") {
-                    router.push({
-                      pathname: "/home/BioGen",
-                      query: {
-                        platform: content.platform,
-                        title: content.title,
-                      },
-                    });
-                  }
-                }}
+                  onClick={() => {
+                    if (content.comp == "LinkedInPost") {
+                      router.push({
+                        pathname: "/home/LinkedInPostGen",
+                        query: {
+                          platform: content.platform,
+                          title: content.title,
+                        },
+                      });
+                    } else if (content.comp == "caption") {
+                      router.push({
+                        pathname: "/home/CaptionGen",
+                        query: {
+                          platform: content.platform,
+                          title: content.title,
+                        },
+                      });
+                    } else if (content.comp == "desc") {
+                      router.push({
+                        pathname: "/home/DescGen",
+                        query: {
+                          platform: content.platform,
+                          title: content.title,
+                        },
+                      });
+                    } else if (content.comp == "bio") {
+                      router.push({
+                        pathname: "/home/BioGen",
+                        query: {
+                          platform: content.platform,
+                          title: content.title,
+                        },
+                      });
+                    }
+                  }}
                   key={content.id}
                 >
                   <CardItemTitle>{content.title}</CardItemTitle>
