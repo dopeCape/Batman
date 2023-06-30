@@ -202,6 +202,14 @@ const Home: NextPage = () => {
                           title: content.title,
                         },
                       });
+                    } else if (content.comp == "thumbnail") {
+                      router.push({
+                        pathname: "/home/ThumbGen",
+                        query: {
+                          platform: content.platform,
+                          title: content.title,
+                        },
+                      });
                     }
                   }}
                   key={content.id}
@@ -225,7 +233,7 @@ const Home: NextPage = () => {
               return (
                 <CardContents
                   onClick={() => {
-                    if (content.comp == "Tweets") {
+                    if (content.comp == "tweet") {
                       router.push({
                         pathname: "/home/Tweet",
                         query: {

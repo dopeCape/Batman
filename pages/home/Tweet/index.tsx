@@ -14,7 +14,7 @@ const options = [
 ];
 
 export default function CaptionGen() {
-  const [value, setValue] = useState<string | null>(options[0]);
+  const [value, setValue] = useState<string | null>();
   const [keywords, setKeywords] = useState<string[]>([]);
   const [word, setWord] = useState("");
   const [inputValue, setInputValue] = useState("");
@@ -113,7 +113,7 @@ export default function CaptionGen() {
         <form onSubmit={(e) => e.preventDefault()} className="my-4">
           <div className="relative">
             <h3 className="text-black text-base mb-2">
-              What's your post about?*
+              What's your Tweet about?*
             </h3>
             <input
               className="w-full px-2 py-2 rounded-lg border border-gray-300 text-gray-500"

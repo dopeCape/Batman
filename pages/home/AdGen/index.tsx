@@ -14,7 +14,7 @@ const options = [
 ];
 
 export default function CaptionGen() {
-  const [value, setValue] = useState<string | null>(options[0]);
+  const [value, setValue] = useState<string | null>();
   const [keywords, setKeywords] = useState<string[]>([]);
   const [word, setWord] = useState("");
   const [inputValue, setInputValue] = useState("");

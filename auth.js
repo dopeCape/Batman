@@ -1,4 +1,4 @@
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, signOut } from 'firebase/auth';
 import { getFirestore, doc, setDoc } from 'firebase/firestore';
 import { app } from './firebase';
 import { updateDoc } from 'firebase/firestore';
@@ -42,6 +42,15 @@ export const signInWithEmail = async (email, password) => {
     }
   }
 };
+
+export const Logout=async()=>{
+  try{
+    await signOut(auth);
+  } catch(err){
+    console.error(err)
+  }
+}
+
 
 export const signInWithGoogle = async () => {
   const googleProvider = new GoogleAuthProvider();

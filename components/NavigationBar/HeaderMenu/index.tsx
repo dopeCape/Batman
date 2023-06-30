@@ -5,11 +5,17 @@ import Image from 'next/image';
 import Link from 'next/link';
 import menu from '../../../public/Images/menu.png'
 import { useRouter } from "next/router";
+import {Logout} from '../../../auth'
+import { Auth } from "firebase/auth";
+import { auth } from "@/firebase";
+
 interface Props {
   children: JSX.Element;
 }
 
 const HeaderMenu = (props: Props) => {
+
+  
   const router = useRouter();
   const [active, setActive] = useState<string>("0");
   const [showLogin, setShowLogin] = useState<boolean>(false);
@@ -19,6 +25,16 @@ const HeaderMenu = (props: Props) => {
       await getConfigValue(FirebaseParameters.SHOW_LOGIN, setShowLogin, true);
     })();
   }, []);
+
+   const handleLogout=async()=>{
+      try{
+          await Logout()
+          alert("User logged out successfully!")
+          router.push('/')
+      } catch(err){
+        console.error(err)
+      }
+   }
 
   useEffect(() => {
     console.log("HeaderMenu showlogin", showLogin);
@@ -36,7 +52,7 @@ const HeaderMenu = (props: Props) => {
         <ul className=" justify-center gap-x-10 md:flex hidden">
           
         
-          {router.pathname == '/home'? 
+          {auth.currentUser? 
              <></>
           : 
           <li
@@ -51,7 +67,7 @@ const HeaderMenu = (props: Props) => {
         </li>
           
           }
-          {router.pathname == '/home'? 
+          {auth.currentUser? 
              <></>
           : 
           <li
@@ -64,7 +80,7 @@ const HeaderMenu = (props: Props) => {
           </li>
           
           }
-           {router.pathname == '/home'? 
+           {auth.currentUser? 
              <></>
           : 
           <li
@@ -81,7 +97,7 @@ const HeaderMenu = (props: Props) => {
           
           }
 
-          {router.pathname == '/home'? 
+          {auth.currentUser? 
              <></>
           : 
           <li
@@ -99,7 +115,7 @@ const HeaderMenu = (props: Props) => {
           
           
           
-          {router.pathname == '/home'? 
+          {auth.currentUser? 
              <li
              className={`cursor-pointer mr-4 ${
                active === "4" ? "text-[#fff]" : "text-[#8E9CF3]"
@@ -123,12 +139,12 @@ const HeaderMenu = (props: Props) => {
           </li>
           
           }
-          {router.pathname == '/home'? 
+          {auth.currentUser? 
              <li
              className={`cursor-pointer mr-4 ${
                active === "0" ? "text-[#fff]" : "text-[#8E9CF3]"
              }`}
-             onClick={() => handleClick(0)}
+             onClick={() => {handleClick(0), handleLogout()}}
            >
              <Link href="/">
                  Log out
