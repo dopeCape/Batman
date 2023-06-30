@@ -2,6 +2,7 @@ import { NextPage } from "next";
 import YouTubeIcon from "@mui/icons-material/YouTube";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import TikTokIcon from "@mui/icons-material/ThumbUp";
+import Grade from "@mui/icons-material/Grade";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import TwitterIcon from "@mui/icons-material/Twitter";
@@ -16,7 +17,7 @@ import InstagramContent from "@/data/instagram";
 import linkedInContent from "@/data/linkedin";
 import twitterContent from "@/data/twitter";
 import facebookContent from "@/data/facebook";
-
+import generalContent from "@/data/general";
 const socialMediaPlatforms = [
   {
     id: 1,
@@ -119,6 +120,46 @@ const Home: NextPage = () => {
   return (
     <Grid>
       <Grid>
+      <Cards>
+          <CardItemTitle>
+            <Grade />
+            <h3>General</h3>
+          </CardItemTitle>
+          <DescriptionCard>
+            {generalContent.slice(0, 4).map((content) => {
+              return (
+                <CardContents
+                  onClick={() => {
+                    if (content.comp == "rewrite") {
+                      router.push({
+                        pathname: "/home/Rewrite",
+                        query: {
+                          platform: content.platform,
+                          title: content.title,
+                        },
+                      });
+                    } else if (content.comp == "repurpose") {
+                      router.push({
+                        pathname: "/home/Repurpose",
+                        query: {
+                          platform: content.platform,
+                          title: content.title,
+                        },
+                      });
+                    } 
+                  }}
+                  key={content.id}
+                >
+                  <CardItemTitle>{content.title}</CardItemTitle>
+                  <Typography variant="body2" color="textPrimary">
+                    {content.content}
+                  </Typography>
+                </CardContents>
+              );
+            })}
+          </DescriptionCard>
+         
+        </Cards>
         <Cards>
           <CardItemTitle>
             <YouTubeIcon />
