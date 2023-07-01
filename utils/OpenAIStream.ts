@@ -62,6 +62,7 @@ export async function OpenAIStream(payload: OpenAIStreamPayload) {
             counter++;
           } catch (e) {
             controller.error(e);
+            console.log(e)
           }
         }
       }
