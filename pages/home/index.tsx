@@ -120,46 +120,6 @@ const Home: NextPage = () => {
   return (
     <Grid>
       <Grid>
-      <Cards>
-          <CardItemTitle>
-            <Grade />
-            <h3>General</h3>
-          </CardItemTitle>
-          <DescriptionCard>
-            {generalContent.slice(0, 4).map((content) => {
-              return (
-                <CardContents
-                  onClick={() => {
-                    if (content.comp == "rewrite") {
-                      router.push({
-                        pathname: "/home/Rewrite",
-                        query: {
-                          platform: content.platform,
-                          title: content.title,
-                        },
-                      });
-                    } else if (content.comp == "repurpose") {
-                      router.push({
-                        pathname: "/home/Repurpose",
-                        query: {
-                          platform: content.platform,
-                          title: content.title,
-                        },
-                      });
-                    } 
-                  }}
-                  key={content.id}
-                >
-                  <CardItemTitle>{content.title}</CardItemTitle>
-                  <Typography variant="body2" color="textPrimary">
-                    {content.content}
-                  </Typography>
-                </CardContents>
-              );
-            })}
-          </DescriptionCard>
-         
-        </Cards>
         <Cards>
           <CardItemTitle>
             <YouTubeIcon />
@@ -571,6 +531,45 @@ const Home: NextPage = () => {
             })}
           </DescriptionCard>
         </Cards>{" "}
+        <Cards>
+          <CardItemTitle>
+            <Grade />
+            <h3>General</h3>
+          </CardItemTitle>
+          <DescriptionCard>
+            {generalContent.slice(0, 4).map((content) => {
+              return (
+                <CardContents
+                  onClick={() => {
+                    if (content.comp == "rewrite") {
+                      router.push({
+                        pathname: "/home/Rewrite",
+                        query: {
+                          platform: content.platform,
+                          title: content.title,
+                        },
+                      });
+                    } else if (content.comp == "repurpose") {
+                      router.push({
+                        pathname: "/home/Repurpose",
+                        query: {
+                          platform: content.platform,
+                          title: content.title,
+                        },
+                      });
+                    }
+                  }}
+                  key={content.id}
+                >
+                  <CardItemTitle>{content.title}</CardItemTitle>
+                  <Typography variant="body2" color="textPrimary">
+                    {content.content}
+                  </Typography>
+                </CardContents>
+              );
+            })}
+          </DescriptionCard>
+        </Cards>
       </Grid>
     </Grid>
   );
