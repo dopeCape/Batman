@@ -76,7 +76,9 @@ const HeaderMenu = (props: Props) => {
             }`}
             onClick={() => handleClick(1)}
           >
+            <Link href="/features">
             Features
+            </Link>
           </li>
           
           }
@@ -106,7 +108,9 @@ const HeaderMenu = (props: Props) => {
             }`}
             onClick={() => handleClick(3)}
           >
-            Contact Us
+            <Link href="/contact">
+                Contact Us
+            </Link>
           </li>
           
           }  
