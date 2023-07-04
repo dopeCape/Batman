@@ -20,7 +20,12 @@ export default function CaptionGen() {
   const [inputValue, setInputValue] = useState("");
   const [postAboutCount, setPostAboutCount] = useState(0);
   const [targetAudienceCount, setTargetAudienceCount] = useState(0);
+  const [input, setInput] = useState("");
+  const [response, setResponse] = useState<String>("");
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
+
+  const prompt = `Q: Generate a catpion for my post about ${input} .`;
 
   const handleKeyword = (event: ChangeEvent<HTMLInputElement>) => {
     setWord(event.target.value);
@@ -101,6 +106,31 @@ export default function CaptionGen() {
     event.target.value = value;
   };
 
+
+  // const generateResponse = async (e: React.MouseEvent<HTMLButtonElement>) => {
+  //   e.preventDefault();
+  //   setResponse("");
+  //   setLoading(true);
+
+  //    await fetch("/api/promptChatGPT", {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify({
+  //       promptText: prompt,
+  //       max_tokens: 100
+  //     }),
+  //   }).then((res=>{
+  //     console.log("this si the response"+res)
+  //   })).catch(err=>{
+  //     console.log(err)
+  //   });
+  //   setLoading(false);
+  // };
+
+
+
   return (
     <div className="flex justify-center items-center">
       <div className="w-2/5 h-screen flex bg-gray-200 px-10 py-16 flex-col ">
@@ -119,7 +149,7 @@ export default function CaptionGen() {
               className="w-full px-2 py-2 rounded-lg border border-gray-300 text-gray-500"
               type="text"
               placeholder="gaming, fashion, animals etc."
-              onChange={handlePostAboutChange}
+              onChange={(e) => {setInput(e.target.value),handlePostAboutChange}}
             ></input>
             <p className="text-gray-700 text-xs absolute right-0 top-[18px]">
               {postAboutCount}/800

@@ -33,7 +33,7 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <>
     <Head>
-      <title>Metridash</title>
+      <title>Metridash-Say BYE-BYE to creative blocks!</title>
     </Head>
     <SessionProvider session={pageProps.session}>
       

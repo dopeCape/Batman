@@ -8,7 +8,7 @@ import {
   if (!process.env.OPENAI_API_KEY) {
     throw new Error("Missing Environment Variable OPENAI_API_KEY");
   }
-  
+   
   export const config = {
     runtime: "edge",
   };
@@ -21,9 +21,9 @@ import {
       // model: "gpt-3.5-turbo",
       model: "text-davinci-003",
       // messages: messages,
-      prompt: body.promptText,
+      prompt: body.prompt,
       temperature: 0.7,
-      max_tokens: body.max_tokens,
+      max_tokens: 100,
       top_p: 1,
       frequency_penalty: 0,
       presence_penalty: 0,
@@ -31,9 +31,11 @@ import {
       n: 1,
     };
     console.log("Prompt Chat GPT OpenAIStreamPayload", payload);
-  
+    
     const stream = await OpenAIStream(payload);
+    
     return new Response(stream);
+    
   };
   
   

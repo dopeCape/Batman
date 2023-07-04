@@ -20,7 +20,11 @@ export default function BioGen() {
   const [inputValue, setInputValue] = useState("");
   const [postAboutCount, setPostAboutCount] = useState(0);
   const [targetAudienceCount, setTargetAudienceCount] = useState(0);
+  const [pageAbout, setPageAbout] = useState('')
   const router = useRouter();
+
+  const prompt = `Q: create bio for  Generate a response with less than 200 characters.`;
+
 
   const handleKeyword = (event: ChangeEvent<HTMLInputElement>) => {
     setWord(event.target.value);
@@ -119,7 +123,7 @@ export default function BioGen() {
               className="w-full px-2 py-2 rounded-lg border border-gray-300 text-gray-500"
               type="text"
               placeholder="gaming, fashion, animals etc."
-              onChange={handlePostAboutChange}
+              onChange={(e) => {setPageAbout(e.target.value), handlePostAboutChange}}
             ></input>
             <p className="text-gray-700 text-xs absolute right-0 top-[18px]">
               {postAboutCount}/800
