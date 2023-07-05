@@ -32,26 +32,25 @@ export default function CaptionGen() {
     event.target.value = value;
   };
 
-
-   const generateResponse = async (e: React.FormEvent<HTMLFormElement>) => {
+  const generateResponse = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setResponse("");
     setLoading(true);
 
-    const res =  await fetch("/api/promptChatGPT", {
+    const res = await fetch("/api/promptChatGPT", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        data: prompt
+        data: prompt,
       }),
-    })
+    });
 
     if (!res.ok) throw new Error(res.statusText);
 
     const data = res.body;
-    console.log("********************"+data)
+    console.log("********************" + data);
     if (!data) return;
 
     const reader = data.getReader();
@@ -63,13 +62,9 @@ export default function CaptionGen() {
       done = doneReading;
       const chunkValue = decoder.decode(value);
       setResponse((prev) => prev + chunkValue);
-      
     }
     setLoading(false);
   };
-
-
- 
 
   return (
     <div className="flex justify-center items-center">
@@ -86,11 +81,12 @@ export default function CaptionGen() {
               What's your post about?*
             </h3>
             <input
-              
               className="w-full px-2 py-2 rounded-lg border border-gray-300 text-gray-500"
               type="text"
               placeholder="gaming, fashion, animals etc."
-              onChange={(e) => {setInput(e.target.value),handlePostAboutChange}}
+              onChange={(e) => {
+                setInput(e.target.value), handlePostAboutChange;
+              }}
             ></input>
             <p className="text-gray-700 text-xs absolute right-0 top-[18px]">
               {postAboutCount}/800
@@ -98,12 +94,11 @@ export default function CaptionGen() {
           </div>
 
           <button className="w-full h-10 bg-black mt-10 rounded-lg bg-gradient-to-l from-[#009FFD] to-[#2A2A72]">
-          {loading ? "Loading..." : "Genarate (1 token)"}
+            {loading ? "Loading..." : "Genarate (1 token)"}
           </button>
         </form>
       </div>
       <div className="w-3/5 h-screen flex bg-white">
-        
         <GPTResponse></GPTResponse>
       </div>
     </div>
