@@ -1,10 +1,11 @@
 import { useState, ChangeEvent } from "react";
 import { useRouter } from "next/router";
-import AddCircle from "@mui/icons-material/AddCircleOutlineTwoTone";
-import Cancel from "@mui/icons-material/Cancel";
+
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
-
+import GPTResponse from "@/components/GPTResponse";
+import { useAtom } from "jotai";
+import { responseAtom } from "@/utils/store";
 const options = [
   "Conversational",
   "Enthusiastic",
@@ -13,15 +14,19 @@ const options = [
   "Describe a tone",
 ];
 
-export default function ThumbGen() {
+export default function CaptionGen() {
   const [value, setValue] = useState<string | null>();
-  const [keywords, setKeywords] = useState<string[]>([]);
-  const [word, setWord] = useState("");
+
   const [inputValue, setInputValue] = useState("");
   const [postAboutCount, setPostAboutCount] = useState(0);
   const [targetAudienceCount, setTargetAudienceCount] = useState(0);
+  const [targetAudience, setTargetAudience] = useState("");
+  const [input, setInput] = useState("");
+  const [_response, setResponse] = useAtom(responseAtom);
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
 
+  const prompt = `Generate a catpion for my post about ${input} with tone ${value} with target audience ${targetAudience} .`;
 
   const TextInput = () => {
     return (
@@ -68,14 +73,50 @@ export default function ThumbGen() {
     event.target.value = value;
   };
 
+  const generateResponse = async (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
+    // e.preventDefault();
+    setResponse("");
+    setLoading(true);
+
+    const res = await fetch("/api/promptChatGPT", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        data: prompt,
+      }),
+    });
+
+    if (!res.ok) throw new Error(res.statusText);
+
+    const data = res.body;
+    console.log("********************" + data);
+    if (!data) return;
+
+    const reader = data.getReader();
+    const decoder = new TextDecoder();
+    let done = false;
+
+    while (!done) {
+      const { value, done: doneReading } = await reader.read();
+      done = doneReading;
+      const chunkValue = decoder.decode(value);
+      setResponse((prev) => prev + chunkValue);
+    }
+    setLoading(false);
+  };
+
   return (
     <div className="flex justify-center items-center">
-      <div className="w-2/5 h-screen flex bg-gray-200 px-10 py-16 flex-col ">
+      <div className="w-3/5 h-screen flex bg-gray-200 px-10 py-16 flex-col">
         <h1 className="text-black font-sans text-2xl font-medium">
           Generate {props.title}
         </h1>
         <h3 className="text-black text-sm ">
-          Optimize your Thumbnail for greater visibility and higher engagement.
+          Optimize your Thumbnails for greater visibility and higher engagement.
         </h3>
         <form onSubmit={(e) => e.preventDefault()} className="my-4">
           <div className="relative">
@@ -86,7 +127,9 @@ export default function ThumbGen() {
               className="w-full px-2 py-2 rounded-lg border border-gray-300 text-gray-500"
               type="text"
               placeholder="gaming, fashion, animals etc."
-              onChange={handlePostAboutChange}
+              onChange={(e) => {
+                setInput(e.target.value), handlePostAboutChange;
+              }}
             ></input>
             <p className="text-gray-700 text-xs absolute right-0 top-[18px]">
               {postAboutCount}/800
@@ -128,21 +171,25 @@ export default function ThumbGen() {
               className="w-full px-2 py-2 rounded-lg border border-gray-300 text-gray-500"
               type="text"
               placeholder="travellers, gamers etc."
-              onChange={handleTargetAudienceChange}
+              onChange={(e) => {
+                setTargetAudience(e.target.value), handleTargetAudienceChange;
+              }}
             ></input>
             <p className="text-gray-700 text-xs absolute right-0 top-[18px]">
               {targetAudienceCount}/200
             </p>
           </div>
 
-          <button className="w-full h-10 bg-black mt-10 rounded-lg bg-gradient-to-l from-[#009FFD] to-[#2A2A72]">
+          <button
+            onClick={generateResponse}
+            className="w-full h-10 bg-black mt-10 rounded-lg bg-gradient-to-l from-[#009FFD] to-[#2A2A72]"
+          >
             Generate (1 credit)
           </button>
         </form>
       </div>
-      <div className="w-3/5 h-screen flex bg-white"></div>
+      <div className=" h-screen flex bg-white"></div>
+      <GPTResponse></GPTResponse>
     </div>
   );
 }
-
-
