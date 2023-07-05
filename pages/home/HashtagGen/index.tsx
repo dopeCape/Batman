@@ -1,13 +1,15 @@
 import { useState, ChangeEvent } from "react";
 import { useRouter } from "next/router";
-
+import { useAtom } from "jotai";
+import { responseAtom } from "@/utils/store";
+import GPTResponse from "@/components/GPTResponse";
 export default function CaptionGen() {
   const [postAboutCount, setPostAboutCount] = useState(0);
-  const [response, setResponse] = useState<String>("");
+  const [_response, setResponse] = useAtom(responseAtom);
   const [loading, setLoading] = useState(false);
   const [input, setInput] = useState("");
   const router = useRouter();
-  const prompt = `Q: Generate  hashtags for my post about ${input} .`;
+  const prompt = `Generate  hashtags for my post about ${input}`;
   const {
     query: { platform, title },
   } = router;
@@ -31,26 +33,43 @@ export default function CaptionGen() {
   };
 
 
-   const generateResponse = async (e: React.MouseEvent<HTMLButtonElement>) => {
+   const generateResponse = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setResponse("");
     setLoading(true);
 
-     await fetch("/api/promptChatGPT", {
+    const res =  await fetch("/api/promptChatGPT", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        prompt
+        data: prompt
       }),
-    }).then((res=>{
-      console.log("this si the response"+res)
-    })).catch(err=>{
-      console.log(err)
-    });
+    })
+
+    if (!res.ok) throw new Error(res.statusText);
+
+    const data = res.body;
+    console.log("********************"+data)
+    if (!data) return;
+
+    const reader = data.getReader();
+    const decoder = new TextDecoder();
+    let done = false;
+
+    while (!done) {
+      const { value, done: doneReading } = await reader.read();
+      done = doneReading;
+      const chunkValue = decoder.decode(value);
+      setResponse((prev) => prev + chunkValue);
+      
+    }
     setLoading(false);
   };
+
+
+ 
 
   return (
     <div className="flex justify-center items-center">
@@ -61,7 +80,7 @@ export default function CaptionGen() {
         <h3 className="text-black text-sm ">
           Optimize your HashTags for greater visibility and higher engagement.
         </h3>
-        <form onSubmit={(e) => e.preventDefault()} className="my-4">
+        <form onSubmit={generateResponse} className="my-4">
           <div className="relative">
             <h3 className="text-black text-base mb-2">
               What's your post about?*
@@ -78,12 +97,15 @@ export default function CaptionGen() {
             </p>
           </div>
 
-          <button onClick={generateResponse} className="w-full h-10 bg-black mt-10 rounded-lg bg-gradient-to-l from-[#009FFD] to-[#2A2A72]">
-            Generate (1 credit)
+          <button className="w-full h-10 bg-black mt-10 rounded-lg bg-gradient-to-l from-[#009FFD] to-[#2A2A72]">
+          {loading ? "Loading..." : "Genarate (1 token)"}
           </button>
         </form>
       </div>
-      <div className="w-3/5 h-screen flex bg-white"></div>
+      <div className="w-3/5 h-screen flex bg-white">
+        
+        <GPTResponse></GPTResponse>
+      </div>
     </div>
   );
 }
