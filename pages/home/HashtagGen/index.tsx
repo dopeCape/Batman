@@ -1,4 +1,4 @@
-import { useState, ChangeEvent } from "react";
+import { useState, ChangeEvent, useEffect } from "react";
 import { useRouter } from "next/router";
 import { useAtom } from "jotai";
 import { responseAtom } from "@/utils/store";
@@ -14,6 +14,11 @@ export default function CaptionGen() {
     query: { platform, title },
   } = router;
 
+
+  useEffect(() => {
+    // Set the state to null on page load
+    setResponse("");
+  }, []);
   const props = {
     platform,
     title,
