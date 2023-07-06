@@ -407,7 +407,7 @@ const Home: NextPage = () => {
               return (
                 <CardContents
                   onClick={() => {
-                    if (content.comp == "video") {
+                    if (content.comp == "post") {
                       router.push({
                         pathname: "/home/VideoGen",
                         query: {
@@ -430,7 +430,7 @@ const Home: NextPage = () => {
                           platform: content.platform,
                           title: content.title,
                         },
-                      });
+                      }); 
                     } else if (content.comp == "hashtag") {
                       router.push({
                         pathname: "/home/HashtagGen",
