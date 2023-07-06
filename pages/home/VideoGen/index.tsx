@@ -28,7 +28,7 @@ export default function CaptionGen() {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
-  const prompt = `Generate a catpion for my post about ${input} with keywords ${keywords} with tone ${value} with target audience ${targetAudience} .`;
+ 
 
   const handleKeyword = (event: ChangeEvent<HTMLInputElement>) => {
     setWord(event.target.value);
@@ -83,6 +83,7 @@ export default function CaptionGen() {
     title,
   };
 
+  const prompt = `Generate a ${props.title} about ${input} with keywords ${keywords} with tone ${value} with target audience ${targetAudience} .`;
   const handlePostAboutChange = (event: ChangeEvent<HTMLInputElement>) => {
     let value = event.target.value;
     const count = value.length;
@@ -152,7 +153,7 @@ export default function CaptionGen() {
           Generate {props.title}
         </h1>
         <h3 className="text-black text-sm ">
-          Optimize your Tweets for greater visibility and higher engagement.
+          Optimize your content for greater visibility and higher engagement.
         </h3>
         <form onSubmit={(e) => e.preventDefault()} className="my-4">
           <div className="relative">
