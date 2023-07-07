@@ -1,20 +1,32 @@
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, signOut } from 'firebase/auth';
 import { getFirestore, doc, setDoc, getDoc } from 'firebase/firestore';
-import { app } from './firebase';
+import {  db } from './firebase';
 import { updateDoc } from 'firebase/firestore';
 import React from 'react';
 import { useState } from 'react';
 
+// import { db } from './firebaseConfig';
+import { app } from './firebaseConfig';
 const auth = getAuth(app); 
 
 const firestore = getFirestore(app);
 
 
-let userTokens 
-
 
 
 const googleProvider = new GoogleAuthProvider();
+
+export const readTokens = async (user) => {
+  const userRef = doc(firestore, 'users', user.uid);
+  const userDoc = await userRef.get();
+  const userData = userDoc.data();
+  if (userData) {
+    return userData.tokens;
+  }
+  return null;
+};
+
+
 
 // export const updateTokens = async (user, newTokenValue) => {
 //   const userRef = doc(firestore, 'users', user.uid);

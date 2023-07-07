@@ -6,7 +6,7 @@ import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
 import GPTResponse from "@/components/GPTResponse";
 import { useAtom } from "jotai"; 
-import { updateTokens } from '../../../auth';
+import { updateTokens, readTokens } from '../../../auth';
 import { responseAtom } from "@/utils/store";
 import { auth } from "@/firebase";
 import { db } from "@/firebaseConfig";
@@ -35,6 +35,8 @@ export default function CaptionGen() {
   const token = 20
   const user = auth.currentUser
   const router = useRouter();
+  const [getToken, setgetToken] = useState('')
+ 
   
   
 
@@ -110,6 +112,7 @@ export default function CaptionGen() {
   };
 
   const handleTargetAudienceChange = (event: ChangeEvent<HTMLInputElement>) => {
+   
     let value = event.target.value;
     const count = value.length;
     setTargetAudienceCount(count);
@@ -125,6 +128,8 @@ export default function CaptionGen() {
   const generateResponse = async (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
+    // const tk = await readTokens(user)
+    // const usertk = tk - token
     // e.preventDefault();
     setResponse("");
     setLoading(true);
