@@ -26,7 +26,17 @@ export const readTokens = async (user) => {
   return null;
 };
 
+export const getUserToken = async(user) => {
+  const tokenRef = doc(firestore, 'users', user.uid);
+  const doc1 = await getDoc(tokenRef);
 
+  if (doc1.exists) {
+    console.log("*******************"+doc1.data().tokens)
+    return doc1.data().tokens;
+  } else {
+    return null;
+  }
+};
 
 // export const updateTokens = async (user, newTokenValue) => {
 //   const userRef = doc(firestore, 'users', user.uid);
