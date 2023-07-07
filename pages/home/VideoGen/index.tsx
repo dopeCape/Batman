@@ -1,12 +1,18 @@
-import { useState, ChangeEvent } from "react";
+import { useState, ChangeEvent, useEffect } from "react";
 import { useRouter } from "next/router";
 import AddCircle from "@mui/icons-material/AddCircleOutlineTwoTone";
 import Cancel from "@mui/icons-material/Cancel";
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
 import GPTResponse from "@/components/GPTResponse";
-import { useAtom } from "jotai";
+import { useAtom } from "jotai"; 
+import { updateTokens } from '../../../auth';
 import { responseAtom } from "@/utils/store";
+import { auth } from "@/firebase";
+import { db } from "@/firebaseConfig";
+
+
+
 const options = [
   "Conversational",
   "Enthusiastic",
@@ -26,7 +32,12 @@ export default function CaptionGen() {
   const [input, setInput] = useState("");
   const [_response, setResponse] = useAtom(responseAtom);
   const [loading, setLoading] = useState(false);
+  const token = 20
+  const user = auth.currentUser
   const router = useRouter();
+  
+  
+
 
  
 
@@ -83,7 +94,8 @@ export default function CaptionGen() {
     title,
   };
 
-  const prompt = `Generate a ${props.title} about ${input} with keywords ${keywords} with tone ${value} with target audience ${targetAudience} .`;
+  const prompt = `Generate five ${props.title} about ${input} with keywords ${keywords} with tone ${value} with target audience ${targetAudience}  and every idea should be seperated.`;
+  
   const handlePostAboutChange = (event: ChangeEvent<HTMLInputElement>) => {
     let value = event.target.value;
     const count = value.length;
@@ -116,7 +128,8 @@ export default function CaptionGen() {
     // e.preventDefault();
     setResponse("");
     setLoading(true);
-
+    await updateTokens(user,token);
+    console.log("this is the uid "+user)
     const res = await fetch("/api/promptChatGPT", {
       method: "POST",
       headers: {
@@ -130,7 +143,7 @@ export default function CaptionGen() {
     if (!res.ok) throw new Error(res.statusText);
 
     const data = res.body;
-    console.log("********************" + data);
+    
     if (!data) return;
 
     const reader = data.getReader();
@@ -239,7 +252,7 @@ export default function CaptionGen() {
             onClick={generateResponse}
             className="w-full h-10 bg-black mt-10 rounded-lg bg-gradient-to-l from-[#009FFD] to-[#2A2A72]"
           >
-            Generate (1 credit)
+           {loading ? "Loading..." : "Genarate (20 token)"}
           </button>
         </form>
       </div>

@@ -242,7 +242,7 @@ export default function CaptionGen() {
             onClick={generateResponse}
             className="w-full h-10 bg-black mt-10 rounded-lg bg-gradient-to-l from-[#009FFD] to-[#2A2A72]"
           >
-            Generate (1 credit)
+            {loading ? "Loading..." : "Genarate (10 tokens)"}
           </button>
         </form>
       </div>

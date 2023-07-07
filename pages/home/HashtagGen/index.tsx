@@ -9,7 +9,7 @@ export default function CaptionGen() {
   const [loading, setLoading] = useState(false);
   const [input, setInput] = useState("");
   const router = useRouter();
-  const prompt = `Generate  hashtags for my post about ${input}`;
+  const prompt = `Generate continuous hashtags for my post about ${input} and dont add numbers for every hashtag`;
   const {
     query: { platform, title },
   } = router;
@@ -99,7 +99,7 @@ export default function CaptionGen() {
           </div>
 
           <button className="w-full h-10 bg-black mt-10 rounded-lg bg-gradient-to-l from-[#009FFD] to-[#2A2A72]">
-            {loading ? "Loading..." : "Genarate (1 token)"}
+            {loading ? "Loading..." : "Genarate (10 tokens)"}
           </button>
         </form>
       </div>

@@ -155,16 +155,7 @@ const HeaderMenu = (props: Props) => {
              </Link>
            </li>
           : 
-            <li
-            className={`cursor-pointer mr-4 ${
-              active === "5" ? "text-[#fff]" : "text-[#8E9CF3]"
-            }`}
-            onClick={() => handleClick(5)}
-          >
-            <Link href="/auth/signup">
-                Sign up
-            </Link>
-          </li>
+            <></>
           
           }
          

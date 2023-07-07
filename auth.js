@@ -1,15 +1,30 @@
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, signOut } from 'firebase/auth';
-import { getFirestore, doc, setDoc } from 'firebase/firestore';
+import { getFirestore, doc, setDoc, getDoc } from 'firebase/firestore';
 import { app } from './firebase';
 import { updateDoc } from 'firebase/firestore';
+import React from 'react';
+import { useState } from 'react';
 
-const auth = getAuth(app);
+const auth = getAuth(app); 
+
 const firestore = getFirestore(app);
+
+
+let userTokens 
+
+
 
 const googleProvider = new GoogleAuthProvider();
 
+// export const updateTokens = async (user, newTokenValue) => {
+//   const userRef = doc(firestore, 'users', user.uid);
+//   await updateDoc(userRef, { tokens: newTokenValue });
+// };
 export const updateTokens = async (user, newTokenValue) => {
+  
+  
   const userRef = doc(firestore, 'users', user.uid);
+  
   await updateDoc(userRef, { tokens: newTokenValue });
 };
 
@@ -29,6 +44,7 @@ export const createUserWithEmail = async (email, password) => {
   await setDoc(doc(firestore, 'users', user.uid), userData);
   return user;
 };
+
 
 export const signInWithEmail = async (email, password) => {
   try {
