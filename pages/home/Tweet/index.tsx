@@ -7,6 +7,15 @@ import Autocomplete from "@mui/material/Autocomplete";
 import GPTResponse from "@/components/GPTResponse";
 import { useAtom } from "jotai";
 import { responseAtom } from "@/utils/store";
+import { updateTokens, readTokens, getUserToken } from '../../../auth';
+import { Modal, Box } from "@mui/material";
+import { StyleModal } from "@/components/modalStyle";
+import PopUp from "@/components/popUp";
+import { auth } from "@/firebase";
+
+
+
+
 const options = [
   "Conversational",
   "Enthusiastic",
@@ -27,7 +36,11 @@ export default function CaptionGen() {
   const [_response, setResponse] = useAtom(responseAtom);
   const [loading, setLoading] = useState(false);
   const router = useRouter();
-
+  let token: number = 10;
+  const user = auth.currentUser
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
   const prompt = `Generate a catpion for my post about ${input} with keywords ${keywords} with tone ${value} with target audience ${targetAudience} .`;
 
   const handleKeyword = (event: ChangeEvent<HTMLInputElement>) => {
@@ -112,37 +125,51 @@ export default function CaptionGen() {
   const generateResponse = async (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
-    // e.preventDefault();
-    setResponse("");
     setLoading(true);
-
-    const res = await fetch("/api/promptChatGPT", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        data: prompt,
-      }),
-    });
-
-    if (!res.ok) throw new Error(res.statusText);
-
-    const data = res.body;
-    console.log("********************" + data);
-    if (!data) return;
-
-    const reader = data.getReader();
-    const decoder = new TextDecoder();
-    let done = false;
-
-    while (!done) {
-      const { value, done: doneReading } = await reader.read();
-      done = doneReading;
-      const chunkValue = decoder.decode(value);
-      setResponse((prev) => prev + chunkValue);
+    const tk = await getUserToken(user)
+    console.log("&&&&&&&&&&&&&&thus " + tk)
+    if (Number(tk) < token) {
+      handleOpen()
+      setLoading(false)
+      return
     }
-    setLoading(false);
+    else {
+
+
+      let usertk: number = Number(tk) - Number(token)
+      // e.preventDefault();
+      setResponse("");
+
+      await updateTokens(user, usertk);
+      console.log("this is the uid " + user)
+      const res = await fetch("/api/promptChatGPT", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          data: prompt,
+        }),
+      });
+
+      if (!res.ok) throw new Error(res.statusText);
+
+      const data = res.body;
+
+      if (!data) return;
+
+      const reader = data.getReader();
+      const decoder = new TextDecoder();
+      let done = false;
+
+      while (!done) {
+        const { value, done: doneReading } = await reader.read();
+        done = doneReading;
+        const chunkValue = decoder.decode(value);
+        setResponse((prev) => prev + chunkValue);
+      }
+      setLoading(false);
+    }
   };
 
   return (
@@ -238,12 +265,28 @@ export default function CaptionGen() {
             onClick={generateResponse}
             className="w-full h-10 bg-black mt-10 rounded-lg bg-gradient-to-l from-[#009FFD] to-[#2A2A72]"
           >
-            Generate (1 credit)
+           {loading? "Generating...": "Generate (10 tokens)"}
           </button>
         </form>
       </div>
-      <div className=" h-screen flex bg-white"></div>
+      <Modal
+                open={open}
+                onClose={handleClose}
+                aria-labelledby="modal-modal-title"
+                aria-describedby="modal-modal-description"
+
+            >
+                <Box sx={StyleModal}>
+
+                    <PopUp></PopUp>
+
+
+                </Box>
+            </Modal>
+      <div className=" h-screen w-screen flex bg-white">
       <GPTResponse></GPTResponse>
+
+      </div>
     </div>
   );
 }

@@ -9,9 +9,9 @@ import { useAtom } from "jotai";
 import { updateTokens, readTokens, getUserToken } from '../../../auth';
 import { responseAtom } from "@/utils/store";
 import { auth } from "@/firebase";
-import { db } from "@/firebaseConfig";
-import { User } from "firebase/auth";
-
+import { Modal, Box } from "@mui/material";
+import { StyleModal } from "@/components/modalStyle";
+import PopUp from "@/components/popUp";
 
 
 const options = [
@@ -37,6 +37,9 @@ export default function CaptionGen() {
   const user = auth.currentUser
   const router = useRouter();
   const [getToken, setgetToken] = useState('')
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
 
   useEffect(() => {
@@ -136,7 +139,7 @@ export default function CaptionGen() {
     const tk = await getUserToken(user)
     console.log("&&&&&&&&&&&&&&thus " + tk)
     if (Number(tk) < token) {
-      alert("You don't have enough tokens")
+      handleOpen()
       setLoading(false)
       return
     }
@@ -276,8 +279,24 @@ export default function CaptionGen() {
           </button>
         </form>
       </div>
-      <div className=" h-screen flex bg-white"></div>
-      <GPTResponse></GPTResponse>
+      <Modal
+                open={open}
+                onClose={handleClose}
+                aria-labelledby="modal-modal-title"
+                aria-describedby="modal-modal-description"
+
+            >
+                <Box sx={StyleModal}>
+
+                    <PopUp></PopUp>
+
+
+                </Box>
+            </Modal>
+      <div className=" h-screen w-screen flex bg-white">
+
+        <GPTResponse></GPTResponse>
+      </div>
     </div>
   );
 }

@@ -9,6 +9,9 @@ import { auth } from "@/firebase";
 import { updateTokens, readTokens, getUserToken } from '../../../auth';
 import { useAtom } from "jotai";
 import { responseAtom } from "@/utils/store";
+import { Modal, Box } from "@mui/material";
+import { StyleModal } from "@/components/modalStyle";
+import PopUp from "@/components/popUp";
 
 const options = [
     "Conversational",
@@ -52,6 +55,9 @@ export default function LinkedInPostGen() {
     const [_response, setResponse] = useAtom(responseAtom);
     const [input, setInput] = useState("");
     const [loading, setLoading] = useState(false);
+    const [open, setOpen] = useState(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
     let token: number = 20;
     const user = auth.currentUser
     const router = useRouter();
@@ -59,7 +65,7 @@ export default function LinkedInPostGen() {
     useEffect(() => {
         // Set the state to null on page load
         setResponse("");
-      }, []);
+    }, []);
 
     const handleKeyword = (event: ChangeEvent<HTMLInputElement>) => {
         setWord(event.target.value);
@@ -145,50 +151,50 @@ export default function LinkedInPostGen() {
 
     const generateResponse = async (
         e: React.MouseEvent<HTMLButtonElement, MouseEvent>
-      ) => {
+    ) => {
         // e.preventDefault();
         setLoading(true);
         setResponse("");
         const tk = await getUserToken(user)
         if (Number(tk) < token) {
-          alert("You don't have enough tokens")
-          setLoading(false)
-          return
+            handleOpen()
+            setLoading(false)
+            return
         }
         else {
-          let usertk: number = Number(tk) - Number(token)
-    
-    
-          await updateTokens(user, usertk);
-          const res = await fetch("/api/promptChatGPT", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              data: prompt,
-            }),
-          });
-    
-          if (!res.ok) throw new Error(res.statusText);
-    
-          const data = res.body;
-          console.log("********************" + data);
-          if (!data) return;
-    
-          const reader = data.getReader();
-          const decoder = new TextDecoder();
-          let done = false;
-    
-          while (!done) {
-            const { value, done: doneReading } = await reader.read();
-            done = doneReading;
-            const chunkValue = decoder.decode(value);
-            setResponse((prev) => prev + chunkValue);
-          }
-          setLoading(false);
+            let usertk: number = Number(tk) - Number(token)
+
+
+            await updateTokens(user, usertk);
+            const res = await fetch("/api/promptChatGPT", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    data: prompt,
+                }),
+            });
+
+            if (!res.ok) throw new Error(res.statusText);
+
+            const data = res.body;
+            console.log("********************" + data);
+            if (!data) return;
+
+            const reader = data.getReader();
+            const decoder = new TextDecoder();
+            let done = false;
+
+            while (!done) {
+                const { value, done: doneReading } = await reader.read();
+                done = doneReading;
+                const chunkValue = decoder.decode(value);
+                setResponse((prev) => prev + chunkValue);
+            }
+            setLoading(false);
         }
-      };
+    };
 
     return (
         <div className="flex justify-center items-cente h-screen">
@@ -210,7 +216,7 @@ export default function LinkedInPostGen() {
                             placeholder="gaming, fashion, animals etc."
                             onChange={(e) => {
                                 setInput(e.target.value), handlePostAboutChange;
-                              }}
+                            }}
                         ></input>
                         <p className="text-gray-700 text-xs absolute right-0 top-[18px]">
                             {postAboutCount}/800
@@ -334,20 +340,34 @@ export default function LinkedInPostGen() {
                             placeholder="travellers, gamers etc."
                             onChange={(e) => {
                                 setTargetAudience(e.target.value), handleTargetAudienceChange;
-                              }}
+                            }}
                         ></input>
                         <p className="text-gray-700 text-xs absolute right-0 top-[18px]">
                             {targetAudienceCount}/200
                         </p>
                     </div>
 
-                    <button 
-                    onClick={generateResponse}
-                    className="w-full h-10 bg-black mt-10 rounded-lg bg-gradient-to-l from-[#009FFD] to-[#2A2A72]">
-                        {loading? "Loading..." : "Generate"}
+                    <button
+                        onClick={generateResponse}
+                        className="w-full h-10 bg-black mt-10 rounded-lg bg-gradient-to-l from-[#009FFD] to-[#2A2A72]">
+                        {loading ? "Generating..." : "Generate"}
                     </button>
                 </form>
             </div>
+            <Modal
+                open={open}
+                onClose={handleClose}
+                aria-labelledby="modal-modal-title"
+                aria-describedby="modal-modal-description"
+
+            >
+                <Box sx={StyleModal}>
+
+                    <PopUp></PopUp>
+
+
+                </Box>
+            </Modal>
             <div className="w-3/5 h-screen flex bg-white">
                 <GPTResponse></GPTResponse>
             </div>
