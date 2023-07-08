@@ -1,4 +1,4 @@
-import { useState, ChangeEvent } from "react";
+import { useState, ChangeEvent, useEffect } from "react";
 import { useRouter } from "next/router";
 import AddCircle from "@mui/icons-material/AddCircleOutlineTwoTone";
 import Cancel from "@mui/icons-material/Cancel";
@@ -7,6 +7,9 @@ import Autocomplete from "@mui/material/Autocomplete";
 import GPTResponse from "@/components/GPTResponse";
 import { useAtom } from "jotai";
 import { responseAtom } from "@/utils/store";
+import { auth } from "@/firebase";
+import { updateTokens, readTokens, getUserToken } from '../../../auth';
+
 const options = [
   "Conversational",
   "Enthusiastic",
@@ -26,9 +29,14 @@ export default function CaptionGen() {
   const [input, setInput] = useState("");
   const [_response, setResponse] = useAtom(responseAtom);
   const [loading, setLoading] = useState(false);
+  let token: number = 20;
+  const user = auth.currentUser
   const router = useRouter();
 
-  const prompt = `Generate a catpion for my post about ${input} with keywords ${keywords} with tone ${value} with target audience ${targetAudience} .`;
+  useEffect(() => {
+    // Set the state to null on page load
+    setResponse("");
+  }, []);
 
   const handleKeyword = (event: ChangeEvent<HTMLInputElement>) => {
     setWord(event.target.value);
@@ -83,6 +91,9 @@ export default function CaptionGen() {
     title,
   };
 
+  const prompt = `Generate ${props.title} about ${input} with keywords ${keywords} with tone ${value} and my target audience is ${targetAudience}.`;
+
+
   const handlePostAboutChange = (event: ChangeEvent<HTMLInputElement>) => {
     let value = event.target.value;
     const count = value.length;
@@ -113,36 +124,47 @@ export default function CaptionGen() {
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
     // e.preventDefault();
-    setResponse("");
     setLoading(true);
-
-    const res = await fetch("/api/promptChatGPT", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        data: prompt,
-      }),
-    });
-
-    if (!res.ok) throw new Error(res.statusText);
-
-    const data = res.body;
-    console.log("********************" + data);
-    if (!data) return;
-
-    const reader = data.getReader();
-    const decoder = new TextDecoder();
-    let done = false;
-
-    while (!done) {
-      const { value, done: doneReading } = await reader.read();
-      done = doneReading;
-      const chunkValue = decoder.decode(value);
-      setResponse((prev) => prev + chunkValue);
+    setResponse("");
+    const tk = await getUserToken(user)
+    if (Number(tk) < token) {
+      alert("You don't have enough tokens")
+      setLoading(false)
+      return
     }
-    setLoading(false);
+    else {
+      let usertk: number = Number(tk) - Number(token)
+
+
+      await updateTokens(user, usertk);
+      const res = await fetch("/api/promptChatGPT", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          data: prompt,
+        }),
+      });
+
+      if (!res.ok) throw new Error(res.statusText);
+
+      const data = res.body;
+      console.log("********************" + data);
+      if (!data) return;
+
+      const reader = data.getReader();
+      const decoder = new TextDecoder();
+      let done = false;
+
+      while (!done) {
+        const { value, done: doneReading } = await reader.read();
+        done = doneReading;
+        const chunkValue = decoder.decode(value);
+        setResponse((prev) => prev + chunkValue);
+      }
+      setLoading(false);
+    }
   };
 
   return (
@@ -157,7 +179,7 @@ export default function CaptionGen() {
         <form onSubmit={(e) => e.preventDefault()} className="my-4">
           <div className="relative">
             <h3 className="text-black text-base mb-2">
-              What's your post about?*
+              What's your Ad about?*
             </h3>
             <input
               className="w-full px-2 py-2 rounded-lg border border-gray-300 text-gray-500"
@@ -238,7 +260,7 @@ export default function CaptionGen() {
             onClick={generateResponse}
             className="w-full h-10 bg-black mt-10 rounded-lg bg-gradient-to-l from-[#009FFD] to-[#2A2A72]"
           >
-            Generate (1 credit)
+            {loading? "Loading..." : "Generate"}
           </button>
         </form>
       </div>

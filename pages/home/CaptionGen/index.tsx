@@ -7,6 +7,8 @@ import Autocomplete from "@mui/material/Autocomplete";
 import GPTResponse from "@/components/GPTResponse";
 import { useAtom } from "jotai";
 import { responseAtom } from "@/utils/store";
+import { auth } from "@/firebase";
+import { updateTokens, readTokens , getUserToken} from '../../../auth';
 const options = [
   "Conversational",
   "Enthusiastic",
@@ -27,8 +29,14 @@ export default function CaptionGen() {
   const [_response, setResponse] = useAtom(responseAtom);
   const [loading, setLoading] = useState(false);
   const router = useRouter();
-
+  let token: number = 10;
+  const user = auth.currentUser
   const prompt = `Generate a catpion for my post about ${input} with keywords ${keywords} with tone ${value} with target audience ${targetAudience} .`;
+
+  useEffect(() => {
+    // Set the state to null on page load
+    setResponse("");
+  }, []);
 
   const handleKeyword = (event: ChangeEvent<HTMLInputElement>) => {
     setWord(event.target.value);
@@ -117,8 +125,23 @@ export default function CaptionGen() {
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
     // e.preventDefault();
-    setResponse("");
     setLoading(true);
+    const tk =  await getUserToken(user)
+    console.log("&&&&&&&&&&&&&&thus "+tk)
+    if(Number(tk) < token){
+      alert("You don't have enough tokens")
+      setLoading(false);
+      return
+    }
+    else{
+
+    
+    let usertk: number = Number(tk) - Number(token)
+    // e.preventDefault();
+    setResponse("");
+    
+    await updateTokens(user,usertk);
+    
 
     const res = await fetch("/api/promptChatGPT", {
       method: "POST",
@@ -147,6 +170,7 @@ export default function CaptionGen() {
       setResponse((prev) => prev + chunkValue);
     }
     setLoading(false);
+  }
   };
 
   return (

@@ -1,4 +1,4 @@
-import { useState, ChangeEvent } from "react";
+import { useState, ChangeEvent, useEffect } from "react";
 import { useRouter } from "next/router";
 import AddCircle from "@mui/icons-material/AddCircleOutlineTwoTone";
 import Cancel from "@mui/icons-material/Cancel";
@@ -7,6 +7,9 @@ import Autocomplete from "@mui/material/Autocomplete";
 import GPTResponse from "@/components/GPTResponse";
 import { useAtom } from "jotai";
 import { responseAtom } from "@/utils/store";
+import { auth } from "@/firebase";
+import { updateTokens, readTokens, getUserToken } from '../../../auth';
+
 const options = [
   "Conversational",
   "Enthusiastic",
@@ -26,9 +29,15 @@ export default function CaptionGen() {
   const [input, setInput] = useState("");
   const [_response, setResponse] = useAtom(responseAtom);
   const [loading, setLoading] = useState(false);
+  let token: number = 20;
+  const user = auth.currentUser
   const router = useRouter();
 
-  const prompt = `Generate a catpion for my post about ${input} with keywords ${keywords} with tone ${value} with target audience ${targetAudience} .`;
+ 
+  useEffect(() => {
+    // Set the state to null on page load
+    setResponse("");
+  }, []);
 
   const handleKeyword = (event: ChangeEvent<HTMLInputElement>) => {
     setWord(event.target.value);
@@ -82,6 +91,8 @@ export default function CaptionGen() {
     platform,
     title,
   };
+  const prompt = `Generate ${props.title} for my page about ${input} with keywords ${keywords} with tone ${value} and my target audience is ${targetAudience} .`;
+
 
   const handlePostAboutChange = (event: ChangeEvent<HTMLInputElement>) => {
     let value = event.target.value;
@@ -113,9 +124,20 @@ export default function CaptionGen() {
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
     // e.preventDefault();
-    setResponse("");
     setLoading(true);
-
+    setResponse("");
+    const tk = await getUserToken(user)
+    if (Number(tk) < token) {
+      alert("You don't have enough tokens")
+      setLoading(false)
+      return
+    }
+    
+   else{
+    let usertk: number = Number(tk) - Number(token)
+   
+    
+    await updateTokens(user,usertk);
     const res = await fetch("/api/promptChatGPT", {
       method: "POST",
       headers: {
@@ -143,6 +165,7 @@ export default function CaptionGen() {
       setResponse((prev) => prev + chunkValue);
     }
     setLoading(false);
+  }
   };
 
   return (
@@ -239,7 +262,7 @@ export default function CaptionGen() {
             onClick={generateResponse}
             className="w-full h-10 bg-black mt-10 rounded-lg bg-gradient-to-l from-[#009FFD] to-[#2A2A72]"
           >
-            Generate (1 credit)
+            {loading? "Genarating...": "Generate (20 credit)"}
           </button>
         </form>
       </div>

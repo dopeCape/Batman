@@ -5,8 +5,8 @@ import Cancel from "@mui/icons-material/Cancel";
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
 import GPTResponse from "@/components/GPTResponse";
-import { useAtom } from "jotai"; 
-import { updateTokens, readTokens , getUserToken} from '../../../auth';
+import { useAtom } from "jotai";
+import { updateTokens, readTokens, getUserToken } from '../../../auth';
 import { responseAtom } from "@/utils/store";
 import { auth } from "@/firebase";
 import { db } from "@/firebaseConfig";
@@ -37,12 +37,15 @@ export default function CaptionGen() {
   const user = auth.currentUser
   const router = useRouter();
   const [getToken, setgetToken] = useState('')
- 
-  
-  
 
 
- 
+  useEffect(() => {
+    // Set the state to null on page load
+    setResponse("");
+  }, []);
+
+
+
 
   const handleKeyword = (event: ChangeEvent<HTMLInputElement>) => {
     setWord(event.target.value);
@@ -98,7 +101,7 @@ export default function CaptionGen() {
   };
 
   const prompt = `Generate five ${props.title} about ${input} with keywords ${keywords} with tone ${value} with target audience ${targetAudience}  and every idea should be seperated.`;
-  
+
   const handlePostAboutChange = (event: ChangeEvent<HTMLInputElement>) => {
     let value = event.target.value;
     const count = value.length;
@@ -113,7 +116,7 @@ export default function CaptionGen() {
   };
 
   const handleTargetAudienceChange = (event: ChangeEvent<HTMLInputElement>) => {
-   
+
     let value = event.target.value;
     const count = value.length;
     setTargetAudienceCount(count);
@@ -129,41 +132,51 @@ export default function CaptionGen() {
   const generateResponse = async (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
-    const tk =  await getUserToken(user)
-    console.log("&&&&&&&&&&&&&&thus "+tk)
-    let usertk: number = Number(tk) - Number(token)
-    // e.preventDefault();
-    setResponse("");
     setLoading(true);
-    await updateTokens(user,usertk);
-    console.log("this is the uid "+user)
-    const res = await fetch("/api/promptChatGPT", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        data: prompt,
-      }),
-    });
-
-    if (!res.ok) throw new Error(res.statusText);
-
-    const data = res.body;
-    
-    if (!data) return;
-
-    const reader = data.getReader();
-    const decoder = new TextDecoder();
-    let done = false;
-
-    while (!done) {
-      const { value, done: doneReading } = await reader.read();
-      done = doneReading;
-      const chunkValue = decoder.decode(value);
-      setResponse((prev) => prev + chunkValue);
+    const tk = await getUserToken(user)
+    console.log("&&&&&&&&&&&&&&thus " + tk)
+    if (Number(tk) < token) {
+      alert("You don't have enough tokens")
+      setLoading(false)
+      return
     }
-    setLoading(false);
+    else {
+
+
+      let usertk: number = Number(tk) - Number(token)
+      // e.preventDefault();
+      setResponse("");
+
+      await updateTokens(user, usertk);
+      console.log("this is the uid " + user)
+      const res = await fetch("/api/promptChatGPT", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          data: prompt,
+        }),
+      });
+
+      if (!res.ok) throw new Error(res.statusText);
+
+      const data = res.body;
+
+      if (!data) return;
+
+      const reader = data.getReader();
+      const decoder = new TextDecoder();
+      let done = false;
+
+      while (!done) {
+        const { value, done: doneReading } = await reader.read();
+        done = doneReading;
+        const chunkValue = decoder.decode(value);
+        setResponse((prev) => prev + chunkValue);
+      }
+      setLoading(false);
+    }
   };
 
   return (
@@ -259,7 +272,7 @@ export default function CaptionGen() {
             onClick={generateResponse}
             className="w-full h-10 bg-black mt-10 rounded-lg bg-gradient-to-l from-[#009FFD] to-[#2A2A72]"
           >
-           {loading ? "Loading..." : "Genarate (20 token)"}
+            {loading ? "Loading..." : "Genarate (20 token)"}
           </button>
         </form>
       </div>

@@ -3,12 +3,19 @@ import { useRouter } from "next/router";
 import { useAtom } from "jotai";
 import { responseAtom } from "@/utils/store";
 import GPTResponse from "@/components/GPTResponse";
+import { auth } from "@/firebase";
+import { updateTokens, readTokens, getUserToken } from '../../../auth';
+
+
+
 export default function CaptionGen() {
   const [postAboutCount, setPostAboutCount] = useState(0);
   const [_response, setResponse] = useAtom(responseAtom);
   const [loading, setLoading] = useState(false);
   const [input, setInput] = useState("");
   const router = useRouter();
+  let token: number = 10;
+  const user = auth.currentUser
   const prompt = `Generate continuous hashtags for my post about ${input} and dont add numbers for every hashtag`;
   const {
     query: { platform, title },
@@ -39,36 +46,49 @@ export default function CaptionGen() {
 
   const generateResponse = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setResponse("");
+    
     setLoading(true);
-
-    const res = await fetch("/api/promptChatGPT", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        data: prompt,
-      }),
-    });
-
-    if (!res.ok) throw new Error(res.statusText);
-
-    const data = res.body;
-    console.log("********************" + data);
-    if (!data) return;
-
-    const reader = data.getReader();
-    const decoder = new TextDecoder();
-    let done = false;
-
-    while (!done) {
-      const { value, done: doneReading } = await reader.read();
-      done = doneReading;
-      const chunkValue = decoder.decode(value);
-      setResponse((prev) => prev + chunkValue);
+    const tk = await getUserToken(user)
+    if (Number(tk) < token) {
+      alert("You don't have enough tokens")
+      setLoading(false)
+      return
     }
-    setLoading(false);
+    else {
+
+      let usertk: number = Number(tk) - Number(token)
+      // e.preventDefault();
+      setResponse("");
+
+      await updateTokens(user, usertk);
+      const res = await fetch("/api/promptChatGPT", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          data: prompt,
+        }),
+      });
+
+      if (!res.ok) throw new Error(res.statusText);
+
+      const data = res.body;
+      console.log("********************" + data);
+      if (!data) return;
+
+      const reader = data.getReader();
+      const decoder = new TextDecoder();
+      let done = false;
+
+      while (!done) {
+        const { value, done: doneReading } = await reader.read();
+        done = doneReading;
+        const chunkValue = decoder.decode(value);
+        setResponse((prev) => prev + chunkValue);
+      }
+      setLoading(false);
+    }
   };
 
   return (
