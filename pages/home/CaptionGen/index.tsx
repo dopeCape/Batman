@@ -6,9 +6,12 @@ import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
 import GPTResponse from "@/components/GPTResponse";
 import { useAtom } from "jotai";
+import Box from '@mui/material/Box';
 import { responseAtom } from "@/utils/store";
 import { auth } from "@/firebase";
+import { Modal } from "@mui/material";
 import { updateTokens, readTokens , getUserToken} from '../../../auth';
+import PopUp from "@/components/popUp";
 const options = [
   "Conversational",
   "Enthusiastic",
@@ -28,15 +31,33 @@ export default function CaptionGen() {
   const [input, setInput] = useState("");
   const [_response, setResponse] = useAtom(responseAtom);
   const [loading, setLoading] = useState(false);
+  const [show, setShow] = useState(true);
+  const [open, setOpen] = useState(true);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
   const router = useRouter();
   let token: number = 10;
   const user = auth.currentUser
   const prompt = `Generate a catpion for my post about ${input} with keywords ${keywords} with tone ${value} with target audience ${targetAudience} .`;
+ 
+  const style = {
+    position: 'absolute' as 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 400,
+    bgcolor: 'gray',
+    border: '1px solid #000',
+    boxShadow: 24,
+    p: 2,
+    alignSelf: 'center',
+    borderRadius: '10px',
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: '50%',
+  };
 
-  useEffect(() => {
-    // Set the state to null on page load
-    setResponse("");
-  }, []);
+ 
 
   const handleKeyword = (event: ChangeEvent<HTMLInputElement>) => {
     setWord(event.target.value);
@@ -129,7 +150,8 @@ export default function CaptionGen() {
     const tk =  await getUserToken(user)
     console.log("&&&&&&&&&&&&&&thus "+tk)
     if(Number(tk) < token){
-      alert("You don't have enough tokens")
+      // alert("You don't have enough tokens")
+      handleOpen()
       setLoading(false);
       return
     }
@@ -174,7 +196,8 @@ export default function CaptionGen() {
   };
 
   return (
-    <div className="flex justify-center items-center">
+    <div className="flex justify-center items-center z-0">
+      
       <div className="w-3/5 h-screen flex bg-gray-200 px-10 py-16 flex-col">
         <h1 className="text-black font-sans text-2xl font-medium">
           Generate {props.title}
@@ -270,6 +293,22 @@ export default function CaptionGen() {
           </button>
         </form>
       </div>
+      
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+        
+      >
+        <Box sx={style}>
+
+        <PopUp></PopUp>
+        
+    
+        </Box>
+      </Modal>
+              
       <div className=" h-screen flex bg-white"></div>
       <GPTResponse></GPTResponse>
     </div>
