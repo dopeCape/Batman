@@ -11,6 +11,7 @@ import { responseAtom } from "@/utils/store";
 import { auth } from "@/firebase";
 import { Modal } from "@mui/material";
 import { updateTokens, readTokens , getUserToken} from '../../../auth';
+import { StyleModal } from "@/components/modalStyle";
 import PopUp from "@/components/popUp";
 const options = [
   "Conversational",
@@ -32,7 +33,7 @@ export default function CaptionGen() {
   const [_response, setResponse] = useAtom(responseAtom);
   const [loading, setLoading] = useState(false);
   const [show, setShow] = useState(true);
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const router = useRouter();
@@ -40,22 +41,6 @@ export default function CaptionGen() {
   const user = auth.currentUser
   const prompt = `Generate a catpion for my post about ${input} with keywords ${keywords} with tone ${value} with target audience ${targetAudience} .`;
  
-  const style = {
-    position: 'absolute' as 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    width: 400,
-    bgcolor: 'gray',
-    border: '1px solid #000',
-    boxShadow: 24,
-    p: 2,
-    alignSelf: 'center',
-    borderRadius: '10px',
-    alignItems: 'center',
-    justifyContent: 'center',
-    height: '50%',
-  };
 
  
 
@@ -289,7 +274,7 @@ export default function CaptionGen() {
             onClick={generateResponse}
             className="w-full h-10 bg-black mt-10 rounded-lg bg-gradient-to-l from-[#009FFD] to-[#2A2A72]"
           >
-            {loading ? "Loading..." : "Genarate (10 tokens)"}
+            {loading ? "Genarating..." : "Genarate (10 tokens)"}
           </button>
         </form>
       </div>
@@ -301,7 +286,7 @@ export default function CaptionGen() {
         aria-describedby="modal-modal-description"
         
       >
-        <Box sx={style}>
+        <Box sx={StyleModal}>
 
         <PopUp></PopUp>
         
