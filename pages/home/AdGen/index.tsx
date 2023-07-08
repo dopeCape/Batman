@@ -9,6 +9,9 @@ import { useAtom } from "jotai";
 import { responseAtom } from "@/utils/store";
 import { auth } from "@/firebase";
 import { updateTokens, readTokens, getUserToken } from '../../../auth';
+import { Modal, Box } from "@mui/material";
+import { StyleModal } from "@/components/modalStyle";
+import PopUp from "@/components/popUp";
 
 const options = [
   "Conversational",
@@ -29,6 +32,9 @@ export default function CaptionGen() {
   const [input, setInput] = useState("");
   const [_response, setResponse] = useAtom(responseAtom);
   const [loading, setLoading] = useState(false);
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
   let token: number = 20;
   const user = auth.currentUser
   const router = useRouter();
@@ -128,7 +134,7 @@ export default function CaptionGen() {
     setResponse("");
     const tk = await getUserToken(user)
     if (Number(tk) < token) {
-      alert("You don't have enough tokens")
+      handleOpen()
       setLoading(false)
       return
     }
@@ -264,8 +270,24 @@ export default function CaptionGen() {
           </button>
         </form>
       </div>
-      <div className=" h-screen flex bg-white"></div>
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+        
+      >
+        <Box sx={StyleModal}>
+
+        <PopUp></PopUp>
+        
+    
+        </Box>
+      </Modal>
+      <div className=" h-screen w-screen flex bg-white">
+
       <GPTResponse></GPTResponse>
+      </div>
     </div>
   );
 }

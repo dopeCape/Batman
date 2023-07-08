@@ -1,0 +1,16 @@
+export const StyleModal = {
+    position: 'absolute' as 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 400,
+    bgcolor: 'gray',
+    border: '1px solid #000',
+    boxShadow: 24,
+    p: 2,
+    alignSelf: 'center',
+    borderRadius: '10px',
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: '50%',
+  };

@@ -5,7 +5,9 @@ import { responseAtom } from "@/utils/store";
 import GPTResponse from "@/components/GPTResponse";
 import { auth } from "@/firebase";
 import { updateTokens, readTokens, getUserToken } from '../../../auth';
-
+import { Modal, Box } from "@mui/material";
+import { StyleModal } from "@/components/modalStyle";
+import PopUp from "@/components/popUp";
 
 
 export default function CaptionGen() {
@@ -14,6 +16,9 @@ export default function CaptionGen() {
   const [loading, setLoading] = useState(false);
   const [input, setInput] = useState("");
   const router = useRouter();
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
   let token: number = 10;
   const user = auth.currentUser
   const prompt = `Generate continuous hashtags for my post about ${input} and dont add numbers for every hashtag`;
@@ -50,7 +55,7 @@ export default function CaptionGen() {
     setLoading(true);
     const tk = await getUserToken(user)
     if (Number(tk) < token) {
-      alert("You don't have enough tokens")
+      handleOpen()
       setLoading(false)
       return
     }
@@ -123,6 +128,20 @@ export default function CaptionGen() {
           </button>
         </form>
       </div>
+      <Modal
+                open={open}
+                onClose={handleClose}
+                aria-labelledby="modal-modal-title"
+                aria-describedby="modal-modal-description"
+
+            >
+                <Box sx={StyleModal}>
+
+                    <PopUp></PopUp>
+
+
+                </Box>
+            </Modal>
       <div className="w-3/5 h-screen flex bg-white">
         <GPTResponse></GPTResponse>
       </div>
