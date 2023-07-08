@@ -1,0 +1,39 @@
+.create_content{
+    /* height: 70vh; */
+    padding: 2rem 0;
+    padding-top: 5rem;
+}
+
+.second__content{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+@media (min-width: 925px) {
+    .content_container{
+        display: flex;
+    }
+
+    .second__content{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 50%;
+        min-width: 683px;
+    }
+
+    .content_boxes{
+        display: flex;
+        flex-direction: row;
+    }
+
+    .create_content{
+        /* height: 70vh; */
+        padding: 0;
+        padding-top: 0;
+    }
+}

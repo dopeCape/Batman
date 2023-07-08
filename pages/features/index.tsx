@@ -4,33 +4,32 @@ import idea from '../../public/icons/idea.png'
 import caption from '../../public/icons/caption.png'
 import hashtag from '../../public/icons/hashtag.png'
 import thumbnail from '../../public/icons/thumbnail.png'
-import magic from '../../public/icons/magic.png'
+import magic from '../../public/icons/magic.png';
+
+import classes from "./features.module.css";
 
 const features = () => {
   return (
-    // flex flex-row bg-gray-50 w-screen h-screen
-    <div className=''>
-        <div className='flex flex-col w-1/2 h-screen items-center justify-center bg-white'>
+    <div className={`${classes.content_container} bg-gray-50 h-screen`}>
+        <div className={`${classes.create_content} flex flex-col items-center justify-center bg-white`}>
           <Image
                 src={magic}
                 alt="Picture of the author"
                 className='w-32 object-contain h-34 mb-10'
               />
-          <h1 className='text-blue-600 text-4xl font-medium px-28 text-left'>Create content by using the power of AI</h1>
-          <p className='text-gray-500 px-28 py-5 text-left text-lg'>Generate personalized conten ideas for your social media, blogs, websites and more with the power of AI.</p>
+          <h1 className={`${classes.content__intro} text-blue-600 text-4xl font-medium text-left px-14`}>Create content by using the power of AI</h1>
+          <p className={`${classes.content_text} text-gray-500 py-5 px-14 text-left text-lg`}>Generate personalized conten ideas for your social media, blogs, websites and more with the power of AI.</p>
         </div>
-
-        <div className='w-1/2 h-screen bg-gradient-to-r from-[#009FFD] to-[#2A2A72] flex flex-col items-center pt-14 '>
+        <div className={`${classes.second__content} bg-gradient-to-r from-[#009FFD] to-[#2A2A72] py-14`}>
           <h1 className='text-black text-3xl font-medium text-white mb-4'>Features</h1>
-          <div className='flex flex-row'>
-            
+          <div className={`${classes.content_boxes}`}>
           <div>
               <div className=' drop-shadow-lg w-80 h-96 bg-white my-5 mx-1 flex flex-col items-center justify-center px-6'>
-              <Image
-                src={idea}
-                alt="Picture of the author"
-                className='w-32 object-contain h-34 mb-5'
-              />
+                <Image
+                  src={idea}
+                  alt="Picture of the author"
+                  className='w-32 object-contain h-34 mb-5'
+                />
                 <h2 className='text-gray-500 text-center text-md'>Generate engaging post ideas that spark conversations and drive interactions.</h2>
               </div>
               

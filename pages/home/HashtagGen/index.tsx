@@ -53,8 +53,10 @@ export default function CaptionGen() {
   };
 
   return (
-    <div className="flex justify-center items-center">
-      <div className="w-2/5 h-screen flex bg-gray-200 px-10 py-16 flex-col ">
+    // <div className="flex justify-center items-center">
+    <div className="caption-container">
+      {/* <div className="w-2/5 h-screen flex bg-gray-200 px-10 py-16 flex-col "> */}
+      <div className="caption-gen bg-gray-200">
         <h1 className="text-black font-sans text-2xl font-medium">
           Generate {props.title}
         </h1>
@@ -83,7 +85,8 @@ export default function CaptionGen() {
           </button>
         </form>
       </div>
-      <div className="w-3/5 h-screen flex bg-white"></div>
+      {/* <div className="w-3/5 h-screen flex bg-white"></div> */}
+      <div className="content-container bg-white"></div>
     </div>
   );
 }

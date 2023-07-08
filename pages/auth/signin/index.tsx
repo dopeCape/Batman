@@ -2,6 +2,8 @@ import { useState, ChangeEvent } from 'react';
 import { useRouter } from 'next/router';
 import { signInWithEmail } from '../../../auth';
 
+import classes from "./signin.module.css";
+
 
 const SignIn = () => {
   const [email, setEmail] = useState('');
@@ -29,18 +31,18 @@ const SignIn = () => {
   };
 
   return (
-    <div className='flex-col flex items-center justify-center h-screen'>
-       <div className=' bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 flex flex-col items-center justify-center px-10 py-8 rounded-2xl'>
+    <div className={`${classes.sign_in}`}>
+       <div className={`${classes.signin__form} bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 mx-5 px-10 py-8 rounded-2xl`}>
       <h1 className='text-center font-sans mb-10 font-semibold text-[30px] leading-[23px] text-white'>Sign In</h1>
       <input
-        className='text-black mb-6 px-4 py-2 w-72 rounded-md'
+        className='text-black mb-6 px-4 py-2 rounded-md'
         type="email"
         placeholder="Enter your email"
         value={email}
         onChange={handleEmailChange}
       />
       <input
-        className='text-black mb-6 px-4 py-2 w-72 rounded-md'
+        className='text-black mb-6 px-4 py-2 rounded-md'
         type="password"
         placeholder="Enter your password"
         value={password}

@@ -1,0 +1,49 @@
+.contact__container{
+    height: 100vh;
+}
+
+.contact_confirm{
+    min-height: 400px;
+    padding: 4rem 2rem 4rem 3rem;
+}
+
+.contact__form{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 3rem 0;
+}
+
+.contact__form button{
+    margin-top: 1rem;
+}
+
+@media (min-width: 925px) {
+    .contact__container{
+        display: flex;
+        flex-direction: row;
+        height: 100vh;
+    }
+
+    .contact_confirm{
+        width: 40%;
+        padding: 0 2.5rem 0 2.5rem;
+        padding-top: 15rem;
+        height: 100vh;
+        /* display: flex;
+        flex-direction: column;
+        justify-content: center; */
+    }
+
+    .contact_confirm h1{
+        font-size: 52px;
+        line-height: 3rem;
+    }
+
+    .contact__form{
+        display: flex;
+        flex-direction: column;
+        width: 60%;
+        padding-top: 7rem;
+    }
+}
