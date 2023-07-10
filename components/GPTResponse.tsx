@@ -11,12 +11,7 @@ export default function GPTResponse() {
   const [token, setToken] = useState(0)
   const user = auth.currentUser
 
-  // useEffect (() => {
-  //   // Set the state to null on page load
-  //    const tk =   getUserToken(user)
-  //   setToken(Number(tk))
-  //   console.log("++++++++++"+Number(tk))
-  // }, []);
+ 
 
   useEffect(() => {
     (async () => {
@@ -25,8 +20,7 @@ export default function GPTResponse() {
       console.log("++++++++++ this is tks " + token);
     })();
   }, []);
-  // const tok = generateRealTimeToken(user)
-  // console.log("++++++++++ this is tk " + Number(tok));
+ 
 
   
 
