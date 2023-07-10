@@ -7,7 +7,7 @@ import { auth } from "@/firebase";
 import { updateTokens, readTokens, getUserToken } from '../../../auth';
 import { Modal, Box } from "@mui/material";
 import { StyleModal } from "@/components/modalStyle";
-import PopUp from "@/components/popUp";
+import PopUpCard from "@/components/PopUpCard";
 
 
 export default function CaptionGen() {
@@ -137,7 +137,7 @@ export default function CaptionGen() {
             >
                 <Box sx={StyleModal}>
 
-                    <PopUp></PopUp>
+                    <PopUpCard></PopUpCard>
 
 
                 </Box>

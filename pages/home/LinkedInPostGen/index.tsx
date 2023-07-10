@@ -11,7 +11,7 @@ import { useAtom } from "jotai";
 import { responseAtom } from "@/utils/store";
 import { Modal, Box } from "@mui/material";
 import { StyleModal } from "@/components/modalStyle";
-import PopUp from "@/components/popUp";
+import PopUpCard from "@/components/PopUpCard";
 
 const options = [
     "Conversational",
@@ -363,7 +363,7 @@ export default function LinkedInPostGen() {
             >
                 <Box sx={StyleModal}>
 
-                    <PopUp></PopUp>
+                    <PopUpCard></PopUpCard>
 
 
                 </Box>

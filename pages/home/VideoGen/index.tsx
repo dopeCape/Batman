@@ -11,7 +11,7 @@ import { responseAtom } from "@/utils/store";
 import { auth } from "@/firebase";
 import { Modal, Box } from "@mui/material";
 import { StyleModal } from "@/components/modalStyle";
-import PopUp from "@/components/popUp";
+import PopUpCard from "@/components/PopUpCard";
 
 
 const options = [
@@ -288,7 +288,7 @@ export default function CaptionGen() {
             >
                 <Box sx={StyleModal}>
 
-                    <PopUp></PopUp>
+                    <PopUpCard></PopUpCard>
 
 
                 </Box>

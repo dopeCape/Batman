@@ -10,7 +10,7 @@ import { responseAtom } from "@/utils/store";
 import { updateTokens, readTokens, getUserToken } from '../../../auth';
 import { Modal, Box } from "@mui/material";
 import { StyleModal } from "@/components/modalStyle";
-import PopUp from "@/components/popUp";
+import PopUpCard from "@/components/PopUpCard";
 import { auth } from "@/firebase";
 
 
@@ -278,7 +278,7 @@ export default function CaptionGen() {
             >
                 <Box sx={StyleModal}>
 
-                    <PopUp></PopUp>
+                    <PopUpCard></PopUpCard>
 
 
                 </Box>
