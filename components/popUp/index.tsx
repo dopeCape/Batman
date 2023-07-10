@@ -13,7 +13,7 @@ const PopupButton: React.FC = () => {
       {showPopup && (
         <div className="popup">
           <p>This is a popup!</p>
-          <button onClick={() => setShowPopup(false)}>Close</button>
+          <button onClick={() => setShowPopup(false)}>Close the button</button>
         </div>
       )}
       <style jsx>{`
