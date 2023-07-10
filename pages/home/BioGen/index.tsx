@@ -1,4 +1,4 @@
-import { useState, ChangeEvent , useEffect} from "react";
+import { useState, ChangeEvent, useEffect } from "react";
 import { useRouter } from "next/router";
 import AddCircle from "@mui/icons-material/AddCircleOutlineTwoTone";
 import Cancel from "@mui/icons-material/Cancel";
@@ -8,7 +8,7 @@ import GPTResponse from "@/components/GPTResponse";
 import { useAtom } from "jotai";
 import { responseAtom } from "@/utils/store";
 import { auth } from "@/firebase";
-import { updateTokens, readTokens, getUserToken } from '../../../auth';
+import { updateTokens, readTokens, getUserToken } from "../../../auth";
 import { Modal, Box } from "@mui/material";
 import { StyleModal } from "@/components/modalStyle";
 import PopUp from "@/components/popUp";
@@ -36,7 +36,7 @@ export default function CaptionGen() {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   let token: number = 20;
-  const user = auth.currentUser
+  const user = auth.currentUser;
   const router = useRouter();
 
   useEffect(() => {
@@ -129,15 +129,13 @@ export default function CaptionGen() {
   ) => {
     setLoading(true);
     setResponse("");
-    const tk = await getUserToken(user)
+    const tk = await getUserToken(user);
     if (Number(tk) < token) {
-      handleOpen()
-      setLoading(false)
-      return
-    }
-    else {
-      let usertk: number = Number(tk) - Number(token)
-
+      handleOpen();
+      setLoading(false);
+      return;
+    } else {
+      let usertk: number = Number(tk) - Number(token);
 
       await updateTokens(user, usertk);
 
@@ -265,7 +263,7 @@ export default function CaptionGen() {
             onClick={generateResponse}
             className="w-full h-10 bg-black mt-10 rounded-lg bg-gradient-to-l from-[#009FFD] to-[#2A2A72]"
           >
-           {loading ? "Genarating..." : "Generate"}
+            {loading ? "Genarating..." : "Generate"}
           </button>
         </form>
       </div>
@@ -274,18 +272,12 @@ export default function CaptionGen() {
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
-        
       >
         <Box sx={StyleModal}>
-
-        <PopUp></PopUp>
-        
-    
+          <PopUp></PopUp>
         </Box>
       </Modal>
-      <div className=" h-screen flex bg-white">
-
-      </div>
+      <div className=" h-screen flex bg-white"></div>
       <GPTResponse></GPTResponse>
     </div>
   );

@@ -4,11 +4,10 @@ import { useAtom } from "jotai";
 import { responseAtom } from "@/utils/store";
 import GPTResponse from "@/components/GPTResponse";
 import { auth } from "@/firebase";
-import { updateTokens, readTokens, getUserToken } from '../../../auth';
+import { updateTokens, readTokens, getUserToken } from "../../../auth";
 import { Modal, Box } from "@mui/material";
 import { StyleModal } from "@/components/modalStyle";
 import PopUp from "@/components/popUp";
-
 
 export default function CaptionGen() {
   const [postAboutCount, setPostAboutCount] = useState(0);
@@ -20,12 +19,11 @@ export default function CaptionGen() {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   let token: number = 10;
-  const user = auth.currentUser
+  const user = auth.currentUser;
   const prompt = `Generate continuous hashtags for my post about ${input} and dont add numbers for every hashtag`;
   const {
     query: { platform, title },
   } = router;
-
 
   useEffect(() => {
     // Set the state to null on page load
@@ -51,17 +49,15 @@ export default function CaptionGen() {
 
   const generateResponse = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    
-    setLoading(true);
-    const tk = await getUserToken(user)
-    if (Number(tk) < token) {
-      handleOpen()
-      setLoading(false)
-      return
-    }
-    else {
 
-      let usertk: number = Number(tk) - Number(token)
+    setLoading(true);
+    const tk = await getUserToken(user);
+    if (Number(tk) < token) {
+      handleOpen();
+      setLoading(false);
+      return;
+    } else {
+      let usertk: number = Number(tk) - Number(token);
       // e.preventDefault();
       setResponse("");
 
@@ -129,19 +125,15 @@ export default function CaptionGen() {
         </form>
       </div>
       <Modal
-                open={open}
-                onClose={handleClose}
-                aria-labelledby="modal-modal-title"
-                aria-describedby="modal-modal-description"
-
-            >
-                <Box sx={StyleModal}>
-
-                    <PopUp></PopUp>
-
-
-                </Box>
-            </Modal>
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={StyleModal}>
+          <PopUp></PopUp>
+        </Box>
+      </Modal>
       <div className="w-3/5 h-screen flex bg-white">
         <GPTResponse></GPTResponse>
       </div>

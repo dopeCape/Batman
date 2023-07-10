@@ -8,7 +8,7 @@ import GPTResponse from "@/components/GPTResponse";
 import { useAtom } from "jotai";
 import { responseAtom } from "@/utils/store";
 import { auth } from "@/firebase";
-import { updateTokens, readTokens, getUserToken } from '../../../auth';
+import { updateTokens, readTokens, getUserToken } from "../../../auth";
 import { Modal, Box } from "@mui/material";
 import { StyleModal } from "@/components/modalStyle";
 import PopUp from "@/components/popUp";
@@ -35,10 +35,9 @@ export default function CaptionGen() {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   let token: number = 20;
-  const user = auth.currentUser
+  const user = auth.currentUser;
   const router = useRouter();
 
- 
   useEffect(() => {
     // Set the state to null on page load
     setResponse("");
@@ -98,7 +97,6 @@ export default function CaptionGen() {
   };
   const prompt = `Generate ${props.title} for my page about ${input} with keywords ${keywords} with tone ${value} and my target audience is ${targetAudience} .`;
 
-
   const handlePostAboutChange = (event: ChangeEvent<HTMLInputElement>) => {
     let value = event.target.value;
     const count = value.length;
@@ -131,46 +129,43 @@ export default function CaptionGen() {
     // e.preventDefault();
     setLoading(true);
     setResponse("");
-    const tk = await getUserToken(user)
+    const tk = await getUserToken(user);
     if (Number(tk) < token) {
-      handleOpen()
-      setLoading(false)
-      return
+      handleOpen();
+      setLoading(false);
+      return;
+    } else {
+      let usertk: number = Number(tk) - Number(token);
+
+      await updateTokens(user, usertk);
+      const res = await fetch("/api/promptChatGPT", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          data: prompt,
+        }),
+      });
+
+      if (!res.ok) throw new Error(res.statusText);
+
+      const data = res.body;
+      console.log("********************" + data);
+      if (!data) return;
+
+      const reader = data.getReader();
+      const decoder = new TextDecoder();
+      let done = false;
+
+      while (!done) {
+        const { value, done: doneReading } = await reader.read();
+        done = doneReading;
+        const chunkValue = decoder.decode(value);
+        setResponse((prev) => prev + chunkValue);
+      }
+      setLoading(false);
     }
-    
-   else{
-    let usertk: number = Number(tk) - Number(token)
-   
-    
-    await updateTokens(user,usertk);
-    const res = await fetch("/api/promptChatGPT", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        data: prompt,
-      }),
-    });
-
-    if (!res.ok) throw new Error(res.statusText);
-
-    const data = res.body;
-    console.log("********************" + data);
-    if (!data) return;
-
-    const reader = data.getReader();
-    const decoder = new TextDecoder();
-    let done = false;
-
-    while (!done) {
-      const { value, done: doneReading } = await reader.read();
-      done = doneReading;
-      const chunkValue = decoder.decode(value);
-      setResponse((prev) => prev + chunkValue);
-    }
-    setLoading(false);
-  }
   };
 
   return (
@@ -267,7 +262,7 @@ export default function CaptionGen() {
             onClick={generateResponse}
             className="w-full h-10 bg-black mt-10 rounded-lg bg-gradient-to-l from-[#009FFD] to-[#2A2A72]"
           >
-            {loading? "Genarating...": "Generate (20 credit)"}
+            {loading ? "Genarating..." : "Generate (20 credit)"}
           </button>
         </form>
       </div>
@@ -276,13 +271,9 @@ export default function CaptionGen() {
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
-        
       >
         <Box sx={StyleModal}>
-
-        <PopUp></PopUp>
-        
-    
+          <PopUp></PopUp>
         </Box>
       </Modal>
       <div className=" h-screen flex bg-white"></div>

@@ -6,13 +6,12 @@ import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
 import GPTResponse from "@/components/GPTResponse";
 import { useAtom } from "jotai";
-import { updateTokens, readTokens, getUserToken } from '../../../auth';
+import { updateTokens, readTokens, getUserToken } from "../../../auth";
 import { responseAtom } from "@/utils/store";
 import { auth } from "@/firebase";
 import { Modal, Box } from "@mui/material";
 import { StyleModal } from "@/components/modalStyle";
 import PopUp from "@/components/popUp";
-
 
 const options = [
   "Conversational",
@@ -34,21 +33,17 @@ export default function CaptionGen() {
   const [_response, setResponse] = useAtom(responseAtom);
   const [loading, setLoading] = useState(false);
   let token: number = 20;
-  const user = auth.currentUser
+  const user = auth.currentUser;
   const router = useRouter();
-  const [getToken, setgetToken] = useState('')
+  const [getToken, setgetToken] = useState("");
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-
 
   useEffect(() => {
     // Set the state to null on page load
     setResponse("");
   }, []);
-
-
-
 
   const handleKeyword = (event: ChangeEvent<HTMLInputElement>) => {
     setWord(event.target.value);
@@ -119,7 +114,6 @@ export default function CaptionGen() {
   };
 
   const handleTargetAudienceChange = (event: ChangeEvent<HTMLInputElement>) => {
-
     let value = event.target.value;
     const count = value.length;
     setTargetAudienceCount(count);
@@ -136,22 +130,19 @@ export default function CaptionGen() {
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
     setLoading(true);
-    const tk = await getUserToken(user)
-    console.log("&&&&&&&&&&&&&&thus " + tk)
+    const tk = await getUserToken(user);
+    console.log("&&&&&&&&&&&&&&thus " + tk);
     if (Number(tk) < token) {
-      handleOpen()
-      setLoading(false)
-      return
-    }
-    else {
-
-
-      let usertk: number = Number(tk) - Number(token)
+      handleOpen();
+      setLoading(false);
+      return;
+    } else {
+      let usertk: number = Number(tk) - Number(token);
       // e.preventDefault();
       setResponse("");
 
       await updateTokens(user, usertk);
-      console.log("this is the uid " + user)
+      console.log("this is the uid " + user);
       const res = await fetch("/api/promptChatGPT", {
         method: "POST",
         headers: {
@@ -280,21 +271,16 @@ export default function CaptionGen() {
         </form>
       </div>
       <Modal
-                open={open}
-                onClose={handleClose}
-                aria-labelledby="modal-modal-title"
-                aria-describedby="modal-modal-description"
-
-            >
-                <Box sx={StyleModal}>
-
-                    <PopUp></PopUp>
-
-
-                </Box>
-            </Modal>
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={StyleModal}>
+          <PopUp></PopUp>
+        </Box>
+      </Modal>
       <div className=" h-screen w-screen flex bg-white">
-
         <GPTResponse></GPTResponse>
       </div>
     </div>

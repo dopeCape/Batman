@@ -7,14 +7,11 @@ import Autocomplete from "@mui/material/Autocomplete";
 import GPTResponse from "@/components/GPTResponse";
 import { useAtom } from "jotai";
 import { responseAtom } from "@/utils/store";
-import { updateTokens, readTokens, getUserToken } from '../../../auth';
+import { updateTokens, readTokens, getUserToken } from "../../../auth";
 import { Modal, Box } from "@mui/material";
 import { StyleModal } from "@/components/modalStyle";
 import PopUp from "@/components/popUp";
 import { auth } from "@/firebase";
-
-
-
 
 const options = [
   "Conversational",
@@ -37,7 +34,7 @@ export default function CaptionGen() {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
   let token: number = 10;
-  const user = auth.currentUser
+  const user = auth.currentUser;
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -126,22 +123,19 @@ export default function CaptionGen() {
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
     setLoading(true);
-    const tk = await getUserToken(user)
-    console.log("&&&&&&&&&&&&&&thus " + tk)
+    const tk = await getUserToken(user);
+    console.log("&&&&&&&&&&&&&&thus " + tk);
     if (Number(tk) < token) {
-      handleOpen()
-      setLoading(false)
-      return
-    }
-    else {
-
-
-      let usertk: number = Number(tk) - Number(token)
+      handleOpen();
+      setLoading(false);
+      return;
+    } else {
+      let usertk: number = Number(tk) - Number(token);
       // e.preventDefault();
       setResponse("");
 
       await updateTokens(user, usertk);
-      console.log("this is the uid " + user)
+      console.log("this is the uid " + user);
       const res = await fetch("/api/promptChatGPT", {
         method: "POST",
         headers: {
@@ -265,27 +259,22 @@ export default function CaptionGen() {
             onClick={generateResponse}
             className="w-full h-10 bg-black mt-10 rounded-lg bg-gradient-to-l from-[#009FFD] to-[#2A2A72]"
           >
-           {loading? "Generating...": "Generate (10 tokens)"}
+            {loading ? "Generating..." : "Generate (10 tokens)"}
           </button>
         </form>
       </div>
       <Modal
-                open={open}
-                onClose={handleClose}
-                aria-labelledby="modal-modal-title"
-                aria-describedby="modal-modal-description"
-
-            >
-                <Box sx={StyleModal}>
-
-                    <PopUp></PopUp>
-
-
-                </Box>
-            </Modal>
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={StyleModal}>
+          <PopUp></PopUp>
+        </Box>
+      </Modal>
       <div className=" h-screen w-screen flex bg-white">
-      <GPTResponse></GPTResponse>
-
+        <GPTResponse></GPTResponse>
       </div>
     </div>
   );
