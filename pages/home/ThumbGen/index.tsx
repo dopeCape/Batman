@@ -9,7 +9,7 @@ import { responseAtom } from "@/utils/store";
 import { updateTokens, readTokens, getUserToken } from "../../../auth";
 import { Modal, Box } from "@mui/material";
 import { StyleModal } from "@/components/modalStyle";
-import PopUp from "@/components/popUp";
+import PopUpCard from "@/components/PopUpCard";
 
 const options = [
   "Conversational",
@@ -215,7 +215,7 @@ export default function CaptionGen() {
         aria-describedby="modal-modal-description"
       >
         <Box sx={StyleModal}>
-          <PopUp></PopUp>
+          <PopUpCard></PopUpCard>
         </Box>
       </Modal>
       <div className=" h-screen w-screen flex bg-white">

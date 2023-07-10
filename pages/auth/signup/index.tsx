@@ -2,6 +2,8 @@ import { useState, ChangeEvent } from 'react';
 import { useRouter } from 'next/router';
 import { createUserWithEmail, signInWithGoogle } from '../../../auth';
 
+import classes from "./signup.module.css";
+
 const SignUp = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -36,20 +38,19 @@ const SignUp = () => {
   };
 
   return (
-    <div className='flex-col flex items-center justify-center h-screen'>
-      <div className='bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 flex flex-col items-center justify-center px-10 py-8  rounded-2xl'>
+    <div className={`${classes.sign_in}`}>
+      <div className={`${classes.signin__form} bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 mx-5 px-10 py-8 rounded-2xl`}>
       <h1 className='text-center font-sans mb-10 font-semibold text-[30px] leading-[23px] text-white'>Sign Up</h1>
-      <form className='flex flex-col' onSubmit={(e)=>e.preventDefault()}> 
-
+      <form className={classes.signin__form} onSubmit={(e)=>e.preventDefault()}> 
       <input
-        className='text-black mb-6 px-4 py-2 w-72 rounded-md'
+        className='text-black mb-6 px-4 py-2 rounded-md'
         type="email"
         placeholder="Enter your email"
         value={email}
         onChange={handleEmailChange}
       />
       <input
-        className='text-black mb-6 px-4 py-2 w-72 rounded-md'
+        className='text-black mb-6 px-4 py-2 rounded-md'
         type="password"
         placeholder="Enter your password"
         value={password}
@@ -61,7 +62,7 @@ const SignUp = () => {
       {message && <p>{message}</p>}
       <p className='text-white'>
         Already have an account?{' '}
-        <a className='text-white' href="/signin" style={{ textDecoration: 'underline' }}>
+        <a className='text-white' href="/auth/signin" style={{ textDecoration: 'underline' }}>
           Sign in
         </a>
       </p>

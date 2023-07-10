@@ -6,13 +6,11 @@ import React from "react";
 const Home = () => {
   return (
     <>
-      
       <Blocks />
       <Growing />
       <Preview />
       <Prompts />
       <Journey />
-
     </>
   );
 };

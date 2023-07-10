@@ -1,0 +1,9 @@
+.pricing{
+    padding: 3rem 0;
+}
+
+@media (min-width: 925px) {
+    .pricing{
+     
+    }
+}

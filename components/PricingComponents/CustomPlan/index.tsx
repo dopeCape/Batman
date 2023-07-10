@@ -1,8 +1,12 @@
 import React from 'react'
-import {BsHandbag} from "react-icons/bs"
+import {BsHandbag} from "react-icons/bs";
+import classes from "./CustomPlan.module.css";
+
+
 function CustomPlan() {
   return (
-    <div className='flex flex-col w-[500px] py-0 items-center '>
+    // <div className='flex flex-col w-[500px] py-0 items-center '>
+    <div className={`${classes.free_trial} flex flex-col py-0 items-center`}>
       <div className='flex flex-col w-[100%] py-10 items-center '>
         <h1 className='text-[#101827] font-bold text-3xl'>Custom Plan</h1>
         <p className='font-semibold py-2 text-[#4b5563] text-[23px] w-[100%] text-center '>For teams and businesses</p>

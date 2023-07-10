@@ -40,6 +40,7 @@ function LongForm() {
 
   return (
     <div className='flex flex-col w-[500px] h-[100%] py-10 pb-20 items-center rounded-[40px] border-[#6969ee] border-[3px] '>
+    {/* <div className='flex flex-col h-[100%] py-10 mx-3 my-10 pb-20 items-center rounded-[40px] border-[#6969ee] border-[3px]'> */}
       <div className='flex flex-col w-[100%] items-center '>
         <h1 className='text-[#101827] font-bold text-3xl'>Long-form</h1>
         <p className='font-medium py-2 text-[#4b5563] text-[23px] w-[60%] text-center '>For bloggers, freelancers & businesses</p>
@@ -49,31 +50,32 @@ function LongForm() {
             <h1 className='text-5xl text-[#101827] font-bold'>$19</h1>
             <p className='text-center text-[#747b88] font-normal'>/month</p>
           </div>
-          <div className='flex text-[#374151] mb-5 text-[20px] gap-x-[180px] font-medium'>
+          {/* <div className='flex text-[#374151] mb-5 text-[20px] gap-x-[180px] font-medium'> */}
+          <div className='flex text-[#374151] mb-5 text-[14px] gap-x-[180px]'>
             <p>{value[0]}</p>
             <p>5,000,000</p>
           </div>
-    <div className='flex w-[100%] items-center justify-center'>
-      <Slider
-        range
-        defaultValue={[0]}
-        min={30000}
-        max={5000000}
-        step={null}
-        railStyle={railStyle}
-        handleStyle={[handleStyle, handleStyle]}
-        trackStyle={[trackStyle, trackStyle]}
-        onChange={handleSliderChange}
-        marks={{
-         30000: '30k',
-         1000000: '1M',
-         2000000: '2M',
-         3000000: '3M',
-         4000000: '4M',
-         5000000: '5M',
-        }}
-      />
-      </div>
+          <div className='flex w-[90%] items-center justify-center'>
+            <Slider
+              range
+              defaultValue={[0]}
+              min={30000}
+              max={5000000}
+              step={null}
+              railStyle={railStyle}
+              handleStyle={[handleStyle, handleStyle]}
+              trackStyle={[trackStyle, trackStyle]}
+              onChange={handleSliderChange}
+              marks={{
+              30000: '30k',
+              1000000: '1M',
+              2000000: '2M',
+              3000000: '3M',
+              4000000: '4M',
+              5000000: '5M',
+              }}
+            />
+            </div>
           <div className='flex items-center gap-x-5 py-20'>
             <p className='text-[#101827] font-bold text-xl'>30,000 words/month</p>
             <span className='text-[#4b5563] font-medium text-xl'>1 seat</span>

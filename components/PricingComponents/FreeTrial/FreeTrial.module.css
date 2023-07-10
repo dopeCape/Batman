@@ -1,0 +1,9 @@
+@media (max-width: 340px) {
+    .free_trial button{
+        margin-top: 4rem;
+    }
+}
+
+.free_trial{
+    max-width: 500px;
+}
