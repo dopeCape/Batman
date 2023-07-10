@@ -64,13 +64,13 @@ export default function ContentCreation() {
                 </ToggleButtonGroup>
 
                 <h3 className='text-black mt-5 mb-2 text-lg font-medium'>Text to be rewritten *</h3>
-                <TextField
+                {/* <TextField
                     className='bg-white rounded-xl'
                     id="outlined-multiline-static"
                     label="Text"
                     multiline
                     rows={4}
-                />
+                /> */}
                 <h3 className='text-black mt-5 mb-2 text-lg font-medium'>Tone *</h3>
                 <Autocomplete
                     className='bg-white rounded-xl'
