@@ -125,7 +125,6 @@ export default function CaptionGen() {
     event.target.value = value;
   };
 
- 
   const generateResponse = async (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
@@ -174,11 +173,9 @@ export default function CaptionGen() {
   }
   };
 
-return (
-    // <div className="flex justify-center items-center">
-    <div className="caption-container">
-      {/* <div className="w-2/5 h-screen flex bg-gray-200 px-10 py-16 flex-col "> */}
-      <div className="caption-gen bg-gray-200">
+  return (
+    <div className="flex justify-center items-center">
+      <div className="w-3/5 h-screen flex bg-gray-200 px-10 py-16 flex-col">
         <h1 className="text-black font-sans text-2xl font-medium">
           Generate {props.title}
         </h1>
@@ -250,6 +247,7 @@ return (
             )}
           />
           {inputValue === "Describe a tone" ? <TextInput /> : null}
+
           <div className="relative">
             <h3 className="text-black text-base mb-2 mt-3">Target audience*</h3>
             <input

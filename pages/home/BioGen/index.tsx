@@ -28,10 +28,6 @@ export default function CaptionGen() {
   const [inputValue, setInputValue] = useState("");
   const [postAboutCount, setPostAboutCount] = useState(0);
   const [targetAudienceCount, setTargetAudienceCount] = useState(0);
-  const [pageAbout, setPageAbout] = useState('')
-
-
-
   const [targetAudience, setTargetAudience] = useState("");
   const [input, setInput] = useState("");
   const [_response, setResponse] = useAtom(responseAtom);
@@ -41,7 +37,6 @@ export default function CaptionGen() {
   const handleClose = () => setOpen(false);
   let token: number = 20;
   const user = auth.currentUser
-
   const router = useRouter();
 
   useEffect(() => {
@@ -177,26 +172,27 @@ export default function CaptionGen() {
   };
 
   return (
-    // <div className="flex justify-center items-center">
-    <div className="caption-container">
-      {/* <div className="w-2/5 h-screen flex bg-gray-200 px-10 py-16 flex-col"> */}
-      <div className="caption-gen bg-gray-200">
+    <div className="flex justify-center items-center">
+      <div className="w-3/5 h-screen flex bg-gray-200 px-10 py-16 flex-col">
         <h1 className="text-black font-sans text-2xl font-medium">
           Generate {props.title}
         </h1>
         <h3 className="text-black text-sm ">
-          Optimize your profile bio for greater visibility and higher engagement.
+          Optimize your profile bio for greater visibility and higher
+          engagement.
         </h3>
         <form onSubmit={(e) => e.preventDefault()} className="my-4">
           <div className="relative">
             <h3 className="text-black text-base mb-2">
-              What's your page about?*
+              What's your Profile about?*
             </h3>
             <input
               className="w-full px-2 py-2 rounded-lg border border-gray-300 text-gray-500"
               type="text"
               placeholder="gaming, fashion, animals etc."
-              onChange={(e) => {setPageAbout(e.target.value), handlePostAboutChange}}
+              onChange={(e) => {
+                setInput(e.target.value), handlePostAboutChange;
+              }}
             ></input>
             <p className="text-gray-700 text-xs absolute right-0 top-[18px]">
               {postAboutCount}/800
@@ -265,43 +261,32 @@ export default function CaptionGen() {
             </p>
           </div>
 
-          <button className="w-full h-10 bg-black mt-10 rounded-lg bg-gradient-to-l from-[#009FFD] to-[#2A2A72]">
-            Generate (1 credit)
+          <button
+            onClick={generateResponse}
+            className="w-full h-10 bg-black mt-10 rounded-lg bg-gradient-to-l from-[#009FFD] to-[#2A2A72]"
+          >
+           {loading ? "Genarating..." : "Generate"}
           </button>
         </form>
       </div>
-      {/* <div className="w-3/5 h-screen flex bg-white"></div> */}
-      <div className="content-container bg-white"></div>
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+        
+      >
+        <Box sx={StyleModal}>
+
+        <PopUp></PopUp>
+        
+    
+        </Box>
+      </Modal>
+      <div className=" h-screen flex bg-white">
+
+      </div>
+      <GPTResponse></GPTResponse>
     </div>
   );
 }
-
-  //         <button
-  //           onClick={generateResponse}
-  //           className="w-full h-10 bg-black mt-10 rounded-lg bg-gradient-to-l from-[#009FFD] to-[#2A2A72]"
-  //         >
-  //          {loading ? "Genarating..." : "Generate"}
-  //         </button>
-  //       </form>
-  //     </div>
-  //     <Modal
-  //       open={open}
-  //       onClose={handleClose}
-  //       aria-labelledby="modal-modal-title"
-  //       aria-describedby="modal-modal-description"
-        
-  //     >
-  //       <Box sx={StyleModal}>
-
-  //       <PopUp></PopUp>
-        
-    
-  //       </Box>
-  //     </Modal>
-  //     <div className=" h-screen flex bg-white">
-
-  //     </div>
-  //     <GPTResponse></GPTResponse>
-  //   </div>
-  // );
-// }

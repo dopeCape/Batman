@@ -28,11 +28,10 @@ export default function CaptionGen() {
   const [inputValue, setInputValue] = useState("");
   const [postAboutCount, setPostAboutCount] = useState(0);
   const [targetAudienceCount, setTargetAudienceCount] = useState(0);
-  const [input, setInput] = useState("");
-  const [response, setResponse] = useState<String>("");
-  const [loading, setLoading] = useState(false);
-
   const [targetAudience, setTargetAudience] = useState("");
+  const [input, setInput] = useState("");
+  const [_response, setResponse] = useAtom(responseAtom);
+  const [loading, setLoading] = useState(false);
   const [show, setShow] = useState(true);
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
@@ -128,29 +127,6 @@ export default function CaptionGen() {
     event.target.value = value;
   };
 
-
-  // const generateResponse = async (e: React.MouseEvent<HTMLButtonElement>) => {
-  //   e.preventDefault();
-  //   setResponse("");
-  //   setLoading(true);
-
-  //    await fetch("/api/promptChatGPT", {
-  //     method: "POST",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //     body: JSON.stringify({
-  //       promptText: prompt,
-  //       max_tokens: 100
-  //     }),
-  //   }).then((res=>{
-  //     console.log("this si the response"+res)
-  //   })).catch(err=>{
-  //     console.log(err)
-  //   });
-  //   setLoading(false);
-  // };
-
   const generateResponse = async (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
@@ -205,8 +181,9 @@ export default function CaptionGen() {
   };
 
   return (
-    <div className="caption-container">
-      <div className="caption-gen bg-gray-200">
+    <div className="flex justify-center items-center z-0">
+      
+      <div className="w-3/5 h-screen flex bg-gray-200 px-10 py-16 flex-col">
         <h1 className="text-black font-sans text-2xl font-medium">
           Generate {props.title}
         </h1>
@@ -292,6 +269,7 @@ export default function CaptionGen() {
               {targetAudienceCount}/200
             </p>
           </div>
+
           <button
             onClick={generateResponse}
             className="w-full h-10 bg-black mt-10 rounded-lg bg-gradient-to-l from-[#009FFD] to-[#2A2A72]"
