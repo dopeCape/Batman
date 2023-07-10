@@ -1,10 +1,18 @@
-import { useState, ChangeEvent } from "react";
+import { useState, ChangeEvent, useEffect } from "react";
 import { useRouter } from "next/router";
 import AddCircle from "@mui/icons-material/AddCircleOutlineTwoTone";
 import Cancel from "@mui/icons-material/Cancel";
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
-
+import GPTResponse from "@/components/GPTResponse";
+import { useAtom } from "jotai";
+import Box from '@mui/material/Box';
+import { responseAtom } from "@/utils/store";
+import { auth } from "@/firebase";
+import { Modal } from "@mui/material";
+import { updateTokens, readTokens , getUserToken} from '../../../auth';
+import { StyleModal } from "@/components/modalStyle";
+import PopUp from "@/components/popUp";
 const options = [
   "Conversational",
   "Enthusiastic",
@@ -23,9 +31,19 @@ export default function CaptionGen() {
   const [input, setInput] = useState("");
   const [response, setResponse] = useState<String>("");
   const [loading, setLoading] = useState(false);
-  const router = useRouter();
 
-  const prompt = `Q: Generate a catpion for my post about ${input} .`;
+  const [targetAudience, setTargetAudience] = useState("");
+  const [show, setShow] = useState(true);
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+  const router = useRouter();
+  let token: number = 10;
+  const user = auth.currentUser
+  const prompt = `Generate a catpion for my post about ${input} with keywords ${keywords} with tone ${value} with target audience ${targetAudience} .`;
+ 
+
+ 
 
   const handleKeyword = (event: ChangeEvent<HTMLInputElement>) => {
     setWord(event.target.value);
@@ -61,6 +79,10 @@ export default function CaptionGen() {
     );
   };
 
+  useEffect(() => {
+    // Set the state to null on page load
+    setResponse("");
+  }, []);
   const TextInput = () => {
     return (
       <input
@@ -129,7 +151,58 @@ export default function CaptionGen() {
   //   setLoading(false);
   // };
 
+  const generateResponse = async (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
+    // e.preventDefault();
+    setLoading(true);
+    const tk =  await getUserToken(user)
+    console.log("&&&&&&&&&&&&&&thus "+tk)
+    if(Number(tk) < token){
+      // alert("You don't have enough tokens")
+      handleOpen()
+      setLoading(false);
+      return
+    }
+    else{
 
+    
+    let usertk: number = Number(tk) - Number(token)
+    // e.preventDefault();
+    setResponse("");
+    
+    await updateTokens(user,usertk);
+    
+
+    const res = await fetch("/api/promptChatGPT", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        data: prompt,
+      }),
+    });
+
+    if (!res.ok) throw new Error(res.statusText);
+
+    const data = res.body;
+    console.log("********************" + data);
+    if (!data) return;
+
+    const reader = data.getReader();
+    const decoder = new TextDecoder();
+    let done = false;
+
+    while (!done) {
+      const { value, done: doneReading } = await reader.read();
+      done = doneReading;
+      const chunkValue = decoder.decode(value);
+      setResponse((prev) => prev + chunkValue);
+    }
+    setLoading(false);
+  }
+  };
 
   return (
     <div className="caption-container">
@@ -149,7 +222,9 @@ export default function CaptionGen() {
               className="w-full px-2 py-2 rounded-lg border border-gray-300 text-gray-500"
               type="text"
               placeholder="gaming, fashion, animals etc."
-              onChange={(e) => {setInput(e.target.value),handlePostAboutChange}}
+              onChange={(e) => {
+                setInput(e.target.value), handlePostAboutChange;
+              }}
             ></input>
             <p className="text-gray-700 text-xs absolute right-0 top-[18px]">
               {postAboutCount}/800
@@ -209,19 +284,40 @@ export default function CaptionGen() {
               className="w-full px-2 py-2 rounded-lg border border-gray-300 text-gray-500"
               type="text"
               placeholder="travellers, gamers etc."
-              onChange={handleTargetAudienceChange}
+              onChange={(e) => {
+                setTargetAudience(e.target.value), handleTargetAudienceChange;
+              }}
             ></input>
             <p className="text-gray-700 text-xs absolute right-0 top-[18px]">
               {targetAudienceCount}/200
             </p>
           </div>
-
-          <button className="w-full h-10 bg-black mt-10 rounded-lg bg-gradient-to-l from-[#009FFD] to-[#2A2A72]">
-            Generate (1 credit)
+          <button
+            onClick={generateResponse}
+            className="w-full h-10 bg-black mt-10 rounded-lg bg-gradient-to-l from-[#009FFD] to-[#2A2A72]"
+          >
+            {loading ? "Genarating..." : "Genarate (10 tokens)"}
           </button>
         </form>
       </div>
-      <div className="content-container bg-white"></div>
+      
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+        
+      >
+        <Box sx={StyleModal}>
+
+        <PopUp></PopUp>
+        
+    
+        </Box>
+      </Modal>
+              
+      <div className=" h-screen flex bg-white"></div>
+      <GPTResponse></GPTResponse>
     </div>
   );
 }

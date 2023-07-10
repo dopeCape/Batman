@@ -19,6 +19,10 @@ const AuthPage = () => {
     setPassword(event.target.value);
   };
 
+<<<<<<< HEAD
+=======
+ 
+>>>>>>> e411a657dbc23f38c1fb9209e24864ae749fe7f5
   const handleSignUp = async () => {
     try {
       await createUserWithEmail(email, password);

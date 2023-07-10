@@ -1,15 +1,52 @@
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, signOut } from 'firebase/auth';
-import { getFirestore, doc, setDoc } from 'firebase/firestore';
-import { app } from './firebase';
+import { getFirestore, doc, setDoc, getDoc } from 'firebase/firestore';
+import {  db } from './firebase';
 import { updateDoc } from 'firebase/firestore';
+import React from 'react';
+import { useState } from 'react';
 
-const auth = getAuth(app);
+// import { db } from './firebaseConfig';
+import { app } from './firebaseConfig';
+const auth = getAuth(app); 
+
 const firestore = getFirestore(app);
+
+
+
 
 const googleProvider = new GoogleAuthProvider();
 
-export const updateTokens = async (user, newTokenValue) => {
+export const readTokens = async (user) => {
   const userRef = doc(firestore, 'users', user.uid);
+  const userDoc = await userRef.get();
+  const userData = userDoc.data();
+  if (userData) {
+    return userData.tokens;
+  }
+  return null;
+};
+
+export const getUserToken = async(user) => {
+  const tokenRef = doc(firestore, 'users', user.uid);
+  const doc1 = await getDoc(tokenRef);
+
+  if (doc1.exists) {
+    console.log("*******************"+doc1.data().tokens)
+    return doc1.data().tokens;
+  } else {
+    return null;
+  }
+};
+
+// export const updateTokens = async (user, newTokenValue) => {
+//   const userRef = doc(firestore, 'users', user.uid);
+//   await updateDoc(userRef, { tokens: newTokenValue });
+// };
+export const updateTokens = async (user, newTokenValue) => {
+  
+  
+  const userRef = doc(firestore, 'users', user.uid);
+  
   await updateDoc(userRef, { tokens: newTokenValue });
 };
 
@@ -29,6 +66,7 @@ export const createUserWithEmail = async (email, password) => {
   await setDoc(doc(firestore, 'users', user.uid), userData);
   return user;
 };
+
 
 export const signInWithEmail = async (email, password) => {
   try {

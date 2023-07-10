@@ -62,7 +62,7 @@ const SignUp = () => {
       {message && <p>{message}</p>}
       <p className='text-white'>
         Already have an account?{' '}
-        <a className='text-white' href="/signin" style={{ textDecoration: 'underline' }}>
+        <a className='text-white' href="/auth/signin" style={{ textDecoration: 'underline' }}>
           Sign in
         </a>
       </p>

@@ -55,7 +55,7 @@ export default function Contact() {
           className='w-8/12 my-1'
           // defaultValue="Default Value"
         />
-        <Button variant="contained">Submit</Button>
+        <Button className={classes.contact_btn} variant="contained">Submit</Button>
       </div>
     </div>
   )

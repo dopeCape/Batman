@@ -12,6 +12,7 @@ export interface ChatGPTMessage {
 }
 
 export interface OpenAIStreamPayload {
+<<<<<<< HEAD
   model: string;
   messages?: ChatGPTMessage[];
   prompt?: string;
@@ -24,6 +25,33 @@ export interface OpenAIStreamPayload {
   stop?: string[];
   user?: string;
   n: number;
+=======
+      model: string
+      // messages: messages,
+      prompt: string
+      temperature: number,
+      max_tokens: number,
+      top_p: number,
+
+      frequency_penalty: number,
+      presence_penalty: number,
+      stream: boolean,
+      n: number,
+
+
+  // model: string;
+  // messages?: ChatGPTMessage[];
+  // prompt?: string;
+  // temperature: number;
+  // top_p: number;
+  // frequency_penalty: number;
+  // presence_penalty: number;
+  // max_tokens: number;
+  // stream: boolean;
+  // stop?: string[];
+  // user?: string;
+  // n: number;
+>>>>>>> e411a657dbc23f38c1fb9209e24864ae749fe7f5
 }
 export async function OpenAIStream(payload: OpenAIStreamPayload) {
   // console.log("OpenAIStream");
@@ -33,12 +61,21 @@ export async function OpenAIStream(payload: OpenAIStreamPayload) {
   let counter = 0;
 
   const res = await fetch("https://api.openai.com/v1/completions", {
+<<<<<<< HEAD
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${process.env.OPENAI_API_KEY ?? ""}`,
     },
     method: "POST",
     body: JSON.stringify(payload),
+=======
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${process.env.OPENAI_API_KEY || ""}`,
+    },
+    body:  JSON.stringify(payload)
+>>>>>>> e411a657dbc23f38c1fb9209e24864ae749fe7f5
   });
 
   const stream = new ReadableStream({
@@ -53,7 +90,11 @@ export async function OpenAIStream(payload: OpenAIStreamPayload) {
           }
           try {
             const json = JSON.parse(data);
+<<<<<<< HEAD
             const text = json.choices[0].text;
+=======
+            const text = json.choices[0].delta?.content || "";
+>>>>>>> e411a657dbc23f38c1fb9209e24864ae749fe7f5
             if (counter < 2 && (text.match(/\n/) || []).length) {
               return;
             }
