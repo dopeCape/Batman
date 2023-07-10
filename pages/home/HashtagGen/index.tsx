@@ -85,7 +85,6 @@ export default function CaptionGen() {
           </button>
         </form>
       </div>
-      {/* <div className="w-3/5 h-screen flex bg-white"></div> */}
       <div className="content-container bg-white"></div>
     </div>
   );
