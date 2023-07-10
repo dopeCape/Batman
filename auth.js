@@ -1,9 +1,10 @@
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, signOut } from 'firebase/auth';
-import { getFirestore, doc, setDoc, getDoc } from 'firebase/firestore';
+import { getFirestore, doc, setDoc, getDoc, onSnapshot } from 'firebase/firestore';
 import {  db } from './firebase';
 import { updateDoc } from 'firebase/firestore';
 import React from 'react';
 import { useState } from 'react';
+
 
 // import { db } from './firebaseConfig';
 import { app } from './firebaseConfig';
@@ -26,12 +27,45 @@ export const readTokens = async (user) => {
   return null;
 };
 
+export const getRealTimeToken = async(user) => {
+  let value;
+  const tokenRef = doc(firestore, 'users', user.uid);
+  await onSnapshot(tokenRef,(snapshot)=>{
+    value=snapshot.data().tokens;
+    console.log("this is real time data "+value)
+  })
+  return value;
+  
+  // if (doc1.exists) {
+  //   console.log("this is real time data "+doc1.data().tokens)
+  //   return doc1
+  // } else {
+  //   return null;
+  // }
+};
+
+export const generateRealTimeToken = (user) => {
+  // Get the current user's token
+  let token = getUserToken(user)
+  const tokenRef = doc(firestore, 'users', user.uid);
+  // Listen for changes to the token
+  onSnapshot(tokenRef, (newToken) => {
+    // Update the token if it has changed
+    if (newToken !== token) {
+      token = newToken;
+    }
+  });
+
+  // Return the current token
+  return token;
+};
+
 export const getUserToken = async(user) => {
   const tokenRef = doc(firestore, 'users', user.uid);
   const doc1 = await getDoc(tokenRef);
 
   if (doc1.exists) {
-    console.log("*******************"+doc1.data().tokens)
+    console.log("getuserToken"+doc1.data().tokens)
     return doc1.data().tokens;
   } else {
     return null;

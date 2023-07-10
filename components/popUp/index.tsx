@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import React from 'react'
-
+import { getUserToken } from '../../auth';
 export default function PopUp() {
   return (
     <div

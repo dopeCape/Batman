@@ -42,6 +42,7 @@ export default function CaptionGen() {
 
   useEffect(() => {
     // Set the state to null on page load
+    const displayToken = getUserToken(user)
     setResponse("");
   }, []);
 
