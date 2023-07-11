@@ -266,7 +266,7 @@ export default function CaptionGen() {
             onClick={generateResponse}
             className="w-full h-10 bg-black mt-10 rounded-lg bg-gradient-to-l from-[#009FFD] to-[#2A2A72]"
           >
-            {loading ? "Loading..." : "Genarate (20 token)"}
+            <h1 className="text-white" > {loading? "Genarating..." : "Generate (20 tokens)"}</h1>
           </button>
         </form>
       </div>

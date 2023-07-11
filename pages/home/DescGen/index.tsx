@@ -34,7 +34,7 @@ export default function CaptionGen() {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  let token: number = 20;
+  let token: number = 5;
   const user = auth.currentUser;
   const router = useRouter();
 

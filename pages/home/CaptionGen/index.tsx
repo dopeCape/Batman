@@ -37,7 +37,7 @@ export default function CaptionGen() {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const router = useRouter();
-  let token: number = 10;
+  let token: number = 5;
   const user = auth.currentUser;
   const prompt = `Generate a catpion for my post about ${input} with keywords ${keywords} with tone ${value} with target audience ${targetAudience} .`;
 
@@ -266,7 +266,10 @@ export default function CaptionGen() {
             onClick={generateResponse}
             className="w-full h-10 bg-black mt-10 rounded-lg bg-gradient-to-l from-[#009FFD] to-[#2A2A72]"
           >
-            {loading ? "Genarating..." : "Genarate (10 tokens)"}
+            <h1 className="text-white">
+              {" "}
+              {loading ? "Genarating..." : "Generate (5 tokens)"}
+            </h1>
           </button>
         </form>
       </div>

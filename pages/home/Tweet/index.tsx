@@ -33,7 +33,7 @@ export default function CaptionGen() {
   const [_response, setResponse] = useAtom(responseAtom);
   const [loading, setLoading] = useState(false);
   const router = useRouter();
-  let token: number = 10;
+  let token: number = 5;
   const user = auth.currentUser;
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
