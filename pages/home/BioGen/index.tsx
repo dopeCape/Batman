@@ -35,7 +35,7 @@ export default function CaptionGen() {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  let token: number = 20;
+  let token: number = 5;
   const user = auth.currentUser
   const router = useRouter();
 
@@ -265,7 +265,7 @@ export default function CaptionGen() {
             onClick={generateResponse}
             className="w-full h-10 bg-black mt-10 rounded-lg bg-gradient-to-l from-[#009FFD] to-[#2A2A72]"
           >
-           {loading ? "Genarating..." : "Generate"}
+           <h1 className="text-white" > {loading? "Genarating..." : "Generate (5 tokens)"}</h1>
           </button>
         </form>
       </div>

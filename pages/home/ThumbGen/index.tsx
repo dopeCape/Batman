@@ -29,7 +29,7 @@ export default function CaptionGen() {
   const [input, setInput] = useState("");
   const [_response, setResponse] = useAtom(responseAtom);
   const [loading, setLoading] = useState(false);
-  let token: number = 20;
+  let token: number = 5;
   const user = auth.currentUser
   const router = useRouter();
   const [open, setOpen] = useState(false);
@@ -208,7 +208,7 @@ export default function CaptionGen() {
             onClick={generateResponse}
             className="w-full h-10 bg-black mt-10 rounded-lg bg-gradient-to-l from-[#009FFD] to-[#2A2A72]"
           >
-            {loading? "Generating..." : "Generate (20 tokens)"}
+            <h1 className="text-white" > {loading? "Genarating..." : "Generate (5 tokens)"}</h1>
           </button>
         </form>
       </div>
