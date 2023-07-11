@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import EmailIcon from "@mui/icons-material/Email";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
-import { collection, addDoc } from "firebase/firestore";
+import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { db } from "@/firebase";
 import classes from "./contact.module.css";
 
@@ -20,6 +20,7 @@ export default function Contact() {
         name,
         email,
         message,
+        createdAt: serverTimestamp(),
       });
       setName("");
       setEmail("");
