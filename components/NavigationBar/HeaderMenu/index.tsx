@@ -8,7 +8,7 @@ import { Logout } from "../../../auth";
 import { Auth } from "firebase/auth";
 import { auth } from "@/firebase";
 import { firestore } from "firebase-admin";
-
+import { useState, useEffect } from "react";
 interface Props {
   children: JSX.Element;
 }

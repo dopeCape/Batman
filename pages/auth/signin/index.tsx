@@ -68,6 +68,7 @@ const SignIn = () => {
           </Link>
         </p>
       </div>
+      </div>
   );
 };
 

@@ -33,7 +33,7 @@ export default function GPTResponse() {
             className="mr-2"
             
           ></Image>
-          <h1 id="tokenShow" className="text-black"> {Number(token)} tokens</h1>
+          <h1 id="tokenShow" className="text-black"> {Number(token)} Tokens</h1>
         </div>
       </div>
       <div className="flex mx-5 my-10 bg-gray-200 px-5 py-5 rounded-md">
