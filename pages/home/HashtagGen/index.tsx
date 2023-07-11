@@ -134,7 +134,7 @@ export default function CaptionGen() {
         aria-describedby="modal-modal-description"
       >
         <Box sx={StyleModal}>
-          <PopUp></PopUp>
+          <PopUpCard></PopUpCard>
         </Box>
       </Modal>
       <div className="w-3/5 h-screen flex bg-white">
