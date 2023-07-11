@@ -1,7 +1,7 @@
-import { initializeApp, getApps, getApp } from 'firebase/app';
-import { getAuth } from 'firebase/auth';
-import { getDatabase } from 'firebase/database';
-import { getFirestore } from 'firebase/firestore';
+import { initializeApp, getApps, getApp } from "firebase/app";
+import { getAuth } from "firebase/auth";
+import { getDatabase } from "firebase/database";
+import { getFirestore } from "firebase/firestore";
 
 // const firebaseConfig = {
 //   apiKey: "AIzaSyCtxFMIGeKu7zRVSOpa_lfnLyM1fk5rCA4",
@@ -20,9 +20,8 @@ const firebaseConfig = {
   storageBucket: "metridash-web.appspot.com",
   messagingSenderId: "977489432973",
   appId: "1:977489432973:web:a56db742505b29a1d72dc4",
-  measurementId: "G-J5CXVGMQEN"
+  measurementId: "G-J5CXVGMQEN",
 };
-
 
 let app;
 if (!getApps().length) {
@@ -34,5 +33,5 @@ if (!getApps().length) {
 const auth = getAuth(app);
 const database = getDatabase(app);
 
-const db = getFirestore(app)
-export { auth, database };
+const db = getFirestore(app);
+export { auth, database, db };
