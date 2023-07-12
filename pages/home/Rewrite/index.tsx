@@ -35,8 +35,8 @@ export default function ContentCreation() {
   };
 
   return (
-    <div className="flex justify-center items-center">
-      <div className="w-2/5 h-screen flex bg-gray-200 px-10 py-16 flex-col ">
+    <div className="flex flex-col md:flex-row justify-center items-center">
+      <div className="w-3/5 h-screen flex bg-gray-200 px-10 py-16 flex-col w-screen">
         <h2 className="text-black text-2xl font-medium">Rewrite content</h2>
         <h3 className="text-gray-500">
           Rewrite content while making it more engaging and effective.
@@ -52,11 +52,13 @@ export default function ContentCreation() {
           onChange={handleChange}
           aria-label="Platform"
         >
-          <ToggleButton value="Improve">Improve</ToggleButton>
-          <ToggleButton value="Simplify">Simplify</ToggleButton>
-          <ToggleButton value="Shorten">Shorten</ToggleButton>
-          <ToggleButton value="Expand">Expand</ToggleButton>
-          <ToggleButton value="Rephrase">Rephrase</ToggleButton>
+          <div className="flex flex-wrap">
+            <ToggleButton value="Improve">Improve</ToggleButton>
+            <ToggleButton value="Simplify">Simplify</ToggleButton>
+            <ToggleButton value="Shorten">Shorten</ToggleButton>
+            <ToggleButton value="Expand">Expand</ToggleButton>
+            <ToggleButton value="Rephrase">Rephrase</ToggleButton>
+          </div>
         </ToggleButtonGroup>
 
         <h3 className="text-black mt-5 mb-2 text-lg font-medium">
@@ -86,11 +88,11 @@ export default function ContentCreation() {
           renderInput={(params) => <TextField {...params} label="Tone" />}
         />
 
-        <button className="w-full h-10 bg-black mt-10 rounded-lg bg-gradient-to-l from-[#009FFD] to-[#2A2A72]">
+        <button className="w-full h-10 bg-black my-5 rounded-lg bg-gradient-to-l from-[#009FFD] to-[#2A2A72]">
           Generate (1 credit)
         </button>
       </div>
-      <div className="w-3/5 h-screen flex bg-white"></div>
+      <div className="w-3/5 mt-10 md:mt-0 h-screen w-screen flex bg-white"></div>
     </div>
   );
 }

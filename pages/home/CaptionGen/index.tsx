@@ -6,11 +6,11 @@ import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
 import GPTResponse from "@/components/GPTResponse";
 import { useAtom } from "jotai";
-import Box from '@mui/material/Box';
+import Box from "@mui/material/Box";
 import { responseAtom } from "@/utils/store";
 import { auth } from "@/firebase";
 import { Modal } from "@mui/material";
-import { updateTokens, readTokens , getUserToken} from '../../../auth';
+import { updateTokens, readTokens, getUserToken } from "../../../auth";
 import { StyleModal } from "@/components/modalStyle";
 import PopUpCard from "@/components/PopUpCard";
 const options = [
@@ -38,11 +38,8 @@ export default function CaptionGen() {
   const handleClose = () => setOpen(false);
   const router = useRouter();
   let token: number = 5;
-  const user = auth.currentUser
+  const user = auth.currentUser;
   const prompt = `Generate a catpion for my post about ${input} with keywords ${keywords} with tone ${value} with target audience ${targetAudience} .`;
- 
-
- 
 
   const handleKeyword = (event: ChangeEvent<HTMLInputElement>) => {
     setWord(event.target.value);
@@ -132,62 +129,57 @@ export default function CaptionGen() {
   ) => {
     // e.preventDefault();
     setLoading(true);
-    const tk =  await getUserToken(user)
-    console.log("&&&&&&&&&&&&&&thus "+tk)
-    if(Number(tk) < token){
+    const tk = await getUserToken(user);
+    console.log("&&&&&&&&&&&&&&thus " + tk);
+    if (Number(tk) < token) {
       // alert("You don't have enough tokens")
-      handleOpen()
+      handleOpen();
       setLoading(false);
-      return
+      return;
+    } else {
+      let usertk: number = Number(tk) - Number(token);
+      // e.preventDefault();
+      setResponse("");
+
+      await updateTokens(user, usertk);
+
+      const res = await fetch("/api/promptChatGPT", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          data: prompt,
+        }),
+      });
+
+      if (!res.ok) throw new Error(res.statusText);
+
+      const data = res.body;
+      console.log("********************" + data);
+      if (!data) return;
+
+      const reader = data.getReader();
+      const decoder = new TextDecoder();
+      let done = false;
+
+      while (!done) {
+        const { value, done: doneReading } = await reader.read();
+        done = doneReading;
+        const chunkValue = decoder.decode(value);
+        setResponse((prev) => prev + chunkValue);
+      }
+      setLoading(false);
     }
-    else{
-
-    
-    let usertk: number = Number(tk) - Number(token)
-    // e.preventDefault();
-    setResponse("");
-    
-    await updateTokens(user,usertk);
-    
-
-    const res = await fetch("/api/promptChatGPT", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        data: prompt,
-      }),
-    });
-
-    if (!res.ok) throw new Error(res.statusText);
-
-    const data = res.body;
-    console.log("********************" + data);
-    if (!data) return;
-
-    const reader = data.getReader();
-    const decoder = new TextDecoder();
-    let done = false;
-
-    while (!done) {
-      const { value, done: doneReading } = await reader.read();
-      done = doneReading;
-      const chunkValue = decoder.decode(value);
-      setResponse((prev) => prev + chunkValue);
-    }
-    setLoading(false);
-  }
   };
 
   return (
-    <div className="flex justify-center items-center z-0">
-      
-      <div className="w-3/5 h-screen flex bg-gray-200 px-10 py-16 flex-col">
+    <div className="flex flex-col md:flex-row justify-center h-screen items-center z-0">
+      <div className="md:w-3/5 h-screen flex bg-gray-200 px-10 py-16 flex-col mt-24 md:mt-0">
         <h1 className="text-black font-sans text-2xl font-medium">
           Generate {props.title}
         </h1>
-        <h3 className="text-black text-sm ">
+        <h3 className="text-black text-sm">
           Optimize your captions for greater visibility and higher engagement.
         </h3>
         <form onSubmit={(e) => e.preventDefault()} className="my-4">
@@ -274,26 +266,25 @@ export default function CaptionGen() {
             onClick={generateResponse}
             className="w-full h-10 bg-black mt-10 rounded-lg bg-gradient-to-l from-[#009FFD] to-[#2A2A72]"
           >
-            <h1 className="text-white" > {loading? "Genarating..." : "Generate (5 tokens)"}</h1>
+            <h1 className="text-white">
+              {" "}
+              {loading ? "Genarating..." : "Generate (5 tokens)"}
+            </h1>
           </button>
         </form>
       </div>
-      
+
       <Modal
         open={open}
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
-        
       >
         <Box sx={StyleModal}>
-
-        <PopUpCard></PopUpCard>
-        
-    
+          <PopUpCard></PopUpCard>
         </Box>
       </Modal>
-              
+
       <div className=" h-screen flex bg-white"></div>
       <GPTResponse></GPTResponse>
     </div>
