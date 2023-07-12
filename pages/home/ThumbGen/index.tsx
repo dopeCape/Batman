@@ -1,4 +1,4 @@
-import { useState, ChangeEvent } from "react";
+import { useState, ChangeEvent, useEffect } from "react";
 import { useRouter } from "next/router";
 import { auth } from "@/firebase";
 import TextField from "@mui/material/TextField";
@@ -36,6 +36,11 @@ export default function CaptionGen() {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
+
+  useEffect(() => {
+    // Set the state to null on page load
+    setResponse("");
+}, []);
 
   const TextInput = () => {
     return (

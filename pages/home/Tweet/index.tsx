@@ -1,4 +1,4 @@
-import { useState, ChangeEvent } from "react";
+import { useState, ChangeEvent, useEffect } from "react";
 import { useRouter } from "next/router";
 import AddCircle from "@mui/icons-material/AddCircleOutlineTwoTone";
 import Cancel from "@mui/icons-material/Cancel";
@@ -57,6 +57,11 @@ export default function CaptionGen() {
   const removeKeyword = (index: number) => {
     setKeywords((prevKeywords) => prevKeywords.filter((_, i) => i !== index));
   };
+
+  useEffect(() => {
+    // Set the state to null on page load
+    setResponse("");
+}, []);
 
   const KeywordsComp = () => {
     return (
