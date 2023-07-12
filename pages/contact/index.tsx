@@ -10,6 +10,7 @@ export default function Contact() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
+  const [response, setResponse] = useState("");
 
   const addData = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -25,6 +26,12 @@ export default function Contact() {
       setName("");
       setEmail("");
       setMessage("");
+      setResponse(
+        "You have successfully submitted the form. We will get back to you as soon as possible."
+      );
+      setTimeout(() => {
+        setResponse("");
+      }, 5000);
     } catch (ex) {
       console.log("Something went wrong", ex);
     }
@@ -87,7 +94,7 @@ export default function Contact() {
               display: "block",
             }}
             id="outlined-multiline-static"
-            label="message"
+            label="Message"
             multiline
             rows={4}
             value={message}
@@ -104,6 +111,7 @@ export default function Contact() {
             Submit
           </Button>
         </form>
+        {response && <p className="text-green-700 mt-5">{response}</p>}
       </div>
     </div>
   );
