@@ -12,29 +12,46 @@ export default function Contact() {
   const [message, setMessage] = useState("");
   const [response, setResponse] = useState("");
 
-  const addData = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    if (!name.trim().length || !email.trim().length || !message.trim().length)
-      return;
+  const disabled = () => {
+    return (
+      !name.trim().length || !email.trim().length || !message.trim().length
+    );
+  };
+
+  const addFirestoreData = async () => {
+    await addDoc(collection(db, "contactUs"), {
+      name,
+      email,
+      message,
+      createdAt: serverTimestamp(),
+    });
+  };
+
+  const dataAfterSubmit = () => {
+    setName("");
+    setEmail("");
+    setMessage("");
+    setResponse(
+      "You have successfully submitted the form. We will get back to you as soon as possible."
+    );
+    setTimeout(() => {
+      setResponse("");
+    }, 5000);
+  };
+
+  const addData = async () => {
     try {
-      await addDoc(collection(db, "contactUs"), {
-        name,
-        email,
-        message,
-        createdAt: serverTimestamp(),
-      });
-      setName("");
-      setEmail("");
-      setMessage("");
-      setResponse(
-        "You have successfully submitted the form. We will get back to you as soon as possible."
-      );
-      setTimeout(() => {
-        setResponse("");
-      }, 5000);
+      await addFirestoreData();
+      dataAfterSubmit();
     } catch (ex) {
       console.log("Something went wrong", ex);
     }
+  };
+
+  const doSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    if (disabled()) return;
+    await addData();
   };
 
   return (
@@ -59,7 +76,7 @@ export default function Contact() {
         className={`${classes.contact__form} items-center bg-white text-left`}
       >
         <h1 className="font-medium text-2xl text-blue-800 mb-4">Contact Us</h1>
-        <form onSubmit={addData}>
+        <form onSubmit={doSubmit}>
           <TextField
             sx={{
               marginTop: 1,
@@ -107,6 +124,7 @@ export default function Contact() {
             type="submit"
             className={classes.contact_btn}
             variant="contained"
+            disabled={disabled()}
           >
             Submit
           </Button>

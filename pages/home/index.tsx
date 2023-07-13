@@ -93,6 +93,10 @@ const DescriptionCard = styled.div`
   display: flex;
   flex-direction: row;
   align-self: flex-start;
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-self: center;
+  }
 `;
 
 const CardItemTitle = styled.h1`
@@ -430,7 +434,7 @@ const Home: NextPage = () => {
                           platform: content.platform,
                           title: content.title,
                         },
-                      }); 
+                      });
                     } else if (content.comp == "hashtag") {
                       router.push({
                         pathname: "/home/HashtagGen",
