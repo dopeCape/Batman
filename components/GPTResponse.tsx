@@ -1,28 +1,34 @@
-import { responseAtom } from "@/utils/store";
-import { useAtom } from "jotai";
 import { useEffect, useState } from "react";
-import { generateRealTimeToken, getRealTimeToken, getUserToken } from "../auth";
-import { auth } from "@/firebase";
 import Image from "next/image";
-import tokens from "../public/icons/coins.png";
+import { useAtom } from "jotai";
 import ClickAwayListener from "@mui/material/ClickAwayListener";
 import Tooltip from "@mui/material/Tooltip";
 import Button from "@mui/material/Button";
+import { responseAtom } from "@/utils/store";
+import { auth } from "@/firebase";
+import { generateRealTimeToken } from "../auth";
+import tokens from "../public/icons/coins.png";
 
 export default function GPTResponse() {
   const [response] = useAtom(responseAtom);
   const [token, setToken] = useState(0);
+  const [color, setColor] = useState("gray-400");
+  const [open, setOpen] = useState(false);
   const [user, setUser] = useState<null | any>(null);
+
+  const handleTooltipClose = () => {
+    setOpen(false);
+  };
+
+  const handleTooltipOpen = () => {
+    setOpen(true);
+  };
 
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
       setUser(user);
     });
   }, [user]);
-
-  const handleTooltipOpen = () => {
-    setOpen(true);
-  };
 
   useEffect(() => {
     (async () => {
@@ -72,9 +78,29 @@ export default function GPTResponse() {
                     e.match(/[0-9]\./) ? "mb-2" : "mb-10"
                   } ${
                     i == 0 ? "mt-10" : "mt-0"
-                  } bg-gray-200 px-5 py-5 rounded-md `}
+                  } bg-gray-200 px-4 py-5 rounded-md justify-between `}
                 >
                   <p className="text-black">{e}</p>
+                  {/* <button className={`object-contain text-${color}`} onClick={() => copyText(e)}>
+                Copy
+              </button> */}
+                  <ClickAwayListener onClickAway={handleTooltipClose}>
+                    <div>
+                      <Tooltip
+                        PopperProps={{
+                          disablePortal: true,
+                        }}
+                        onClose={handleTooltipClose}
+                        open={open}
+                        disableFocusListener
+                        disableHoverListener
+                        disableTouchListener
+                        title="Copied!"
+                      >
+                        <Button onClick={() => copyText(e)}>Copy</Button>
+                      </Tooltip>
+                    </div>
+                  </ClickAwayListener>
                 </div>
               );
             }
