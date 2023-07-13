@@ -72,9 +72,6 @@ export default function GPTResponse() {
               <p className="text-black">
                 {e}
               </p>
-              {/* <button className={`object-contain text-${color}`} onClick={() => copyText(e)}>
-                Copy
-              </button> */}
                <ClickAwayListener onClickAway={handleTooltipClose}>
                 <div>
               <Tooltip

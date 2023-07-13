@@ -21,7 +21,7 @@ export default function CaptionGen() {
   const handleClose = () => setOpen(false);
   let token: number = 5;
   const user = auth.currentUser
-  const prompt = `Generate continuous hashtags for my post about ${input} and dont add numbers for every hashtag`;
+  const prompt = `Generate continuous hashtags for my post about ${input} and dont add numbers after every hashtag`;
   const {
     query: { platform, title },
   } = router;
