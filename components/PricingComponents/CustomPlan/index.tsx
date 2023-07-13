@@ -1,7 +1,7 @@
 import React from 'react'
 import {BsHandbag} from "react-icons/bs";
 import classes from "./CustomPlan.module.css";
-
+import Link from 'next/link';
 
 function CustomPlan() {
   return (
@@ -16,7 +16,10 @@ function CustomPlan() {
         </div>
       </div>
       <div className='border-gray-200 cursor-pointer text-[20px] text-[#705cf6] font-bold border-[1px] p-5 px-10 rounded-[10px] '>
-        Contact Sales
+          <Link href="/contact">
+          Contact Sales
+          
+          </Link>
       </div>
     </div>
   )

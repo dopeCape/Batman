@@ -3,15 +3,36 @@ import React, { useState } from 'react';
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
 import { AiFillAlert } from "react-icons/ai";
+import { set } from 'firebase/database';
 
 function LongForm() {
-  const [value, setValue] = useState<number[]>([30000]);
-
+  const [value, setValue] = useState<number[]>([10000]);
+  const [price, setPrice ] = useState<number>(19);
   const handleSliderChange = (value: number | number[]) => {
+     handlePriceChange(value);
     if (Array.isArray(value)) {
       setValue(value);
     }
   };
+
+  const handlePriceChange = (value: number | number[]) => {
+     if(value == 10000) {
+      setPrice(19);
+    }
+    else if(value == 50000) {
+      setPrice(79);
+    }
+    else if(value == 100000) {
+      setPrice(149);
+    }
+    else if(value == 200000) {
+      setPrice(279);
+    }
+    else if(value == 500000) {
+      setPrice(599);
+    }
+    
+  }
 
   const railStyle = {
     backgroundColor: "#e5e7eb",
@@ -47,37 +68,37 @@ function LongForm() {
         <p className='w-[65%] text-[#838995] text-[20px] text-center font-medium'>Awesome tools to help you write blog posts, books, and more.</p>
         <div className='flex flex-col h-[400px] items-center'>
           <div className='pt-20 pb-10 flex flex-col gap-y-2'>
-            <h1 className='text-5xl text-[#101827] font-bold'>$19</h1>
+            <h1 className='text-5xl text-[#101827] font-bold'>${price}</h1>
             <p className='text-center text-[#747b88] font-normal'>/month</p>
           </div>
           {/* <div className='flex text-[#374151] mb-5 text-[20px] gap-x-[180px] font-medium'> */}
           <div className='flex text-[#374151] mb-5 text-[14px] gap-x-[180px]'>
-            <p>{value[0]}</p>
-            <p>5,000,000</p>
+            <p>{value[0].toLocaleString("en-IN")}</p>
+            <p>5,00,000</p>
           </div>
           <div className='flex w-[90%] items-center justify-center'>
             <Slider
               range
               defaultValue={[0]}
-              min={30000}
-              max={5000000}
+              min={10000}
+              max={500000}
               step={null}
               railStyle={railStyle}
               handleStyle={[handleStyle, handleStyle]}
               trackStyle={[trackStyle, trackStyle]}
               onChange={handleSliderChange}
               marks={{
-              30000: '30k',
-              1000000: '1M',
-              2000000: '2M',
-              3000000: '3M',
-              4000000: '4M',
-              5000000: '5M',
+              10000: '10k',
+              50000: '50k',
+              100000: '100k',
+              200000: '200k',
+              500000: '500k',
+              
               }}
             />
             </div>
           <div className='flex items-center gap-x-5 py-20'>
-            <p className='text-[#101827] font-bold text-xl'>30,000 words/month</p>
+            <p className='text-[#101827] font-bold text-xl'>{value.toLocaleString()} words/month</p>
             <span className='text-[#4b5563] font-medium text-xl'>1 seat</span>
           </div>
         </div>
