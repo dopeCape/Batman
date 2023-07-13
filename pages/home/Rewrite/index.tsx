@@ -103,7 +103,7 @@ export default function ContentCreation() {
 
   return (
     <div className="flex flex-col md:flex-row justify-center items-center">
-      <div className="w-3/5 h-screen flex bg-gray-200 px-10 py-16 flex-col w-screen">
+      <div className="md:w-3/5 md:h-screen flex bg-gray-200 px-10 py-16 flex-col">
         <h2 className="text-black text-2xl font-medium">Rewrite content</h2>
         <h3 className="text-gray-500">
           Rewrite content while making it more engaging and effective.
@@ -176,7 +176,7 @@ export default function ContentCreation() {
         </Box>
       </Modal>
 
-      <div className="w-3/5 mt-10 md:mt-0 h-screen w-screen flex bg-white">
+      <div className="w-screen h-screen flex bg-white">
         <GPTResponse></GPTResponse>
       </div>
     </div>
