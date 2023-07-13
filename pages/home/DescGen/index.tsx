@@ -169,8 +169,8 @@ export default function CaptionGen() {
   };
 
   return (
-    <div className="flex justify-center items-center">
-      <div className="w-3/5 h-screen flex bg-gray-200 px-10 py-16 flex-col">
+    <div className="flex flex-col md:flex-row justify-center items-center">
+      <div className="md:w-3/5 h-screen flex bg-gray-200 px-10 py-16 flex-col descGen w-screen md:mt-0">
         <h1 className="text-black font-sans text-2xl font-medium">
           Generate {props.title}
         </h1>
@@ -226,7 +226,7 @@ export default function CaptionGen() {
             }}
             id="controllable-states-demo"
             options={options}
-            sx={{ width: "60%", backgroundColor: "white" }}
+            sx={{ width: "100%", backgroundColor: "white" }}
             renderInput={(params) => (
               <TextField
                 {...params}
@@ -260,9 +260,12 @@ export default function CaptionGen() {
 
           <button
             onClick={generateResponse}
-            className="w-full h-10 bg-black mt-10 rounded-lg bg-gradient-to-l from-[#009FFD] to-[#2A2A72]"
+            className="w-full h-10 bg-black my-5 rounded-lg bg-gradient-to-l from-[#009FFD] to-[#2A2A72]"
           >
-            {loading ? "Genarating..." : "Generate (20 credit)"}
+            <h1 className="text-white">
+              {" "}
+              {loading ? "Genarating..." : "Generate (5 tokens)"}
+            </h1>
           </button>
         </form>
       </div>
@@ -276,8 +279,9 @@ export default function CaptionGen() {
           <PopUpCard></PopUpCard>
         </Box>
       </Modal>
-      <div className=" h-screen flex bg-white"></div>
-      <GPTResponse></GPTResponse>
+      <div className="w-screen h-screen flex bg-white">
+        <GPTResponse></GPTResponse>
+      </div>
     </div>
   );
 }

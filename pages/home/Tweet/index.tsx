@@ -1,4 +1,4 @@
-import { useState, ChangeEvent } from "react";
+import { useState, ChangeEvent, useEffect } from "react";
 import { useRouter } from "next/router";
 import AddCircle from "@mui/icons-material/AddCircleOutlineTwoTone";
 import Cancel from "@mui/icons-material/Cancel";
@@ -54,6 +54,11 @@ export default function CaptionGen() {
   const removeKeyword = (index: number) => {
     setKeywords((prevKeywords) => prevKeywords.filter((_, i) => i !== index));
   };
+
+  useEffect(() => {
+    // Set the state to null on page load
+    setResponse("");
+  }, []);
 
   const KeywordsComp = () => {
     return (
@@ -167,8 +172,8 @@ export default function CaptionGen() {
   };
 
   return (
-    <div className="flex justify-center items-center">
-      <div className="w-3/5 h-screen flex bg-gray-200 px-10 py-16 flex-col">
+    <div className="flex flex-col md:flex-row justify-center items-center">
+      <div className="md:w-3/5 h-screen flex bg-gray-200 px-10 py-16 flex-col">
         <h1 className="text-black font-sans text-2xl font-medium">
           Generate {props.title}
         </h1>
@@ -259,7 +264,10 @@ export default function CaptionGen() {
             onClick={generateResponse}
             className="w-full h-10 bg-black mt-10 rounded-lg bg-gradient-to-l from-[#009FFD] to-[#2A2A72]"
           >
-            {loading ? "Generating..." : "Generate (10 tokens)"}
+            <h1 className="text-white">
+              {" "}
+              {loading ? "Genarating..." : "Generate (5 tokens)"}
+            </h1>
           </button>
         </form>
       </div>

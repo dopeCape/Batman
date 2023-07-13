@@ -179,7 +179,7 @@ export default function CaptionGen() {
         <h1 className="text-black font-sans text-2xl font-medium">
           Generate {props.title}
         </h1>
-        <h3 className="text-black text-sm ">
+        <h3 className="text-black text-sm">
           Optimize your captions for greater visibility and higher engagement.
         </h3>
         <form onSubmit={(e) => e.preventDefault()} className="my-4">

@@ -174,8 +174,8 @@ export default function CaptionGen() {
   };
 
   return (
-    <div className="flex justify-center items-center">
-      <div className="w-3/5 h-screen flex bg-gray-200 px-10 py-16 flex-col">
+    <div className="flex flex-col md:flex-row	justify-center items-center">
+      <div className="md:w-3/5 h-screen flex bg-gray-200 px-10 py-16 flex-col">
         <h1 className="text-black font-sans text-2xl font-medium">
           Generate {props.title}
         </h1>
@@ -264,9 +264,12 @@ export default function CaptionGen() {
 
           <button
             onClick={generateResponse}
-            className="w-full h-10 bg-black mt-10 rounded-lg bg-gradient-to-l from-[#009FFD] to-[#2A2A72]"
+            className="w-full h-10 bg-black mt-4 rounded-lg bg-gradient-to-l from-[#009FFD] to-[#2A2A72]"
           >
-            <h1 className="text-white" > {loading? "Genarating..." : "Generate (20 tokens)"}</h1>
+            <h1 className="text-white">
+              {" "}
+              {loading ? "Genarating..." : "Generate (20 tokens)"}
+            </h1>
           </button>
         </form>
       </div>

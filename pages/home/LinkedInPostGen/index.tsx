@@ -341,7 +341,10 @@ export default function LinkedInPostGen() {
             onClick={generateResponse}
             className="w-full h-10 bg-black mt-10 rounded-lg bg-gradient-to-l from-[#009FFD] to-[#2A2A72]"
           >
-            {loading ? "Generating..." : "Generate"}
+            <h1 className="text-white">
+              {" "}
+              {loading ? "Genarating..." : "Generate (10 tokens)"}
+            </h1>
           </button>
         </form>
       </div>
