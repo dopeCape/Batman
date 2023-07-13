@@ -47,7 +47,7 @@ export default function GPTResponse() {
   }
 
   return (
-    <div className="bg-white p-12 w-full max-w-screen h-screen overflow-scroll">
+    <div className="bg-white py-12 px-4 md:px-12 w-full max-w-screen h-screen overflow-scroll">
       <div className="flex flex-row justify-between  ">
         <h1 className="text-gray-800 text-2xl px-5 font-sans font-medium">
           Output
@@ -68,7 +68,7 @@ export default function GPTResponse() {
       </div>
       {response ? (
         response
-          .split("\n")
+          .split("\n" || "\r\n" || "\r")
           .filter((e) => e)
           .map((e, i) => {
             if (e) {
