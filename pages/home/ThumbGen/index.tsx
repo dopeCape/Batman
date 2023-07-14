@@ -36,11 +36,6 @@ export default function CaptionGen() {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  useEffect(() => {
-    // Set the state to null on page load
-    setResponse("");
-  }, []);
-
   const TextInput = () => {
     return (
       <input

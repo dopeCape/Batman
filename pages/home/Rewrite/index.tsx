@@ -1,9 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
-import ToggleButton from "@mui/material/ToggleButton";
-import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
+import GPTResponse from "@/components/GPTResponse";
+import { useAtom } from "jotai";
+import { responseAtom } from "@/utils/store";
+import { auth } from "@/firebase";
+import { updateTokens, readTokens, getUserToken } from "../../../auth";
+import { Modal, Box } from "@mui/material";
+import { StyleModal } from "@/components/modalStyle";
+import PopUpCard from "@/components/PopUpCard";
+import ToggleButton from "@mui/material/ToggleButton";
+import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 
 const options = [
   "Conversational",
@@ -12,11 +20,21 @@ const options = [
   "Professional",
   "Describe a tone",
 ];
+
 export default function ContentCreation() {
   const [alignment, setAlignment] = useState("Improve");
-  const [loading, setLoading] = useState(true);
-  const [value, setValue] = useState<string | null>();
+  const [value, setValue] = useState<string | null>(null);
   const [inputValue, setInputValue] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [open, setOpen] = useState(false);
+  const [_response, setResponse] = useAtom(responseAtom);
+  const user = auth.currentUser;
+  const router = useRouter();
+
+  useEffect(() => {
+    // Set the state to null on page load
+    setResponse("");
+  }, []);
 
   const handleChange = (
     event: React.MouseEvent<HTMLElement>,
@@ -24,7 +42,56 @@ export default function ContentCreation() {
   ) => {
     setAlignment(newAlignment);
   };
-  const router = useRouter();
+
+  const generateResponse = async () => {
+    setLoading(true);
+    setResponse("");
+    const tk = await getUserToken(user);
+    // Check if user has enough tokens
+    if (Number(tk) < 1) {
+      handleOpen();
+      setLoading(false);
+      return;
+    } else {
+      // Deduct tokens from the user
+      let usertk: number = Number(tk) - 1;
+      await updateTokens(user, usertk);
+
+      // Generate the prompt using the selected options
+      const prompt = `Rewrite the content to ${alignment} it. The text to be rewritten is: ${inputValue}. The desired tone is ${value}.`;
+
+      const res = await fetch("/api/promptChatGPT", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          data: prompt,
+        }),
+      });
+
+      if (!res.ok) throw new Error(res.statusText);
+
+      const data = res.body;
+      if (!data) return;
+
+      const reader = data.getReader();
+      const decoder = new TextDecoder();
+      let done = false;
+
+      while (!done) {
+        const { value, done: doneReading } = await reader.read();
+        done = doneReading;
+        const chunkValue = decoder.decode(value);
+        setResponse((prev) => prev + chunkValue);
+      }
+      setLoading(false);
+    }
+  };
+
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
   const {
     query: { platform, title },
   } = router;
@@ -36,7 +103,7 @@ export default function ContentCreation() {
 
   return (
     <div className="flex flex-col md:flex-row justify-center items-center">
-      <div className="w-3/5 h-screen flex bg-gray-200 px-10 py-16 flex-col w-screen">
+      <div className="md:w-3/5 md:h-screen flex bg-gray-200 px-10 py-16 flex-col">
         <h2 className="text-black text-2xl font-medium">Rewrite content</h2>
         <h3 className="text-gray-500">
           Rewrite content while making it more engaging and effective.
@@ -70,7 +137,9 @@ export default function ContentCreation() {
           label="Text"
           multiline
           rows={4}
+          onChange={(e) => setInputValue(e.target.value)}
         />
+
         <h3 className="text-black mt-5 mb-2 text-lg font-medium">Tone *</h3>
         <Autocomplete
           className="bg-white rounded-xl"
@@ -88,11 +157,28 @@ export default function ContentCreation() {
           renderInput={(params) => <TextField {...params} label="Tone" />}
         />
 
-        <button className="w-full h-10 bg-black my-5 rounded-lg bg-gradient-to-l from-[#009FFD] to-[#2A2A72]">
+        <button
+          className="w-full h-10 bg-black my-5 rounded-lg bg-gradient-to-l from-[#009FFD] to-[#2A2A72]"
+          onClick={generateResponse}
+        >
           Generate (1 credit)
         </button>
       </div>
-      <div className="w-3/5 mt-10 md:mt-0 h-screen w-screen flex bg-white"></div>
+
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={StyleModal}>
+          <PopUpCard></PopUpCard>
+        </Box>
+      </Modal>
+
+      <div className="w-screen h-screen flex bg-white">
+        <GPTResponse></GPTResponse>
+      </div>
     </div>
   );
 }

@@ -192,8 +192,8 @@ export default function LinkedInPostGen() {
   };
 
   return (
-    <div className="flex flex-col md:flex-row justify-center items-cente h-screen linkedInMargin md:mt-0">
-      <div className="md:w-3/5 h-full flex bg-gray-200 px-10 py-14 flex-col ">
+    <div className="flex justify-center items-cente h-screen">
+      <div className="w-2/5 h-full flex bg-gray-200 px-10 py-14 flex-col overflow-scroll">
         <h1 className="text-black font-sans text-2xl font-medium">
           Generate {props.title}
         </h1>
@@ -259,7 +259,7 @@ export default function LinkedInPostGen() {
             }}
             id="controllable-states-demo"
             options={post}
-            sx={{ width: "100%", backgroundColor: "white" }}
+            sx={{ width: "60%", backgroundColor: "white" }}
             renderInput={(params) => (
               <TextField
                 {...params}
@@ -339,7 +339,7 @@ export default function LinkedInPostGen() {
 
           <button
             onClick={generateResponse}
-            className="w-full h-10 bg-black my-10 rounded-lg bg-gradient-to-l from-[#009FFD] to-[#2A2A72]"
+            className="w-full h-10 bg-black mt-10 rounded-lg bg-gradient-to-l from-[#009FFD] to-[#2A2A72]"
           >
             <h1 className="text-white">
               {" "}
@@ -358,7 +358,7 @@ export default function LinkedInPostGen() {
           <PopUpCard></PopUpCard>
         </Box>
       </Modal>
-      <div className="mt-56 md:mt-0 md:h-screen w-screen flex bg-white">
+      <div className="w-3/5 h-screen flex bg-white">
         <GPTResponse></GPTResponse>
       </div>
     </div>

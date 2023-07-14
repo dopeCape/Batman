@@ -137,7 +137,7 @@ export default function CaptionGen() {
           <PopUpCard></PopUpCard>
         </Box>
       </Modal>
-      <div className="w-3/5 h-screen w-screen flex bg-white">
+      <div className="w-screen h-screen flex bg-white">
         <GPTResponse></GPTResponse>
       </div>
     </div>
