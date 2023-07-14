@@ -37,6 +37,7 @@ function LongForm() {
   const railStyle = {
     backgroundColor: "#e5e7eb",
     height: 5,
+    
   };
   
   const handleStyle = {
@@ -51,7 +52,9 @@ function LongForm() {
     outline: "none",
     "&:focus, &:hover": {
       outline: "none",
+
     },
+    
   };
   
   const trackStyle = {
@@ -59,6 +62,10 @@ function LongForm() {
     height: 5,
   };
 
+  const styleDot = {
+    backgroundColor: "blue",
+    
+  }
   return (
     <div className='flex flex-col w-[500px] h-[100%] py-10 pb-20 items-center rounded-[40px] border-[#6969ee] border-[3px] '>
     {/* <div className='flex flex-col h-[100%] py-10 mx-3 my-10 pb-20 items-center rounded-[40px] border-[#6969ee] border-[3px]'> */}
@@ -78,6 +85,7 @@ function LongForm() {
           </div>
           <div className='flex w-[90%] items-center justify-center'>
             <Slider
+              
               range
               defaultValue={[0]}
               min={10000}
@@ -95,6 +103,7 @@ function LongForm() {
               500000: '500k',
               
               }}
+               dotStyle={styleDot}
             />
             </div>
           <div className='flex items-center gap-x-5 py-20'>
