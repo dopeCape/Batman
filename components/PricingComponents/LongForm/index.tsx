@@ -8,6 +8,8 @@ import { set } from 'firebase/database';
 function LongForm() {
   const [value, setValue] = useState<number[]>([10000]);
   const [price, setPrice ] = useState<number>(19);
+  const [words , setWords] = useState<number>(10000);
+  const [token , setToken] = useState<number>(100);
   const handleSliderChange = (value: number | number[]) => {
      handlePriceChange(value);
     if (Array.isArray(value)) {
@@ -18,18 +20,28 @@ function LongForm() {
   const handlePriceChange = (value: number | number[]) => {
      if(value == 10000) {
       setPrice(19);
+      setWords(10000);
+      setToken(100);
+    }
+    else if(value == 20000) {
+      setPrice(79);
+      setWords(50000);
+      setToken(500);
+    }
+    else if(value == 30000) {
+      setPrice(149);
+      setWords(100000);
+      setToken(1000);
+    }
+    else if(value == 40000) {
+      setPrice(279);
+      setWords(200000);
+      setToken(2000);
     }
     else if(value == 50000) {
-      setPrice(79);
-    }
-    else if(value == 100000) {
-      setPrice(149);
-    }
-    else if(value == 200000) {
-      setPrice(279);
-    }
-    else if(value == 500000) {
       setPrice(599);
+      setWords(500000);
+      setToken(5000);
     }
     
   }
@@ -80,7 +92,7 @@ function LongForm() {
           </div>
           {/* <div className='flex text-[#374151] mb-5 text-[20px] gap-x-[180px] font-medium'> */}
           <div className='flex text-[#374151] mb-5 text-[14px] gap-x-[180px]'>
-            <p>{value[0].toLocaleString("en-IN")}</p>
+            <p>{words.toLocaleString("en-IN")}</p>
             <p>5,00,000</p>
           </div>
           <div className='flex w-[90%] items-center justify-center'>
@@ -89,7 +101,7 @@ function LongForm() {
               range
               defaultValue={[0]}
               min={10000}
-              max={500000}
+              max={50000}
               step={null}
               railStyle={railStyle}
               handleStyle={[handleStyle, handleStyle]}
@@ -97,18 +109,20 @@ function LongForm() {
               onChange={handleSliderChange}
               marks={{
               10000: '10k',
-              50000: '50k',
-              100000: '100k',
-              200000: '200k',
-              500000: '500k',
+              20000: '50k',
+              30000: '100k',
+              40000: '200k',
+              50000: '500k',
               
               }}
                dotStyle={styleDot}
             />
             </div>
-          <div className='flex items-center gap-x-5 py-20'>
-            <p className='text-[#101827] font-bold text-xl'>{value.toLocaleString()} words/month</p>
-            <span className='text-[#4b5563] font-medium text-xl'>1 seat</span>
+        
+          <div className='flex items-center gap-x-2 py-20 flex-col'>
+            <p className='text-[#101827] font-bold text-xl'>{token.toLocaleString("en-IN")} tokens/month</p>
+            <p className='text-[#101827] font-bold text-xl'>{words.toLocaleString("en-IN")} words/month</p>
+           
           </div>
         </div>
       </div>
