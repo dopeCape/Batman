@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { styled } from "@mui/material/styles";
 import { useRouter } from "next/router";
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
@@ -20,9 +21,33 @@ const options = [
   "Professional",
   "Describe a tone",
 ];
-
+const StyledToggleButtonGroup = styled(ToggleButtonGroup)(({ theme }) => ({
+  "& .MuiToggleButtonGroup-grouped": {
+    margin: theme.spacing(0.5),
+    border: 0,
+    "&.Mui-disabled": {
+      border: 0,
+    },
+    "&:not(:first-of-type)": {
+      borderRadius: theme.shape.borderRadius,
+    },
+    "&:first-of-type": {
+      borderRadius: theme.shape.borderRadius,
+    },
+    "&.MuiToggleButton-root": {
+      color: theme.palette.text.primary,
+      backgroundColor: theme.palette.background.paper,
+      "&.Mui-selected": {
+        backgroundColor: "#009FFD", // Change the background color to #009FFD when selected
+        "&:hover": {
+          backgroundColor: "#009FFD", // Change the background color to blue when hovered
+        },
+      },
+    },
+  },
+}));
 export default function ContentCreation() {
-  const [alignment, setAlignment] = useState("Improve");
+  const [alignment, setAlignment] = useState("left");
   const [value, setValue] = useState<string | null>(null);
   const [inputValue, setInputValue] = useState("");
   const [loading, setLoading] = useState(false);
@@ -36,7 +61,7 @@ export default function ContentCreation() {
     setResponse("");
   }, []);
 
-  const handleChange = (
+  const handleAlignment = (
     event: React.MouseEvent<HTMLElement>,
     newAlignment: string
   ) => {
@@ -112,21 +137,29 @@ export default function ContentCreation() {
         <h3 className="text-black mt-5 mb-2 text-lg font-medium">
           What do you want to do? *
         </h3>
-        <ToggleButtonGroup
-          color="primary"
+        <StyledToggleButtonGroup
+          size="small"
           value={alignment}
           exclusive
-          onChange={handleChange}
-          aria-label="Platform"
+          onChange={handleAlignment}
+          aria-label="text alignment"
         >
-          <div className="flex flex-wrap">
-            <ToggleButton value="FaceBook">FaceBook</ToggleButton>
-            <ToggleButton value="Instagram">Instagram</ToggleButton>
-            <ToggleButton value="Tiktok">Tiktok</ToggleButton>
-            <ToggleButton value="Twitter">Twitter</ToggleButton>
-            <ToggleButton value="Linkedin">Linkedin</ToggleButton>
-          </div>
-        </ToggleButtonGroup>
+          <ToggleButton value="FaceBook" aria-label="justified">
+            FaceBook
+          </ToggleButton>
+          <ToggleButton value="Instagram" aria-label="justified">
+            Instagram
+          </ToggleButton>
+          <ToggleButton value="Tiktok" aria-label="justified">
+            Tiktok
+          </ToggleButton>
+          <ToggleButton value="Twitter" aria-label="justified">
+            Twitter
+          </ToggleButton>
+          <ToggleButton value="Linkedin" aria-label="justified">
+            Linkedin
+          </ToggleButton>
+        </StyledToggleButtonGroup>
 
         <h3 className="text-black mt-5 mb-2 text-lg font-medium">
           Text to be repurpose *
