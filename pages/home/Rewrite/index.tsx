@@ -47,20 +47,31 @@ const StyledToggleButtonGroup = styled(ToggleButtonGroup)(({ theme }) => ({
   },
 }));
 export default function ContentCreation() {
-  const [alignment, setAlignment] = useState("left");
+  const [alignment, setAlignment] = useState("");
   const [value, setValue] = useState<string | null>(null);
   const [inputValue, setInputValue] = useState("");
   const [loading, setLoading] = useState(false);
   const [open, setOpen] = useState(false);
-  let token: number = 10;
   const [_response, setResponse] = useAtom(responseAtom);
   const user = auth.currentUser;
   const router = useRouter();
+
+  let token: number = 10;
 
   useEffect(() => {
     // Set the state to null on page load
     setResponse("");
   }, []);
+
+  const TextInput = () => {
+    return (
+      <input
+        className="w-full px-2 py-2 rounded-lg border border-gray-300 text-gray-500 mt-2"
+        placeholder="Describe a tone"
+        type="text"
+      ></input>
+    );
+  };
 
   const handleAlignment = (
     event: React.MouseEvent<HTMLElement>,
@@ -86,7 +97,7 @@ export default function ContentCreation() {
       await updateTokens(user, usertk);
       console.log("this is the uid " + user);
 
-      const prompt = inputValue; // Assign inputValue to prompt variable
+      const prompt = `Generate five contents. Rewrite the content of "${inputValue}". Noted that The content should be ${value} and its tone should be ${alignment}.`;
 
       const res = await fetch("/api/promptChatGPT", {
         method: "POST",
@@ -183,15 +194,16 @@ export default function ContentCreation() {
           onChange={(event: any, newValue: string | null) => {
             setValue(newValue);
           }}
-          inputValue={inputValue}
-          onInputChange={(event, newInputValue) => {
-            setInputValue(newInputValue);
-          }}
+          // inputValue={inputValue}
+          // onInputChange={(event, newInputValue) => {
+          //   setInputValue(newInputValue);
+          // }}
           id="controllable-states-demo"
           options={options}
           sx={{ width: 300 }}
           renderInput={(params) => <TextField {...params} label="Tone" />}
         />
+        {value === "Describe a tone" ? <TextInput /> : null}
 
         <button
           onClick={generateResponse}
