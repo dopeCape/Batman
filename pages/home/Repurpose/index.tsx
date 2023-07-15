@@ -51,6 +51,7 @@ export default function ContentCreation() {
   const [value, setValue] = useState<string | null>(null);
   const [inputValue, setInputValue] = useState("");
   const [loading, setLoading] = useState(false);
+  let token: number = 10;
   const [open, setOpen] = useState(false);
   const [_response, setResponse] = useAtom(responseAtom);
   const user = auth.currentUser;
@@ -68,22 +69,24 @@ export default function ContentCreation() {
     setAlignment(newAlignment);
   };
 
-  const generateResponse = async () => {
+  const generateResponse = async (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
     setLoading(true);
-    setResponse("");
     const tk = await getUserToken(user);
-    // Check if user has enough tokens
-    if (Number(tk) < 1) {
+    console.log("&&&&&&&&&&&&&&thus " + tk);
+    if (Number(tk) < token) {
       handleOpen();
       setLoading(false);
       return;
     } else {
-      // Deduct tokens from the user
-      let usertk: number = Number(tk) - 1;
-      await updateTokens(user, usertk);
+      let usertk: number = Number(tk) - Number(token);
+      setResponse("");
 
-      // Generate the prompt using the selected options
-      const prompt = `Repurpose the content to ${alignment} it. The text to be rewritten is: ${inputValue}. The desired tone is ${value}.`;
+      await updateTokens(user, usertk);
+      console.log("this is the uid " + user);
+
+      const prompt = inputValue; // Assign inputValue to prompt variable
 
       const res = await fetch("/api/promptChatGPT", {
         method: "POST",
@@ -94,10 +97,10 @@ export default function ContentCreation() {
           data: prompt,
         }),
       });
-
       if (!res.ok) throw new Error(res.statusText);
 
       const data = res.body;
+
       if (!data) return;
 
       const reader = data.getReader();
@@ -191,10 +194,13 @@ export default function ContentCreation() {
         />
 
         <button
-          className="w-full h-10 bg-black my-5 rounded-lg bg-gradient-to-l from-[#009FFD] to-[#2A2A72]"
           onClick={generateResponse}
+          className="w-full h-10 bg-black mt-4 rounded-lg bg-gradient-to-l from-[#009FFD] to-[#2A2A72]"
         >
-          Generate (1 credit)
+          <h1 className="text-white">
+            {" "}
+            {loading ? "Genarating..." : "Generate (10 tokens)"}
+          </h1>
         </button>
       </div>
 
