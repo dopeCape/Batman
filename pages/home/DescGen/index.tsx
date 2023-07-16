@@ -4,7 +4,7 @@ import AddCircle from "@mui/icons-material/AddCircleOutlineTwoTone";
 import Cancel from "@mui/icons-material/Cancel";
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
-import GPTResponse from "@/components/GPTResponse";
+import GPTResponse from "@/components/GPTRespone";
 import { useAtom } from "jotai";
 import { responseAtom } from "@/utils/store";
 import { auth } from "@/firebase";
@@ -260,7 +260,7 @@ export default function CaptionGen() {
 
           <button
             onClick={generateResponse}
-            className="w-full h-10 bg-black my-5 rounded-lg bg-gradient-to-l from-[#009FFD] to-[#2A2A72]"
+            className="w-full h-10 bg-black mt-10 rounded-lg bg-gradient-to-l from-[#009FFD] to-[#2A2A72]"
           >
             <h1 className="text-white">
               {" "}

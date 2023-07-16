@@ -2,7 +2,7 @@ import { useState, ChangeEvent, useEffect } from "react";
 import { useRouter } from "next/router";
 import { useAtom } from "jotai";
 import { responseAtom } from "@/utils/store";
-import GPTResponse from "@/components/GPTResponse";
+import GPTResponse from "@/components/GPTRespone";
 import { auth } from "@/firebase";
 import { updateTokens, readTokens, getUserToken } from "../../../auth";
 import { Modal, Box } from "@mui/material";

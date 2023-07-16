@@ -4,7 +4,7 @@ import AddCircle from "@mui/icons-material/AddCircleOutlineTwoTone";
 import Cancel from "@mui/icons-material/Cancel";
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
-import GPTResponse from "@/components/GPTResponse";
+import GPTResponse from "@/components/GPTRespone";
 import { auth } from "@/firebase";
 import { updateTokens, readTokens, getUserToken } from "../../../auth";
 import { useAtom } from "jotai";

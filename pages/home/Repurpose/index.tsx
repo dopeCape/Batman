@@ -3,7 +3,7 @@ import { styled } from "@mui/material/styles";
 import { useRouter } from "next/router";
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
-import GPTResponse from "@/components/GPTResponse";
+import GPTResponse from "@/components/GPTRespone";
 import { useAtom } from "jotai";
 import { responseAtom } from "@/utils/store";
 import { auth } from "@/firebase";

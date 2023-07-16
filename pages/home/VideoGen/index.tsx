@@ -4,7 +4,7 @@ import AddCircle from "@mui/icons-material/AddCircleOutlineTwoTone";
 import Cancel from "@mui/icons-material/Cancel";
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
-import GPTResponse from "@/components/GPTResponse";
+import GPTResponseVideo from "@/components/GPTResponseVideo";
 import { useAtom } from "jotai";
 import { updateTokens, readTokens, getUserToken } from "../../../auth";
 import { responseAtom } from "@/utils/store";
@@ -98,7 +98,7 @@ export default function CaptionGen() {
     title,
   };
 
-  const prompt = `Generate five ${props.title} about ${input} with keywords ${keywords} with tone ${value} with target audience ${targetAudience}  and every idea should be seperated.`;
+  const prompt = `Generate five ${props.title} about ${input} and should inclue keywords like ${keywords} with ${value} tone and with target audience ${targetAudience} make sure that every idea should be seperated.`;
 
   const handlePostAboutChange = (event: ChangeEvent<HTMLInputElement>) => {
     let value = event.target.value;
@@ -264,7 +264,7 @@ export default function CaptionGen() {
 
           <button
             onClick={generateResponse}
-            className="w-full h-10 bg-black mt-4 rounded-lg bg-gradient-to-l from-[#009FFD] to-[#2A2A72]"
+            className="w-full h-10 bg-black mt-10 rounded-lg bg-gradient-to-l from-[#009FFD] to-[#2A2A72]"
           >
             <h1 className="text-white">
               {" "}
@@ -284,7 +284,7 @@ export default function CaptionGen() {
         </Box>
       </Modal>
       <div className=" h-screen w-screen flex bg-white">
-        <GPTResponse></GPTResponse>
+        <GPTResponseVideo></GPTResponseVideo>
       </div>
     </div>
   );
