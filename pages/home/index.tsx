@@ -70,6 +70,8 @@ const Cards = styled(Card)`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  
+  
 `;
 
 const CardContents = styled(Card)`
@@ -83,10 +85,11 @@ const CardContents = styled(Card)`
   borderradius: 10px;
   padding-left: 20px;
   padding-right: 20px;
-  padding-top: 10px;
-  padding-bottom: 20px;
+  padding-top: 20px;
+  padding-bottom: 10px;
   max-width: 350px;
-  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.4);
+  height: 200px;
+  
 `;
 
 const DescriptionCard = styled.div`
@@ -108,15 +111,7 @@ const CardItemTitle = styled.h1`
   text-align: center;
 `;
 
-const IconCard = styled(Card)`
-  display: flex;
-  flexdirection: column;
-`;
 
-const Icon = styled(Typography)`
-  fontsize: 48px;
-  marginbottom: 2px;
-`;
 
 const Home: NextPage = () => {
   const router = useRouter();
@@ -126,7 +121,7 @@ const Home: NextPage = () => {
       <Grid>
         <Cards>
           <CardItemTitle>
-            <YouTubeIcon />
+            <YouTubeIcon htmlColor="#FF0000" />
             <h3>YouTube</h3>
           </CardItemTitle>
           <DescriptionCard>
@@ -163,7 +158,7 @@ const Home: NextPage = () => {
                   key={content.id}
                 >
                   <CardItemTitle>{content.title}</CardItemTitle>
-                  <Typography variant="body2" color="textPrimary">
+                  <Typography variant="body1" color="GrayText">
                     {content.content}
                   </Typography>
                 </CardContents>
@@ -220,7 +215,7 @@ const Home: NextPage = () => {
                   key={content.id}
                 >
                   <CardItemTitle>{content.title}</CardItemTitle>
-                  <Typography variant="body2" color="textPrimary">
+                  <Typography variant="body1" color="GrayText">
                     {content.content}
                   </Typography>
                 </CardContents>
@@ -230,7 +225,7 @@ const Home: NextPage = () => {
         </Cards>
         <Cards>
           <CardItemTitle>
-            <TwitterIcon />
+            <TwitterIcon htmlColor="#1DA1F2" />
             <h3>Twitter</h3>
           </CardItemTitle>
           <DescriptionCard>
@@ -283,7 +278,7 @@ const Home: NextPage = () => {
                   key={content.id}
                 >
                   <CardItemTitle>{content.title}</CardItemTitle>
-                  <Typography variant="body2" color="textPrimary">
+                  <Typography variant="body1" color="GrayText">
                     {content.content}
                   </Typography>
                 </CardContents>
@@ -293,7 +288,7 @@ const Home: NextPage = () => {
         </Cards>
         <Cards>
           <CardItemTitle>
-            <LinkedInIcon />
+            <LinkedInIcon htmlColor="#0077B5" />
             <h3>LinkedIn</h3>
           </CardItemTitle>
           <DescriptionCard>
@@ -338,7 +333,7 @@ const Home: NextPage = () => {
                   key={content.id}
                 >
                   <CardItemTitle>{content.title}</CardItemTitle>
-                  <Typography variant="body2" color="textPrimary">
+                  <Typography variant="body1" color="GrayText">
                     {content.content}
                   </Typography>
                 </CardContents>
@@ -348,7 +343,7 @@ const Home: NextPage = () => {
         </Cards>
         <Cards>
           <CardItemTitle>
-            <TikTokIcon />
+            <TikTokIcon htmlColor="#FE2C55" />
             <h3>TikTok</h3>
           </CardItemTitle>
           <DescriptionCard>
@@ -393,7 +388,7 @@ const Home: NextPage = () => {
                   key={content.id}
                 >
                   <CardItemTitle>{content.title}</CardItemTitle>
-                  <Typography variant="body2" color="textPrimary">
+                  <Typography variant="body1" color="GrayText">
                     {content.content}
                   </Typography>
                 </CardContents>
@@ -403,7 +398,7 @@ const Home: NextPage = () => {
         </Cards>
         <Cards>
           <CardItemTitle>
-            <FacebookIcon />
+            <FacebookIcon htmlColor="#4267B2" />
             <h3>Facebook</h3>
           </CardItemTitle>
           <DescriptionCard>
@@ -456,7 +451,7 @@ const Home: NextPage = () => {
                   key={content.id}
                 >
                   <CardItemTitle>{content.title}</CardItemTitle>
-                  <Typography variant="body2" color="textPrimary">
+                  <Typography variant="body1" color="GrayText">
                     {content.content}
                   </Typography>
                 </CardContents>
@@ -466,7 +461,7 @@ const Home: NextPage = () => {
         </Cards>
         <Cards>
           <CardItemTitle>
-            <InstagramIcon />
+            <InstagramIcon htmlColor="	#C13584" />
             <h3>Instagram</h3>
           </CardItemTitle>
           <DescriptionCard>
@@ -527,7 +522,7 @@ const Home: NextPage = () => {
                   key={content.id}
                 >
                   <CardItemTitle>{content.title}</CardItemTitle>
-                  <Typography variant="body2" color="textPrimary">
+                  <Typography variant="body1" color="GrayText">
                     {content.content}
                   </Typography>
                 </CardContents>
@@ -537,7 +532,7 @@ const Home: NextPage = () => {
         </Cards>{" "}
         <Cards>
           <CardItemTitle>
-            <Grade />
+            <Grade htmlColor="#FFD700" />
             <h3>General</h3>
           </CardItemTitle>
           <DescriptionCard>
@@ -566,7 +561,7 @@ const Home: NextPage = () => {
                   key={content.id}
                 >
                   <CardItemTitle>{content.title}</CardItemTitle>
-                  <Typography variant="body2" color="textPrimary">
+                  <Typography variant="body1" color="GrayText">
                     {content.content}
                   </Typography>
                 </CardContents>
