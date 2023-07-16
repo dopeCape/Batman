@@ -47,20 +47,31 @@ const StyledToggleButtonGroup = styled(ToggleButtonGroup)(({ theme }) => ({
   },
 }));
 export default function ContentCreation() {
-  const [alignment, setAlignment] = useState("left");
+  const [alignment, setAlignment] = useState("");
   const [value, setValue] = useState<string | null>(null);
   const [inputValue, setInputValue] = useState("");
   const [loading, setLoading] = useState(false);
-  let token: number = 10;
   const [open, setOpen] = useState(false);
   const [_response, setResponse] = useAtom(responseAtom);
   const user = auth.currentUser;
   const router = useRouter();
 
+  let token: number = 10;
+
   useEffect(() => {
     // Set the state to null on page load
     setResponse("");
   }, []);
+
+  const TextInput = () => {
+    return (
+      <input
+        className="w-full px-2 py-2 rounded-lg border border-gray-300 text-gray-500 mt-2"
+        placeholder="Describe a tone"
+        type="text"
+      ></input>
+    );
+  };
 
   const handleAlignment = (
     event: React.MouseEvent<HTMLElement>,
@@ -86,7 +97,7 @@ export default function ContentCreation() {
       await updateTokens(user, usertk);
       console.log("this is the uid " + user);
 
-      const prompt = inputValue; // Assign inputValue to prompt variable
+      const prompt = `Generate five contents. Repurpose the content of "${inputValue}". Noted that The content should be for ${value} platform and its tone should be ${alignment}.`;
 
       const res = await fetch("/api/promptChatGPT", {
         method: "POST",
@@ -132,7 +143,7 @@ export default function ContentCreation() {
   return (
     <div className="flex flex-col md:flex-row justify-center items-center">
       <div className="md:w-3/5 md:h-screen flex bg-gray-200 px-10 py-16 flex-col">
-        <h2 className="text-black text-2xl font-medium"> Repurpose content</h2>
+        <h2 className="text-black text-2xl font-medium">Repurpose content</h2>
         <h3 className="text-gray-500">
           Repurpose content while making it more engaging and effective.
         </h3>
@@ -147,25 +158,25 @@ export default function ContentCreation() {
           onChange={handleAlignment}
           aria-label="text alignment"
         >
-          <ToggleButton value="FaceBook" aria-label="justified">
-            FaceBook
+          <ToggleButton value="FACEBOOK" aria-label="justified">
+            FACEBOOK
           </ToggleButton>
-          <ToggleButton value="Instagram" aria-label="justified">
-            Instagram
+          <ToggleButton value="INSTAGRAM" aria-label="justified">
+            INSTAGRAM
           </ToggleButton>
-          <ToggleButton value="Tiktok" aria-label="justified">
-            Tiktok
+          <ToggleButton value="TIKTOK" aria-label="justified">
+            TIKTOK
           </ToggleButton>
-          <ToggleButton value="Twitter" aria-label="justified">
-            Twitter
+          <ToggleButton value="TWITTER" aria-label="justified">
+            TWITTER
           </ToggleButton>
-          <ToggleButton value="Linkedin" aria-label="justified">
-            Linkedin
+          <ToggleButton value="LINKEDIN" aria-label="justified">
+            LINKEDIN
           </ToggleButton>
         </StyledToggleButtonGroup>
 
         <h3 className="text-black mt-5 mb-2 text-lg font-medium">
-          Text to be repurpose *
+          Text to be repurposed *
         </h3>
         <TextField
           className="bg-white rounded-xl"
@@ -183,15 +194,16 @@ export default function ContentCreation() {
           onChange={(event: any, newValue: string | null) => {
             setValue(newValue);
           }}
-          inputValue={inputValue}
-          onInputChange={(event, newInputValue) => {
-            setInputValue(newInputValue);
-          }}
+          // inputValue={inputValue}
+          // onInputChange={(event, newInputValue) => {
+          //   setInputValue(newInputValue);
+          // }}
           id="controllable-states-demo"
           options={options}
           sx={{ width: 300 }}
           renderInput={(params) => <TextField {...params} label="Tone" />}
         />
+        {value === "Describe a tone" ? <TextInput /> : null}
 
         <button
           onClick={generateResponse}
