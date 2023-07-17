@@ -1,4 +1,4 @@
-import { Blocks, Growing, Journey, Preview, Prompts } from "@/components/LandingPageComponents/Sections";
+import { Blocks, Growing, Journey, Prompts } from "@/components/LandingPageComponents/Sections";
 
 import React from "react";
 // import LandingPage from "./LandingPage";
@@ -8,7 +8,6 @@ const Home = () => {
     <>
       <Blocks />
       <Growing />
-      <Preview />
       <Prompts />
       <Journey />
     </>
