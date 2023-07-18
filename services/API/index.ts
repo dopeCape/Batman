@@ -3,7 +3,6 @@ export const generateText = async (
   max_tokens: number
 ): Promise<string> => {
   try {
-    console.log("generateText generating");
     const response = await fetch("/api/promptChatGPT", {
       method: "POST",
       headers: {
@@ -11,7 +10,6 @@ export const generateText = async (
       },
       body: JSON.stringify({ promptText, max_tokens }),
     });
-    console.log("generateText response",response);
 
     if (!response.ok) {
       throw new Error(response.statusText);
@@ -22,7 +20,6 @@ export const generateText = async (
     if (!data) {
       return "";
     }
-    console.log("generateText streaming data");
 
     const reader = data.getReader();
     const decoder = new TextDecoder();
@@ -40,7 +37,6 @@ export const generateText = async (
 
     return outputString;
   } catch (error) {
-    console.log("generateText error", error);
     return "Error";
   }
 };

@@ -40,7 +40,6 @@ export default function GPTResponseVideo() {
     (async () => {
       const tk = await generateRealTimeToken(user);
       setToken(Number(tk));
-      console.log(JSON.stringify(response.split("\n")));
     })();
   }, [response, user, loading]);
 
@@ -55,7 +54,6 @@ export default function GPTResponseVideo() {
   const generateResponse = async (value: String) => {
     setLoading(true);
     const tk = await getUserToken(user);
-    console.log("&&&&&&&&&&&&&&thus " + tk);
     if (Number(tk) < finalToken) {
       setLoading(false);
       return;
@@ -65,7 +63,6 @@ export default function GPTResponseVideo() {
       setResponse("");
 
       await updateTokens(user, usertk);
-      console.log("this is the uid " + user);
       const res = await fetch("/api/promptChatGPT", {
         method: "POST",
         headers: {

@@ -42,7 +42,6 @@ export const getRealTimeToken = async (user) => {
   const tokenRef = doc(firestore, "users", user.uid);
   await onSnapshot(tokenRef, (snapshot) => {
     value = snapshot.data().tokens;
-    console.log("this is real time data " + value);
   });
   return value;
 
@@ -78,7 +77,6 @@ export const getUserToken = async (user) => {
   const doc1 = await getDoc(tokenRef);
 
   if (doc1.exists) {
-    console.log("getuserToken" + doc1.data().tokens);
     return doc1.data().tokens;
   } else {
     return null;
@@ -163,12 +161,9 @@ export const signInWithGoogle = async () => {
 export const onUserSignedIn = async (user, router) => {
   const userDoc = await doc(firestore, "users", user.uid).get();
   const isNewUser = userDoc.data().isNewUser;
-  console.log("Is new user:", isNewUser);
   if (isNewUser) {
-    console.log("Redirecting to /");
     router.push("/");
   } else {
-    console.log("Redirecting to /");
     router.push("/");
   }
 };

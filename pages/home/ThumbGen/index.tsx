@@ -92,7 +92,6 @@ export default function CaptionGen() {
   ) => {
     setLoading(true);
     const tk = await getUserToken(user);
-    console.log("&&&&&&&&&&&&&&thus " + tk);
     if (Number(tk) < token) {
       handleOpen();
       setLoading(false);
@@ -103,7 +102,6 @@ export default function CaptionGen() {
       setResponse("");
 
       await updateTokens(user, usertk);
-      console.log("this is the uid " + user);
       const res = await fetch("/api/promptChatGPT", {
         method: "POST",
         headers: {

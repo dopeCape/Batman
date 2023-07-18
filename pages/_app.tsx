@@ -1,8 +1,5 @@
-
-
 // export default function App({ Component, pageProps }: AppProps) {
 
- 
 //   return (
 //     <SessionProvider session={pageProps.session}>
 //       <SideBar>
@@ -21,21 +18,18 @@ import NavigationBar from "@/components/NavigationBar";
 import Head from "next/head";
 
 export default function App({ Component, pageProps }: AppProps) {
-  useEffect(() => {
-    console.log("pageProps.session", pageProps.session);
-  }, [pageProps.session]);
-  
+  useEffect(() => {}, [pageProps.session]);
 
   return (
     <>
-    <Head>
-      <title>Metridash-Say BYE-BYE to creative blocks!</title>
-    </Head>
-    <SessionProvider session={pageProps.session}>
-      <NavigationBar>
-        <Component {...pageProps} />
-      </NavigationBar>
-    </SessionProvider>
+      <Head>
+        <title>Metridash-Say BYE-BYE to creative blocks!</title>
+      </Head>
+      <SessionProvider session={pageProps.session}>
+        <NavigationBar>
+          <Component {...pageProps} />
+        </NavigationBar>
+      </SessionProvider>
     </>
   );
 }

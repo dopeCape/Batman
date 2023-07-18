@@ -12,18 +12,17 @@ export interface ChatGPTMessage {
 }
 
 export interface OpenAIStreamPayload {
-      model: string
-      // messages: messages,
-      prompt: string
-      temperature: number,
-      max_tokens: number,
-      top_p: number,
+  model: string;
+  // messages: messages,
+  prompt: string;
+  temperature: number;
+  max_tokens: number;
+  top_p: number;
 
-      frequency_penalty: number,
-      presence_penalty: number,
-      stream: boolean,
-      n: number,
-
+  frequency_penalty: number;
+  presence_penalty: number;
+  stream: boolean;
+  n: number;
 
   // model: string;
   // messages?: ChatGPTMessage[];
@@ -51,7 +50,7 @@ export async function OpenAIStream(payload: OpenAIStreamPayload) {
       "Content-Type": "application/json",
       Authorization: `Bearer ${process.env.OPENAI_API_KEY || ""}`,
     },
-    body:  JSON.stringify(payload)
+    body: JSON.stringify(payload),
   });
 
   const stream = new ReadableStream({
@@ -75,7 +74,6 @@ export async function OpenAIStream(payload: OpenAIStreamPayload) {
             counter++;
           } catch (e) {
             controller.error(e);
-            console.log(e)
           }
         }
       }

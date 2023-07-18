@@ -1,16 +1,13 @@
-
-  
 import { OpenAIStream, OpenAIStreamPayload } from "../../utils/open-ai-stream";
 
 if (!process.env.OPENAI_API_KEY) throw new Error("Missing OpenAI API Key");
 
 export const config = {
-   runtime: "edge",
- };
+  runtime: "edge",
+};
 
- const handler = async (req: Request) => {
+const handler = async (req: Request) => {
   const { data } = (await req.json()) as { data: string };
-   console.log("Prompt Chat GPT body",data);
 
   if (!data) return new Response("Missing prompt", { status: 400 });
 

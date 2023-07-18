@@ -130,7 +130,6 @@ export default function CaptionGen() {
     // e.preventDefault();
     setLoading(true);
     const tk = await getUserToken(user);
-    console.log("&&&&&&&&&&&&&&thus " + tk);
     if (Number(tk) < token) {
       // alert("You don't have enough tokens")
       handleOpen();
@@ -156,7 +155,6 @@ export default function CaptionGen() {
       if (!res.ok) throw new Error(res.statusText);
 
       const data = res.body;
-      console.log("********************" + data);
       if (!data) return;
 
       const reader = data.getReader();

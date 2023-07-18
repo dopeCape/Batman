@@ -21,7 +21,6 @@ export default async function generateContentDetail(
   //   selected: Array<{ [key: string]: string }>
   selected: { [key: string]: string }
 ): Promise<JSX.Element> {
-  console.log("generateContentDetail params", [platformType, title, selected]);
   if (platformType === "youtube") {
     const [outline, seoDescription, tags, thumbnailIdeas] = await Promise.all([
       generateOutline(title),
@@ -90,7 +89,6 @@ async function generateContent(
   maxToken: number,
   callback?: Function
 ) {
-  console.log("Generating content with prompt:", prompt);
   const generatedText = await generateText(promptText, 3000);
   if (callback == undefined) {
     return generatedText;
@@ -103,14 +101,10 @@ async function generateOutline(ideaTitle: string) {
   const promptText = `Create an outline for a YouTube video with the title "${ideaTitle}". Format the outline to include 1.The length of the content as Length, 2. Topics that should be covered as Topics, 3. A script that for the content with a limited of the length of content.`;
 
   const generatedText = await generateText(promptText, 3000);
-  console.log("generatedText", generatedText);
-  console.log("Generating outline with prompt:", promptText);
   return generatedText;
 }
 async function generateSeoDescription(ideaTitle: string) {
   const promptText = `Create an SEO-optimized description for a YouTube video with the title "${ideaTitle}". The description should be in the optimal range of 200-300 words.`;
-
-  console.log("Generating SEO description with prompt:", promptText);
 
   const generatedText = await generateText(promptText, 300);
   return generatedText;
@@ -119,16 +113,12 @@ async function generateSeoDescription(ideaTitle: string) {
 async function generateTags(ideaTitle: string) {
   const promptText = `Generate 5-10 relevant hashtags for a YouTube video with the title "${ideaTitle}".`;
 
-  console.log("Generating tags with prompt:", promptText);
-
   const generatedText = await generateText(promptText, 100);
   return generatedText;
 }
 
 async function generateThumbnailIdeas(ideaTitle: string) {
   const promptText = `Suggest 3 ideas for creating a highly engaging thumbnail for a YouTube video with the title "${ideaTitle}".`;
-
-  console.log("Generating thumbnail ideas with prompt:", promptText);
 
   const generatedText = await generateText(promptText, 100);
   return generatedText;
@@ -182,8 +172,6 @@ async function generateTweetOutline(
 
   promptText += " The tweet should be within Twitter's character limit.";
 
-  console.log("Generating outline with prompt:", promptText);
-
   const generatedText = await generateText(promptText, 280);
   return generatedText;
 }
@@ -193,16 +181,12 @@ async function generateTweetOutline(
 async function generateContentIdea(ideaTitle: string) {
   const promptText = `Create a clear and engaging content idea for an Instagram Reel with the title "${ideaTitle}". Make sure it is relevant to the niche and resonates with the target audience.`;
 
-  console.log("Generating content idea with prompt:", promptText);
-
   const generatedText = await generateText(promptText, 100);
   return generatedText;
 }
 
 async function generateScript(ideaTitle: string) {
   const promptText = `Prepare a script, if necessary, for any dialogue, voiceover, or text that will appear in an Instagram Reel with the title "${ideaTitle}".`;
-
-  console.log("Generating script with prompt:", promptText);
 
   const generatedText = await generateText(promptText, 100);
   return generatedText;
@@ -211,16 +195,12 @@ async function generateScript(ideaTitle: string) {
 async function generateAudioSuggestion(ideaTitle: string) {
   const promptText = `Suggest appropriate audio, such as background music or sound effects, to enhance an Instagram Reel with the title "${ideaTitle}".`;
 
-  console.log("Generating audio suggestion with prompt:", promptText);
-
   const generatedText = await generateText(promptText, 50);
   return generatedText;
 }
 
 async function generateCaptionsAndHashtags(ideaTitle: string) {
   const promptText = `Write an engaging caption for an Instagram Reel with the title "${ideaTitle}" and include relevant hashtags to increase its discoverability.`;
-
-  console.log("Generating captions and hashtags with prompt:", promptText);
 
   const generatedText = await generateText(promptText, 100);
   return generatedText;
@@ -255,8 +235,6 @@ async function generateTiktokContentIdea(
 
   promptText +=
     ". And also add relevant hashtags that can be used and also songs/music that will go along with the content";
-
-  console.log("Generating content idea with prompt:", promptText);
 
   const generatedText = await generateText(promptText, 2000);
   return generatedText;
@@ -316,8 +294,6 @@ async function generateLinkedInOutline(
   }
 
   promptText += " Length of the post should be between 500-1000 words.";
-
-  console.log("Generating outline with prompt:", promptText);
 
   const generatedText = await generateText(promptText, 3000);
   return generatedText;
