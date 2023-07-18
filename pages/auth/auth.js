@@ -4,7 +4,8 @@ import {
   createUserWithEmail,
   signInWithEmail,
   signInWithGoogle,
-} from '../../auth/auth';
+} from '../../auth.js';
+
 
 const AuthPage = () => {
   const [email, setEmail] = useState('');
