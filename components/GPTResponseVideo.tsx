@@ -126,7 +126,7 @@ export default function GPTResponseVideo() {
           ></Image>
           <h1 id="tokenShow" className="text-black">
             {" "}
-            {Number(token)} Tokens
+            {Number(token)} Tokens.
           </h1>
         </div>
       </div>
