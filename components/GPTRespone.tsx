@@ -74,6 +74,7 @@ export default function GPTResponse() {
             if (e) {
               return (
                 <div
+                  key={i}
                   className={`flex mx-5 ${
                     e.match(/[0-9]\./) ? "mb-2" : "mb-10"
                   } ${

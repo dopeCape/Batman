@@ -138,7 +138,7 @@ export default function GPTResponseVideo() {
             if (e) {
               
               return (
-                <div
+                <div key={i}
                   className={`flex flex-col mx-5 ${e.match(/[0-9]\./) ? "mb-2" : "mb-10"
                     } ${i == 0 ? "mt-10" : "mt-0"
                     } bg-gray-200 px-4 py-8 rounded-md justify-between `}

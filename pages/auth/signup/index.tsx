@@ -27,7 +27,7 @@ const SignUp = () => {
       setMessage("User signed up successfully");
       window.location.href = "/home";
     } catch (error) {
-      setMessage(`Error signing up: ${error.message}`);
+      setMessage(`Error signing up: ${message}`);
     }
   };
 
@@ -37,7 +37,7 @@ const SignUp = () => {
       setMessage("User signed in with Google successfully");
       window.location.href = "/home";
     } catch (error) {
-      setMessage(`Error signing in with Google: ${error.message}`);
+      setMessage(`Error signing in with Google: ${message}`);
     }
   };
 

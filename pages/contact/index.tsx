@@ -63,7 +63,7 @@ export default function Contact() {
           Ready to create some awesome content?
         </h1>
         <p className="text-gray-500 py-5 text-left text-lg">
-          We'd love to hear back from you and help you to generate the best
+          We&apos;d love to hear back from you and help you to generate the best
           content. Please get in touch with us by dropping an email or filling
           out the form.
         </p>

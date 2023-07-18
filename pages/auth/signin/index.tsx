@@ -25,7 +25,7 @@ const SignIn = () => {
       setMessage("User signed in successfully");
       router.push("/home");
     } catch (error) {
-      setMessage(`Error signing in: ${error.message}`);
+      setMessage(`Error signing in: ${message}`);
     }
   };
 
@@ -58,7 +58,7 @@ const SignIn = () => {
         </button>
         {message && <p>{message}</p>}
         <p className="text-white">
-          Don't have an account?{" "}
+          Don&apos;t have an account?{" "}
           <Link
             className="text-white"
             href="/auth/signup"

@@ -10,7 +10,7 @@ import { useAnimation, motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import classes from "./features.module.css";
 
-const features = () => {
+const Features = () => {
 
   const textScrollVariants = {
     visible: { opacity: 1, top: 0 },
@@ -43,7 +43,7 @@ const features = () => {
           <p className={`${classes.content_text} text-gray-500 py-5 px-14 text-left text-lg`}>Generate personalized conten ideas for your social media, blogs, websites and more with the power of AI.</p>
         </motion.div>
         <div className={`${classes.second__content} bg-gradient-to-r from-[#009FFD] to-[#2A2A72] py-14`}>
-          <h1 className='text-black text-3xl font-medium text-white mb-4'>Features</h1>
+          <h1 className=' text-3xl font-medium text-white mb-4'>Features</h1>
           <div className={`${classes.content_boxes}`}>
           <div>
               <motion.div
@@ -99,7 +99,7 @@ const features = () => {
                   alt="Picture of the author"
                   className='w-18 object-contain h-20 mb-5'
                 />
-                <h2 className='text-gray-500 text-center text-md'>Grab viewers' attention and increase click-through rates with eye-catching thumbnail ideas that make your YouTube videos stand out.</h2>
+                <h2 className='text-gray-500 text-center text-md'>Grab viewer&apos;s attention and increase click-through rates with eye-catching thumbnail ideas that make your YouTube videos stand out.</h2>
               </motion.div>
           </div>
           </div>
@@ -109,4 +109,4 @@ const features = () => {
   )
 }
 
-export default features
+export default Features
