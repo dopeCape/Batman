@@ -12,6 +12,7 @@ import { updateTokens, readTokens, getUserToken } from "../../../auth";
 import { Modal, Box } from "@mui/material";
 import { StyleModal } from "@/components/modalStyle";
 import PopUpCard from "@/components/PopUpCard";
+import { set } from "firebase/database";
 
 const options = [
   "Conversational",
@@ -42,7 +43,7 @@ export default function CaptionGen() {
   useEffect(() => {
     // Set the state to null on page load
     setResponse("");
-  }, []);
+  }, [setResponse]);
   const handleKeyword = (event: ChangeEvent<HTMLInputElement>) => {
     setWord(event.target.value);
   };
@@ -182,7 +183,7 @@ export default function CaptionGen() {
         <form onSubmit={(e) => e.preventDefault()} className="my-4">
           <div className="relative">
             <h3 className="text-black text-base mb-2">
-              What's your Profile about?*
+              What&apos;s your Profile about?*
             </h3>
             <input
               className="w-full px-2 py-2 rounded-lg border border-gray-300 text-gray-500"

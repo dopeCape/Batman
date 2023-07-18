@@ -61,7 +61,7 @@ export default function ContentCreation() {
   useEffect(() => {
     // Set the state to null on page load
     setResponse("");
-  }, []);
+  }, [setResponse]);
 
   const TextInput = () => {
     return (

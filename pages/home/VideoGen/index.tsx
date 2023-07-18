@@ -43,7 +43,7 @@ export default function CaptionGen() {
   useEffect(() => {
     // Set the state to null on page load
     setResponse("");
-  }, []);
+  }, [setResponse]);
 
   const handleKeyword = (event: ChangeEvent<HTMLInputElement>) => {
     setWord(event.target.value);
@@ -185,7 +185,7 @@ export default function CaptionGen() {
         <form onSubmit={(e) => e.preventDefault()} className="my-4">
           <div className="relative">
             <h3 className="text-black text-base mb-2">
-              What's your post about?*
+              what&apos;s your post about?*
             </h3>
             <input
               className="w-full px-2 py-2 rounded-lg border border-gray-300 text-gray-500"
