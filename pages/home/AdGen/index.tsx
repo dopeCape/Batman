@@ -42,7 +42,7 @@ export default function CaptionGen() {
   useEffect(() => {
     // Set the state to null on page load
     setResponse("");
-  }, []);
+  }, [setResponse]);
 
   const handleKeyword = (event: ChangeEvent<HTMLInputElement>) => {
     setWord(event.target.value);
