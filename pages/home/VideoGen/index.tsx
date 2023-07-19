@@ -98,7 +98,7 @@ export default function CaptionGen() {
     title,
   };
 
-  const prompt = `Generate five ${props.title} about ${input} and should inclue keywords like ${keywords} with ${value} tone and with target audience ${targetAudience} make sure that every idea should be seperated.`;
+  const prompt = `Generate five ${props.title} about ${input} and should inclue keywords like ${keywords} with ${value}. The title and description have to be seperated by "\n" or "\r\n" or "\r".`;
 
   const handlePostAboutChange = (event: ChangeEvent<HTMLInputElement>) => {
     let value = event.target.value;
