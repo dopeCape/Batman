@@ -1,7 +1,7 @@
 [
   {
     "name": "youtube",
-    "title": "Generate Youtube Video Idea",
+    "title": "Generate YouTube Video Idea",
     "generatedText": "Generated Video Topic Ideas",
     "initialPrompt": "Please generate 5 video topic ideas for a YouTube channel",
     "keywordsPrompt": ", using the keywords: --value--",

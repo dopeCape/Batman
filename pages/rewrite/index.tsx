@@ -96,7 +96,7 @@ const Rewrite = () => {
                       <option>LinkedIn Post</option>
                       <option>Tweet</option>
                       <option>Threads</option>
-                      <option>Youtube Description</option>
+                      <option>YouTube Description</option>
                       <option>Instagram Caption</option>
                       <option>TikTok Caption</option>
                     </select>
