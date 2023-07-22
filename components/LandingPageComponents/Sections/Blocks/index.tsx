@@ -31,7 +31,7 @@ const Blocks = () => {
           Say BYE-BYE to creative blocks!
         </h1>
         <p className="text-white w-[447px] font-normal text-[24px] leading-[28px]">
-          Generate personalized conten ideas for your social media, blogs,
+          Generate personalized content ideas for your social media, blogs,
           websites and more.
         </p>
         <input

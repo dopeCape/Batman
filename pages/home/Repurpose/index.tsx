@@ -85,7 +85,6 @@ export default function ContentCreation() {
   ) => {
     setLoading(true);
     const tk = await getUserToken(user);
-    console.log("&&&&&&&&&&&&&&thus " + tk);
     if (Number(tk) < token) {
       handleOpen();
       setLoading(false);
@@ -95,7 +94,6 @@ export default function ContentCreation() {
       setResponse("");
 
       await updateTokens(user, usertk);
-      console.log("this is the uid " + user);
 
       const prompt = `Generate five contents. Repurpose the content of "${inputValue}". Noted that The content should be for ${value} platform and its tone should be ${alignment}.`;
 

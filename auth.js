@@ -11,13 +11,14 @@ import {
   doc,
   setDoc,
   getDoc,
+  getDocs,
   onSnapshot,
+  collection,
+  query,
+  where,
 } from "firebase/firestore";
 import { db } from "./firebase";
 import { updateDoc } from "firebase/firestore";
-import React from "react";
-import { useState } from "react";
-
 // import { db } from './firebaseConfig';
 import { app } from "./firebaseConfig";
 const auth = getAuth(app);
@@ -41,7 +42,6 @@ export const getRealTimeToken = async (user) => {
   const tokenRef = doc(firestore, "users", user.uid);
   await onSnapshot(tokenRef, (snapshot) => {
     value = snapshot.data().tokens;
-    console.log("this is real time data " + value);
   });
   return value;
 
@@ -77,7 +77,6 @@ export const getUserToken = async (user) => {
   const doc1 = await getDoc(tokenRef);
 
   if (doc1.exists) {
-    console.log("getuserToken" + doc1.data().tokens);
     return doc1.data().tokens;
   } else {
     return null;
@@ -106,6 +105,7 @@ export const createUserWithEmail = async (email, password) => {
     tokens: 100,
     model: "text-davinci-002",
     isNewUser: true,
+    uid: user.uid,
   };
   await setDoc(doc(firestore, "users", user.uid), userData);
   return user;
@@ -135,11 +135,24 @@ export const Logout = async () => {
 export const signInWithGoogle = async () => {
   const googleProvider = new GoogleAuthProvider();
   const { user } = await signInWithPopup(auth, googleProvider);
+
+  const userRef = collection(db, "users");
+  const q = query(userRef, where("email", "==", user.email));
+
+  const querySnapshot = await getDocs(q);
+  let checkUser = [];
+  querySnapshot.forEach((doc) => {
+    checkUser.push({ id: doc.id, ...doc.data() });
+  });
+
+  if (checkUser.length > 0) return;
+
   const userData = {
     email: user.email,
     tokens: 100,
     model: "text-davinci-002",
     isNewUser: true,
+    uid: user.uid,
   };
   await setDoc(doc(firestore, "users", user.uid), userData, { merge: true });
   return user;
@@ -148,12 +161,9 @@ export const signInWithGoogle = async () => {
 export const onUserSignedIn = async (user, router) => {
   const userDoc = await doc(firestore, "users", user.uid).get();
   const isNewUser = userDoc.data().isNewUser;
-  console.log("Is new user:", isNewUser);
   if (isNewUser) {
-    console.log("Redirecting to /");
     router.push("/");
   } else {
-    console.log("Redirecting to /");
     router.push("/");
   }
 };

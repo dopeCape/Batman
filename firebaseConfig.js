@@ -5,20 +5,7 @@ import { getRemoteConfig } from "firebase/remote-config";
 import { getAuth } from "firebase/auth";
 import { getDatabase } from "firebase/database";
 import { getFirestore } from "firebase/firestore";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
-  apiKey: "AIzaSyByB8GiLsVISPe1Nu_mtWX2JaiCyx9YyhM",
-  authDomain: "metridash-web.firebaseapp.com",
-  projectId: "metridash-web",
-  storageBucket: "metridash-web.appspot.com",
-  messagingSenderId: "977489432973",
-  appId: "1:977489432973:web:a56db742505b29a1d72dc4",
-  measurementId: "G-J5CXVGMQEN"
-};
+import { firebaseConfig } from "./firebase";
 
 const app = initializeApp(firebaseConfig);
 
@@ -29,9 +16,8 @@ if (typeof window !== "undefined") {
 }
 const remoteConfig = remoteConfigVar;
 
-
 const auth = getAuth(app);
 const database = getDatabase(app);
 const db = getFirestore(app);
 
-export { auth, database, app, remoteConfig , db};
+export { auth, database, app, remoteConfig, db };

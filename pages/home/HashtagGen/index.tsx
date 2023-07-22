@@ -75,7 +75,6 @@ export default function CaptionGen() {
       if (!res.ok) throw new Error(res.statusText);
 
       const data = res.body;
-      console.log("********************" + data);
       if (!data) return;
 
       const reader = data.getReader();

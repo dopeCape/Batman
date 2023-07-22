@@ -42,7 +42,6 @@ export default function CaptionGen() {
   useEffect(() => {
     // Set the state to null on page load
     setResponse("");
-    
   }, [setResponse]);
 
   const handleKeyword = (event: ChangeEvent<HTMLInputElement>) => {
@@ -154,7 +153,7 @@ export default function CaptionGen() {
       if (!res.ok) throw new Error(res.statusText);
 
       const data = res.body;
-      console.log("********************" + data);
+
       if (!data) return;
 
       const reader = data.getReader();

@@ -47,10 +47,7 @@ const Rewrite = () => {
     if (target.contentType.value === "Blog Post") {
       max_tokens = 2000;
     }
-    console.log("Rewrite promptText", promptText);
-    console.log("Rewrite max_tokens", max_tokens);
     const result = await generateText(promptText, max_tokens);
-    console.log("Rewrite result", result);
     setNewContent(result);
     setLoading(false);
   };
@@ -99,7 +96,7 @@ const Rewrite = () => {
                       <option>LinkedIn Post</option>
                       <option>Tweet</option>
                       <option>Threads</option>
-                      <option>Youtube Description</option>
+                      <option>YouTube Description</option>
                       <option>Instagram Caption</option>
                       <option>TikTok Caption</option>
                     </select>

@@ -34,7 +34,6 @@ export default function GPTResponse() {
     (async () => {
       const tk = await generateRealTimeToken(user);
       setToken(Number(tk));
-      console.log(JSON.stringify(response.split("\n")));
     })();
   }, [response, user]);
 

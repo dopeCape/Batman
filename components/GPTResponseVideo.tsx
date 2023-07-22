@@ -19,9 +19,9 @@ export default function GPTResponseVideo() {
   const [user, setUser] = useState<null | any>(null);
   const [_response, setResponse] = useState("");
   const [loading, setLoading] = useState(false);
-  const [Pdata , setData ] = useState<String>("")
+  const [Pdata, setData] = useState<String>("");
   const [index, setIndex] = useState<Number>(0);
-  let finalToken = 20
+  let finalToken = 20;
   const handleTooltipClose = () => {
     setOpen(false);
   };
@@ -40,9 +40,8 @@ export default function GPTResponseVideo() {
     (async () => {
       const tk = await generateRealTimeToken(user);
       setToken(Number(tk));
-      console.log(JSON.stringify(response.split("\n")));
     })();
-  }, [response, user]);
+  }, [response, user, loading]);
 
   function copyText(entryText: string) {
     handleTooltipOpen();
@@ -52,16 +51,10 @@ export default function GPTResponseVideo() {
     }, 2000);
   }
 
-
-
-  const generateResponse = async (
-        value: String,
-  ) => {
+  const generateResponse = async (value: String) => {
     setLoading(true);
     const tk = await getUserToken(user);
-    console.log("&&&&&&&&&&&&&&thus " + tk);
     if (Number(tk) < finalToken) {
-
       setLoading(false);
       return;
     } else {
@@ -70,7 +63,6 @@ export default function GPTResponseVideo() {
       setResponse("");
 
       await updateTokens(user, usertk);
-      console.log("this is the uid " + user);
       const res = await fetch("/api/promptChatGPT", {
         method: "POST",
         headers: {
@@ -98,17 +90,14 @@ export default function GPTResponseVideo() {
         setResponse((prev) => prev + chunkValue);
       }
       setLoading(false);
-      
-      
     }
   };
 
-
-  const handleGenerate=async(e:String, i:Number)=>{
-    setIndex(i)
-    await setData(e)
-    await generateResponse(e)
-  }
+  const handleGenerate = async (e: String, i: Number) => {
+    setIndex(i);
+    await setData(e);
+    await generateResponse(e);
+  };
 
   return (
     <div className="bg-white py-12 px-4 md:px-12 w-full max-w-screen h-screen overflow-scroll">
@@ -130,26 +119,38 @@ export default function GPTResponseVideo() {
           </h1>
         </div>
       </div>
-      {response ? ( 
+      {response ? (
         response
           .split("\n" || "\r\n" || "\r" || "\n\r")
           .filter((e) => e)
           .map((e, i) => {
             if (e) {
-              
               return (
-                <div key={i}
-                  className={`flex flex-col mx-5 ${e.match(/[0-9]\./) ? "mb-2" : "mb-10"
-                    } ${i == 0 ? "mt-10" : "mt-0"
-                    } bg-gray-200 px-4 py-8 rounded-md justify-between `}
+                <div
+                  key={i}
+                  className={`flex flex-col mx-5 ${
+                    e.match(/[0-9]\./) ? "mb-2" : "mb-10"
+                  } ${
+                    i == 0 ? "mt-10" : "mt-0"
+                  } bg-gray-200 px-4 py-8 rounded-md justify-between `}
                 >
                   <p className="text-black">{e}</p>
-                  
-                  <div className={`flex flex-row ${i%2 !== 0? "justify-between" : "justify-end"}   mt-2 pr-6`}>
 
-                    {
-                      i % 2 !== 0 ? <Button onClick={()=>{ handleGenerate(e, i)}} className="h-10 w-15 ">Generate Script</Button> : null
-                    }
+                  <div
+                    className={`flex flex-row ${
+                      i % 2 !== 0 ? "justify-between" : "justify-end"
+                    }   mt-2 pr-6`}
+                  >
+                    {i % 2 !== 0 ? (
+                      <Button
+                        onClick={() => {
+                          handleGenerate(e, i);
+                        }}
+                        className="h-10 w-15 "
+                      >
+                        Generate Script
+                      </Button>
+                    ) : null}
                     <ClickAwayListener onClickAway={handleTooltipClose}>
                       <div className="w-10 h-5 ">
                         <Tooltip
@@ -164,16 +165,14 @@ export default function GPTResponseVideo() {
                           title="Copied!"
                         >
                           <Button onClick={() => copyText(e)}>Copy</Button>
-
                         </Tooltip>
-
                       </div>
                     </ClickAwayListener>
-
                   </div>
-                  {_response && index == i? <p className="text-black">{_response}</p> : null}
+                  {_response && index == i ? (
+                    <p className="text-black">{_response}</p>
+                  ) : null}
                 </div>
-
               );
             }
           })
