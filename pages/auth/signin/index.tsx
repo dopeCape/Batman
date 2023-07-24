@@ -25,28 +25,36 @@ const SignIn = () => {
       setMessage("User signed in successfully");
       router.push("/home");
     } catch (error) {
-      setMessage(`Error signing in: ${message}`);
+      setMessage(`Error signing in: ${error?.message}`);
     }
   };
- 
-  
+
   return (
     <div className="flex-row flex items-center justify-center h-screen w-screen">
-      <div className="flex flex-row w-1/2 h-full items-center justify-center"
-       style={{backgroundImage: "url('https://images.rawpixel.com/image_1300/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvcGYtbWlzYzE0LWFkajAwODU1LWFkai1hXzEuanBn.jpg')", backgroundSize: "cover", backgroundRepeat: "no-repeat", }}
+      <div
+        className="flex flex-row w-full md:w-1/2 h-full items-center justify-center hidden md:block"
+        style={{
+          backgroundImage:
+            "url('https://images.rawpixel.com/image_1300/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvcGYtbWlzYzE0LWFkajAwODU1LWFkai1hXzEuanBn.jpg')",
+          backgroundSize: "cover",
+          backgroundRepeat: "no-repeat",
+        }}
       >
-        <h1 className="text-white font-mono text-2xl font-extrabold">Metridash is live!</h1>
+        <div className="flex justify-center items-center h-screen">
+          <h1 className="text-white font-mono text-2xl font-extrabold">
+            Metridash is live!
+          </h1>
+        </div>
       </div>
-      <div className=" bg-gradient-to-t from-[#0C0C0C] to-[#090947] flex flex-col items-center justify-center px-28  w-1/2 h-full">
+      <div className=" bg-gradient-to-t from-[#0C0C0C] to-[#090947] flex flex-col items-center justify-center px-28 w-full  md:w-1/2 h-full">
         <h1 className="text-left font-sans mb-10 font-semibold text-[30px] leading-[23px] text-white self-start">
-        🙌 Welcome Back!
+          🙌 Welcome Back!
         </h1>
         <div className="flex flex-row items-start justify-start self-start mb-2">
           <h1 className="self-start text-white ">📧 Email</h1>
           <h1 className="text-pink text-blue-500">*</h1>
         </div>
         <input
-
           className="text-black mb-6 px-4 py-2 w-full rounded-md"
           type="email"
           placeholder="Enter your email"
@@ -70,7 +78,7 @@ const SignIn = () => {
         >
           Sign In
         </button>
-        {message && <p>{message}</p>}
+        {message && <p className="text-white">{message}</p>}
         <p className="text-white">
           Don&apos;t have an account?{" "}
           <Link
@@ -82,7 +90,7 @@ const SignIn = () => {
           </Link>
         </p>
       </div>
-      </div>
+    </div>
   );
 };
 
