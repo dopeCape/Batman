@@ -27,7 +27,7 @@ const SignUp = () => {
       setMessage("User signed up successfully");
       window.location.href = "/home";
     } catch (error) {
-      setMessage(`Error signing up: ${error?.message}`);
+      setMessage(`Error signing up: ${error}`);
     }
   };
 
@@ -37,14 +37,14 @@ const SignUp = () => {
       setMessage("User signed in with Google successfully");
       window.location.href = "/home";
     } catch (error) {
-      setMessage(`Error signing in with Google: ${error?.message}`);
+      setMessage(`Error signing in with Google: ${error}`);
     }
   };
 
   return (
     <div className="flex-row flex items-center justify-center h-screen w-screen">
       <div
-        className="flex flex-row w-full md:w-1/2 h-full items-center justify-center hidden md:block"
+        className=" flex-row w-full md:w-1/2 h-full items-center justify-center  md:flex hidden"
         style={{
           backgroundImage:
             "url('https://images.rawpixel.com/image_1300/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvcGYtbWlzYzE0LWFkajAwODU1LWFkai1hXzEuanBn.jpg')",
@@ -58,7 +58,7 @@ const SignUp = () => {
           </h1>
         </div>
       </div>
-      <div className=" bg-gradient-to-t from-[#0C0C0C] to-[#090947] flex flex-col items-center justify-center h-full px-28 w-full md:w-1/2">
+      <div className=" bg-gradient-to-t from-[#0C0C0C] to-[#090947] flex flex-col items-center justify-center h-full md:px-28 px-10 w-full md:w-1/2">
         <h1 className="text-center font-sans mb-10 font-semibold text-[30px] leading-[23px] text-white self-start">
           👋 Create Account
         </h1>
