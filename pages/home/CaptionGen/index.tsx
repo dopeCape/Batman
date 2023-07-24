@@ -172,8 +172,8 @@ export default function CaptionGen() {
   };
 
   return (
-    <div className="flex justify-center items-center z-0">
-      <div className="w-3/5 h-screen flex bg-gray-200 px-10 py-16 flex-col">
+    <div className="flex justify-center items-center z-0 md:flex-row flex-col">
+      <div className="md:w-2/4 w-full h-screen flex bg-gray-200 px-10 py-16 flex-col">
         <h1 className="text-black font-sans text-2xl font-medium">
           Generate {props.title}
         </h1>
@@ -283,8 +283,10 @@ export default function CaptionGen() {
         </Box>
       </Modal>
 
-      <div className=" h-screen flex bg-white"></div>
+      <div className=" md:w-2/4 w-full h-screen flex bg-white">
+
       <GPTResponse platform={props.platform}></GPTResponse>
+      </div>
     </div>
   );
 }
