@@ -21,7 +21,7 @@ const Growing = () => {
       ref={ref}
       variants={textScrollVariants}
       initial="hidden"
-      className="flex flex-col justify-center items-center gap-y-20 py-10 relative top-[100px] transition-all duration-1000 ease-in-out"
+      className="flex flex-col justify-center items-center gap-y-20 py-10 relative top-[100px] transition-all duration-1000 ease-in-out bg-black"
       animate={controls}
     >
       <h1 className="font-semibold text-[48px] leading-[54px] text-center text-transparent bg-clip-text bg-gradient-to-r from-[#009FFD] to-[#2A2A72] ">

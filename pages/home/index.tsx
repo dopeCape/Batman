@@ -117,7 +117,7 @@ const Home: NextPage = () => {
   const router = useRouter();
 
   return (
-    <Grid>
+    <Grid className="bg-black h-full flex">
       <Grid>
         <Cards>
           <CardItemTitle>

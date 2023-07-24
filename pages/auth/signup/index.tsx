@@ -42,21 +42,31 @@ const SignUp = () => {
   };
 
   return (
-    <div className="flex-col flex items-center justify-center h-screen">
-      <div className="bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 flex flex-col items-center justify-center px-10 py-10  rounded-2xl">
-        <h1 className="text-center font-sans mb-10 font-semibold text-[30px] leading-[23px] text-white">
-          Create Account
+    <div className="flex-row flex items-center justify-center h-screen">
+      <div className="flex w-1/2 h-full"></div>
+      <div className=" bg-gradient-to-t from-[#0C0C0C] to-[#090947] flex flex-col items-center justify-center  w-1/2 h-full px-28">
+        <h1 className="text-center font-sans mb-10 font-semibold text-[30px] leading-[23px] text-white self-start">
+        👋 Create Account
         </h1>
-        <form className="flex flex-col" onSubmit={(e) => e.preventDefault()}>
+        <form className="flex flex-col w-full " onSubmit={(e) => e.preventDefault()}>
+          <div className="flex flex-row items-start justify-start self-start mb-2">
+            <h1 className="self-start text-white ">📧 Email</h1>
+            <h1 className="text-pink text-blue-500">*</h1>
+          </div>
+
           <input
-            className="text-black mb-6 px-4 py-2 w-72 rounded-md"
+            className="text-black mb-6 px-4 py-2 w-full rounded-md "
             type="email"
             placeholder="Enter your email"
             value={email}
             onChange={handleEmailChange}
           />
+          <div className="flex flex-row items-start justify-start self-start mb-2">
+            <h1 className="self-start text-white">🔑 Password</h1>
+            <h1 className="text-pink text-blue-500">*</h1>
+          </div>
           <input
-            className="text-black mb-6 px-4 py-2 w-72 rounded-md"
+            className="text-black mb-6 px-4 py-2 w-full rounded-md"
             type="password"
             placeholder="Enter your password"
             value={password}

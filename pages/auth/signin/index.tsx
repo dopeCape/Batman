@@ -28,30 +28,44 @@ const SignIn = () => {
       setMessage(`Error signing in: ${message}`);
     }
   };
-
+ 
   
   return (
-    <div className="flex-col flex items-center justify-center h-screen">
-      <div className=" bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 flex flex-col items-center justify-center px-10 py-10 rounded-2xl">
-        <h1 className="text-center font-sans mb-10 font-semibold text-[30px] leading-[23px] text-white">
-          Welcome Back!
+    <div className="flex-row flex items-center justify-center h-screen w-screen">
+      <div className="flex flex-row w-1/2 h-full items-center justify-center"
+       style={{backgroundImage: "url('https://images.rawpixel.com/image_1300/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvcGYtbWlzYzE0LWFkajAwODU1LWFkai1hXzEuanBn.jpg')", backgroundSize: "cover", backgroundRepeat: "no-repeat", }}
+      >
+        <h1 className="text-white font-mono text-2xl font-extrabold">Metridash is live!</h1>
+      </div>
+      <div className=" bg-gradient-to-t from-[#0C0C0C] to-[#090947] flex flex-col items-center justify-center px-28  w-1/2 h-full">
+        <h1 className="text-left font-sans mb-10 font-semibold text-[30px] leading-[23px] text-white self-start">
+        🙌 Welcome Back!
         </h1>
+        <div className="flex flex-row items-start justify-start self-start mb-2">
+          <h1 className="self-start text-white ">📧 Email</h1>
+          <h1 className="text-pink text-blue-500">*</h1>
+        </div>
         <input
-          className="text-black mb-6 px-4 py-2 w-72 rounded-md"
+
+          className="text-black mb-6 px-4 py-2 w-full rounded-md"
           type="email"
           placeholder="Enter your email"
           value={email}
           onChange={handleEmailChange}
         />
+        <div className="flex flex-row items-start justify-start self-start mb-2">
+          <h1 className="self-start text-white">🔑 Password</h1>
+          <h1 className="text-pink text-blue-500">*</h1>
+        </div>
         <input
-          className="text-black mb-6 px-4 py-2 w-72 rounded-md"
+          className="text-black mb-6 px-4 py-2 w-full rounded-md"
           type="password"
           placeholder="Enter your password"
           value={password}
           onChange={handlePasswordChange}
         />
         <button
-          className="bg-blue-500 rounded-md px-4 py-2 mb-6 text-white"
+          className="bg-gradient-to-l from-[#009FFD] to-[#2A2A72] rounded-md px-4 py-2 mb-6 text-white w-full"
           onClick={handleSignIn}
         >
           Sign In
@@ -60,7 +74,7 @@ const SignIn = () => {
         <p className="text-white">
           Don&apos;t have an account?{" "}
           <Link
-            className="text-white"
+            className="text-white "
             href="/auth/signup"
             style={{ textDecoration: "underline" }}
           >

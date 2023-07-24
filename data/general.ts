@@ -15,5 +15,6 @@ const generalContent = [
     },
     
   ];
+  
 
   export default generalContent
