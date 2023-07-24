@@ -96,7 +96,7 @@ export default function ContentCreation() {
 
       await updateTokens(user, usertk);
 
-      const prompt = `Generate five contents. Rewrite the content of "${inputValue}". Noted that The content should be ${value} and its tone should be ${alignment}.`;
+      const prompt = `Rewrite "${inputValue}". Noted that The content should be ${value} and its tone should be ${alignment}.`;
 
       const res = await fetch("/api/promptChatGPT", {
         method: "POST",
@@ -227,7 +227,7 @@ export default function ContentCreation() {
       </Modal>
 
       <div className="w-screen h-screen flex bg-white">
-        <GPTResponse></GPTResponse>
+        <GPTResponse platform={"rewrite"}></GPTResponse>
       </div>
     </div>
   );

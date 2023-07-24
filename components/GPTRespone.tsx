@@ -8,14 +8,21 @@ import { responseAtom } from "@/utils/store";
 import { auth } from "@/firebase";
 import { generateRealTimeToken } from "../auth";
 import tokens from "../public/icons/coins.png";
+import { Modal, Box } from "@mui/material";
+import { StyleModal } from "@/components/modalStyle";
 
-export default function GPTResponse() {
+
+export default function GPTResponse({platform}:{platform:string | string[] | undefined }) {
   const [response] = useAtom(responseAtom);
   const [token, setToken] = useState(0);
   const [color, setColor] = useState("gray-400");
   const [open, setOpen] = useState(false);
   const [user, setUser] = useState<null | any>(null);
-
+  const [openModal, setOpenModal] = useState(false);
+  const handleOpen = () => setOpenModal(true);
+  const handleClose = () => setOpenModal(false);
+  const [Socialplatform, setSocialPlatform] = useState<string | string[] | undefined>("");
+  console.log("++++++++++++++++++++"+platform)
   const handleTooltipClose = () => {
     setOpen(false);
   };
@@ -27,6 +34,7 @@ export default function GPTResponse() {
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
       setUser(user);
+      handleBestTime()
     });
   }, [user]);
 
@@ -44,6 +52,18 @@ export default function GPTResponse() {
       handleTooltipClose();
     }, 2000);
   }
+
+  const handleBestTime=async()=>{
+     await platform? setSocialPlatform(platform):setSocialPlatform("")
+      
+
+  }
+  // const OptimimTimeModal=()=>{
+  //    handleBestTime()
+  //   return(
+     
+  //   )
+  // }
 
   return (
     <div className="bg-white py-12 px-4 md:px-12 w-full max-w-screen h-screen overflow-scroll">
@@ -67,7 +87,7 @@ export default function GPTResponse() {
       </div>
       {response ? (
         response
-          .split("\n" || "\r\n" || "\r")
+          .split("\n")
           .filter((e) => e)
           .map((e, i) => {
             if (e) {
@@ -80,10 +100,12 @@ export default function GPTResponse() {
                     i == 0 ? "mt-10" : "mt-0"
                   } bg-gray-200 px-4 py-5 rounded-md justify-between `}
                 >
-                  <p className="text-black">{e}</p>
-                  {/* <button className={`object-contain text-${color}`} onClick={() => copyText(e)}>
-                Copy
-              </button> */}
+                  <p className="text-black">{e.replace(/"/g, "")}</p>
+                  <div className="flex flex-col">
+                    {
+                      Socialplatform==="rewrite" || Socialplatform==="repurpose"?null:
+                      <Button color="error" onClick={()=>{ handleOpen()}} className="mr-2">Post</Button>
+                    }
                   <ClickAwayListener onClickAway={handleTooltipClose}>
                     <div>
                       <Tooltip
@@ -101,6 +123,7 @@ export default function GPTResponse() {
                       </Tooltip>
                     </div>
                   </ClickAwayListener>
+                  </div>
                 </div>
               );
             }
@@ -110,6 +133,16 @@ export default function GPTResponse() {
           <p className="text-black">response goes here</p>
         </div>
       )}
+       <Modal 
+      open={openModal}
+      onClose={handleClose}
+      aria-labelledby="modal-modal-title"
+      aria-describedby="modal-modal-description"
+    >
+      <Box sx={StyleModal}>
+        <h1>This is the platform {Socialplatform}</h1>
+      </Box>
+    </Modal>
     </div>
   );
 }

@@ -358,7 +358,7 @@ export default function LinkedInPostGen() {
         </Box>
       </Modal>
       <div className="w-3/5 h-screen flex bg-white">
-        <GPTResponse></GPTResponse>
+        <GPTResponse platform={props.platform}></GPTResponse>
       </div>
     </div>
   );

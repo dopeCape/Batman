@@ -226,7 +226,7 @@ export default function ContentCreation() {
       </Modal>
 
       <div className="w-screen h-screen flex bg-white">
-        <GPTResponse></GPTResponse>
+        <GPTResponse platform={"repurpose"}></GPTResponse>
       </div>
     </div>
   );
