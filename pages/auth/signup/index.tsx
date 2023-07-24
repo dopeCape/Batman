@@ -27,7 +27,7 @@ const SignUp = () => {
       setMessage("User signed up successfully");
       window.location.href = "/home";
     } catch (error) {
-      setMessage(`Error signing up: ${message}`);
+      setMessage(`Error signing up: ${error?.message}`);
     }
   };
 
@@ -37,18 +37,35 @@ const SignUp = () => {
       setMessage("User signed in with Google successfully");
       window.location.href = "/home";
     } catch (error) {
-      setMessage(`Error signing in with Google: ${message}`);
+      setMessage(`Error signing in with Google: ${error?.message}`);
     }
   };
 
   return (
-    <div className="flex-row flex items-center justify-center h-screen">
-      <div className="flex w-1/2 h-full"></div>
-      <div className=" bg-gradient-to-t from-[#0C0C0C] to-[#090947] flex flex-col items-center justify-center  w-1/2 h-full px-28">
+    <div className="flex-row flex items-center justify-center h-screen w-screen">
+      <div
+        className="flex flex-row w-full md:w-1/2 h-full items-center justify-center hidden md:block"
+        style={{
+          backgroundImage:
+            "url('https://images.rawpixel.com/image_1300/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvcGYtbWlzYzE0LWFkajAwODU1LWFkai1hXzEuanBn.jpg')",
+          backgroundSize: "cover",
+          backgroundRepeat: "no-repeat",
+        }}
+      >
+        <div className="flex justify-center items-center h-screen">
+          <h1 className="text-white font-mono text-2xl font-extrabold">
+            Metridash is live!
+          </h1>
+        </div>
+      </div>
+      <div className=" bg-gradient-to-t from-[#0C0C0C] to-[#090947] flex flex-col items-center justify-center h-full px-28 w-full md:w-1/2">
         <h1 className="text-center font-sans mb-10 font-semibold text-[30px] leading-[23px] text-white self-start">
-        👋 Create Account
+          👋 Create Account
         </h1>
-        <form className="flex flex-col w-full " onSubmit={(e) => e.preventDefault()}>
+        <form
+          className="flex flex-col w-full "
+          onSubmit={(e) => e.preventDefault()}
+        >
           <div className="flex flex-row items-start justify-start self-start mb-2">
             <h1 className="self-start text-white ">📧 Email</h1>
             <h1 className="text-pink text-blue-500">*</h1>
@@ -82,7 +99,7 @@ const SignUp = () => {
             Sign Up with Google
           </button>
         </form>
-        {message && <p>{message}</p>}
+        {message && <p className="text-white">{message}</p>}
         <p className="text-white">
           Already have an account?{" "}
           <Link
