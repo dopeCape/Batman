@@ -292,7 +292,7 @@ export default function CaptionGen() {
       </Modal>
 
       <div className=" h-screen flex bg-white"></div>
-      <GPTResponse></GPTResponse>
+      <GPTResponse platform={props.platform}></GPTResponse>
     </div>
   );
 }
