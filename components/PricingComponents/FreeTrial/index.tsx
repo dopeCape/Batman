@@ -30,14 +30,14 @@ function FreeTrial() {
           <div className="flex items-center  gap-x-5 py-10">
             {/* <p className='text-[#101827] font-bold text-xl'>1,250 words/month</p> <span className='text-[#4b5563] font-medium text-xl'>1 seats</span> */}
             <p className="text-[#101827] font-bold text-xl">100 Tokens/month</p>{" "}
-            <span className="text-[#4b5563] font-medium text-xl">1 seat</span>
+            
           </div>
           <div className="flex items-center  gap-x-5 mb-4">
             {/* <p className='text-[#101827] font-bold text-xl'>1,000 words/month</p> <span className='text-[#4b5563] font-medium text-xl'>1 seats</span> */}
             <p className="text-[#101827] font-bold text-xl">
               10,000 Words/month
             </p>{" "}
-            <span className="text-[#4b5563] font-medium text-xl">1 seat</span>
+            
           </div>
           {/* <p className='text-[#101827] font-bold text-xl'>10,000 words/month</p> <span className='text-[#4b5563] font-medium text-xl'>1 seats</span> */}
         </div>
