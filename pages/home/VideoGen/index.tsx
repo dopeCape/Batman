@@ -21,6 +21,14 @@ const options = [
   "Describe a tone",
 ];
 
+export const disabled = (...args: any[]) => {
+  return args.some(
+    (arg) =>
+      (typeof arg === "string" && arg?.trim().length === 0) ||
+      (typeof arg === "object" && arg?.length === 0)
+  );
+};
+
 export default function CaptionGen() {
   const [value, setValue] = useState<string | null>();
   const [keywords, setKeywords] = useState<string[]>([]);
@@ -98,7 +106,7 @@ export default function CaptionGen() {
     title,
   };
 
-  const prompt = `Generate five ${props.title} about ${input} and should inclue keywords like ${keywords} with ${value}. The title and description have to be seperated by "\n" or "\r\n" or "\r".`;
+  const prompt = `Generate five ${props.title} about ${input} and should inclue keywords like ${keywords} with ${value} tone and with target audience ${targetAudience} make sure that every idea should be seperated.`;
 
   const handlePostAboutChange = (event: ChangeEvent<HTMLInputElement>) => {
     let value = event.target.value;
@@ -129,6 +137,8 @@ export default function CaptionGen() {
   const generateResponse = async (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
+    e.preventDefault();
+    if (disabled(value, input, targetAudience, keywords)) return;
     setLoading(true);
     const tk = await getUserToken(user);
     if (Number(tk) < token) {
@@ -250,6 +260,7 @@ export default function CaptionGen() {
             <input
               className="w-full px-2 py-2 rounded-lg border border-gray-300 text-gray-500"
               type="text"
+              value={targetAudience}
               placeholder="travellers, gamers etc."
               onChange={(e) => {
                 setTargetAudience(e.target.value), handleTargetAudienceChange;
@@ -261,8 +272,12 @@ export default function CaptionGen() {
           </div>
 
           <button
+            disabled={disabled(value, input, targetAudience, keywords)}
             onClick={generateResponse}
-            className="w-full h-10 bg-black mt-10 rounded-lg bg-gradient-to-l from-[#009FFD] to-[#2A2A72]"
+            className={`w-full h-10 bg-black mt-10 rounded-lg bg-gradient-to-l from-[#009FFD] to-[#2A2A72] ${
+              disabled(value, input, targetAudience, keywords) &&
+              "cursor-not-allowed"
+            }`}
           >
             <h1 className="text-white">
               {" "}

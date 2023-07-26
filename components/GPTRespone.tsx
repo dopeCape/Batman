@@ -11,8 +11,11 @@ import tokens from "../public/icons/coins.png";
 import { Modal, Box } from "@mui/material";
 import { StyleModal } from "@/components/modalStyle";
 
-
-export default function GPTResponse({platform}:{platform:string | string[] | undefined }) {
+export default function GPTResponse({
+  platform,
+}: {
+  platform?: string | string[] | undefined;
+}) {
   const [response] = useAtom(responseAtom);
   const [token, setToken] = useState(0);
   const [color, setColor] = useState("gray-400");
@@ -21,8 +24,10 @@ export default function GPTResponse({platform}:{platform:string | string[] | und
   const [openModal, setOpenModal] = useState(false);
   const handleOpen = () => setOpenModal(true);
   const handleClose = () => setOpenModal(false);
-  const [Socialplatform, setSocialPlatform] = useState<string | string[] | undefined>("");
-  console.log("++++++++++++++++++++"+platform)
+  const [Socialplatform, setSocialPlatform] = useState<
+    string | string[] | undefined
+  >("");
+  console.log("++++++++++++++++++++" + platform);
   const handleTooltipClose = () => {
     setOpen(false);
   };
@@ -34,7 +39,7 @@ export default function GPTResponse({platform}:{platform:string | string[] | und
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
       setUser(user);
-      handleBestTime()
+      handleBestTime();
     });
   }, [user]);
 
@@ -53,15 +58,13 @@ export default function GPTResponse({platform}:{platform:string | string[] | und
     }, 2000);
   }
 
-  const handleBestTime=async()=>{
-     await platform? setSocialPlatform(platform):setSocialPlatform("")
-      
-
-  }
+  const handleBestTime = async () => {
+    (await platform) ? setSocialPlatform(platform) : setSocialPlatform("");
+  };
   // const OptimimTimeModal=()=>{
   //    handleBestTime()
   //   return(
-     
+
   //   )
   // }
 
@@ -102,27 +105,35 @@ export default function GPTResponse({platform}:{platform:string | string[] | und
                 >
                   <p className="text-black">{e.replace(/"/g, "")}</p>
                   <div className="flex flex-col">
-                    {
-                      Socialplatform==="rewrite" || Socialplatform==="repurpose"?null:
-                      <Button color="error" onClick={()=>{ handleOpen()}} className="mr-2">Post</Button>
-                    }
-                  <ClickAwayListener onClickAway={handleTooltipClose}>
-                    <div>
-                      <Tooltip
-                        PopperProps={{
-                          disablePortal: true,
+                    {Socialplatform === "rewrite" ||
+                    Socialplatform === "repurpose" ? null : (
+                      <Button
+                        color="error"
+                        onClick={() => {
+                          handleOpen();
                         }}
-                        onClose={handleTooltipClose}
-                        open={open}
-                        disableFocusListener
-                        disableHoverListener
-                        disableTouchListener
-                        title="Copied!"
+                        className="mr-2"
                       >
-                        <Button onClick={() => copyText(e)}>Copy</Button>
-                      </Tooltip>
-                    </div>
-                  </ClickAwayListener>
+                        Post
+                      </Button>
+                    )}
+                    <ClickAwayListener onClickAway={handleTooltipClose}>
+                      <div>
+                        <Tooltip
+                          PopperProps={{
+                            disablePortal: true,
+                          }}
+                          onClose={handleTooltipClose}
+                          open={open}
+                          disableFocusListener
+                          disableHoverListener
+                          disableTouchListener
+                          title="Copied!"
+                        >
+                          <Button onClick={() => copyText(e)}>Copy</Button>
+                        </Tooltip>
+                      </div>
+                    </ClickAwayListener>
                   </div>
                 </div>
               );
@@ -133,16 +144,16 @@ export default function GPTResponse({platform}:{platform:string | string[] | und
           <p className="text-black">response goes here</p>
         </div>
       )}
-       <Modal 
-      open={openModal}
-      onClose={handleClose}
-      aria-labelledby="modal-modal-title"
-      aria-describedby="modal-modal-description"
-    >
-      <Box sx={StyleModal}>
-        <h1>This is the platform {Socialplatform}</h1>
-      </Box>
-    </Modal>
+      <Modal
+        open={openModal}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={StyleModal}>
+          <h1>This is the platform {Socialplatform}</h1>
+        </Box>
+      </Modal>
     </div>
   );
 }

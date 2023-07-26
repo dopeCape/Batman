@@ -8,6 +8,7 @@ import { updateTokens, readTokens, getUserToken } from "../../../auth";
 import { Modal, Box } from "@mui/material";
 import { StyleModal } from "@/components/modalStyle";
 import PopUpCard from "@/components/PopUpCard";
+import { disabled } from "../VideoGen";
 
 export default function CaptionGen() {
   const [postAboutCount, setPostAboutCount] = useState(0);
@@ -49,7 +50,7 @@ export default function CaptionGen() {
 
   const generateResponse = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
+    if (disabled(input)) return;
     setLoading(true);
     const tk = await getUserToken(user);
     if (Number(tk) < token) {
@@ -109,6 +110,7 @@ export default function CaptionGen() {
               className="w-full px-2 py-2 rounded-lg border border-gray-300 text-gray-500"
               type="text"
               placeholder="gaming, fashion, animals etc."
+              value={input}
               onChange={(e) => {
                 setInput(e.target.value), handlePostAboutChange;
               }}
@@ -118,7 +120,12 @@ export default function CaptionGen() {
             </p>
           </div>
 
-          <button className="w-full h-10 bg-black mt-10 rounded-lg bg-gradient-to-l from-[#009FFD] to-[#2A2A72]">
+          <button
+            className={`w-full h-10 bg-black mt-10 rounded-lg bg-gradient-to-l from-[#009FFD] to-[#2A2A72] ${
+              disabled(input) && "cursor-not-allowed"
+            }`}
+            disabled={disabled(input)}
+          >
             <h1 className="text-white">
               {" "}
               {loading ? "Genarating..." : "Generate (5 tokens)"}
@@ -137,7 +144,7 @@ export default function CaptionGen() {
         </Box>
       </Modal>
       <div className="w-screen h-screen flex bg-white">
-        <GPTResponse platform={props.platform}></GPTResponse>
+        <GPTResponse></GPTResponse>
       </div>
     </div>
   );

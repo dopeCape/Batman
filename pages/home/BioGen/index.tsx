@@ -12,6 +12,7 @@ import { updateTokens, readTokens, getUserToken } from "../../../auth";
 import { Modal, Box } from "@mui/material";
 import { StyleModal } from "@/components/modalStyle";
 import PopUpCard from "@/components/PopUpCard";
+import { disabled } from "../VideoGen";
 import { set } from "firebase/database";
 
 const options = [
@@ -96,7 +97,6 @@ export default function CaptionGen() {
     platform,
     title,
   };
-  
 
   const prompt = `Generate ${props.title} for my profile about ${input} with keywords ${keywords} with tone ${value} and my target audience is ${targetAudience}.`;
 
@@ -129,6 +129,8 @@ export default function CaptionGen() {
   const generateResponse = async (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
+    e.preventDefault();
+    if (disabled(value, input, targetAudience, keywords)) return;
     setLoading(true);
     setResponse("");
     const tk = await getUserToken(user);
@@ -176,7 +178,6 @@ export default function CaptionGen() {
         <h1 className="text-black font-sans text-2xl font-medium">
           Generate {props.title}
         </h1>
-        {/* <h1>This is description{props.platform}</h1> */}
         <h3 className="text-black text-sm ">
           Optimize your profile bio for greater visibility and higher
           engagement.
@@ -252,6 +253,7 @@ export default function CaptionGen() {
               className="w-full px-2 py-2 rounded-lg border border-gray-300 text-gray-500"
               type="text"
               placeholder="travellers, gamers etc."
+              value={targetAudience}
               onChange={(e) => {
                 setTargetAudience(e.target.value), handleTargetAudienceChange;
               }}
@@ -262,8 +264,12 @@ export default function CaptionGen() {
           </div>
 
           <button
+            disabled={disabled(value, input, targetAudience, keywords)}
             onClick={generateResponse}
-            className="w-full h-10 bg-black mt-10 rounded-lg bg-gradient-to-l from-[#009FFD] to-[#2A2A72]"
+            className={`w-full h-10 bg-black mt-10 rounded-lg bg-gradient-to-l from-[#009FFD] to-[#2A2A72] ${
+              disabled(value, input, targetAudience, keywords) &&
+              "cursor-not-allowed"
+            }`}
           >
             <h1 className="text-white">
               {" "}
@@ -272,7 +278,7 @@ export default function CaptionGen() {
           </button>
         </form>
       </div>
-      <Modal 
+      <Modal
         open={open}
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
@@ -283,7 +289,7 @@ export default function CaptionGen() {
         </Box>
       </Modal>
       <div className=" h-screen flex bg-white"></div>
-      <GPTResponse platform={props.platform}></GPTResponse>
+      <GPTResponse></GPTResponse>
     </div>
   );
 }

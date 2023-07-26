@@ -21,6 +21,8 @@ const options = [
   "Describe a tone",
 ];
 
+import { disabled } from "../VideoGen";
+
 export default function CaptionGen() {
   const [value, setValue] = useState<string | null>();
   const [keywords, setKeywords] = useState<string[]>([]);
@@ -127,7 +129,8 @@ export default function CaptionGen() {
   const generateResponse = async (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
-    // e.preventDefault();
+    e.preventDefault();
+    if (disabled(value, input, targetAudience, keywords)) return;
     setLoading(true);
     const tk = await getUserToken(user);
     if (Number(tk) < token) {
@@ -172,8 +175,8 @@ export default function CaptionGen() {
   };
 
   return (
-    <div className="flex justify-center items-center z-0 md:flex-row flex-col">
-      <div className="md:w-2/4 w-full h-screen flex bg-gray-200 px-10 py-16 flex-col">
+    <div className="flex justify-center items-center z-0">
+      <div className="w-3/5 h-screen flex bg-gray-200 px-10 py-16 flex-col">
         <h1 className="text-black font-sans text-2xl font-medium">
           Generate {props.title}
         </h1>
@@ -251,6 +254,7 @@ export default function CaptionGen() {
               className="w-full px-2 py-2 rounded-lg border border-gray-300 text-gray-500"
               type="text"
               placeholder="travellers, gamers etc."
+              value={targetAudience}
               onChange={(e) => {
                 setTargetAudience(e.target.value), handleTargetAudienceChange;
               }}
@@ -261,8 +265,12 @@ export default function CaptionGen() {
           </div>
 
           <button
+            disabled={disabled(value, input, targetAudience, keywords)}
             onClick={generateResponse}
-            className="w-full h-10 bg-black mt-10 rounded-lg bg-gradient-to-l from-[#009FFD] to-[#2A2A72]"
+            className={`w-full h-10 bg-black mt-10 rounded-lg bg-gradient-to-l from-[#009FFD] to-[#2A2A72] ${
+              disabled(value, input, targetAudience, keywords) &&
+              "cursor-not-allowed"
+            }`}
           >
             <h1 className="text-white">
               {" "}
@@ -283,10 +291,8 @@ export default function CaptionGen() {
         </Box>
       </Modal>
 
-      <div className=" md:w-2/4 w-full h-screen flex bg-white">
-
-      <GPTResponse platform={props.platform}></GPTResponse>
-      </div>
+      <div className=" h-screen flex bg-white"></div>
+      <GPTResponse></GPTResponse>
     </div>
   );
 }
