@@ -12,6 +12,7 @@ import { responseAtom } from "@/utils/store";
 import { Modal, Box } from "@mui/material";
 import { StyleModal } from "@/components/modalStyle";
 import PopUpCard from "@/components/PopUpCard";
+import { disabled } from "../VideoGen";
 
 const options = [
   "Conversational",
@@ -149,7 +150,8 @@ export default function LinkedInPostGen() {
   const generateResponse = async (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
-    // e.preventDefault();
+    e.preventDefault();
+    if (disabled(value1, value2, input, targetAudience, keywords)) return;
     setLoading(true);
     setResponse("");
     const tk = await getUserToken(user);
@@ -327,6 +329,7 @@ export default function LinkedInPostGen() {
               className="w-full px-2 py-2 rounded-lg border border-gray-300 text-gray-500"
               type="text"
               placeholder="travellers, gamers etc."
+              value={targetAudience}
               onChange={(e) => {
                 setTargetAudience(e.target.value), handleTargetAudienceChange;
               }}
@@ -337,8 +340,12 @@ export default function LinkedInPostGen() {
           </div>
 
           <button
+            disabled={disabled(value1, value2, input, targetAudience, keywords)}
             onClick={generateResponse}
-            className="w-full h-10 bg-black mt-10 rounded-lg bg-gradient-to-l from-[#009FFD] to-[#2A2A72]"
+            className={`w-full h-10 bg-black mt-10 rounded-lg bg-gradient-to-l from-[#009FFD] to-[#2A2A72] ${
+              disabled(value1, value2, input, targetAudience, keywords) &&
+              "cursor-not-allowed"
+            }`}
           >
             <h1 className="text-white">
               {" "}
@@ -358,7 +365,7 @@ export default function LinkedInPostGen() {
         </Box>
       </Modal>
       <div className="w-3/5 h-screen flex bg-white">
-        <GPTResponse platform={props.platform}></GPTResponse>
+        <GPTResponse></GPTResponse>
       </div>
     </div>
   );

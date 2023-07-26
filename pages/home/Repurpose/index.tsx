@@ -13,6 +13,7 @@ import { StyleModal } from "@/components/modalStyle";
 import PopUpCard from "@/components/PopUpCard";
 import ToggleButton from "@mui/material/ToggleButton";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
+import { disabled } from "../VideoGen";
 
 const options = [
   "Conversational",
@@ -48,7 +49,7 @@ const StyledToggleButtonGroup = styled(ToggleButtonGroup)(({ theme }) => ({
 }));
 export default function ContentCreation() {
   const [alignment, setAlignment] = useState("");
-  const [value, setValue] = useState<string | null>(null);
+  const [value, setValue] = useState<string>("");
   const [inputValue, setInputValue] = useState("");
   const [loading, setLoading] = useState(false);
   const [open, setOpen] = useState(false);
@@ -83,6 +84,8 @@ export default function ContentCreation() {
   const generateResponse = async (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
+    e.preventDefault();
+    if (disabled(alignment, value, inputValue)) return;
     setLoading(true);
     const tk = await getUserToken(user);
     if (Number(tk) < token) {
@@ -183,14 +186,14 @@ export default function ContentCreation() {
           multiline
           rows={4}
           onChange={(e) => setInputValue(e.target.value)}
+          value={inputValue}
         />
 
         <h3 className="text-black mt-5 mb-2 text-lg font-medium">Tone *</h3>
         <Autocomplete
           className="bg-white rounded-xl"
-          value={value}
           onChange={(event: any, newValue: string | null) => {
-            setValue(newValue);
+            setValue(newValue as string);
           }}
           // inputValue={inputValue}
           // onInputChange={(event, newInputValue) => {
@@ -204,8 +207,11 @@ export default function ContentCreation() {
         {value === "Describe a tone" ? <TextInput /> : null}
 
         <button
+          disabled={disabled(alignment, value, inputValue)}
           onClick={generateResponse}
-          className="w-full h-10 bg-black mt-4 rounded-lg bg-gradient-to-l from-[#009FFD] to-[#2A2A72]"
+          className={`w-full h-10 bg-black mt-4 rounded-lg bg-gradient-to-l from-[#009FFD] to-[#2A2A72] ${
+            disabled(alignment, value, inputValue) && "cursor-not-allowed"
+          }`}
         >
           <h1 className="text-white">
             {" "}
@@ -226,7 +232,7 @@ export default function ContentCreation() {
       </Modal>
 
       <div className="w-screen h-screen flex bg-white">
-        <GPTResponse platform={"repurpose"}></GPTResponse>
+        <GPTResponse></GPTResponse>
       </div>
     </div>
   );
