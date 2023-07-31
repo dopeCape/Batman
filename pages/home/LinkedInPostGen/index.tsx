@@ -205,7 +205,7 @@ export default function LinkedInPostGen() {
         <form onSubmit={(e) => e.preventDefault()} className="my-4">
           <div className="relative">
             <h3 className="text-black text-base mb-2">
-              what&apos;s your post about?*
+              What&apos;s your post about?*
             </h3>
             <input
               className="w-full px-2 py-2 rounded-lg border border-gray-300 text-gray-500"
