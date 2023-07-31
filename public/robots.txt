@@ -1,0 +1,8 @@
+# Block all crawlers for /home
+User-agent: *
+Disallow: /home
+Disallow: /home/
+
+# Allow all crawlers
+User-agent: *
+Allow: /
