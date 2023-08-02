@@ -7,6 +7,8 @@ import Image8 from "../../../../public/Images/8.png";
 import Image9 from "../../../../public/Images/9.png";
 import Image10 from "../../../../public/Images/10.png";
 const Journey = () => {
+  const year = new Date().getFullYear();
+
   const textScrollVariants = {
     visible: { opacity: 1, right: 0 },
     hidden: { opacity: 0 },
@@ -84,7 +86,7 @@ const Journey = () => {
       </div>
       <div className="h-10 bg-blue-800 flex justify-center items-center">
         <p className="text-[#FFFFFF7B] text-[16px] font-normal ">
-          Copyright 2023 Metridash
+          Copyright {year} Metridash
         </p>
       </div>
     </>
