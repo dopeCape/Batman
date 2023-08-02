@@ -4,6 +4,7 @@ import HeaderMenu from "./HeaderMenu";
 import SideBar from "./SideBar";
 
 
+
 interface Props {
   children: JSX.Element;
 }
@@ -25,6 +26,7 @@ const NavigationBar = ({ children }: Props): JSX.Element => {
       </HeaderMenu>
     );
   }
+  
   return (
     <SideBar>
       <main className="flex-1">{children}</main>

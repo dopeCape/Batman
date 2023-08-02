@@ -25,7 +25,7 @@ const SignUp = () => {
     try {
       await createUserWithEmail(email, password);
       setMessage("User signed up successfully");
-      window.location.href = "/home";
+      window.location.href = "/homepage";
     } catch (error) {
       setMessage(`Error signing up: ${error}`);
     }
@@ -35,7 +35,7 @@ const SignUp = () => {
     try {
       await signInWithGoogle();
       setMessage("User signed in with Google successfully");
-      window.location.href = "/home";
+      window.location.href = "/homepage";
     } catch (error) {
       setMessage(`Error signing in with Google: ${error}`);
     }

@@ -9,6 +9,7 @@ import { Auth } from "firebase/auth";
 import { auth } from "@/firebase";
 import { firestore } from "firebase-admin";
 import { useState, useEffect } from "react";
+import LoginNavBar from "@/components/LoginNavBar";
 interface Props {
   children: JSX.Element;
 }
@@ -51,15 +52,13 @@ const HeaderMenu = (props: Props) => {
   }, [user]);
 
   return (
-    <>
+    <>{auth.currentUser? <LoginNavBar></LoginNavBar>: 
       <div className="bg-[#3247CF] flex justify-between px-[7%] items-center h-10 py-10 w-12/12">
         <h1 className="font-semibold text-[20px] leading-[23px] text-black">
           Metridash
         </h1>
         <ul className=" justify-center gap-x-10 md:flex hidden">
-          {user ? (
-            <></>
-          ) : (
+         
             <li
               className={`cursor-pointer mr-4 ${
                 active === "0" ? "text-white" : "text-[#8E9CF3]"
@@ -68,10 +67,8 @@ const HeaderMenu = (props: Props) => {
             >
               <Link href="/">Home</Link>
             </li>
-          )}
-          {user ? (
-            <></>
-          ) : (
+         
+          
             <li
               className={`cursor-pointer mr-4 ${
                 active === "1" ? "text-white" : "text-[#8E9CF3]"
@@ -80,10 +77,8 @@ const HeaderMenu = (props: Props) => {
             >
               <Link href="/features">Features</Link>
             </li>
-          )}
-          {user ? (
-            <></>
-          ) : (
+          
+         
             <li
               className={`cursor-pointer mr-4 ${
                 active === "2" ? "text-white" : "text-[#8E9CF3]"
@@ -92,11 +87,7 @@ const HeaderMenu = (props: Props) => {
             >
               <Link href="/pricing">Pricing</Link>
             </li>
-          )}
-
-          {user ? (
-            <></>
-          ) : (
+         
             <li
               className={`cursor-pointer mr-4 ${
                 active === "3" ? "text-[#fff]" : "text-[#8E9CF3]"
@@ -105,18 +96,16 @@ const HeaderMenu = (props: Props) => {
             >
               <Link href="/contact">Contact Us</Link>
             </li>
-          )}
-
-          {user ? (
-            <li
+         
+            {/* <li
               className={`cursor-pointer mr-4 ${
                 active === "4" ? "text-[#fff]" : "text-[#8E9CF3]"
               }`}
               onClick={() => handleClick(4)}
             >
               <Link href="/home">Dashboard</Link>
-            </li>
-          ) : (
+            </li> */}
+         
             <li
               className={`cursor-pointer mr-4 ${
                 active === "4" ? "text-[#fff]" : "text-[#8E9CF3]"
@@ -125,9 +114,8 @@ const HeaderMenu = (props: Props) => {
             >
               <Link href="/auth/signin">Sign in</Link>
             </li>
-          )}
-          {user ? (
-            <li
+         
+            {/* <li
               className={`cursor-pointer mr-4 ${
                 active === "0" ? "text-[#fff]" : "text-[#8E9CF3]"
               }`}
@@ -136,11 +124,10 @@ const HeaderMenu = (props: Props) => {
               }}
             >
               <Link href="/">Log out</Link>
-            </li>
-          ) : (
-            <></>
-          )}
+            </li> */}
+        
         </ul>
+    
         <div className="md:hidden flex relative">
           <div className="flex">
             <Image
@@ -219,6 +206,7 @@ const HeaderMenu = (props: Props) => {
           </div>
         </div>
       </div>
+    }
       <main>{props.children}</main>
     </>
   );
