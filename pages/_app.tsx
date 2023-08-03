@@ -16,9 +16,13 @@ import { SessionProvider, useSession } from "next-auth/react";
 import { useEffect } from "react";
 import NavigationBar from "@/components/NavigationBar";
 import Head from "next/head";
+import { auth } from "@/firebase";
+import LoginNavBar from "@/components/LoginNavBar";
 
 export default function App({ Component, pageProps }: AppProps) {
   useEffect(() => {}, [pageProps.session]);
+
+  console.log(auth.currentUser);
 
   return (
     <>

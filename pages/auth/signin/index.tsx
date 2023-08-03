@@ -34,7 +34,7 @@ const SignIn = () => {
     try {
       await signInWithEmail(email, password);
       setMessage("User signed in successfully");
-      router.push("/home");
+      router.push("/homepage");
     } catch (error) {
       setMessage(`Error signing in: ${error}`);
     }

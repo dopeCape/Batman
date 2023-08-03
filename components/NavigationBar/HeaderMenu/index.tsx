@@ -10,6 +10,7 @@ import { auth } from "@/firebase";
 import { firestore } from "firebase-admin";
 import React, { useEffect, useState } from "react";
 import classes from "./index.module.css";
+import LoginNavBar from "@/components/LoginNavBar";
 
 interface Props {
   children: JSX.Element;
@@ -117,221 +118,179 @@ const HeaderMenu = (props: Props) => {
   
  
 
-  return (
-    <>
-      <div className={`bg-[#3247CF] flex justify-between px-[7%] items-center h-10 py-10`}>
-        <h1 className="font-semibold text-[20px] leading-[23px] text-black">
-          <Link href={"/"}>Metridash</Link>
-        </h1>
-        <ul className={`${classes.desktop_nav} flex justify-center gap-x-10`}>
-          {/* <li
-            className={`cursor-pointer mr-4 ${
-              active === "0" ? "text-white" : "text-[#8E9CF3]"
-            }`}
-            onClick={() => handleClick(0)}
-          >
-            Home
-          </li> */}
-          {user ? (
-            <></>
-          ) : (
-            <li
-              className={`cursor-pointer mr-4 ${
-                active === "0" ? "text-white" : "text-[#8E9CF3]"
-              }`}
-              onClick={() => handleClick(0)}
-            >
-              <Link href="/">Home</Link>
-            </li>
-          )}
-          {/* <li
-            className={`cursor-pointer mr-4 ${
-              active === "1" ? "text-white" : "text-[#8E9CF3]"
-            }`}
-            onClick={() => handleClick(1)}
-          >
-            Features
-          </li> */}
-          {user ? (
-            <></>
-          ) : (
-            <li
-              className={`cursor-pointer mr-4 ${
-                active === "1" ? "text-white" : "text-[#8E9CF3]"
-              }`}
-              onClick={() => handleClick(1)}
-            >
-              <Link href="/features">Features</Link>
-            </li>
-          )}
+  return <>
+  {auth.currentUser? <LoginNavBar></LoginNavBar>: 
+      <div>
+        <div className="bg-[#3247CF] flex justify-between px-[7%] items-center h-10 py-10 w-12/12">
+          <h1 className="font-semibold text-[20px] leading-[23px] text-black">
+            <Link href={"/"}>Metridash</Link>
+          </h1>
+          <ul className={`${classes.desktop_nav} justify-center gap-x-10 md:flex hidden`}>
+              <li
+                className={`cursor-pointer mr-4 ${
+                  active === "0" ? "text-white" : "text-[#8E9CF3]"
+                }`}
+                onClick={() => handleClick(0)}
+              >
+                <Link href="/">Home</Link>
+              </li>
+            {user ? (
+              <></>
+            ) : (
+              <li
+                className={`cursor-pointer mr-4 ${
+                  active === "1" ? "text-white" : "text-[#8E9CF3]"
+                }`}
+                onClick={() => handleClick(1)}
+              >
+                <Link href="/features">Features</Link>
+              </li>
+            )}
 
-          {/* <li
-            className={`cursor-pointer mr-4 ${
-              active === "2" ? "text-white" : "text-[#8E9CF3]"
-            }`}
-            onClick={() => handleClick(2)}
-          >
-            Pricing
-          </li> */}
-
-          {user ? (
-            <></>
-          ) : (
-            <li
+            {/* <li
               className={`cursor-pointer mr-4 ${
                 active === "2" ? "text-white" : "text-[#8E9CF3]"
               }`}
               onClick={() => handleClick(2)}
             >
-              <Link href="/pricing">Pricing</Link>
-            </li>
-          )}
+              Pricing
+            </li> */}
 
-          {user ? (
+            {user ? (
               <></>
-            ) : 
-          <li
-            className={`cursor-pointer mr-4 ${
-              active === "3" ? "text-[#fff]" : "text-[#8E9CF3]"
-            }`}
-            onClick={() => handleClick(3)}
-          >
-            <Link href="/contact">Contact us</Link>
-          </li>}
-          {/* {showLogin && (
+            ) : (
+              <li
+                className={`cursor-pointer mr-4 ${
+                  active === "2" ? "text-white" : "text-[#8E9CF3]"
+                }`}
+                onClick={() => handleClick(2)}
+              >
+                <Link href="/pricing">Pricing</Link>
+              </li>
+            )}
+
+            {user ? (
+                <></>
+              ) : 
             <li
               className={`cursor-pointer mr-4 ${
                 active === "3" ? "text-[#fff]" : "text-[#8E9CF3]"
               }`}
               onClick={() => handleClick(3)}
             >
-              <Link href="/contact">Contact Us</Link>
-            </li>
-          )} */}
+              <Link href="/contact">Contact us</Link>
+            </li>}
 
-          {user ? (
-            <li
+            {user ? <li
+                className={`cursor-pointer mr-4 ${
+                  active === "4" ? "text-[#fff]" : "text-[#8E9CF3]"
+                }`}
+                onClick={() => handleClick(4)}
+              >
+                <Link href="/home">Dashboard</Link>
+              </li> :
+          
+              <li
+                className={`cursor-pointer mr-4 ${
+                  active === "4" ? "text-[#fff]" : "text-[#8E9CF3]"
+                }`}
+                onClick={() => handleClick(4)}
+              >
+                <Link href="/auth/signin">Sign in</Link>
+              </li>
+              }
+
+          </ul>
+          
+          <button onClick={toggleNavbar} className={`${classes.toggle__nav} ${toggle ? classes.toggle_true : null}`}>
+              <span className={`${classes.top_toggle} ${toggle ? classes.top_true : null}`}></span>
+              <span className={`${classes.toggle_middle} ${toggle ? classes.middle_true : null}`}></span>
+              <span className={`${classes.toggle_bottom} ${toggle ? classes.bottom_true : null}`}></span>
+          </button>
+        </div>
+        {toggle &&
+          <ul className={`${classes.mobile_nav} flex justify-center gap-x-10`}>
+            {!user && <li
               className={`cursor-pointer mr-4 ${
-                active === "4" ? "text-[#fff]" : "text-[#8E9CF3]"
+                active === "0" ? "text-white" : "text-[#8E9CF3]"
               }`}
-              onClick={() => handleClick(4)}
+              onClick={() => handleClick(0)}
             >
-              <Link href="/home">Dashboard</Link>
-            </li>
-          ) : (
-            <li
-              className={`cursor-pointer mr-4 ${
-                active === "4" ? "text-[#fff]" : "text-[#8E9CF3]"
+              <Link href="/">Home</Link>
+            </li>}
+            {!user && <li
+              className={`${classes.mobile_navlink} cursor-pointer mr-4 ${
+                active === "1" ? "text-white" : "text-[#8E9CF3]"
               }`}
-              onClick={() => handleClick(4)}
+              onClick={() => handleClick(1)}
             >
-              <Link href="/auth/signin">Sign in</Link>
-            </li>
-          )}
-          {user ? (
-            <li
-              className={`cursor-pointer mr-4 ${
-                active === "0" ? "text-[#fff]" : "text-[#8E9CF3]"
+              <Link href="/features">Features</Link>
+            </li>}
+            {!user && <li
+              className={`${classes.mobile_navlink} cursor-pointer mr-4 ${
+                active === "2" ? "text-white" : "text-[#8E9CF3]"
               }`}
-              onClick={() => {
-                handleClick(0), handleLogout();
-              }}
+              onClick={() => handleClick(2)}
             >
-              <Link href="/">Log out</Link>
-            </li>
-          ) : (
-            <></>
-          )}
-        </ul>
-        
-        <button onClick={toggleNavbar} className={`${classes.toggle__nav} ${toggle ? classes.toggle_true : null}`}>
-            <span className={`${classes.top_toggle} ${toggle ? classes.top_true : null}`}></span>
-            <span className={`${classes.toggle_middle} ${toggle ? classes.middle_true : null}`}></span>
-            <span className={`${classes.toggle_bottom} ${toggle ? classes.bottom_true : null}`}></span>
-        </button>
-      </div>
-      {toggle &&
-        <ul className={`${classes.mobile_nav} flex justify-center gap-x-10`}>
-          {!user && <li
-            className={`cursor-pointer mr-4 ${
-              active === "0" ? "text-white" : "text-[#8E9CF3]"
-            }`}
-            onClick={() => handleClick(0)}
-          >
-            <Link href="/">Home</Link>
-          </li>}
-          {!user && <li
-            className={`${classes.mobile_navlink} cursor-pointer mr-4 ${
-              active === "1" ? "text-white" : "text-[#8E9CF3]"
-            }`}
-            onClick={() => handleClick(1)}
-          >
-            <Link href="/features">Features</Link>
-          </li>}
-          {!user && <li
-            className={`${classes.mobile_navlink} cursor-pointer mr-4 ${
-              active === "2" ? "text-white" : "text-[#8E9CF3]"
-            }`}
-            onClick={() => handleClick(2)}
-          >
-            <Link href="/pricing">Pricing</Link>
-          </li>}
-          {!user && <li
-            className={`${classes.mobile_navlink} cursor-pointer mr-4 ${
-              active === "3" ? "text-[#fff]" : "text-[#8E9CF3]"
-            }`}
-            onClick={() => handleClick(3)}
-          >
-            <Link href="/contact">Contact us</Link>
-          </li>}
-          {/* {showLogin && (
-            <li
+              <Link href="/pricing">Pricing</Link>
+            </li>}
+            {!user && <li
               className={`${classes.mobile_navlink} cursor-pointer mr-4 ${
                 active === "3" ? "text-[#fff]" : "text-[#8E9CF3]"
               }`}
-              onClick={() => handleClick(4)}
+              onClick={() => handleClick(3)}
             >
-              <Link href="/auth/signin">Sign in</Link>
-            </li>
-          )} */}
-            {user ? (
-            <li
-              className={`${classes.mobile_navlink} cursor-pointer mr-4 ${
-                active === "3" ? "text-[#fff]" : "text-[#8E9CF3]"
-              }`}
-              onClick={() => handleClick(4)}
-            >
-              <Link href="/home">Dashboard</Link>
-            </li>
-          ) : (
-            <li
-              className={`${classes.mobile_navlink} cursor-pointer mr-4 ${
-                active === "4" ? "text-[#fff]" : "text-[#8E9CF3]"
-              }`}
-              onClick={() => handleClick(4)}
-            >
-              <Link href="/auth/signin">Sign in</Link>
-            </li>
-          )}
-           {user ? (
-            <li
-              className={`${classes.mobile_navlink} cursor-pointer mr-4 ${
-                active === "0" ? "text-[#fff]" : "text-[#8E9CF3]"
-              }`}
-              onClick={() => {
-                handleClick(0), handleLogout();
-              }}
-            >
-              <Link href="/">Log out</Link>
-            </li>
+              <Link href="/contact">Contact us</Link>
+            </li>}
+            {/* {showLogin && (
+              <li
+                className={`${classes.mobile_navlink} cursor-pointer mr-4 ${
+                  active === "3" ? "text-[#fff]" : "text-[#8E9CF3]"
+                }`}
+                onClick={() => handleClick(4)}
+              >
+                <Link href="/auth/signin">Sign in</Link>
+              </li>
+            )} */}
+              {user ? (
+              <li
+                className={`${classes.mobile_navlink} cursor-pointer mr-4 ${
+                  active === "3" ? "text-[#fff]" : "text-[#8E9CF3]"
+                }`}
+                onClick={() => handleClick(4)}
+              >
+                <Link href="/home">Dashboard</Link>
+              </li>
             ) : (
-              <></>
+              <li
+                className={`${classes.mobile_navlink} cursor-pointer mr-4 ${
+                  active === "4" ? "text-[#fff]" : "text-[#8E9CF3]"
+                }`}
+                onClick={() => handleClick(4)}
+              >
+                <Link href="/auth/signin">Sign in</Link>
+              </li>
             )}
-        </ul>
-      }
-      <main>{props.children}</main>
+            {user ? (
+              <li
+                className={`${classes.mobile_navlink} cursor-pointer mr-4 ${
+                  active === "0" ? "text-[#fff]" : "text-[#8E9CF3]"
+                }`}
+                onClick={() => {
+                  handleClick(0), handleLogout();
+                }}
+              >
+                <Link href="/">Log out</Link>
+              </li>
+              ) : (
+                <></>
+              )}
+          </ul>
+        }
+        <main>{props.children}</main>
+      </div>
+    }
     </>
-  );
 };
 
 export default HeaderMenu;
