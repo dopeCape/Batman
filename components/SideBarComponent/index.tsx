@@ -37,7 +37,7 @@ export default function SideBar() {
                     <List key={i}>
                       
                         <div className='flex flex-row items-center justify-around pr-6 mt-2 w-full' onClick={() => handleClick(i)}>
-                            <div className='flex w-full h-full  py-2'>
+                            <div className='flex w-full h-full  py-2 px-4'>
                             <ListItemIcon className='flex flex-row justify-center ' >
                                 <Image className='object-contain' alt={platform.name} width={26} height={22} src={platform.icon} />
                             </ListItemIcon>
