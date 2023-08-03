@@ -15,12 +15,11 @@ const SignIn = () => {
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
       setUser(user);
+      if (user && user.uid) {
+        window.location.href = "/home";
+      }
     });
   }, [user]);
-
-  if (user && user.uid) {
-    router.push("/home");
-  }
 
   const handleEmailChange = (event: ChangeEvent<HTMLInputElement>) => {
     setEmail(event.target.value);
