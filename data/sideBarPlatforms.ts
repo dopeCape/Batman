@@ -16,32 +16,32 @@ const platforms = [
       name: "Twitter",
       icon: '/platformIcons/twitterHQ.png',
       color: "#1DA1F2",
-      items: ["Item 4", "Item 5"]
+      items: ["Twitter Tweets", "Twitter Hashtags", "Twitter Bio"]
     },
     {
       name: "Instagram",
-      icon: '/platformIcons/instagramHiQ.png',
+      icon: '/platformIcons/instagramHiQi.png',
       color: "#C13584",
-      items: ["Item 6"]
+      items: ["Instagram Reels", "Instagram Captions", "Instagram Bio", "Instagram Hashtags"]
     },
     {
       name: "Linkedin",
       icon: '/platformIcons/linkednHQ.png',
       color: "#0077B5",
-      items: ["LnkeDi", "Item 8", "Item 9", "Item 10"]
+      items: ["LinkedIn Post", "LinkedIn Profile Optimization", "LinkedIn Articles"]
     },
     
     {
       name: "Facebook",
       icon: '/platformIcons/facebookHiQ.png',
       color: "#4267B2",
-      items: ["Item 7", "Item 8", "Item 9", "Item 10"]
+      items: ["Facebook Post", "Facebook Ad Copy", "Facebook Page Description"]
     },
     {
-        name: "Tiktok",
+        name: "TikTok",
         icon: '/platformIcons/tiktokHQ.png',
         color: "#FE2C55",
-        items: ["Item 7", "Item 8", "Item 9", "Item 10"]
+        items: ["TikTok Video", "TikTok Hashtags", "TikTok Captions"]
       }
   ];
 

@@ -26,8 +26,8 @@ export default function SideBar() {
     return (
         <div className='flex w-full bg-black h-full '>
             <div className='flex w-1/3 h-full bg-[#1B1D21] flex-col overflow-scroll'>
-            <div className='h-8 flex flex-row mt-4 mx-4 bg-[#232529] rounded-md'>
-                <SearchIcon className='text-white my-1 ml-2' />
+            <div className='h-8 flex flex-row mt-4 w-11/12 self-center bg-[#232529] rounded-md mb-2'>
+                <SearchIcon htmlColor='#A8AAB0' className=' my-1 ml-2' />
                 <input className=' bg-[#232529] rounded-md text-white outline-none pl-2' placeholder='Search' />
                 
                
@@ -36,18 +36,21 @@ export default function SideBar() {
                      
                     <List key={i}>
                       
-                        <ListItemButton className='flex flex-row' onClick={() => handleClick(i)}>
+                        <div className='flex flex-row items-center justify-around pr-6 mt-2 w-full' onClick={() => handleClick(i)}>
+                            <div className='flex w-full h-full  py-2'>
                             <ListItemIcon className='flex flex-row justify-center ' >
-                                <Image alt='' width={22} height={22} src={platform.icon} />
+                                <Image className='object-contain' alt={platform.name} width={26} height={22} src={platform.icon} />
                             </ListItemIcon>
                             <h1 className='text-white justify-center text-md'  >{platform.name}</h1>
+
+                            </div>
                             {openStates[i] ? <ExpandLess htmlColor='#FFFFFF' /> : <ExpandMore htmlColor='#FFFFFF' />}
-                        </ListItemButton>
+                        </div>
                         <Collapse in={openStates[i]} timeout="auto" unmountOnExit>
                             <List component="div" disablePadding>
                                 {platform.items.map((item, j) => (
-                                    <button className='flex w-full items-end  pl-14 ' key={j}>
-                                        <h1 className=' text-white pl-4 py-2 flex-row flex w-full text-left mb-4 text-md hover:border-r-2 border-gray-50 hover:bg-[#232529]' >{item}</h1>
+                                    <button className='flex w-full  pl-14 ' key={j}>
+                                        <h1 className=' text-white pl-4 py-2 flex-row flex w-full text-left mb-4 text-sm hover:border-r-2 border-gray-50 hover:bg-[#232529]' >{item}</h1>
                                     </button>
                                 ))}
                             </List>
@@ -55,7 +58,9 @@ export default function SideBar() {
                     </List>
                 ))}
             </div>
-            <div className='flex w-2/3 bg-[#232529]'></div>
+            <div className='flex w-2/3 bg-[#232529]'>
+                
+            </div>
         </div>
     )
 }
