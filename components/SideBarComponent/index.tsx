@@ -10,6 +10,7 @@ import Image from 'next/image';
 import platforms from '@/data/sideBarPlatforms';
 import SearchIcon from '@mui/icons-material/Search';
 import { Input } from '@mui/material';
+import MainSelector from '../ContentForm/mainSelector';
 // import InstagramIcon from '../../public/platformIcons/InstagramIcon.svg'
 export default function SideBar() {
 
@@ -17,9 +18,9 @@ export default function SideBar() {
 
 
     const [openStates, setOpenStates] = React.useState(platforms.map(() => false));
-
+    const [option, setOption] = useState("Youtube Video");
     const [searchText, setSearchText] = useState('');
-
+    const [form , setForm] = useState("");
     const handleSearchChange = (event: any) => {
         setSearchText(event.target.value);
     };
@@ -49,9 +50,9 @@ export default function SideBar() {
                 {searchText !== '' && (filteredPlatforms.map((platform, i) => (
                     <List key={i}>
                         {platform.items.map((item, j) => (
-                            <button className='flex w-full  pl-14 ' key={j}>
-                                <Image className='object-contain' alt={platform.name} width={26} height={22} src={platform.icon} />
-                                <h1 className=' text-white pl-4 py-2 flex-row flex w-full text-left mb-4 text-sm hover:border-r-2 border-gray-50 hover:bg-[#232529]' >{item}</h1>
+                            <button  onClick={()=>setOption(item)} className='flex w-full  pl-14' key={j}>
+                                <Image className='object-contain mt-1' alt={platform.name} width={26} height={22} src={platform.icon} />
+                                <h1 className=' text-white py-2 pl-4 flex-row flex w-full text-left mb-4 text-sm hover:border-r-2 border-gray-50 hover:bg-[#232529]' >{item}</h1>
                             </button>
                         ))
 
@@ -76,7 +77,7 @@ export default function SideBar() {
                         <Collapse in={openStates[i]} timeout="auto" unmountOnExit>
                             <List component="div" disablePadding>
                                 {platform.items.map((item, j) => (
-                                    <button className='flex w-full  pl-14 ' key={j}>
+                                    <button onClick={()=>setOption(item)} className='flex w-full  pl-14 ' key={j}>
                                         <h1 className=' text-white pl-4 py-2 flex-row flex w-full text-left mb-4 text-sm hover:border-r-2 border-gray-50 hover:bg-[#232529]' >{item}</h1>
                                     </button>
                                 ))}
@@ -86,7 +87,7 @@ export default function SideBar() {
                 ))}
             </div>
             <div className='flex w-2/3 bg-[#232529]'>
-
+                        <MainSelector platform={option}/>           
             </div>
         </div>
     )

@@ -10,6 +10,7 @@ const platforms = [
       name: "Youtube",
       icon: '/platformIcons/youtubeHQ.png',
       color: "#FF0000",
+      
       items: ["Youtube Video", "Youtube Shorts", "Youtube Title","Youtube Descriptions", "Youtube Tags", "Youtube Thumbnail"]
     },
     {

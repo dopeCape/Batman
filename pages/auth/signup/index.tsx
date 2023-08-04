@@ -18,7 +18,7 @@ const SignUp = () => {
     auth.onAuthStateChanged((user) => {
       setUser(user);
       if (user && user.uid) {
-        window.location.href = "/home";
+        window.location.href = "/homepage";
       }
     });
   }, [user]);
