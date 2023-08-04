@@ -1,7 +1,9 @@
 import React from 'react'
-
-export default function Form4() {
+type MainSelectorProps = {
+    title: string; // Adjust the type according to your use case
+  };
+export default function Form4({title}:MainSelectorProps) {
   return (
-    <div>Form4</div>
+    <div className='flex w-full h-full items-center justify-center'>form1{title}</div>
   )
 }

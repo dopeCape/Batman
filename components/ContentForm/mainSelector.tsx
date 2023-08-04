@@ -10,16 +10,16 @@ type MainSelectorProps = {
   
 export default function MinSelector({ platform }: MainSelectorProps) {
     if (platform === 'Youtube Tags'|| platform === 'Twitter Hashtags' || platform === 'TikTok Hashtags' || platform === 'Instagram Hashtags') {
-        return <Form1 />
+        return <Form1 title={platform} />
     }
     if (platform === 'LinkedIn Post'|| platform === 'LinkedIn Articles') {
-        return <Form2 />
+        return <Form2 title={platform}/>
     }
     if (platform === 'Youtube Thumbnail') {
-        return <Form3 />
+        return <Form3 title={platform}/>
     }
     else{
-        return <Form4 />
+        return <Form4 title={platform}/>
     }
   
 }
