@@ -4,6 +4,7 @@
 /node_modules
 /.pnp
 .pnp.js
+delete.txt
 
 # testing
 /coverage
