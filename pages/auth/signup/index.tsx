@@ -1,4 +1,4 @@
-import { useState, ChangeEvent } from "react";
+import { useState, ChangeEvent, useEffect } from "react";
 import Link from "next/link";
 import { useRouter, redirect } from "next/navigation";
 import { auth } from "@/firebase";
@@ -10,8 +10,18 @@ const SignUp = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
+  const [user, setUser] = useState<null | any>(null);
 
   const router = useRouter();
+
+  useEffect(() => {
+    auth.onAuthStateChanged((user) => {
+      setUser(user);
+      if (user && user.uid) {
+        window.location.href = "/home";
+      }
+    });
+  }, [user]);
 
   const handleEmailChange = (event: ChangeEvent<HTMLInputElement>) => {
     setEmail(event.target.value);

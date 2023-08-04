@@ -10,10 +10,10 @@ import { generateRealTimeToken } from "../auth";
 import tokens from "../public/icons/coins.png";
 import { Modal, Box } from "@mui/material";
 import { PlatformModal } from "@/components/modalStyle";
-import TwitterTime from "public/bestTimes/twitter.webp"
-import FacebookTime from "public/bestTimes/facebook.webp"
-import InstaTime from "public/bestTimes/insta.webp"
-import YoutubeTime from "public/bestTimes/youtube.webp"
+import TwitterTime from "public/bestTimes/twitter.webp";
+import FacebookTime from "public/bestTimes/facebook.webp";
+import InstaTime from "public/bestTimes/insta.webp";
+import YoutubeTime from "public/bestTimes/youtube.webp";
 type StaticImport = StaticImageData | string;
 export default function GPTResponse({
   platform,
@@ -26,13 +26,15 @@ export default function GPTResponse({
   const [open, setOpen] = useState(false);
   const [user, setUser] = useState<null | any>(null);
   const [openModal, setOpenModal] = useState(false);
-  const handleOpen = () =>{ setOpenModal(true); handleImageSelection()};
+  const handleOpen = () => {
+    setOpenModal(true);
+    handleImageSelection();
+  };
   const handleClose = () => setOpenModal(false);
   const [PlatformImage, setPlatfromImage] = useState<StaticImport>("");
   const [Socialplatform, setSocialPlatform] = useState<
     string | string[] | undefined
   >("");
-  console.log("++++++++++++++++++++" + platform);
   const handleTooltipClose = () => {
     setOpen(false);
   };
@@ -66,24 +68,20 @@ export default function GPTResponse({
   const handleBestTime = async () => {
     (await platform) ? setSocialPlatform(platform) : setSocialPlatform("");
   };
- 
-  const handleImageSelection=()=>{
-      if(Socialplatform == "twitter"){
-        setPlatfromImage(TwitterTime)
-      }
-      else if(Socialplatform == "facebook"){
-        setPlatfromImage(FacebookTime)
-      }
-      else if(Socialplatform == "instagram"){
-        setPlatfromImage(InstaTime)
-      }
-      else if(Socialplatform == "youtube"){
-        setPlatfromImage(YoutubeTime)
-      }
-      else{
-        setPlatfromImage(YoutubeTime)
-      }
-  }
+
+  const handleImageSelection = () => {
+    if (Socialplatform == "twitter") {
+      setPlatfromImage(TwitterTime);
+    } else if (Socialplatform == "facebook") {
+      setPlatfromImage(FacebookTime);
+    } else if (Socialplatform == "instagram") {
+      setPlatfromImage(InstaTime);
+    } else if (Socialplatform == "youtube") {
+      setPlatfromImage(YoutubeTime);
+    } else {
+      setPlatfromImage(YoutubeTime);
+    }
+  };
   return (
     <div className="bg-white py-12 px-4 md:px-12 w-full max-w-screen h-screen overflow-scroll">
       <div className="flex flex-row justify-between  ">
@@ -167,21 +165,17 @@ export default function GPTResponse({
         aria-describedby="modal-modal-description"
       >
         <Box sx={PlatformModal}>
-        <div className="w-full h-5/6 flex">
-        <Image
-        src={PlatformImage} // Path to the image from the public folder
-        alt="My Image"
-        className="w-full h-full object-contain"
-          />
-
-        </div>
-        <button
-           
+          <div className="w-full h-5/6 flex">
+            <Image
+              src={PlatformImage} // Path to the image from the public folder
+              alt="My Image"
+              className="w-full h-full object-contain"
+            />
+          </div>
+          <button
             className={`w-full h-10 bg-black mt-4 rounded-lg bg-gradient-to-l from-[#009FFD] to-[#2A2A72]`}
           >
-            <h1 className="text-white">
-             Continue
-            </h1>
+            <h1 className="text-white">Continue</h1>
           </button>
         </Box>
       </Modal>
