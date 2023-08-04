@@ -1,4 +1,5 @@
-import { Blocks, Growing, Journey, Prompts } from "@/components/LandingPageComponents/Sections";
+import { Blocks, Growing, Journey, Preview, Prompts } from "@/components/LandingPageComponents/Sections";
+import { ClassNames } from "@emotion/react";
 
 import React from "react";
 // import LandingPage from "./LandingPage";
@@ -8,6 +9,7 @@ const Home = () => {
     <div className="bg-black">
       <Blocks />
       <Growing />
+      <Preview />
       <Prompts />
       <Journey />
     </div>
