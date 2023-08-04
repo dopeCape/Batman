@@ -12,6 +12,7 @@ import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
 import styled from "styled-components";
 import { useRouter } from "next/router";
+<<<<<<< HEAD
 // import youtubeContent from "@/data/youtube";
 // import tiktokContent from "@/data/tiktok";
 // import InstagramContent from "@/data/instagram";
@@ -25,6 +26,17 @@ import { makeStyles } from "@material-ui/core/styles";
 // import { makeStyles } from "@mui/styles";
 // import { Button } from "@material-ui/core";
 import Link from "next/link";
+=======
+import { auth } from "@/firebase";
+import youtubeContent from "@/data/youtube";
+import tiktokContent from "@/data/tiktok";
+import InstagramContent from "@/data/instagram";
+import linkedInContent from "@/data/linkedin";
+import twitterContent from "@/data/twitter";
+import facebookContent from "@/data/facebook";
+import generalContent from "@/data/general";
+import { useState, useEffect } from "react";
+>>>>>>> 582ed07f311e264608bb93c104b73dd82b624faa
 
 const socialMediaPlatforms = [
   {
@@ -78,8 +90,6 @@ const Cards = styled(Card)`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  
-  
 `;
 
 const CardContents = styled(Card)`
@@ -97,7 +107,6 @@ const CardContents = styled(Card)`
   padding-bottom: 10px;
   max-width: 350px;
   height: 200px;
-  
 `;
 
 const DescriptionCard = styled.div`
@@ -119,6 +128,7 @@ const CardItemTitle = styled.h1`
   text-align: center;
 `;
 
+<<<<<<< HEAD
 
 
 // const Home: NextPage = () => {
@@ -773,6 +783,20 @@ const useStyles = makeStyles((theme) => ({
 
 const Home: NextPage = () => {
   const classes = useStyles();
+=======
+const Home: NextPage = () => {
+  const [user, setUser] = useState<null | any>(null);
+  const router = useRouter();
+>>>>>>> 582ed07f311e264608bb93c104b73dd82b624faa
+
+  useEffect(() => {
+    auth.onAuthStateChanged((user) => {
+      setUser(user);
+      if (!user && !user?.uid) {
+        window.location.href = "/";
+      }
+    });
+  }, [user]);
 
   return (
     <div className={classes.containCard}>

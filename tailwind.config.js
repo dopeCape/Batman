@@ -17,13 +17,13 @@ module.exports = {
         transparent: 'transparent',
         current: 'currentColor',
         'white': '#ffffff',
-        'dark': '#232529', 
+        'dark': '#1B1D21', 
         'grey': '#A7A7A7',
         'grey2': '#7D818B',
         'grey3': '#A8AAB0',
         'grey4': '#DFDFDF',
         'grey5': '#4E4E4E',
-        'grey6': '#3E4045',
+        'grey6': '#3E4045', 
         'blue': '#3247CF' 
       },
       spacing: {
