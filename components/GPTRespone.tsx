@@ -92,7 +92,18 @@ export default function GPTResponse({
         <h1 className="text-gray-800 text-2xl px-5 font-sans font-medium">
           Output
         </h1>
-        <Button variant="contained" startIcon={<SaveIcon />}>
+        <Button
+          variant="contained"
+          startIcon={<SaveIcon sx={{ color: "blue" }} />}
+          sx={{
+            textTransform: "none",
+            backgroundColor: "rgba(220, 220, 220, 0.8)",
+            color: "blue",
+            "&:hover": {
+              backgroundColor: "rgba(220, 220, 220, 1)",
+            },
+          }}
+        >
           Save as Draft
         </Button>
       </div>
@@ -100,10 +111,28 @@ export default function GPTResponse({
 
       {/* Edit and Repurpose Buttons */}
       <div className="flex flex-row justify-end space-x-2 mx-5 mb-4">
-        <Button variant="text">Edit</Button>
-        <Button variant="text">Repurpose</Button>
-      </div>
+        <Button
+          variant="text"
+          style={{
+            textDecoration: "underline",
+            textTransform: "none",
+            color: "grey",
+          }}
+        >
+          Edit
+        </Button>
 
+        <Button
+          variant="text"
+          style={{
+            textDecoration: "underline",
+            textTransform: "none",
+            color: "grey",
+          }}
+        >
+          Repurpose
+        </Button>
+      </div>
       {/* Response Section */}
       {response ? (
         response
