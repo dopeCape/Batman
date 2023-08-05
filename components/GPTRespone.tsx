@@ -14,7 +14,10 @@ import TwitterTime from "public/bestTimes/twitter.webp";
 import FacebookTime from "public/bestTimes/facebook.webp";
 import InstaTime from "public/bestTimes/insta.webp";
 import YoutubeTime from "public/bestTimes/youtube.webp";
+import SaveIcon from "@mui/icons-material/Save"; // Import SaveIcon from Material-UI
+
 type StaticImport = StaticImageData | string;
+
 export default function GPTResponse({
   platform,
 }: {
@@ -82,26 +85,26 @@ export default function GPTResponse({
       setPlatfromImage(YoutubeTime);
     }
   };
+
   return (
-    <div className="bg-white py-12 px-4 md:px-12 w-full max-w-screen h-screen overflow-scroll">
-      <div className="flex flex-row justify-between  ">
+    <div className="bg-white py-6 px-2 md:px-4 w-full max-w-screen h-screen">
+      <div className="flex flex-row justify-between items-center">
         <h1 className="text-gray-800 text-2xl px-5 font-sans font-medium">
           Output
         </h1>
-        <div className=" items-center justify-center flex px-4  bg-gray-200 rounded-xl mr-6 py-2 ">
-          <Image
-            src={tokens}
-            alt="token"
-            width={30}
-            height={30}
-            className="mr-2"
-          ></Image>
-          <h1 id="tokenShow" className="text-black">
-            {" "}
-            {Number(token)} Tokens
-          </h1>
-        </div>
+        <Button variant="contained" startIcon={<SaveIcon />}>
+          Save as Draft
+        </Button>
       </div>
+      <hr className="my-4 border-gray-500" />
+
+      {/* Edit and Repurpose Buttons */}
+      <div className="flex flex-row justify-end space-x-2 mx-5 mb-4">
+        <Button variant="text">Edit</Button>
+        <Button variant="text">Repurpose</Button>
+      </div>
+
+      {/* Response Section */}
       {response ? (
         response
           .split("\n")
@@ -158,6 +161,8 @@ export default function GPTResponse({
           <p className="text-black">response goes here</p>
         </div>
       )}
+
+      {/* Modal Section */}
       <Modal
         open={openModal}
         onClose={handleClose}
