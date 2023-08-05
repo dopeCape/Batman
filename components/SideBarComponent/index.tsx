@@ -40,10 +40,10 @@ export default function SideBar() {
     };
     return (
         <div className='flex w-full bg-black h-full '>
-            <div className='flex w-1/3 h-full bg-[#1B1D21] flex-col overflow-scroll'>
-                <div className='h-8 flex flex-row mt-4 w-11/12 self-center bg-[#232529] rounded-md mb-2'>
+            <div className='flex w-1/3 h-full dark:bg-[#1B1D21] bg-[#FFFFFF] flex-col overflow-scroll'>
+                <div className='h-8 flex flex-row mt-4 w-11/12 self-center dark:bg-[#232529] bg-[#F2F2F2] rounded-md mb-2'>
                     <SearchIcon htmlColor='#A8AAB0' className=' my-1 ml-2' />
-                    <input onChange={handleSearchChange} className=' bg-[#232529] rounded-md text-white outline-none pl-2' placeholder='Search' />
+                    <input onChange={handleSearchChange} className=' dark:bg-[#232529] bg-[#F2F2F2] rounded-md  outline-none pl-2' placeholder='Search' />
 
 
                 </div>
@@ -52,7 +52,7 @@ export default function SideBar() {
                         {platform.items.map((item, j) => (
                             <button  onClick={()=>setOption(item)} className='flex w-full  pl-14' key={j}>
                                 <Image className='object-contain mt-1' alt={platform.name} width={26} height={22} src={platform.icon} />
-                                <h1 className=' text-white py-2 pl-4 flex-row flex w-full text-left mb-4 text-sm hover:border-r-2 border-gray-50 hover:bg-[#232529]' >{item}</h1>
+                                <h1 className=' dark:text-white text-black py-2 pl-4 flex-row flex w-full text-left mb-4 text-sm hover:border-r-4 dark:border-gray-50 border-[#3247CF] dark:hover:bg-[#232529] hover:bg-[#F2F2F2]' >{item}</h1>
                             </button>
                         ))
 
@@ -69,16 +69,16 @@ export default function SideBar() {
                                 <ListItemIcon className='flex flex-row justify-center ' >
                                     <Image className='object-contain' alt={platform.name} width={26} height={22} src={platform.icon} />
                                 </ListItemIcon>
-                                <h1 className='text-white justify-center text-md'  >{platform.name}</h1>
+                                <h1 className=' dark:text-white justify-center text-md'  >{platform.name}</h1>
 
                             </div>
-                            {openStates[i] ? <ExpandLess htmlColor='#FFFFFF' /> : <ExpandMore htmlColor='#FFFFFF' />}
+                            {openStates[i] ? <ExpandLess  className='dark:text-white text-black' /> : <ExpandMore  className='dark:text-white text-black' />}
                         </div>
                         <Collapse in={openStates[i]} timeout="auto" unmountOnExit>
                             <List component="div" disablePadding>
                                 {platform.items.map((item, j) => (
                                     <button onClick={()=>setOption(item)} className='flex w-full  pl-14 ' key={j}>
-                                        <h1 className=' text-white pl-4 py-2 flex-row flex w-full text-left mb-4 text-sm hover:border-r-2 border-gray-50 hover:bg-[#232529]' >{item}</h1>
+                                        <h1 className='dark:text-white pl-4 py-2 flex-row flex w-full text-left mb-4 text-sm hover:border-r-4 dark:border-gray-50 border-[#3247CF] dark:hover:bg-[#232529] hover:bg-[#F2F2F2]' >{item}</h1>
                                     </button>
                                 ))}
                             </List>
@@ -86,7 +86,7 @@ export default function SideBar() {
                     </List>
                 ))}
             </div>
-            <div className='flex w-2/3 bg-[#232529]'>
+            <div className='flex w-2/3 dark:bg-[#232529] bg-[#F2F2F2]'>
                         <MainSelector platform={option}/>           
             </div>
         </div>
