@@ -101,7 +101,7 @@ export default function LoginNavBar() {
     '& .MuiSwitch-track': {
       borderRadius: 26 / 2,
       
-      backgroundColor: theme.palette.mode === 'light' ? '#E9E9EA' : '#39393D',
+      backgroundColor: theme.palette.mode === 'light' ? '#A7A7A7' : '#A7A7A7',
       opacity: 1,
       transition: theme.transitions.create(['background-color'], {
         duration: 500,
