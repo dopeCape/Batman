@@ -17,6 +17,7 @@ import { useEffect } from "react";
 import NavigationBar from "@/components/NavigationBar";
 import Head from "next/head";
 import { auth } from "@/firebase";
+import { ThemeProvider } from 'next-themes';
 import LoginNavBar from "@/components/LoginNavBar";
 
 export default function App({ Component, pageProps }: AppProps) {
@@ -29,11 +30,13 @@ export default function App({ Component, pageProps }: AppProps) {
       <Head>
         <title>Metridash-Say BYE-BYE to creative blocks!</title>
       </Head>
+      <ThemeProvider attribute="class">
       <SessionProvider session={pageProps.session}>
         <NavigationBar>
           <Component {...pageProps} />
         </NavigationBar>
       </SessionProvider>
+      </ThemeProvider>
     </>
   );
 }
