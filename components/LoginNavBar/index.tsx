@@ -101,10 +101,10 @@ export default function LoginNavBar() {
   };
   return (
 
-    <div className='w-screen h-20 dark:bg-[#1B1D21] flex bg-[#fff] flex-row items-center justify-evenly'>
+    <div className='w-screen h-20 dark:bg-[#1B1D21] flex bg-[#fff] flex-row items-center justify-around'>
       <h1 className='font-bold text-3xl bg-gradient-to-r text-transparent from-[#00C5D7] to-[#0077BE] bg-clip-text'>Metridash</h1>
-      <NavLink href="/homepage">Dashboard</NavLink>
-      <NavLink href="/homepage/contentCreation">Content creation</NavLink>
+      <NavLink href="/homepage">Content Creation</NavLink>
+      <NavLink href="/homepage/Dashboard">Dashboard</NavLink>
       <NavLink href="/homepage/schedule">Schedule</NavLink>
       <NavLink href="/homepage/drafts">Drafts</NavLink>
       <FormControlLabel
