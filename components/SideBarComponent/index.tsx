@@ -12,11 +12,8 @@ import SearchIcon from '@mui/icons-material/Search';
 import { Input } from '@mui/material';
 import MainSelector from '../ContentForm/mainSelector';
 // import InstagramIcon from '../../public/platformIcons/InstagramIcon.svg'
+
 export default function SideBar() {
-
-
-
-
     const [openStates, setOpenStates] = React.useState(platforms.map(() => false));
     const [option, setOption] = useState("Youtube Video");
     const [searchText, setSearchText] = useState('');

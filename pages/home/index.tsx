@@ -12,21 +12,19 @@ import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
 import styled from "styled-components";
 import { useRouter } from "next/router";
-<<<<<<< HEAD
 // import youtubeContent from "@/data/youtube";
 // import tiktokContent from "@/data/tiktok";
 // import InstagramContent from "@/data/instagram";
 // import linkedInContent from "@/data/linkedin";
-import twitterContent from "@/data/twitter";
-import facebookContent from "@/data/facebook";
-import generalContent from "@/data/general";
+// import twitterContent from "@/data/twitter";
+// import facebookContent from "@/data/facebook";
+// import generalContent from "@/data/general";
 // import { Card, CardContent, Typography, Grid } from "@material-ui/core";
 import { CardContent } from "@mui/material";
 import { makeStyles } from "@material-ui/core/styles";
 // import { makeStyles } from "@mui/styles";
 // import { Button } from "@material-ui/core";
 import Link from "next/link";
-=======
 import { auth } from "@/firebase";
 import youtubeContent from "@/data/youtube";
 import tiktokContent from "@/data/tiktok";
@@ -36,7 +34,6 @@ import twitterContent from "@/data/twitter";
 import facebookContent from "@/data/facebook";
 import generalContent from "@/data/general";
 import { useState, useEffect } from "react";
->>>>>>> 582ed07f311e264608bb93c104b73dd82b624faa
 
 const socialMediaPlatforms = [
   {
@@ -128,7 +125,6 @@ const CardItemTitle = styled.h1`
   text-align: center;
 `;
 
-<<<<<<< HEAD
 
 
 // const Home: NextPage = () => {
@@ -591,7 +587,7 @@ const CardItemTitle = styled.h1`
 //     </Grid>
 // ];
 
-const youtubeContent = [
+const youtube = [
   {
     id: "m1",
     title: "YouTube is a great platform",
@@ -622,7 +618,7 @@ const youtubeContent = [
     },
 ];
 
-const tiktokContent = [
+const tiktok = [
   {
     id: "m1",
     title: "Tiktok is a great platform",
@@ -653,7 +649,7 @@ const tiktokContent = [
   },
 ];
 
-const InstagramContent = [
+const Instagram = [
   {
     id: "m1",
     title: "Instagram is a great platform",
@@ -684,7 +680,7 @@ const InstagramContent = [
   },
 ];
 
-const linkedInContent = [
+const linkedIn = [
   {
     id: "m2",
     title: "LinkedIn is a great platform",
@@ -781,13 +777,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+
 const Home: NextPage = () => {
   const classes = useStyles();
-=======
-const Home: NextPage = () => {
   const [user, setUser] = useState<null | any>(null);
   const router = useRouter();
->>>>>>> 582ed07f311e264608bb93c104b73dd82b624faa
 
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
@@ -795,7 +789,7 @@ const Home: NextPage = () => {
       if (!user && !user?.uid) {
         window.location.href = "/";
       }
-    });
+    })
   }, [user]);
 
   return (
@@ -807,7 +801,7 @@ const Home: NextPage = () => {
             <h3>YouTube</h3>
           </Typography>
           <div className={classes.descriptionCard}>
-            {youtubeContent.map((content) => {
+            {youtube.map((content) => {
               return (
                 <CardContent key={content.id} className={classes.cardContent}>
                   <button>
@@ -834,7 +828,7 @@ const Home: NextPage = () => {
             <h3>Twitter</h3>
           </Typography>
           <div className={classes.descriptionCard}>
-            {tiktokContent.map((content) => {
+            {tiktok.map((content) => {
               return (
                 <CardContent key={content.id} className={classes.cardContent}>
                   <button>
@@ -861,7 +855,7 @@ const Home: NextPage = () => {
             <h3>LinkedIn</h3>
           </Typography>
           <div className={classes.descriptionCard}>
-            {linkedInContent.map((content) => {
+            {linkedIn.map((content) => {
               return (
                 <CardContent key={content.id} className={classes.cardContent}>
                   <button>
@@ -888,7 +882,7 @@ const Home: NextPage = () => {
             <h3>TikTok</h3>
           </Typography>
           <div className={classes.descriptionCard}>
-            {tiktokContent.map((content) => {
+            {tiktok.map((content) => {
               return (
                 <CardContent key={content.id} className={classes.cardContent}>
                   <button>
@@ -915,7 +909,7 @@ const Home: NextPage = () => {
             <h3>Instagram</h3>
           </Typography>
           <div className={classes.descriptionCard}>
-            {InstagramContent.map((content) => {
+            {Instagram.map((content) => {
               return (
                 <CardContent key={content.id} className={classes.cardContent}>
                   <button>

@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { useRouter } from "next/router";
 import { useState } from 'react';
 import { Logout } from '@/auth';
-import { useTheme } from 'next-themes';
+import { useTheme } from "next-themes";
 import { styled } from '@mui/material/styles';
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -24,7 +24,7 @@ export default function LoginNavBar() {
   const [showSettings, setShowSettings] = useState(false);
   const [toggle, setToggle] = useState(true);
 
-  const toggleLogout = (e) => {
+  const toggleLogout = (e:any) => {
           e.preventDefault();
           setShowSettings(prev => !prev);
         };

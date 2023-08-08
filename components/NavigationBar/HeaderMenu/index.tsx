@@ -7,7 +7,7 @@ import { useRouter } from "next/router";
 import { Logout } from "../../../auth";
 import { Auth } from "firebase/auth";
 import { auth } from "@/firebase";
-import { firestore } from "firebase-admin";
+// import { firestore } from "firebase-admin";
 import React, { useEffect, useState } from "react";
 import classes from "./index.module.css";
 import LoginNavBar from "@/components/LoginNavBar";
