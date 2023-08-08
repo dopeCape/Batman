@@ -15,8 +15,8 @@ import MainSelector from '../ContentForm/mainSelector';
 export default function SideBar() {
 
 
-
-
+    const [focusedItem, setFocusedItem] = useState<string | null>(null);
+    const [focusedButton, setFocusedButton] = useState(null);
     const [openStates, setOpenStates] = React.useState(platforms.map(() => false));
     const [option, setOption] = useState("Youtube Video");
     const [searchText, setSearchText] = useState('');
@@ -38,6 +38,10 @@ export default function SideBar() {
         newOpenStates[index] = !newOpenStates[index];
         setOpenStates(newOpenStates);
     };
+    const handleItemClick = (item: string) => {
+        setOption(item);
+        setFocusedItem(item);
+      };
     return (
         <div className='flex w-full bg-black h-full '>
             <div className='flex w-1/3 h-full dark:bg-[#1B1D21] bg-[#FFFFFF] flex-col overflow-scroll'>
@@ -47,7 +51,7 @@ export default function SideBar() {
 
 
                 </div>
-                {searchText !== '' && (filteredPlatforms.map((platform, i) => (
+                {/* {searchText !== '' && (filteredPlatforms.map((platform, i) => (
                     <List key={i}>
                         {platform.items.map((item, j) => (
                             <button  onClick={()=>setOption(item)} className='flex w-full  pl-14' key={j}>
@@ -58,7 +62,25 @@ export default function SideBar() {
 
                         }
                     </List>
-                )))}
+                )))} */}
+                 {searchText !== '' && (filteredPlatforms.map((platform, i) => (
+        <List key={i}>
+          {platform.items.map((item, j) => (
+            <button
+              onClick={() => handleItemClick(item)}
+              className={`flex w-full  pl-14 ${
+                focusedItem === item ? 'bg-[#232529] border-r-4 dark:border-gray-50 border-[#3247CF] dark:bg-[#232529]' : 'hover:bg-[#F2F2F2] hover:border-r-4 dark:border-gray-50 border-[#3247CF] dark:hover:bg-[#232529]'
+              }`}
+              key={j}
+            >
+              <Image className='object-contain mt-1' alt={platform.name} width={26} height={22} src={platform.icon} />
+              <h1 className={`dark:text-white text-black py-2 pl-4 flex-row flex w-full text-left mb-4 text-sm ${
+                focusedItem === item ? 'text-black' : ''
+              }`} >{item}</h1>
+            </button>
+          ))}
+        </List>
+      )))}
 
                 {platforms.map((platform, i) => (
 
@@ -69,17 +91,26 @@ export default function SideBar() {
                                 <ListItemIcon className='flex flex-row justify-center ' >
                                     <Image className='object-contain' alt={platform.name} width={26} height={22} src={platform.icon} />
                                 </ListItemIcon>
-                                <h1 className=' dark:text-white justify-center text-md'  >{platform.name}</h1>
+                                <h1 className=' dark:text-white justify-center text-base font-medium'  >{platform.name}</h1>
 
                             </div>
                             {openStates[i] ? <ExpandLess  className='dark:text-white text-black' /> : <ExpandMore  className='dark:text-white text-black' />}
                         </div>
                         <Collapse in={openStates[i]} timeout="auto" unmountOnExit>
-                            <List component="div" disablePadding>
+                            <List  component="div" disablePadding>
                                 {platform.items.map((item, j) => (
-                                    <button onClick={()=>setOption(item)} className='flex w-full  pl-14 ' key={j}>
-                                        <h1 className='dark:text-white pl-4 py-2 flex-row flex w-full text-left mb-4 text-sm hover:border-r-4 dark:border-gray-50 border-[#3247CF] dark:hover:bg-[#232529] hover:bg-[#F2F2F2]' >{item}</h1>
-                                    </button>
+                                   <button
+                                   onClick={() => handleItemClick(item)}
+                                   className={`flex  w-full  pl-20 ${
+                                     focusedItem === item ? 'bg-[#F2F2F2] border-r-4 dark:border-gray-50 border-[#3247CF] dark:bg-[#232529]' : 'hover:bg-[#F2F2F2] hover:border-r-4 dark:border-gray-50 border-[#3247CF] dark:hover:bg-[#232529]'
+                                   }`}
+                                   key={j}
+                                 >
+                                  
+                                   <h1 className={`dark:text-white text-black py-1 pl-4 flex-row flex w-full text-left my-4 text-sm ${
+                                     focusedItem === item ? 'text-black' : ''
+                                   }`} >{item}</h1>
+                                 </button>
                                 ))}
                             </List>
                         </Collapse>
