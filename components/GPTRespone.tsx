@@ -94,13 +94,24 @@ export default function GPTResponse({
         </h1>
         <Button
           variant="contained"
-          startIcon={<SaveIcon sx={{ color: "blue" }} />}
+          startIcon={
+            <div
+              style={{
+                backgroundImage: `url('/images/draft.png')`, // Assuming 'draft.png' is in the 'public/images' folder
+                width: "24px",
+                height: "24px",
+                backgroundSize: "contain",
+                backgroundRepeat: "no-repeat",
+                backgroundPosition: "center",
+              }}
+            />
+          }
           sx={{
             textTransform: "none",
-            backgroundColor: "rgba(220, 220, 220, 0.8)",
-            color: "blue",
+            backgroundColor: "#D0D8F5",
+            color: "#1E388B",
             "&:hover": {
-              backgroundColor: "rgba(220, 220, 220, 1)",
+              backgroundColor: "#D0D8F5",
             },
           }}
         >
@@ -109,7 +120,6 @@ export default function GPTResponse({
       </div>
       <hr className="my-4 border-gray-500" />
 
-      {/* Edit and Repurpose Buttons */}
       <div className="flex flex-row justify-end space-x-2 mx-5 mb-4">
         <Button
           variant="text"
@@ -121,7 +131,6 @@ export default function GPTResponse({
         >
           Edit
         </Button>
-
         <Button
           variant="text"
           style={{
@@ -133,65 +142,66 @@ export default function GPTResponse({
           Repurpose
         </Button>
       </div>
-      {/* Response Section */}
-      {response ? (
-        response
-          .split("\n")
-          .filter((e) => e)
-          .map((e, i) => {
-            if (e) {
-              return (
-                <div
-                  key={i}
-                  className={`flex mx-5 ${
-                    e.match(/[0-9]\./) ? "mb-2" : "mb-10"
-                  } ${
-                    i == 0 ? "mt-10" : "mt-0"
-                  } bg-gray-200 px-4 py-5 rounded-md justify-between `}
-                >
-                  <p className="text-black">{e.replace(/"/g, "")}</p>
-                  <div className="flex flex-col">
-                    {Socialplatform === "rewrite" ||
-                    Socialplatform === "repurpose" ? null : (
-                      <Button
-                        color="error"
-                        onClick={() => {
-                          handleOpen();
-                        }}
-                        className="mr-2"
-                      >
-                        Post
-                      </Button>
-                    )}
-                    <ClickAwayListener onClickAway={handleTooltipClose}>
-                      <div>
-                        <Tooltip
-                          PopperProps={{
-                            disablePortal: true,
-                          }}
-                          onClose={handleTooltipClose}
-                          open={open}
-                          disableFocusListener
-                          disableHoverListener
-                          disableTouchListener
-                          title="Copied!"
-                        >
-                          <Button onClick={() => copyText(e)}>Copy</Button>
-                        </Tooltip>
-                      </div>
-                    </ClickAwayListener>
-                  </div>
-                </div>
-              );
-            }
-          })
-      ) : (
-        <div className="flex mx-5 my-10 bg-gray-200 px-5 py-5 rounded-md">
-          <p className="text-black">response goes here</p>
-        </div>
-      )}
 
-      {/* Modal Section */}
+      <div className="flex flex-col items-center mt-10">
+        {response ? (
+          response
+            .split("\n")
+            .filter((e) => e)
+            .map((e, i) => {
+              if (e) {
+                return (
+                  <div
+                    key={i}
+                    className={`flex mx-5 ${
+                      e.match(/[0-9]\./) ? "mb-2" : "mb-10"
+                    } ${
+                      i == 0 ? "mt-10" : "mt-0"
+                    } bg-gray-200 px-4 py-5 rounded-md justify-between `}
+                  >
+                    <p className="text-black">{e.replace(/"/g, "")}</p>
+                    <div className="flex flex-col">
+                      {Socialplatform === "rewrite" ||
+                      Socialplatform === "repurpose" ? null : (
+                        <Button
+                          color="error"
+                          onClick={() => {
+                            handleOpen();
+                          }}
+                          className="mr-2"
+                        >
+                          Post
+                        </Button>
+                      )}
+                      <ClickAwayListener onClickAway={handleTooltipClose}>
+                        <div>
+                          <Tooltip
+                            PopperProps={{
+                              disablePortal: true,
+                            }}
+                            onClose={handleTooltipClose}
+                            open={open}
+                            disableFocusListener
+                            disableHoverListener
+                            disableTouchListener
+                            title="Copied!"
+                          >
+                            <Button onClick={() => copyText(e)}>Copy</Button>
+                          </Tooltip>
+                        </div>
+                      </ClickAwayListener>
+                    </div>
+                  </div>
+                );
+              }
+            })
+        ) : (
+          <div className="flex mx-5 my-10 px-5 py-5 rounded-md">
+            <p className="text-black text-center">response goes here</p>
+          </div>
+        )}
+      </div>
+
       <Modal
         open={openModal}
         onClose={handleClose}
@@ -201,7 +211,7 @@ export default function GPTResponse({
         <Box sx={PlatformModal}>
           <div className="w-full h-5/6 flex">
             <Image
-              src={PlatformImage} // Path to the image from the public folder
+              src={PlatformImage}
               alt="My Image"
               className="w-full h-full object-contain"
             />
