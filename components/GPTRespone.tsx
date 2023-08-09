@@ -89,7 +89,7 @@ export default function GPTResponse({
   return (
     <div className="bg-white py-6 px-2 md:px-4 w-full max-w-screen h-screen">
       <div className="flex flex-row justify-between items-center">
-        <h1 className="text-gray-800 text-2xl px-5 font-sans font-medium">
+        <h1 className="text-[#3247CF] text-2xl px-5 font-sans font-medium">
           Output
         </h1>
         <Button
@@ -118,7 +118,7 @@ export default function GPTResponse({
           Save as Draft
         </Button>
       </div>
-      <hr className="my-4 border-gray-500" />
+      <hr className="my-4 #DBD7D7" />
 
       <div className="flex flex-row justify-end space-x-2 mx-5 mb-4">
         <Button
