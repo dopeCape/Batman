@@ -87,9 +87,9 @@ export default function GPTResponse({
   };
 
   return (
-    <div className="bg-white py-6 px-2 md:px-4 w-full max-w-screen h-screen">
+    <div className="dark:bg-[#1B1D21] bg-white py-6 px-2 md:px-4 w-full max-w-screen h-screen">
       <div className="flex flex-row justify-between items-center">
-        <h1 className="text-[#3247CF] text-2xl px-5 font-sans font-medium">
+        <h1 className="dark:text-white text-[#3247CF] text-2xl px-5 font-sans font-medium">
           Output
         </h1>
         <Button
@@ -159,7 +159,7 @@ export default function GPTResponse({
                       i == 0 ? "mt-10" : "mt-0"
                     } bg-gray-200 px-4 py-5 rounded-md justify-between `}
                   >
-                    <p className="text-black">{e.replace(/"/g, "")}</p>
+                    <p className="dark:text-white text-black">{e.replace(/"/g, "")}</p>
                     <div className="flex flex-col">
                       {Socialplatform === "rewrite" ||
                       Socialplatform === "repurpose" ? null : (
@@ -196,8 +196,8 @@ export default function GPTResponse({
               }
             })
         ) : (
-          <div className="flex mx-5 my-10 px-5 py-5 rounded-md">
-            <p className="text-black text-center">response goes here</p>
+          <div className="flex mx-5 my-10 px-5 py-5 rounded-md items-center justify-center">
+            <p className="dark:text-white text-black text-center">response goes here</p>
           </div>
         )}
       </div>

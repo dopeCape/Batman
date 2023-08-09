@@ -51,18 +51,7 @@ export default function SideBar() {
 
 
                 </div>
-                {/* {searchText !== '' && (filteredPlatforms.map((platform, i) => (
-                    <List key={i}>
-                        {platform.items.map((item, j) => (
-                            <button  onClick={()=>setOption(item)} className='flex w-full  pl-14' key={j}>
-                                <Image className='object-contain mt-1' alt={platform.name} width={26} height={22} src={platform.icon} />
-                                <h1 className=' dark:text-white text-black py-2 pl-4 flex-row flex w-full text-left mb-4 text-sm hover:border-r-4 dark:border-gray-50 border-[#3247CF] dark:hover:bg-[#232529] hover:bg-[#F2F2F2]' >{item}</h1>
-                            </button>
-                        ))
-
-                        }
-                    </List>
-                )))} */}
+               
                  {searchText !== '' && (filteredPlatforms.map((platform, i) => (
         <List key={i}>
           {platform.items.map((item, j) => (
