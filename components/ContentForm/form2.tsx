@@ -12,7 +12,7 @@ import { responseAtom } from "@/utils/store";
 import { Modal, Box } from "@mui/material";
 import { StyleModal } from "@/components/modalStyle";
 import PopUpCard from "@/components/PopUpCard";
-import { disabled } from "../../pages/home/VideoGen";
+import { disabled } from "./form4";
 type MainSelectorProps = {
   title: string; // Adjust the type according to your use case
 };
@@ -188,7 +188,7 @@ export default function Form2({title}:MainSelectorProps) {
   return (
     <div className="flex justify-center items-cente h-screen w-screen">
       <div className=" h-full flex dark:bg-[#232529] bg-gray-200 px-10 py-14 flex-col overflow-scroll">
-        <h1 className="font-sans text-2xl font-medium">
+        <h1 className="font-sans text-2xl font-bold">
           Generate {title}
         </h1>
         <h3 className="text-sm ">
@@ -197,7 +197,7 @@ export default function Form2({title}:MainSelectorProps) {
         </h3>
         <form onSubmit={(e) => e.preventDefault()} className="my-4">
           <div className="relative">
-            <h3 className="text-base mb-2">
+            <h3 className="text-lg my-3 dark:text-[#A7A7A7]">
               What&apos;s your post about? <span className="text-red-500">*</span>
             </h3>
             <input
@@ -213,7 +213,7 @@ export default function Form2({title}:MainSelectorProps) {
             </p>
           </div>
 
-          <h3 className="text-base mb-2 mt-3">Industry <span className="text-red-500">*</span></h3>
+          <h3 className="text-lg my-3 dark:text-[#A7A7A7]">Industry <span className="text-red-500">*</span></h3>
           <Autocomplete
             value={value1}
             onChange={(event: any, newValue: string | null) => {
@@ -249,7 +249,7 @@ export default function Form2({title}:MainSelectorProps) {
             )}
           />
 
-          <h3 className="text-base mb-2 mt-3">Post Type <span className="text-red-500">*</span></h3>
+          <h3 className="text-lg my-3 dark:text-[#A7A7A7]">Post Type <span className="text-red-500">*</span></h3>
           <Autocomplete
             value={value2}
             onChange={(event: any, newValue: string | null) => {
@@ -284,7 +284,7 @@ export default function Form2({title}:MainSelectorProps) {
             )}
           />
 
-          <h3 className="text-base mb-2 mt-3">Keywords <span className="text-red-500">*</span></h3>
+          <h3 className="text-lg my-3 dark:text-[#A7A7A7]">Keywords <span className="text-red-500">*</span></h3>
           <div className="flex flex-row">
             <input
               onChange={handleKeyword}
@@ -302,7 +302,7 @@ export default function Form2({title}:MainSelectorProps) {
           </div>
           {keywords.length > 0 ? <KeywordsComp /> : null}
 
-          <h3 className="text-base mb-2 mt-3">Tone <span className="text-red-500">*</span></h3>
+          <h3 className="text-lg my-3 dark:text-[#A7A7A7]">Tone <span className="text-red-500">*</span></h3>
           <Autocomplete
             className="dark:bg-[#1B1D21] bg-white rounded-md"
             value={value}
@@ -339,7 +339,7 @@ export default function Form2({title}:MainSelectorProps) {
           {inputValue === "Describe a tone" ? <TextInput /> : null}
 
           <div className="relative">
-            <h3 className="text-base mb-2 mt-3">Target audience <span className="text-red-500">*</span></h3>
+            <h3 className="text-lg my-3 dark:text-[#A7A7A7]">Target audience <span className="text-red-500">*</span></h3>
             <input
               className="w-full px-2 py-2 outline-none dark:bg-[#1B1D21]  rounded-lg  "
               type="text"

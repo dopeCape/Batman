@@ -181,21 +181,21 @@ type MainSelectorProps = {
     };
   
     return (
-      <div className=" dark:bg-[#232529] flex flex-col md:flex-row	justify-center items-center w-full h-full">
-        <div className="w-full h-screen flex bg-gray-200 px-10 py-16 flex-col">
-          <h1 className="text-black font-sans text-2xl font-medium">
+      <div className="  flex flex-col md:flex-row	justify-center items-center w-full h-full">
+        <div className="w-full h-screen flex dark:bg-[#232529] bg-gray-200 px-10 py-16 flex-col">
+          <h1 className=" font-sans text-2xl font-bold">
             Generate {title}
           </h1>
-          <h3 className="text-black text-sm ">
+          <h3 className=" text-sm ">
             Optimize your content for greater visibility and higher engagement.
           </h3>
           <form onSubmit={(e) => e.preventDefault()} className="my-4">
             <div className="relative">
-              <h3 className="text-black text-base mb-2">
-                What&apos;s your post about?*
+              <h3 className=" text-lg my-3 dark:text-[#A7A7A7]">
+                What&apos;s your post about? <span className='text-red-500'>*</span>
               </h3>
               <input
-                className="w-full px-2 py-2 rounded-lg border border-gray-300 text-gray-500"
+                className="w-full px-2 py-2 rounded-lg  dark:bg-[#1B1D21]"
                 type="text"
                 placeholder="gaming, fashion, animals etc."
                 onChange={(e) => {
@@ -207,68 +207,9 @@ type MainSelectorProps = {
               </p>
             </div>
   
-            <h3 className="text-black text-base mb-2 mt-3">Keywords*</h3>
-            <div className="flex flex-row">
-              <input
-                onChange={handleKeyword}
-                value={word}
-                className="w-4/5 px-2 py-2 border border-gray-300 rounded-lg text-gray-500"
-                type="text"
-                placeholder="gaming, fashion, animals"
-              ></input>
-              <button
-                onClick={addKeyword}
-                className="cursor-pointer bg-white w-1/5 flex justify-center items-center border border-gray-300 rounded-lg"
-              >
-                <AddCircle className="bg-gray-500 rounded-xl" />
-              </button>
-            </div>
-            {keywords.length > 0 ? <KeywordsComp /> : null}
   
-            <h3 className="text-black text-base mb-2 mt-3">Tone*</h3>
-            <Autocomplete
-              value={value}
-              onChange={(event: any, newValue: string | null) => {
-                setValue(newValue);
-              }}
-              inputValue={inputValue}
-              onInputChange={(event, newInputValue) => {
-                setInputValue(newInputValue);
-              }}
-              id="controllable-states-demo"
-              options={options}
-              sx={{ width: "60%", backgroundColor: "white" }}
-              renderInput={(params) => (
-                <TextField
-                  {...params}
-                  label="Select Tone"
-                  InputProps={{
-                    ...params.InputProps,
-                    style: {
-                      fontSize: "14px",
-                      color: "gray",
-                    },
-                  }}
-                />
-              )}
-            />
-            {inputValue === "Describe a tone" ? <TextInput /> : null}
-  
-            <div className="relative">
-              <h3 className="text-black text-base mb-2 mt-3">Target audience*</h3>
-              <input
-                className="w-full px-2 py-2 rounded-lg border border-gray-300 text-gray-500"
-                type="text"
-                value={targetAudience}
-                placeholder="travellers, gamers etc."
-                onChange={(e) => {
-                  setTargetAudience(e.target.value), handleTargetAudienceChange;
-                }}
-              ></input>
-              <p className="text-gray-700 text-xs absolute right-0 top-[18px]">
-                {targetAudienceCount}/200
-              </p>
-            </div>
+           
+           
   
             <button
               disabled={disabled(value, input, targetAudience, keywords)}
