@@ -4,7 +4,7 @@ import { useAtom } from "jotai";
 import ClickAwayListener from "@mui/material/ClickAwayListener";
 import Tooltip from "@mui/material/Tooltip";
 import Button from "@mui/material/Button";
-import { responseAtom } from "@/utils/store";
+import { responseAtom, platformAtom } from "@/utils/store";
 import { auth } from "@/firebase";
 import { generateRealTimeToken } from "../auth";
 import tokens from "../public/icons/coins.png";
@@ -15,6 +15,7 @@ import FacebookTime from "public/bestTimes/facebook.webp";
 import InstaTime from "public/bestTimes/insta.webp";
 import YoutubeTime from "public/bestTimes/youtube.webp";
 import SaveIcon from "@mui/icons-material/Save"; // Import SaveIcon from Material-UI
+import GPTResponseVideo from "./GPTResponseVideo";
 
 type StaticImport = StaticImageData | string;
 
@@ -24,6 +25,7 @@ export default function GPTResponse({
   platform?: string | string[] | undefined;
 }) {
   const [response] = useAtom(responseAtom);
+  const [platformAt] = useAtom(platformAtom)
   const [token, setToken] = useState(0);
   const [color, setColor] = useState("gray-400");
   const [open, setOpen] = useState(false);
@@ -86,11 +88,14 @@ export default function GPTResponse({
     }
   };
 
-  return (
+  return(
+   
     <div className="dark:bg-[#1B1D21] bg-white py-6 px-2 md:px-4 w-full max-w-screen h-screen">
+     
       <div className="flex flex-row justify-between items-center">
         <h1 className="dark:text-white text-[#3247CF] text-2xl px-5 font-sans font-medium">
           Output
+          
         </h1>
         <Button
           variant="contained"
@@ -224,5 +229,6 @@ export default function GPTResponse({
         </Box>
       </Modal>
     </div>
-  );
-}
+        
+    );}
+

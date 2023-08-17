@@ -105,7 +105,7 @@ type MainSelectorProps = {
   
   
   
-    const prompt = `Generate five ${title} about ${input} and should inclue keywords like ${keywords} with ${value} tone and with target audience ${targetAudience} make sure that every idea should be seperated.`;
+    const prompt = `Generate ${title} about ${input} and make them in a single sentence`;
   
     const handlePostAboutChange = (event: ChangeEvent<HTMLInputElement>) => {
       let value = event.target.value;
@@ -137,7 +137,7 @@ type MainSelectorProps = {
       e: React.MouseEvent<HTMLButtonElement, MouseEvent>
     ) => {
       e.preventDefault();
-      if (disabled(value, input, targetAudience, keywords)) return;
+      if (disabled(input)) return;
       setLoading(true);
       const tk = await getUserToken(user);
       if (Number(tk) < token) {
@@ -199,7 +199,7 @@ type MainSelectorProps = {
                 type="text"
                 placeholder="gaming, fashion, animals etc."
                 onChange={(e) => {
-                  setInput(e.target.value), handlePostAboutChange;
+                  setInput(e.target.value), handlePostAboutChange(e);
                 }}
               ></input>
               <p className="text-gray-700 text-xs absolute right-0 top-[18px]">
@@ -212,10 +212,10 @@ type MainSelectorProps = {
            
   
             <button
-              disabled={disabled(value, input, targetAudience, keywords)}
+              disabled={disabled(input)}
               onClick={generateResponse}
               className={`w-full h-10 bg-black mt-10 rounded-lg bg-gradient-to-l from-[#009FFD] to-[#2A2A72] ${
-                disabled(value, input, targetAudience, keywords) &&
+                disabled(input) &&
                 "cursor-not-allowed"
               }`}
             >

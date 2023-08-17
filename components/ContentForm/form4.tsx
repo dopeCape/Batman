@@ -8,7 +8,7 @@ import Autocomplete from "@mui/material/Autocomplete";
 import GPTResponseVideo from "@/components/GPTResponseVideo";
 import { useAtom } from "jotai";
 import { updateTokens, readTokens, getUserToken } from "../../auth";
-import { responseAtom } from "@/utils/store";
+import { platformAtom, responseAtom } from "@/utils/store";
 import { auth } from "@/firebase";
 import { Modal, Box } from "@mui/material";
 import { StyleModal } from "@/components/modalStyle";
@@ -44,6 +44,7 @@ export default function Form4({title}:MainSelectorProps) {
   const [targetAudience, setTargetAudience] = useState("");
   const [input, setInput] = useState("");
   const [_response, setResponse] = useAtom(responseAtom);
+  const [_platform, setPlatform] = useAtom(platformAtom);
   const [loading, setLoading] = useState(false);
   let token: number = 20;
   const user = auth.currentUser;
@@ -104,7 +105,7 @@ export default function Form4({title}:MainSelectorProps) {
 
 
 
-  const prompt = `Generate five ${title} about ${input} and should inclue keywords like ${keywords} with ${value} tone and with target audience ${targetAudience} make sure that every idea should be seperated.`;
+  const prompt = `Generate five ${title} about ${input} and should inclue keywords like ${keywords} with ${value} tone and with target audience ${targetAudience} make sure that every idea is be seperated.`;
 
   const handlePostAboutChange = (event: ChangeEvent<HTMLInputElement>) => {
     let value = event.target.value;
@@ -147,7 +148,7 @@ export default function Form4({title}:MainSelectorProps) {
       let usertk: number = Number(tk) - Number(token);
       // e.preventDefault();
       setResponse("");
-
+      setPlatform(title)
       await updateTokens(user, usertk);
       const res = await fetch("/api/promptChatGPT", {
         method: "POST",
@@ -198,7 +199,7 @@ export default function Form4({title}:MainSelectorProps) {
               type="text"
               placeholder="gaming, fashion, animals etc."
               onChange={(e) => {
-                setInput(e.target.value), handlePostAboutChange;
+                setInput(e.target.value), handlePostAboutChange(e);
               }}
             ></input>
             <p className="text-gray-700 text-xs absolute right-0 top-[18px]">
