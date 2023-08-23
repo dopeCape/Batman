@@ -90,9 +90,9 @@ export default function GPTResponse({
 
   return(
    
-    <div className="dark:bg-[#1B1D21] bg-white py-6 px-2 md:px-4 w-full max-w-screen h-screen">
+    <div className="dark:bg-[#1B1D21] bg-white py-6 px-2 md:px-4 w-full max-w-screen h-screen overflow-scroll">
      
-      <div className="flex flex-row justify-between items-center">
+      <div className="flex flex-row justify-between items-center w-full">
         <h1 className="dark:text-white text-[#3247CF] text-2xl px-5 font-sans font-medium">
           Output
           
@@ -148,7 +148,7 @@ export default function GPTResponse({
         </Button>
       </div>
 
-      <div className="flex flex-col items-center mt-10">
+      <div className="flex flex-col items-center w-full ">
         {response ? (
           response
             .split("\n")
@@ -162,9 +162,9 @@ export default function GPTResponse({
                       e.match(/[0-9]\./) ? "mb-2" : "mb-10"
                     } ${
                       i == 0 ? "mt-10" : "mt-0"
-                    } bg-gray-200 px-4 py-5 rounded-md justify-between `}
+                    } dark:bg-[#232529] bg-[#F2F2F2] px-4 py-5 rounded-md justify-between w-full  `}
                   >
-                    <p className="dark:text-white text-black">{e.replace(/"/g, "")}</p>
+                    <p className="">{e.replace(/"/g, "")}</p>
                     <div className="flex flex-col">
                       {Socialplatform === "rewrite" ||
                       Socialplatform === "repurpose" ? null : (

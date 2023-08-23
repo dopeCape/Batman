@@ -89,13 +89,13 @@ export default function Form2({title}:MainSelectorProps) {
         {keywords.map((word, index) => (
           <div
             key={index}
-            className="mx-1 px-2 border border-gray-300 bg-white flex-row flex"
+            className="mx-1 px-2 border border-gray-300  dark:bg-slate-400 bg-whiteflex-row flex"
           >
             <Cancel
-              className="bg-black w-0.5 h-0.5"
+              className=" w-0.5 h-0.5"
               onClick={() => removeKeyword(index)}
             />
-            <p className="text-gray-800">{word}</p>
+            <p className="dark:text-white text-gray-800">{word}</p>
           </div>
         ))}
       </div>
@@ -187,7 +187,7 @@ export default function Form2({title}:MainSelectorProps) {
 
   return (
     <div className="flex justify-center items-cente h-screen w-screen">
-      <div className=" h-full flex dark:bg-[#232529] bg-gray-200 px-10 py-14 flex-col overflow-scroll">
+      <div className=" h-full flex dark:bg-[#232529] bg-[#F2F2F2] px-10 py-14 flex-col overflow-scroll">
         <h1 className="font-sans text-2xl font-bold">
           Generate {title}
         </h1>

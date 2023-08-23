@@ -13,7 +13,7 @@ export default function HomePage() {
           <SideBar></SideBar>
         </div>
         <div className='flex w-6/12 h-full'>
-          {platformAt=="Youtube Video"?<GPTResponseVideo></GPTResponseVideo>:
+          {platformAt=="Youtube Video" || platformAt=="Youtube Shorts" || platformAt=="Instagram Reels" || platformAt=="TikTok Video"?<GPTResponseVideo></GPTResponseVideo>:
           <GPTResponse></GPTResponse>}
         </div>
     </div>

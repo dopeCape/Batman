@@ -80,13 +80,13 @@ export default function Form4({title}:MainSelectorProps) {
         {keywords.map((word, index) => (
           <div
             key={index}
-            className="mx-1 px-2 border border-gray-300 bg-white flex-row flex"
+            className="mx-1 px-2 border border-gray-300 dark:bg-slate-400 bg-white flex-row flex"
           >
             <Cancel
-              className="bg-black w-0.5 h-0.5"
+              className=" w-0.5 h-0.5"
               onClick={() => removeKeyword(index)}
             />
-            <p className="text-gray-800">{word}</p>
+            <p className="dark:text-white text-gray-800">{word}</p>
           </div>
         ))}
       </div>
@@ -182,7 +182,7 @@ export default function Form4({title}:MainSelectorProps) {
 
   return (
     <div className="flex flex-col md:flex-row	justify-center items-center w-full h-full">
-      <div className="w-full h-screen flex dark:bg-[#232529] bg-gray-200 px-10 py-16 flex-col">
+      <div className="w-full h-screen flex dark:bg-[#232529] bg-[#F2F2F2] px-10 py-16 flex-col">
         <h1 className=" font-sans text-2xl font-bold">
           Generate {title}
         </h1>
@@ -195,7 +195,7 @@ export default function Form4({title}:MainSelectorProps) {
               What&apos;s your post about? <span className='text-red-500'>*</span>
             </h3>
             <input
-              className="w-full px-2 py-2 rounded-lg bg-[#1B1D21]"
+              className="w-full px-2 py-2 rounded-lg dark:bg-[#1B1D21] bg-[#FFFFFF]"
               type="text"
               placeholder="gaming, fashion, animals etc."
               onChange={(e) => {
@@ -212,7 +212,7 @@ export default function Form4({title}:MainSelectorProps) {
             <input
               onChange={handleKeyword}
               value={word}
-              className="w-4/5 px-2 py-2 bg-[#1B1D21] rounded-lg "
+              className="w-4/5 px-2 py-2 dark:bg-[#1B1D21] bg-[#FFFFFF] rounded-lg "
               type="text"
               placeholder="gaming, fashion, animals"
             ></input>
@@ -266,12 +266,12 @@ export default function Form4({title}:MainSelectorProps) {
           <div className="relative">
             <h3 className=" text-lg my-3 dark:text-[#A7A7A7]">Target audience <span className='text-red-500'>*</span></h3>
             <input
-              className="w-full px-2 py-2 rounded-lg  bg-[#1B1D21]"
+              className="w-full px-2 py-2 rounded-lg  dark:bg-[#1B1D21] bg-[#FFFFFF]"
               type="text"
               value={targetAudience}
               placeholder="travellers, gamers etc."
               onChange={(e) => {
-                setTargetAudience(e.target.value), handleTargetAudienceChange;
+                setTargetAudience(e.target.value), handleTargetAudienceChange(e);
               }}
             ></input>
             <p className="text-gray-700 text-xs absolute right-0 top-[18px]">
