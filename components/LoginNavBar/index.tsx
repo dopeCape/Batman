@@ -29,7 +29,7 @@ export default function LoginNavBar() {
   const [token, setToken] = useState();
 
   useEffect(() => {
-    auth.onAuthStateChanged(user => {
+    auth.onAuthStateChanged((user:any) => {
       setClient(user);
     })
   }, [client]);

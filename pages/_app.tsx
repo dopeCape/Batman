@@ -32,10 +32,7 @@ export default function App({ Component, pageProps }: AppProps) {
       </Head>
       <ThemeProvider attribute="class">
       <SessionProvider session={pageProps.session}>
-        {/* <NavigationBar>
-          <Component {...pageProps} />
-        </NavigationBar> */}
-        <NavigationBar></NavigationBar>
+        <NavigationBar />
         <Component {...pageProps} />
       </SessionProvider>
       </ThemeProvider>
