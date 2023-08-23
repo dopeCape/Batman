@@ -24,8 +24,9 @@ import user from "../../public/navbarIcons/user.png";
 
 export default function LoginNavBar() {
   const [showSettings, setShowSettings] = useState(false);
+  const User = auth.currentUser 
   const [toggle, setToggle] = useState(true);
-  const [client, setClient] = useState();
+  const [client, setClient] = useState<typeof User | null>(null);
   const [token, setToken] = useState();
 
   useEffect(() => {
@@ -185,12 +186,12 @@ export default function LoginNavBar() {
             {token} Tokens
           </span>
         </Link>
-        <div className='relative'>
+        <div className='relative bg-slate-300 rounded-3xl'>
                 <div onClick={toggleLogout} className='rounded-md p-1 flex flex-row items-center cursor-pointer'>
                   <Image src={user} alt='user' className='bg-grey rounded-2xl me-1' width={30} height={30} /> 
                   <Image src={profile} alt='user' width={10} height={10} /> 
                 </div>
-                {showSettings && <div className={`absolute right-0 p-2 w-28 h-32 ${toggle ? "bg-grey" : " bg-grey2"}`}>
+                {showSettings && <div className={`absolute right-0 p-2 w-28  h-32 ${toggle ? "bg-grey" : " bg-grey"}`}>
                   <Link href="/" className='flex flex-row items-center mb-2'>
                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-person-badge" viewBox="0 0 16 16">
                         <path d="M6.5 2a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1h-3zM11 8a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
@@ -198,7 +199,7 @@ export default function LoginNavBar() {
                       </svg>
                     <span className='ms-2'>Profile</span>
                   </Link>
-                  <div className='flex flex-row items-center cursor-pointer'
+                  <div className='flex flex-row items-center cursor-pointer w-full h-full'
                    onClick={() => {
                       handleLogout();
                     }}>
@@ -206,7 +207,7 @@ export default function LoginNavBar() {
                       <path fill-rule="evenodd" d="M6 12.5a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 1-1 0v-2A1.5 1.5 0 0 1 6.5 2h8A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 5 12.5v-2a.5.5 0 0 1 1 0v2z"/>
                       <path fill-rule="evenodd" d="M.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L1.707 7.5H10.5a.5.5 0 0 1 0 1H1.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3z"/>
                     </svg>
-                    <span className='ms-2'>Log out</span>
+                    <h1 className='ms-2'>Log out</h1>
                   </div>
                 </div>
                 }

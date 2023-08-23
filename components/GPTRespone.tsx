@@ -51,9 +51,13 @@ export default function GPTResponse({
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
       setUser(user);
-      handleBestTime();
+     
     });
   }, [user]);
+
+  useEffect(()=>{
+    handleBestTime();
+  },[])
 
   useEffect(() => {
     (async () => {
@@ -71,7 +75,7 @@ export default function GPTResponse({
   }
 
   const handleBestTime = async () => {
-    (await platform) ? setSocialPlatform(platform) : setSocialPlatform("");
+    ( platform) ? setSocialPlatform(platform) : setSocialPlatform("");
   };
 
   const handleImageSelection = () => {
