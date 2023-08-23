@@ -182,8 +182,8 @@ export default function CaptionGen() {
   };
 
   return (
-    <div className="flex flex-col md:flex-row	justify-center items-center">
-      <div className="md:w-3/5 h-screen flex bg-gray-200 px-10 py-16 flex-col">
+    <div className="flex flex-col md:flex-row	justify-center items-center w-full h-full">
+      <div className="w-full h-screen flex bg-gray-200 px-10 py-16 flex-col">
         <h1 className="text-black font-sans text-2xl font-medium">
           Generate {props.title}
         </h1>
@@ -296,9 +296,9 @@ export default function CaptionGen() {
           <PopUpCard></PopUpCard>
         </Box>
       </Modal>
-      <div className=" h-screen w-screen flex bg-white">
-        <GPTResponseVideo></GPTResponseVideo>
-      </div>
-    </div>
+      {/* <div className=" h-screen w-screen flex bg-white">
+        {/* <GPTResponseVideo></GPTResponseVideo> */}
+      {/* </div> */}
+    </div> 
   );
 }

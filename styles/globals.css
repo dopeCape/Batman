@@ -1,14 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300&family=Poppins&display=swap');
 
 .dropdown {
   @apply absolute right-0 top-full mt-3 w-full p-5 rounded-lg bg-black min-w-[210px] flex flex-col gap-2 justify-end items-end z-10;
 }
 
 .blue_gradient {
-  @apply bg-gradient-to-r from-blue to-cyan-600 bg-clip-text text-transparent;
+  /* @apply bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent; */
 }
 
 .orange_gradient {

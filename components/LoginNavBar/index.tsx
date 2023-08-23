@@ -42,6 +42,7 @@ export default function LoginNavBar() {
   }, [client]);
 
   console.log(token);
+  
 
   const toggleLogout = (e:any) => {
           e.preventDefault();

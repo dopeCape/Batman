@@ -8,6 +8,7 @@ const Home = () => {
     <div className="bg-black">
       <Blocks />
       <Growing />
+      <Preview />
       <Prompts />
       <Journey />
     </div>

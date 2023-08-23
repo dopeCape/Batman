@@ -23,8 +23,6 @@ import LoginNavBar from "@/components/LoginNavBar";
 export default function App({ Component, pageProps }: AppProps) {
   useEffect(() => {}, [pageProps.session]);
 
-  console.log(auth.currentUser);
-
   return (
     <>
       <Head>

@@ -3,6 +3,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { auth } from "@/firebase";
 import { signInWithEmail } from "../../../auth";
+import Typewriter from 'typewriter-effect';
 
 const SignIn = () => {
   const [email, setEmail] = useState("");
@@ -42,7 +43,7 @@ const SignIn = () => {
   return (
     <div className="flex-row flex items-center justify-center h-screen w-screen">
       <div
-        className=" flex-row w-full md:w-1/2 h-full items-center justify-center  md:flex hidden"
+        className=" flex-col w-full md:w-1/2 h-full items-center justify-center  md:flex hidden"
         style={{
           backgroundImage:
             "url('https://images.rawpixel.com/image_1300/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvcGYtbWlzYzE0LWFkajAwODU1LWFkai1hXzEuanBn.jpg')",
@@ -50,10 +51,34 @@ const SignIn = () => {
           backgroundRepeat: "no-repeat",
         }}
       >
-        <div className="flex justify-center items-center h-screen">
+         <div className="flex w-full h-20 flex-col mt-80 px-10 items-center">
           <h1 className="text-white font-mono text-2xl font-extrabold">
             Metridash is live!
           </h1>
+          </div>
+        <div className="flex justify-start items-start h-screen flex-col px-10">
+          
+          <h1 className="text-white font-mono text-xl font-light  w-full text-center">
+            <Typewriter
+              options={{
+                strings: ['Providing automated social media analytics to creators.',
+                 'We help you track Twitter, Instagram, Youtube, and Facebook #hashtags, keywords, @accounts, and URLs with ease.'],
+                autoStart: true,
+                loop: true,
+                deleteSpeed:2,
+                delay:40
+
+
+              }}
+            />
+
+          </h1>
+         
+
+
+
+
+
         </div>
       </div>
       <div className=" bg-gradient-to-t from-[#0C0C0C] to-[#090947] flex flex-col items-center justify-center md:px-28 px-10 w-full  md:w-1/2 h-full">
