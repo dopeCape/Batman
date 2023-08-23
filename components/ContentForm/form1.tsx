@@ -1,5 +1,5 @@
 import React from 'react'
-import CaptionGen from '@/pages/home/VideoGen';
+
 import { useState, ChangeEvent, useEffect } from "react";
 import { useRouter } from "next/router";
 import AddCircle from "@mui/icons-material/AddCircleOutlineTwoTone";
