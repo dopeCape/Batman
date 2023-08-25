@@ -12,7 +12,8 @@ import { Modal, Box } from "@mui/material";
 import { StyleModal } from "@/components/modalStyle";
 import PopUpCard from "@/components/PopUpCard";
 import { disabled } from "./form4";
-
+import { useTheme } from "next-themes";
+import {setPrompt, TokensNeeded} from '@/hooks/function';
 const options = [
   "Conversational",
   "Enthusiastic",
@@ -40,15 +41,27 @@ export default function Form3({title}:MainSelectorProps) {
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
+    const { theme, setTheme } = useTheme();
+    const [word1, setWord1] = useState<string>("")
+    const [tokensRequired, setTokensRequired]= useState<string>("")
+
     useEffect(() => {
       // Set the state to null on page load
       setResponse("");
     }, [setResponse]);
+
+    useEffect(()=>{
+      const word = title.split(" ")
+      setWord1(word[1])
+      const x = TokensNeeded(title)
+
+      setTokensRequired(x)
+    },[title])
   
     const TextInput = () => {
       return (
         <input
-          className="w-full px-2 py-2 rounded-lg border border-gray-300 text-gray-500 mt-2"
+          className="w-full px-2 py-4 rounded-lg border border-gray-300 text-gray-500 mt-2"
           placeholder="Describe a tone"
           type="text"
         ></input>
@@ -57,7 +70,7 @@ export default function Form3({title}:MainSelectorProps) {
   
 
   
-    const prompt = `Generate a ${title} about ${input} with tone ${value} with target audience ${targetAudience}  and every idea should be seperated.`;
+    // const prompt = `Generate a ${title} about ${input} with tone ${value} with target audience ${targetAudience}  and every idea should be seperated.`;
   
     const handlePostAboutChange = (event: ChangeEvent<HTMLInputElement>) => {
       let value = event.target.value;
@@ -99,6 +112,8 @@ export default function Form3({title}:MainSelectorProps) {
       } else {
         let usertk: number = Number(tk) - Number(token);
         // e.preventDefault();
+        const prompt = setPrompt(title,input,targetAudience, value)
+        
         setResponse("");
   
         await updateTokens(user, usertk);
@@ -135,18 +150,18 @@ export default function Form3({title}:MainSelectorProps) {
       <div className="flex flex-col md:flex-row justify-center items-center">
         <div className="md:w-full h-screen flex  dark:bg-[#232529]  bg-[#F2F2F2] px-10 py-16 flex-col">
           <h1 className="font-sans text-2xl font-bold">
-            Generate {title}
+            Generate {title} idea
           </h1>
           <h3 className="text-sm ">
-            Optimize your Thumbnails for greater visibility and higher engagement.
+          Grab viewers' attention and increase click-through rates with eye-catching thumbnail ideas that make your YouTube videos stand out.
           </h3>
           <form onSubmit={(e) => e.preventDefault()} className="my-4">
             <div className="relative mt-4">
-              <h3 className="text-lg my-3 ">
-                What&apos;s your post about? <span className='text-red-500'>*</span>
+              <h3 className="text-lg mt-3 mb-1 dark:text-[#D2D2D2] ">
+                What&apos;s your {word1.toLowerCase()} about? <span className='text-red-500'>*</span>
               </h3>
               <input
-                className=" outline-none w-full px-2 py-2 rounded-lg  dark:bg-[#1B1D21] bg-[#FFFFFF]"
+                className=" outline-none w-full px-2 py-4 rounded-lg  dark:bg-[#1B1D21] bg-[#FFFFFF] placeholder-[#7D818B]"
                 type="text"
                 placeholder="gaming, fashion, animals etc."
                 value={input}
@@ -159,7 +174,7 @@ export default function Form3({title}:MainSelectorProps) {
               </p>
             </div>
   
-            <h3 className="text-lg my-3 ">Tone <span className='text-red-500'>*</span></h3>
+            <h3 className="text-lg mt-3 mb-1 dark:text-[#D2D2D2] ">Tone </h3>
             <Autocomplete
               value={value}
               onChange={(event: any, newValue: string | null) => {
@@ -172,22 +187,22 @@ export default function Form3({title}:MainSelectorProps) {
               id="controllable-states-demo"
               options={options}
               className="dark:bg-[#1B1D21] bg-white rounded-md"
-              sx={{ width: "60%" }}
+              sx={{ width: "100%" }}
               renderInput={(params) => (
                 <TextField
                   {...params}
                   label="Select Tone"
                   InputLabelProps={{
                     style: {
-                      fontSize: "14px",
+                      fontSize: "15px",
                       color: "#7D818B", 
                     },
                   }}
                   InputProps={{
                     ...params.InputProps,
                     style: {
-                      fontSize: "14px",
-                      color: "white",
+                      fontSize: "15px",
+                      color: theme==="dark"? "white":"black"
                     },
                   }}
                 />
@@ -196,9 +211,9 @@ export default function Form3({title}:MainSelectorProps) {
             {inputValue === "Describe a tone" ? <TextInput /> : null}
   
             <div className="relative">
-              <h3 className="text-lg my-3 ">Target audience <span className='text-red-500'>*</span></h3>
+              <h3 className="text-lg mt-3 mb-1 dark:text-[#D2D2D2] ">Target audience </h3>
               <input
-                className="w-full px-2 py-2 rounded-lg dark:bg-[#1B1D21] bg-[#FFFFFF] outline-none"
+                className="w-full px-2 py-4 rounded-lg dark:bg-[#1B1D21] bg-[#FFFFFF] outline-none placeholder-[#7D818B]"
                 type="text"
                 placeholder="travellers, gamers etc."
                 value={targetAudience}
@@ -214,16 +229,20 @@ export default function Form3({title}:MainSelectorProps) {
             <button
               disabled={disabled(value, input, targetAudience, inputValue)}
               onClick={generateResponse}
-              className={`w-full h-10 bg-black mt-10 rounded-lg bg-gradient-to-l from-[#009FFD] to-[#2A2A72] ${
+              className={`w-full h-10 bg-black mt-10 rounded-lg bg-gradient-to-l from-[#00C5D7] to-[#0077BE] ${
                 disabled(value, input, targetAudience, inputValue) &&
                 "cursor-not-allowed"
               }`}
             >
               <h1 className="text-white">
                 {" "}
-                {loading ? "Genarating..." : "Generate (5 tokens)"}
+                {loading ? "Genarating..." : "Generate"}
               </h1>
             </button>
+            <div className='flex w-full h-4 items-center justify-center my-2'>
+
+            <h1 className='self-center flex text-sm text-[#7D818B]'>({tokensRequired} tokens)</h1>
+          </div>
           </form>
         </div>
         <Modal

@@ -13,6 +13,10 @@ import { Modal, Box } from "@mui/material";
 import { StyleModal } from "@/components/modalStyle";
 import PopUpCard from "@/components/PopUpCard";
 import { disabled } from "./form4";
+import { useTheme } from "next-themes";
+import {setPrompt, TokensNeeded} from '@/hooks/function';
+
+
 type MainSelectorProps = {
   title: string; // Adjust the type according to your use case
 };
@@ -45,7 +49,7 @@ export default function Form2({title}:MainSelectorProps) {
   const [value, setValue] = useState<string | null>();
   const [value1, setValue1] = useState<string | null>();
   const [value2, setValue2] = useState<string | null>();
-  const [keywords, setKeywords] = useState<string[]>([]);
+  const [keywords, setKeywords] = useState<string>();
   const [word, setWord] = useState("");
   const [inputValue, setInputValue] = useState("");
   const [postType, setPostType] = useState("");
@@ -59,60 +63,48 @@ export default function Form2({title}:MainSelectorProps) {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const { theme, setTheme } = useTheme();
+  const [tokensRequired, setTokensRequired]= useState<string>("")
   let token: number = 10;
   const user = auth.currentUser;
   const router = useRouter();
-
+  const [word1, setWord1] = useState<string>("")
+  
   useEffect(() => {
     // Set the state to null on page load
     setResponse("");
   }, [setResponse]);
+  useEffect(()=>{
+    const word = title.split(" ")
+    setWord1(word[1])
+    setResponse("");
+    setInput("")
+    setTargetAudience('')
+    setValue('')
+    setKeywords('')
+    const x = TokensNeeded(title)
+
+      setTokensRequired(x)
+    
+  },[title])
 
   const handleKeyword = (event: ChangeEvent<HTMLInputElement>) => {
     setWord(event.target.value);
   };
 
-  const addKeyword = () => {
-    if (word.trim() !== "") {
-      setKeywords((prevKeywords) => [...prevKeywords, word]);
-      setWord("");
-    }
-  };
-
-  const removeKeyword = (index: number) => {
-    setKeywords((prevKeywords) => prevKeywords.filter((_, i) => i !== index));
-  };
-
-  const KeywordsComp = () => {
-    return (
-      <div className="flex flex-row">
-        {keywords.map((word, index) => (
-          <div
-            key={index}
-            className="mx-1 px-2 border border-gray-300  dark:bg-slate-400 bg-whiteflex-row flex"
-          >
-            <Cancel
-              className=" w-0.5 h-0.5"
-              onClick={() => removeKeyword(index)}
-            />
-            <p className="dark:text-white text-gray-800">{word}</p>
-          </div>
-        ))}
-      </div>
-    );
-  };
+ 
 
   const TextInput = () => {
     return (
       <input
-        className="w-full px-2 py-2 rounded-lg border border-gray-300 text-gray-500 mt-2"
+        className="w-full px-2 py-4 rounded-lg border border-gray-300 text-gray-500 mt-2"
         placeholder="Describe a tone"
         type="text"
       ></input>
     );
   };
 
-  const prompt = `Generate ${title} about ${input} which is related to ${value1} industry, the post type is ${value2}  with keywords ${keywords} with tone ${value} and my target audience is ${targetAudience}.`;
+  // const prompt = `Generate ${title} about ${input} which is related to ${value1} industry, the post type is ${value2}  with keywords ${keywords} with tone ${value} and my target audience is ${targetAudience}.`;
 
   const handlePostAboutChange = (event: ChangeEvent<HTMLInputElement>) => {
     let value = event.target.value;
@@ -144,7 +136,7 @@ export default function Form2({title}:MainSelectorProps) {
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
     e.preventDefault();
-    if (disabled(value1, value2, input, targetAudience, keywords)) return;
+    if (disabled( input)) return;
     setLoading(true);
     setResponse("");
     const tk = await getUserToken(user);
@@ -154,7 +146,7 @@ export default function Form2({title}:MainSelectorProps) {
       return;
     } else {
       let usertk: number = Number(tk) - Number(token);
-
+      const prompt = setPrompt(title, input, targetAudience, value, keywords, value1, value2 )
       await updateTokens(user, usertk);
       const res = await fetch("/api/promptChatGPT", {
         method: "POST",
@@ -189,7 +181,7 @@ export default function Form2({title}:MainSelectorProps) {
     <div className="flex justify-center items-cente h-screen w-screen">
       <div className=" h-full flex dark:bg-[#232529] bg-[#F2F2F2] px-10 py-14 flex-col overflow-scroll">
         <h1 className="font-sans text-2xl font-bold">
-          Generate {title}
+          Generate {title} idea
         </h1>
         <h3 className="text-sm ">
           Optimize your LinkedIn post for greater visibility and higher
@@ -201,7 +193,7 @@ export default function Form2({title}:MainSelectorProps) {
               What&apos;s your post about? <span className="text-red-500">*</span>
             </h3>
             <input
-              className="outline-none w-full px-2 py-2 rounded-lg dark:bg-[#1B1D21]"
+              className="outline-none w-full px-2 py-4 rounded-lg dark:bg-[#1B1D21] placeholder-[#7D818B]"
               type="text"
               placeholder="gaming, fashion, animals etc."
               onChange={(e) => {
@@ -213,7 +205,7 @@ export default function Form2({title}:MainSelectorProps) {
             </p>
           </div>
 
-          <h3 className="text-lg my-3 dark:text-[#A7A7A7]">Industry <span className="text-red-500">*</span></h3>
+          <h3 className="text-lg my-3 dark:text-[#A7A7A7]">Industry </h3>
           <Autocomplete
             value={value1}
             onChange={(event: any, newValue: string | null) => {
@@ -226,7 +218,7 @@ export default function Form2({title}:MainSelectorProps) {
             id="controllable-states-demo"
             options={industries}
             className="dark:bg-[#1B1D21] bg-white rounded-md"
-            sx={{ width: "60%" }}
+            sx={{ width: "100%" }}
             renderInput={(params) => (
               <TextField
               
@@ -242,14 +234,14 @@ export default function Form2({title}:MainSelectorProps) {
                   ...params.InputProps,
                   style: {
                     fontSize: "14px",
-                    color: "white",
+                    color: theme==="dark"? "white":"black"
                   },
                 }}
               />
             )}
           />
 
-          <h3 className="text-lg my-3 dark:text-[#A7A7A7]">Post Type <span className="text-red-500">*</span></h3>
+          <h3 className="text-lg my-3 dark:text-[#A7A7A7]">Post Type </h3>
           <Autocomplete
             value={value2}
             onChange={(event: any, newValue: string | null) => {
@@ -262,47 +254,44 @@ export default function Form2({title}:MainSelectorProps) {
             id="controllable-states-demo"
             options={post}
             className="dark:bg-[#1B1D21] bg-white rounded-md"
-            sx={{ width: "60%",   }}
+            sx={{ width: "100%",   }}
             renderInput={(params) => (
               <TextField
                 {...params}
                 label="Select Industry"
                 InputLabelProps={{
                   style: {
-                    fontSize: "14px",
+                    fontSize: "15px",
                     color: "#7D818B", // Change the color here
                   },
                 }}
                 InputProps={{
                   ...params.InputProps,
                   style: {
-                    fontSize: "14px",
-                    color: "white",
+                    fontSize: "15px",
+                    color: theme==="dark"? "white":"black"
                   },
                 }}
               />
             )}
           />
 
-          <h3 className="text-lg my-3 dark:text-[#A7A7A7]">Keywords <span className="text-red-500">*</span></h3>
+          <h3 className="text-lg my-3 dark:text-[#A7A7A7]">Keywords</h3>
           <div className="flex flex-row">
             <input
-              onChange={handleKeyword}
-              value={word}
-              className="w-4/5 px-2 py-2 borderoutline-none dark:bg-[#1B1D21]  rounded-lg"
+              onChange={(e) => {
+                setKeywords(e.target.value);
+              }}
+              
+              className="w-full px-2 py-4 borderoutline-none dark:bg-[#1B1D21]  rounded-lg placeholder-[#7D818B]"
               type="text"
               placeholder="gaming, fashion, animals"
             ></input>
-            <button
-              onClick={addKeyword}
-              className="cursor-pointer dark:bg-[#1B1D21] bg-white w-1/5 flex justify-center items-center rounded-lg"
-            >
-              <AddCircle className="bg-gray-500 rounded-xl" />
-            </button>
+            
           </div>
-          {keywords.length > 0 ? <KeywordsComp /> : null}
+         
 
-          <h3 className="text-lg my-3 dark:text-[#A7A7A7]">Tone <span className="text-red-500">*</span></h3>
+          <h3 className="text-lg my-3 dark:text-[#A7A7A7]">Tone </h3>
           <Autocomplete
             className="dark:bg-[#1B1D21] bg-white rounded-md"
             value={value}
@@ -315,22 +304,22 @@ export default function Form2({title}:MainSelectorProps) {
             }}
             id="controllable-states-demo"
             options={options}
-            sx={{ width: "60%",  }}
+            sx={{ width: "100%",  }}
             renderInput={(params) => (
               <TextField
                 {...params}
                 label="Select Tone"
                 InputLabelProps={{
                   style: {
-                    fontSize: "14px",
+                    fontSize: "15px",
                     color: "#7D818B", // Change the color here
                   },
                 }}
                 InputProps={{
                   ...params.InputProps,
                   style: {
-                    fontSize: "14px",
-                    color: "white",
+                    fontSize: "15px",
+                    color: theme==="dark"? "white":"black"
                   },
                 }}
               />
@@ -339,9 +328,9 @@ export default function Form2({title}:MainSelectorProps) {
           {inputValue === "Describe a tone" ? <TextInput /> : null}
 
           <div className="relative">
-            <h3 className="text-lg my-3 dark:text-[#A7A7A7]">Target audience <span className="text-red-500">*</span></h3>
+            <h3 className="text-lg my-3 dark:text-[#A7A7A7]">Target audience </h3>
             <input
-              className="w-full px-2 py-2 outline-none dark:bg-[#1B1D21]  rounded-lg  "
+              className="w-full px-2 py-4 outline-none dark:bg-[#1B1D21]  rounded-lg placeholder-[#7D818B] "
               type="text"
               placeholder="travellers, gamers etc."
               value={targetAudience}
@@ -355,18 +344,22 @@ export default function Form2({title}:MainSelectorProps) {
           </div>
 
           <button
-            disabled={disabled(value1, value2, input, targetAudience, keywords)}
+            disabled={disabled( input)}
             onClick={generateResponse}
-            className={`w-full h-10 bg-black mt-10 rounded-lg bg-gradient-to-l from-[#009FFD] to-[#2A2A72] ${
-              disabled(value1, value2, input, targetAudience, keywords) &&
+            className={`w-full h-10 bg-black mt-10 rounded-lg bg-gradient-to-l from-[#00C5D7] to-[#0077BE] ${
+              disabled( input) &&
               "cursor-not-allowed"
             }`}
           >
             <h1 className="text-white">
               {" "}
-              {loading ? "Genarating..." : "Generate (10 tokens)"}
+              {loading ? "Genarating..." : "Generate"}
             </h1>
           </button>
+          <div className='flex w-full h-4 items-center justify-center my-2'>
+
+            <h1 className='self-center flex text-sm text-[#7D818B]'>({tokensRequired} tokens)</h1>
+          </div>
         </form>
       </div>
       <Modal

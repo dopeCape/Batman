@@ -2,17 +2,13 @@ import React from 'react'
 
 import { useState, ChangeEvent, useEffect } from "react";
 import { useRouter } from "next/router";
-import AddCircle from "@mui/icons-material/AddCircleOutlineTwoTone";
-import Cancel from "@mui/icons-material/Cancel";
-import TextField from "@mui/material/TextField";
-import Autocomplete from "@mui/material/Autocomplete";
-import GPTResponseVideo from "@/components/GPTResponseVideo";
 import { useAtom } from "jotai";
 import { updateTokens, readTokens, getUserToken } from "../../auth";
 import { responseAtom } from "@/utils/store";
 import { auth } from "@/firebase";
 import { Modal, Box } from "@mui/material";
 import { StyleModal } from "@/components/modalStyle";
+import {setPrompt, TokensNeeded} from '@/hooks/function';
 import PopUpCard from "@/components/PopUpCard";
 type MainSelectorProps = {
     title: string; // Adjust the type according to your use case
@@ -37,7 +33,7 @@ type MainSelectorProps = {
   
   
     const [value, setValue] = useState<string | null>();
-    const [keywords, setKeywords] = useState<string[]>([]);
+    const [keywords, setKeywords] = useState<string>();
     const [word, setWord] = useState("");
     const [inputValue, setInputValue] = useState("");
     const [postAboutCount, setPostAboutCount] = useState(0);
@@ -46,6 +42,7 @@ type MainSelectorProps = {
     const [input, setInput] = useState("");
     const [_response, setResponse] = useAtom(responseAtom);
     const [loading, setLoading] = useState(false);
+    const [tokensRequired, setTokensRequired]= useState<string>("")
     let token: number = 20;
     const user = auth.currentUser;
     const router = useRouter();
@@ -53,45 +50,19 @@ type MainSelectorProps = {
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
-  
+    const [word1, setWord1] = useState<string>("")
     useEffect(() => {
       // Set the state to null on page load
       setResponse("");
     }, [setResponse]);
-  
-    const handleKeyword = (event: ChangeEvent<HTMLInputElement>) => {
-      setWord(event.target.value);
-    };
-  
-    const addKeyword = () => {
-      if (word.trim() !== "") {
-        setKeywords((prevKeywords) => [...prevKeywords, word]);
-        setWord("");
-      }
-    };
-  
-    const removeKeyword = (index: number) => {
-      setKeywords((prevKeywords) => prevKeywords.filter((_, i) => i !== index));
-    };
-  
-    const KeywordsComp = () => {
-      return (
-        <div className="flex flex-row">
-          {keywords.map((word, index) => (
-            <div
-              key={index}
-              className="mx-1 px-2 border border-gray-300 bg-white flex-row flex"
-            >
-              <Cancel
-                className="bg-black w-0.5 h-0.5"
-                onClick={() => removeKeyword(index)}
-              />
-              <p className="text-gray-800">{word}</p>
-            </div>
-          ))}
-        </div>
-      );
-    };
+    useEffect(()=>{
+      const word = title.split(" ")
+      setWord1(word[1])
+      const x = TokensNeeded(title)
+
+      setTokensRequired(x)
+    },[title])
+   
   
     const TextInput = () => {
       return (
@@ -105,7 +76,7 @@ type MainSelectorProps = {
   
   
   
-    const prompt = `Generate ${title} about ${input} and make them in a single sentence`;
+    const prompt = `Generate 30 hashtags about ${input} in one sentence`;
   
     const handlePostAboutChange = (event: ChangeEvent<HTMLInputElement>) => {
       let value = event.target.value;
@@ -145,10 +116,11 @@ type MainSelectorProps = {
         setLoading(false);
         return;
       } else {
+        // const prompt = setPrompt(title, input )
         let usertk: number = Number(tk) - Number(token);
         // e.preventDefault();
         setResponse("");
-  
+        
         await updateTokens(user, usertk);
         const res = await fetch("/api/promptChatGPT", {
           method: "POST",
@@ -184,18 +156,18 @@ type MainSelectorProps = {
       <div className="  flex flex-col md:flex-row	justify-center items-center w-full h-full">
         <div className="w-full h-screen flex dark:bg-[#232529] bg-[#F2F2F2] px-10 py-16 flex-col">
           <h1 className=" font-sans text-2xl font-bold">
-            Generate {title}
+            Generate {title} idea
           </h1>
           <h3 className=" text-sm ">
             Optimize your content for greater visibility and higher engagement.
           </h3>
           <form onSubmit={(e) => e.preventDefault()} className="my-4">
             <div className="relative">
-              <h3 className=" text-lg my-3 dark:text-[#A7A7A7]">
-                What&apos;s your post about? <span className='text-red-500'>*</span>
+              <h3 className=" text-lg my-3 dark:text-[#D2D2D2]">
+                What&apos;s your {word1.toLowerCase()} about? <span className='text-red-500'>*</span>
               </h3>
               <input
-                className="w-full px-2 py-2 rounded-lg  dark:bg-[#1B1D21]"
+                className=" outline-none w-full px-2 py-4 rounded-lg  dark:bg-[#1B1D21]"
                 type="text"
                 placeholder="gaming, fashion, animals etc."
                 onChange={(e) => {
@@ -214,7 +186,7 @@ type MainSelectorProps = {
             <button
               disabled={disabled(input)}
               onClick={generateResponse}
-              className={`w-full h-10 bg-black mt-10 rounded-lg bg-gradient-to-l from-[#009FFD] to-[#2A2A72] ${
+              className={`w-full h-10 bg-black mt-10 rounded-lg bg-gradient-to-l from-[#00C5D7] to-[#0077BE] ${
                 disabled(input) &&
                 "cursor-not-allowed"
               }`}
@@ -224,7 +196,12 @@ type MainSelectorProps = {
                 {loading ? "Genarating..." : "Generate (20 tokens)"}
               </h1>
             </button>
+            <div className='flex w-full h-4 items-center justify-center my-2'>
+
+            <h1 className='self-center flex text-sm text-[#7D818B]'>({tokensRequired} tokens)</h1>
+          </div>
           </form>
+
         </div>
         <Modal
           open={open}

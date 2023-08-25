@@ -11,19 +11,19 @@ const platforms = [
       icon: '/platformIcons/youtube1.png',
       color: "#FF0000",
       
-      items: ["Youtube Video", "Youtube Shorts", "Youtube Title","Youtube Descriptions", "Youtube Tags", "Youtube Thumbnail"]
+      items: ["Youtube Video", "Youtube Short", "Youtube Title","Youtube Description", "Youtube Tag", "Youtube Thumbnail"]
     },
     {
       name: "Twitter",
       icon: '/platformIcons/twitterHQ.png',
       color: "#1DA1F2",
-      items: ["Twitter Tweets", "Twitter Hashtags", "Twitter Bio"]
+      items: ["Twitter Tweet", "Twitter Hashtag", "Twitter Bio"]
     },
     {
       name: "Instagram",
       icon: '/platformIcons/instagramHiQi.png',
       color: "#C13584",
-      items: ["Instagram Reels", "Instagram Captions", "Instagram Bio", "Instagram Hashtags"]
+      items: ["Instagram Reel", "Instagram Caption", "Instagram Bio", "Instagram Hashtag"]
     },
     {
       name: "Linkedin",
@@ -42,7 +42,13 @@ const platforms = [
         name: "TikTok",
         icon: '/platformIcons/tiktokHQ.png',
         color: "#FE2C55",
-        items: ["TikTok Video", "TikTok Hashtags", "TikTok Captions"]
+        items: ["TikTok Video", "TikTok Hashtag", "TikTok Caption"]
+      },
+      {
+        name: "General",
+        icon: '/platformIcons/general.png',
+        color: "#FE2C55",
+        items: ["Rewrite", "Repurpose"]
       }
   ];
 
