@@ -20,7 +20,10 @@ import { getUserToken } from "../auth";
 import SaveTwoToneIcon from '@mui/icons-material/SaveTwoTone';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import { updateTokens } from "../auth";
-
+import { addDraft } from "../auth";
+import Snackbar from '@mui/material/Snackbar';
+import Alert from '@mui/material/Alert';
+import Stack from '@mui/material/Stack';
 type StaticImport = StaticImageData | string;
 
 export default function GPTResponse({
@@ -39,7 +42,8 @@ export default function GPTResponse({
   const [index, setIndex] = useState<Number>(0);
   const [_response, setResponse] = useState("");
   const [loading, setLoading] = useState(false);
-  const[fullData, setFullData] = useState('')
+  const [fullData, setFullData] = useState('')
+  const currentUser = auth.currentUser
   let finalToken = 20;
   const handleOpen = () => {
     setOpenModal(true);
@@ -62,14 +66,14 @@ export default function GPTResponse({
     auth.onAuthStateChanged((user) => {
       setUser(user);
 
-     
+
     });
   }, [user]);
 
 
-  useEffect(()=>{
+  useEffect(() => {
     handleBestTime();
-  },[])
+  }, [])
 
   useEffect(() => {
     (async () => {
@@ -130,10 +134,30 @@ export default function GPTResponse({
     }
   };
 
+  interface AlertData {
+    severity: 'success' | 'error';
+    message: string;
+  }
+  interface AlertCopyData {
+    severity: 'info';
+    message: string;
+  }
+  const [alert, setAlert] = useState<AlertData | null>(null);
+  const [Copyalert, setCopyAlert] = useState<AlertCopyData | null>(null);
+
+  const handleAddDraft = async (data:any) => {
+    try {
+     
+      await addDraft(currentUser, data);
+      setAlert({ severity: 'success', message: 'Draft added successfully' });
+    } catch (error) {
+      setAlert({ severity: 'error', message: 'Error adding draft' });
+    }
+  };
 
 
   const handleBestTime = async () => {
-    ( platform) ? setSocialPlatform(platform) : setSocialPlatform("");
+    (platform) ? setSocialPlatform(platform) : setSocialPlatform("");
   };
 
   const handleImageSelection = () => {
@@ -150,59 +174,34 @@ export default function GPTResponse({
     }
   };
 
-  return(
-   
+  return (
+
     <div className="dark:bg-[#232529] bg-[#F2F2F2] px-4  w-full h-screen overflow-scroll items-center pt-14 flex flex-col">
-     
-     
+
+
 
       <div className="flex flex-col items-center w-full dark:bg-[#1B1D21] pb-6 bg-white h-4/5 rounded-md overflow-scroll">
         {response ? (
-          
+
           response
             .split("\n")
             .filter((e) => e)
             .map((e, i) => {
-              
+
               if (e) {
-                
+
                 return (
                   <div
                     key={i}
-                    className={`flex flex-col justify-between h-full w-full mx-5 ${
-                      e.match(/[0-9]\./) ? "mb-2" : "mb-4"
-                    } ${
-                      i == 0 ? "mt-10" : "mt-0"
-                    }  px-4 py-0 rounded-md justify-between w-full  `}
+                    className={`flex flex-col justify-between h-full w-full mx-5 ${e.match(/[0-9]\./) ? "mb-2" : "mb-4"
+                      } ${i == 0 ? "mt-10" : "mt-0"
+                      }  px-4 py-0 rounded-md justify-between w-full  `}
                   >
                     <p className="">{e.replace(/"/g, "")}</p>
                     <div className="flex flex-row justify-end">
-                  
-                    <ClickAwayListener onClickAway={handleTooltipClose}>
-                        <div>
-                        <Tooltip
-                        PopperProps={{
-                          disablePortal: true,
-                        }}
-                        onClose={handleTooltipClose}
-                        open={open}
-                        disableFocusListener
-                        disableHoverListener
-                        disableTouchListener
-                        title="Saved To Drafts!"
-                      >
-                        <Button
-                          
-                         
-                          className="mr-2"
-                        >
-                          <SaveTwoToneIcon></SaveTwoToneIcon>
-                        </Button>
-                        </Tooltip>
-                        </div>
-                        </ClickAwayListener>
-                        <div>
+
                       <ClickAwayListener onClickAway={handleTooltipClose}>
+                        <div>
                           <Tooltip
                             PopperProps={{
                               disablePortal: true,
@@ -212,14 +211,33 @@ export default function GPTResponse({
                             disableFocusListener
                             disableHoverListener
                             disableTouchListener
-                            title="Copied!"
+                            title="Saved To Drafts!"
                           >
-                            <Button onClick={() => copyText(e)}><ContentCopyIcon></ContentCopyIcon></Button>
+                            <Button
+
+                              onClick={() => handleAddDraft(e)}
+                              className="mr-2"
+                            >
+                              <SaveTwoToneIcon></SaveTwoToneIcon>
+                            </Button>
                           </Tooltip>
-                      </ClickAwayListener>
+                          
+
+                            <Snackbar anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }} open={!!alert} autoHideDuration={3000} onClose={() => setAlert(null)}>
+                              <Alert  onClose={() => setAlert(null)} severity={alert?.severity}>
+                                {alert?.message}
+                              </Alert>
+                            </Snackbar>
+                          
                         </div>
+                      </ClickAwayListener>
+                      <div>
+                        
+                            <Button onClick={() => copyText(e)}><ContentCopyIcon></ContentCopyIcon></Button>
+                           
+                      </div>
                     </div>
-                      
+
                   </div>
                 );
               }
@@ -229,7 +247,7 @@ export default function GPTResponse({
             <p className="text-[#A7A7A7]  text-center">Response shows here</p>
           </div>
         )}
-       
+
       </div>
 
       <Modal
@@ -254,6 +272,7 @@ export default function GPTResponse({
         </Box>
       </Modal>
     </div>
-        
-    );}
+
+  );
+}
 

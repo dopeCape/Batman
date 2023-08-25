@@ -16,9 +16,12 @@ import {
   collection,
   query,
   where,
+  arrayUnion
 } from "firebase/firestore";
 import { db } from "./firebase";
 import { updateDoc } from "firebase/firestore";
+import Alert from '@mui/material/Alert';
+
 // import { db } from './firebaseConfig';
 import { app } from "./firebaseConfig";
 const auth = getAuth(app);
@@ -83,10 +86,7 @@ export const getUserToken = async (user) => {
   }
 };
 
-// export const updateTokens = async (user, newTokenValue) => {
-//   const userRef = doc(firestore, 'users', user.uid);
-//   await updateDoc(userRef, { tokens: newTokenValue });
-// };
+
 export const updateTokens = async (user, newTokenValue) => {
   const userRef = doc(firestore, "users", user.uid);
 
@@ -98,6 +98,29 @@ export const updateModel = async (user, newModelValue) => {
   await updateDoc(userRef, { model: newModelValue });
 };
 
+
+export const addDraft = async (user, data) => {
+  const userRef = doc(firestore, 'users', user.uid);
+
+  try {
+    const userDoc = await getDoc(userRef);
+
+    if (userDoc.exists()) {
+      // Update the drafts array with arrayUnion
+      await updateDoc(userRef, {
+        draft: arrayUnion(data)
+      });
+
+      <Alert severity="success">This is a success alert — check it out!</Alert>
+    } else {
+      alert('User document not found');
+    }
+  } catch (error) {
+    alert('Error:', error);
+  }
+};
+
+
 export const createUserWithEmail = async (email, password) => {
   const { user } = await createUserWithEmailAndPassword(auth, email, password);
   const userData = {
@@ -106,6 +129,7 @@ export const createUserWithEmail = async (email, password) => {
     model: "text-davinci-002",
     isNewUser: true,
     uid: user.uid,
+    drafts: []
   };
   await setDoc(doc(firestore, "users", user.uid), userData);
   return user;
