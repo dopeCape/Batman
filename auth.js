@@ -106,7 +106,7 @@ export const addDraft = async (user, data) => {
     const userDoc = await getDoc(userRef);
 
     if (userDoc.exists()) {
-      // Update the drafts array with arrayUnion
+     
       await updateDoc(userRef, {
         draft: arrayUnion(data)
       });
@@ -120,6 +120,23 @@ export const addDraft = async (user, data) => {
   }
 };
 
+export const fetchUserDrafts = async (user) => {
+  const userRef = doc(firestore, 'users', user.uid);
+
+  try {
+    const docSnap = await getDoc(userRef);
+
+    if (docSnap.exists()) {
+      const userData = docSnap.data();
+      const userDrafts = userData.draft || [];
+      return userDrafts;
+    } else {
+      throw new Error('User document not found');
+    }
+  } catch (error) {
+    throw new Error('Error fetching drafts: ' + error.message);
+  }
+};
 
 export const createUserWithEmail = async (email, password) => {
   const { user } = await createUserWithEmailAndPassword(auth, email, password);
