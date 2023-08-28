@@ -197,7 +197,7 @@ export default function LoginNavBar() {
     }
   };
   return (
-    <div className="w-screen h-20 dark:bg-[#1B1D21] flex bg-[#fff] flex-row items-center justify-around border-b-[#A8AAB0] border-b-2 border-opacity-20 ">
+    <div className="w-full h-20 dark:bg-[#1B1D21] flex bg-[#fff] flex-row items-center justify-around border-b-[#A8AAB0] border-b-2 border-opacity-20 ">
       <Link
         href="/homepage"
         className="font-bold text-3xl bg-gradient-to-r text-transparent from-[#00C5D7] to-[#0077BE] bg-clip-text w-1/4 text-center"
