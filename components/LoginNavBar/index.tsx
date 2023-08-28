@@ -7,6 +7,8 @@ import { Logout } from '@/auth';
 import { useTheme } from "next-themes";
 import { styled } from '@mui/material/styles';
 import { auth } from '@/firebase';
+import { useAtom } from "jotai";
+import { responseAtom } from "@/utils/store";
 import { generateRealTimeToken } from '@/auth';
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -28,6 +30,7 @@ export default function LoginNavBar() {
   const [toggle, setToggle] = useState(true);
   const [client, setClient] = useState<typeof User | null>(null);
   const [token, setToken] = useState();
+  const [response] = useAtom(responseAtom);
 
   useEffect(() => {
     auth.onAuthStateChanged(user => {
@@ -40,7 +43,7 @@ export default function LoginNavBar() {
       const tk = await generateRealTimeToken(client);
       setToken(tk);
     })();
-  }, [client]);
+  }, [response,client]);
 
 
 

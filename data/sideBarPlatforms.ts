@@ -44,12 +44,12 @@ const platforms = [
         color: "#FE2C55",
         items: ["TikTok Video", "TikTok Hashtag", "TikTok Caption"]
       },
-      {
-        name: "General",
-        icon: '/platformIcons/general.png',
-        color: "#FE2C55",
-        items: ["Rewrite", "Repurpose"]
-      }
+      // {
+      //   name: "General",
+      //   icon: '/platformIcons/general.png',
+      //   color: "#FE2C55",
+      //   items: ["Rewrite", "Repurpose"]
+      // }
   ];
 
   export default platforms;
