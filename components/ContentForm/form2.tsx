@@ -181,7 +181,7 @@ export default function Form2({title}:MainSelectorProps) {
     <div className="flex justify-center items-cente h-screen w-screen">
       <div className=" h-full flex dark:bg-[#232529] bg-[#F2F2F2] px-10 py-14 flex-col overflow-scroll">
         <h1 className="font-sans text-2xl font-bold">
-          Generate {title} idea
+          Generate {title.replace(/'/g, '&rsquo;')} idea
         </h1>
         <h3 className="text-sm ">
           Optimize your LinkedIn post for greater visibility and higher
