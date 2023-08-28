@@ -87,7 +87,7 @@ export default function SideBar() {
         {platforms.map((platform, i) => (
           <List key={i}>
             <div
-              className="flex flex-row items-center justify-around pr-6 mt-2 w-full"
+              className="flex flex-row items-center justify-around pr-6 mt-2 w-full cursor-pointer	"
               onClick={() => handleClick(i)}
             >
               <div className="flex w-full h-full  py-2 px-4">
