@@ -184,7 +184,7 @@ type MainSelectorProps = {
       <div className="  flex flex-col md:flex-row	justify-center items-center w-full h-full">
         <div className="w-full h-screen flex dark:bg-[#232529] bg-[#F2F2F2] px-10 py-16 flex-col">
           <h1 className=" font-sans text-2xl font-bold text-blue">
-            Generate {title} Ideas
+            Generate {title} 
           </h1>
           <h3 className="text-sm mt-2">
             Optimize your content for greater visibility and higher engagement.
