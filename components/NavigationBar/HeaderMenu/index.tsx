@@ -53,6 +53,8 @@ const HeaderMenu = (props: Props) => {
     return () => unsubscribe();
   }, [user]);
 
+  console.log(auth.currentUser);
+
   return (
     <>{auth.currentUser? <LoginNavBar></LoginNavBar>: 
       <div className="bg-[#3247CF] flex justify-between px-[7%] items-center h-10 py-10 w-12/12">

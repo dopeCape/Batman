@@ -23,6 +23,7 @@ const Blocks = () => {
   }, [controls, inView]);
   const joinTheWaitList = async (e: any) => {
     e.preventDefault();
+    if (email.length === 0) return;
     try {
       setDisabled(true);
       await addDoc(collection(db, "waitList"), {
@@ -44,7 +45,7 @@ const Blocks = () => {
     }
   };
   return (
-    <div className="bg-[#3247CF] flex pl-[7%] pb-5 w-screen md:flex-row flex-col ">
+    <div className="bg-[#3247CF] flex pl-[7%] pb-5 w-full md:flex-row flex-col items-center">
       <Image className="md:hidden flex " src={DashBoard} alt="DashBoard" />
       <motion.div
         ref={ref}
@@ -90,7 +91,11 @@ const Blocks = () => {
         className="w-[50%] mt-5 relative top-[-50px] transition-all duration-1000 ease-in-out"
         animate={controls}
       >
-        <Image className="md:flex hidden" src={DashBoard} alt="DashBoard" />
+        <Image
+          className="md:flex hidden w-full"
+          src={DashBoard}
+          alt="DashBoard"
+        />
       </motion.div>
     </div>
   );

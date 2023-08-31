@@ -25,7 +25,8 @@ module.exports = {
         'grey4': '#DFDFDF',
         'grey5': '#4E4E4E',
         'grey6': '#3E4045', 
-        'blue': '#3247CF'
+        // 'blue': '#3247CF',
+        'bleach-red': "rgba(255, 199, 194, 0.5)",
       },
       spacing: {
         '4px': '4px',
