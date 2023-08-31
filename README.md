@@ -18,7 +18,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 - [React.js](https://react.dev/) - The library for web and native user interfaces
 - [NextAuth.js](https://next-auth.js.org/) - Authentication for Next.js
 - [Tailwind CSS](https://tailwindcss.com/) - Rapidly build modern websites without ever leaving your HTML.
-- [Styled Components](https://styled-components.com/) - CSS for the <Component> Age
+- [Styled Components](https://styled-components.com/) - CSS for the &lt;Component&gt; Age
 - [Jotai](https://jotai.org/) - Primitive and flexible state management for React
 - [OpenAI](https://openai.com/) -
   Creating safe AGI that benefits all of humanity
