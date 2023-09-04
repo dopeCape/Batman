@@ -145,7 +145,7 @@ export default function Form4({ title }: MainSelectorProps) {
       return;
     } else {
       const prompt = setPrompt(title, input, targetAudience, value, keywords);
-      let usertk: number = Number(tk) - Number(token);
+      let usertk: number = Number(tk) - Number(tokensRequired);
       // e.preventDefault();
       setResponse("");
       setPlatform(title);
@@ -255,6 +255,7 @@ export default function Form4({ title }: MainSelectorProps) {
                     fontSize: "15px",
                     color: "#7D818B",
                     outlineStyle: "none",
+                    
                   },
                 }}
                 InputProps={{

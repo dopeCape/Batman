@@ -110,13 +110,13 @@ export default function Form1({ title }: MainSelectorProps) {
     if (disabled(input)) return;
     setLoading(true);
     const tk = await getUserToken(user);
-    if (Number(tk) < token) {
+    if (Number(tk) < Number(tokensRequired)) {
       handleOpen();
       setLoading(false);
       return;
     } else {
       // const prompt = setPrompt(title, input )
-      let usertk: number = Number(tk) - Number(token);
+      let usertk: number = Number(tk) - Number(tokensRequired);
       // e.preventDefault();
       setResponse("");
 

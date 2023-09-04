@@ -209,12 +209,13 @@ export default function Form3({ title }: MainSelectorProps) {
     if (disabled(value, input, targetAudience, inputValue)) return;
     setLoading(true);
     const tk = await getUserToken(user);
-    if (Number(tk) < token) {
+    if (Number(tk) < Number(tokensRequired)) {
       handleOpen();
       setLoading(false);
       return;
     } else {
-      let usertk: number = Number(tk) - Number(token);
+      
+      let usertk: number = Number(tk) - Number(tokensRequired);
       // e.preventDefault();
       const prompt = setPrompt(title, input, targetAudience, value);
 

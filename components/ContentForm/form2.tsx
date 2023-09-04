@@ -137,12 +137,12 @@ export default function Form2({ title }: MainSelectorProps) {
     setLoading(true);
     setResponse("");
     const tk = await getUserToken(user);
-    if (Number(tk) < token) {
+    if (Number(tk) < Number(tokensRequired)) {
       handleOpen();
       setLoading(false);
       return;
     } else {
-      let usertk: number = Number(tk) - Number(token);
+      let usertk: number = Number(tk) - Number(tokensRequired);
       const prompt = setPrompt(
         title,
         input,
