@@ -1,49 +1,49 @@
-import Image from "next/image";
-import React, { useState, useEffect } from "react";
-import { useAnimation, motion } from "framer-motion";
-import { useInView } from "react-intersection-observer";
-import { collection, addDoc, serverTimestamp } from "firebase/firestore";
-import { db } from "@/firebase";
-import DashBoard from "../../../../public/Images/1.png";
+import Image from "next/image"
+import React, { useState, useEffect } from "react"
+import { useAnimation, motion } from "framer-motion"
+import { useInView } from "react-intersection-observer"
+import { collection, addDoc, serverTimestamp } from "firebase/firestore"
+import { db } from "@/firebase"
+import DashBoard from "../../../../public/Images/1.png"
 const Blocks = () => {
   const textScrollVariants = {
     visible: { opacity: 1, top: 0 },
     hidden: { opacity: 0 },
-  };
-  const [email, setEmail] = useState("");
-  const [disabled, setDisabled] = useState(false);
-  const [response, setResponse] = useState("");
-  const controls = useAnimation();
-  const [ref, inView] = useInView();
+  }
+  const [email, setEmail] = useState("")
+  const [disabled, setDisabled] = useState(false)
+  const [response, setResponse] = useState("")
+  const controls = useAnimation()
+  const [ref, inView] = useInView()
 
   useEffect(() => {
     if (inView) {
-      controls.start("visible");
+      controls.start("visible")
     }
-  }, [controls, inView]);
+  }, [controls, inView])
   const joinTheWaitList = async (e: any) => {
-    e.preventDefault();
-    if (email.length === 0) return;
+    e.preventDefault()
+    if (email.length === 0) return
     try {
-      setDisabled(true);
+      setDisabled(true)
       await addDoc(collection(db, "waitList"), {
         email,
         createdAt: serverTimestamp(),
-      });
-      setDisabled(false);
-      setEmail("");
-      setResponse("Thank you! You have successfully submitted your email.");
+      })
+      setDisabled(false)
+      setEmail("")
+      setResponse("Thank you! You have successfully submitted your email.")
       setTimeout(() => {
-        setResponse("");
-      }, 5000);
+        setResponse("")
+      }, 5000)
     } catch (ex) {
-      setEmail("");
-      setResponse("Sorry, something went wrong.");
+      setEmail("")
+      setResponse("Sorry, something went wrong.")
       setTimeout(() => {
-        setResponse("");
-      }, 5000);
+        setResponse("")
+      }, 5000)
     }
-  };
+  }
   return (
     <div className="bg-[#3247CF] flex pl-[7%] pb-5 w-full md:flex-row flex-col items-center">
       <motion.div
@@ -53,7 +53,7 @@ const Blocks = () => {
         className="flex flex-col gap-y-5 justify-center relative top-[-50px] transition-all duration-1000 ease-in-out"
         animate={controls}
       >
-        <h1 className="font-semibold text-[64px] leading-[92%] w-[408px] text-white mt-4">
+        <h1 className="font-semibold text-[60px] leading-[92%] w-[408px] text-white mt-4">
           Say BYE-BYE to creative blocks!
         </h1>
         <p className="text-white w-[447px] font-normal text-[24px] leading-[28px]">
@@ -97,7 +97,7 @@ const Blocks = () => {
         />
       </motion.div>
     </div>
-  );
-};
+  )
+}
 
-export default Blocks;
+export default Blocks
