@@ -1,6 +1,7 @@
-import React from 'react'
+import React from "react";
 import { useState, ChangeEvent, useEffect } from "react";
 import { useRouter } from "next/router";
+import { useBeforeunload } from "react-beforeunload";
 import AddCircle from "@mui/icons-material/AddCircleOutlineTwoTone";
 import Cancel from "@mui/icons-material/Cancel";
 import TextField from "@mui/material/TextField";
@@ -14,30 +15,28 @@ import { Modal, Box, OutlinedInput } from "@mui/material";
 import { StyleModal } from "@/components/modalStyle";
 import PopUpCard from "@/components/PopUpCard";
 import { useTheme } from "next-themes";
-import {setPrompt, TokensNeeded} from '@/hooks/function';
+import { setPrompt, TokensNeeded } from "@/hooks/function";
 
 const options = [
-"Conversational",
-"Enthusiastic",
-"Funny",
-"Professional",
-"Describe a tone",
+  "Conversational",
+  "Enthusiastic",
+  "Funny",
+  "Professional",
+  "Describe a tone",
 ];
 
 export const disabled = (...args: any[]) => {
-return args.some(
-  (arg) =>
-    (typeof arg === "string" && arg?.trim().length === 0) ||
-    (typeof arg === "object" && arg?.length === 0)
-);
+  return args.some(
+    (arg) =>
+      (typeof arg === "string" && arg?.trim().length === 0) ||
+      (typeof arg === "object" && arg?.length === 0)
+  );
 };
 type MainSelectorProps = {
-    title: string; // Adjust the type according to your use case
-  };
-export default function Form4({title}:MainSelectorProps) {
-
-
-  const [value, setValue] = useState<string | null >("");
+  title: string; // Adjust the type according to your use case
+};
+export default function Form4({ title }: MainSelectorProps) {
+  const [value, setValue] = useState<string | null>("");
   const [keywords, setKeywords] = useState<string>();
   const [word, setWord] = useState("");
   const [inputValue, setInputValue] = useState("");
@@ -48,8 +47,8 @@ export default function Form4({title}:MainSelectorProps) {
   const [_response, setResponse] = useAtom(responseAtom);
   const [_platform, setPlatform] = useAtom(platformAtom);
   const [loading, setLoading] = useState(false);
-  const [word1, setWord1] = useState<string>("")
-  const [tokensRequired, setTokensRequired]= useState<string>("")
+  const [word1, setWord1] = useState<string>("");
+  const [tokensRequired, setTokensRequired] = useState<string>("");
   let token: number = 20;
   const user = auth.currentUser;
   const router = useRouter();
@@ -61,31 +60,28 @@ export default function Form4({title}:MainSelectorProps) {
   const { theme, setTheme } = useTheme();
   useEffect(() => {
     // Set the state to null on page load
-   
+
     setResponse("");
   }, [setResponse]);
 
-    useEffect(()=>{
-      const word = title.split(" ")
-      const x = TokensNeeded(title)
+  useEffect(() => {
+    const word = title.split(" ");
+    const x = TokensNeeded(title);
 
-      setTokensRequired(x)
-      
-      setWord1(word[1])
-      setResponse("");
-      setInput("")
-      setTargetAudience('')
-      setValue('')
-      setKeywords('')
-      // const data = setPrompt(title,input,targetAudience, value, keywords)
-      // setPrompts(data)
-    },[title])
+    setTokensRequired(x);
+
+    setWord1(word[1]);
+    setResponse("");
+    setInput("");
+    setTargetAudience("");
+    setValue("");
+    setKeywords("");
+    // const data = setPrompt(title,input,targetAudience, value, keywords)
+    // setPrompts(data)
+  }, [title]);
   const handleKeyword = (event: ChangeEvent<HTMLInputElement>) => {
     setWord(event.target.value);
   };
-
-  
-
 
   const TextInput = () => {
     return (
@@ -97,8 +93,6 @@ export default function Form4({title}:MainSelectorProps) {
     );
   };
 
-
-  
   // const prompt = `Generate one ${title} about ${input} ${keywords?`and should inclue keywords like ${keywords}`: null} ${value?`with ${value} tone`:null} ${targetAudience?`and with target audience ${targetAudience}`:null}`
   // const prompt = `Generate 5 ${title} for a video about ${input}. Use the following keywords: ${keywords}. The tone should be ${value}, targeting a ${targetAudience}.`
   const handlePostAboutChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -139,11 +133,11 @@ export default function Form4({title}:MainSelectorProps) {
       setLoading(false);
       return;
     } else {
-      const prompt = setPrompt(title,input,targetAudience, value, keywords)
+      const prompt = setPrompt(title, input, targetAudience, value, keywords);
       let usertk: number = Number(tk) - Number(token);
       // e.preventDefault();
       setResponse("");
-      setPlatform(title)
+      setPlatform(title);
       await updateTokens(user, usertk);
       const res = await fetch("/api/promptChatGPT", {
         method: "POST",
@@ -175,19 +169,31 @@ export default function Form4({title}:MainSelectorProps) {
     }
   };
 
+  useBeforeunload(
+    input !== "" || keywords !== "" || value !== "" || targetAudience !== ""
+      ? (event) => event.preventDefault()
+      : undefined
+  );
+
   return (
     <div className="flex flex-col md:flex-row	justify-center items-center w-full h-full">
       <div className="w-full h-screen flex dark:bg-[#232529] bg-[#F2F2F2] px-10 py-16 flex-col">
         <h1 className=" font-sans text-2xl font-bold">
-          Generate {title.replace(/'/g, '&rsquo;')} idea
+          Generate {title.replace(/'/g, "&rsquo;")} idea
         </h1>
         <h3 className="text-sm  ">
           Optimize your content for greater visibility and higher engagement.
         </h3>
-        <form id="generate-form" onSubmit={(e) => e.preventDefault()} className="my-4">
+        <form
+          id="generate-form"
+          onSubmit={(e) => e.preventDefault()}
+          className="my-4"
+        >
           <div className="relative">
             <h3 className=" text-lg mt-3 mb-1 dark:text-[#D2D2D2]">
-              What&apos;s your {word1?.toLowerCase()?word1.toLowerCase():"post"} about? <span className='text-red-500'>*</span>
+              What&apos;s your{" "}
+              {word1?.toLowerCase() ? word1.toLowerCase() : "post"} about?{" "}
+              <span className="text-red-500">*</span>
             </h3>
             <input
               className="outline-none w-full px-2 py-4 rounded-lg dark:bg-[#1B1D21] bg-[#FFFFFF] placeholder-[#7D818B]"
@@ -204,18 +210,16 @@ export default function Form4({title}:MainSelectorProps) {
           </div>
 
           <h3 className="text-lg my-3 dark:text-[#A7A7A7]">Keywords</h3>
-         
-            <input
-              onChange={(e) => {
-                setKeywords(e.target.value);
-              }}
-              value={keywords}
-              className="w-full px-2 py-4 borderoutline-none dark:bg-[#1B1D21] outline-none  rounded-lg placeholder-[#7D818B]"
-              type="text"
-              placeholder="gaming, fashion, animals"
-            ></input>
-            
-          
+
+          <input
+            onChange={(e) => {
+              setKeywords(e.target.value);
+            }}
+            value={keywords}
+            className="w-full px-2 py-4 borderoutline-none dark:bg-[#1B1D21] outline-none  rounded-lg placeholder-[#7D818B]"
+            type="text"
+            placeholder="gaming, fashion, animals"
+          ></input>
 
           <h3 className=" text-lg mt-3 mb-1 dark:text-[#D2D2D2]">Tone </h3>
           <Autocomplete
@@ -229,8 +233,8 @@ export default function Form4({title}:MainSelectorProps) {
             }}
             id="controllable-states-demo"
             options={options}
-            className=' dark:bg-[#1B1D21] bg-white rounded-xl'
-            sx={{ width: "100%",}}
+            className=" dark:bg-[#1B1D21] bg-white rounded-xl"
+            sx={{ width: "100%" }}
             renderInput={(params) => (
               <TextField
                 {...params}
@@ -239,15 +243,15 @@ export default function Form4({title}:MainSelectorProps) {
                   style: {
                     fontSize: "15px",
                     color: "#7D818B",
-                    outlineStyle:'none'
+                    outlineStyle: "none",
                   },
                 }}
                 InputProps={{
                   ...params.InputProps,
                   style: {
                     fontSize: "15px",
-                    outlineStyle:'none',
-                    color: theme==="dark"? "white":"black"
+                    outlineStyle: "none",
+                    color: theme === "dark" ? "white" : "black",
                   },
                 }}
               />
@@ -256,14 +260,17 @@ export default function Form4({title}:MainSelectorProps) {
           {inputValue === "Describe a tone" ? <TextInput /> : null}
 
           <div className="relative">
-            <h3 className=" text-lg mt-3 mb-1 dark:text-[#D2D2D2]">Target audience </h3>
+            <h3 className=" text-lg mt-3 mb-1 dark:text-[#D2D2D2]">
+              Target audience{" "}
+            </h3>
             <input
               className="outline-none w-full px-2 py-4 rounded-lg  dark:bg-[#1B1D21] bg-[#FFFFFF] placeholder-[#7D818B]"
               type="text"
               value={targetAudience}
               placeholder="travellers, gamers etc."
               onChange={(e) => {
-                setTargetAudience(e.target.value), handleTargetAudienceChange(e);
+                setTargetAudience(e.target.value),
+                  handleTargetAudienceChange(e);
               }}
             ></input>
             <p className="text-gray-700 text-xs absolute right-0 top-[18px]">
@@ -275,8 +282,7 @@ export default function Form4({title}:MainSelectorProps) {
             disabled={disabled(input)}
             onClick={generateResponse}
             className={`w-full h-10 bg-black mt-10 rounded-lg bg-gradient-to-l from-[#00C5D7] to-[#0077BE] ${
-              disabled( input) &&
-              "cursor-not-allowed"
+              disabled(input) && "cursor-not-allowed"
             }`}
           >
             <h1 className="text-white">
@@ -284,9 +290,10 @@ export default function Form4({title}:MainSelectorProps) {
               {loading ? "Genarating..." : `Generate`}
             </h1>
           </button>
-          <div className='flex w-full h-4 items-center justify-center my-2'>
-
-            <h1 className='self-center flex text-sm text-[#7D818B]'>({tokensRequired} tokens)</h1>
+          <div className="flex w-full h-4 items-center justify-center my-2">
+            <h1 className="self-center flex text-sm text-[#7D818B]">
+              ({tokensRequired} tokens)
+            </h1>
           </div>
         </form>
       </div>
@@ -303,8 +310,6 @@ export default function Form4({title}:MainSelectorProps) {
       {/* <div className=" h-screen w-screen flex bg-white">
         {/* <GPTResponseVideo></GPTResponseVideo> */}
       {/* </div> */}
-    </div> 
+    </div>
   );
 }
-
-  

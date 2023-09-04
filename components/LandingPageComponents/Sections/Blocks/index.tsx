@@ -23,6 +23,7 @@ const Blocks = () => {
   }, [controls, inView]);
   const joinTheWaitList = async (e: any) => {
     e.preventDefault();
+    if (email.length === 0) return;
     try {
       setDisabled(true);
       await addDoc(collection(db, "waitList"), {
@@ -44,13 +45,12 @@ const Blocks = () => {
     }
   };
   return (
-    <div className="bg-[#3247CF] flex pl-[7%] pb-5 w-screen md:flex-row flex-col ">
-      <Image className="md:hidden flex " src={DashBoard} alt="DashBoard" />
+    <div className="bg-[#3247CF] flex pl-[7%] pb-5 w-full md:flex-row flex-col items-center">
       <motion.div
         ref={ref}
         variants={textScrollVariants}
         initial="hidden"
-        className="w-[50%] flex flex-col gap-y-5 justify-center relative top-[-50px] transition-all duration-1000 ease-in-out"
+        className="flex flex-col gap-y-5 justify-center relative top-[-50px] transition-all duration-1000 ease-in-out"
         animate={controls}
       >
         <h1 className="font-semibold text-[64px] leading-[92%] w-[408px] text-white mt-4">
@@ -87,10 +87,14 @@ const Blocks = () => {
         ref={ref}
         variants={textScrollVariants}
         initial="hidden"
-        className="w-[50%] mt-5 relative top-[-50px] transition-all duration-1000 ease-in-out"
+        className="w-full mt-5 relative top-[-50px] transition-all duration-1000 ease-in-out"
         animate={controls}
       >
-        <Image className="md:flex hidden" src={DashBoard} alt="DashBoard" />
+        <Image
+          className="lg:flex hidden w-full object-cover"
+          src={DashBoard}
+          alt="DashBoard"
+        />
       </motion.div>
     </div>
   );
