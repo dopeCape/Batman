@@ -221,14 +221,7 @@ export default function LoginNavBar() {
           }
         </div>
       </div>
-      {/* <div
-        className="font-bold cursor-pointer "
-        onClick={() => {
-          handleLogout();
-        }}
-      >
-        <Link href="/">Log out</Link>
-      </div> */}
+     
     </div>
   )
 }
