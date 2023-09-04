@@ -186,7 +186,7 @@ export default function Form1({ title }: MainSelectorProps) {
           >
             <h1 className="text-white">
               {" "}
-              {loading ? "Genarating..." : "Generate (20 tokens)"}
+              {loading ? "Genarating..." : "Generate"}
             </h1>
           </button>
           <div className="flex w-full h-4 items-center justify-center my-2">

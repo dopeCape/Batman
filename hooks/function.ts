@@ -40,12 +40,18 @@ export function setPrompt(title:string, input:string, targetAudience?:string, to
         }else if(title == "Facebook Ad Copy"){
             return `Generate a compelling Facebook Ad copy about ${input}, ${tone?`in a tone [Tone]`:null}, ${keywords?`with ${keywords}`:null}, ${ targetAudience?`for targeting the audience ${targetAudience}`:null}, that compels the target audience to take action.`
         }
+        else if(title=="LinkedIn Articles"){
+            return `Generate an engaging LinkedIn  Article ${postType ?`of the type ${postType}`:null}, ${industry?`related to the industry ${industry}`:null} that showcases [Whats the post is about] ${tone?`with the tone [Tone]`:null},  ${keywords?`with keywords ${keywords}`:null} ${ targetAudience?`targetting a target audience ${targetAudience}`:null}. `
+        }
 
         else if(title == "Rewrite"){
             return `Rewrite the post to .`
         }
         else if(title == "Repurpose"){
             return `Repurpose the post to .`
+        }
+        else{
+            return `A generic error message`
         }
 }
 
