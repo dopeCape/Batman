@@ -60,11 +60,117 @@ export default function Form3({ title }: MainSelectorProps) {
 
   const TextInput = () => {
     return (
-      <input
-        className="w-full px-2 py-4 rounded-lg border border-gray-300 text-gray-500 mt-2"
-        placeholder="Describe a tone"
-        type="text"
-      ></input>
+      <div className="flex flex-col md:flex-row justify-center items-center">
+        <div className="md:w-full h-screen flex  dark:bg-[#232529]  bg-[#F2F2F2] px-10 py-16 flex-col">
+          <h1 className="font-sans text-2xl font-bold text-blue">
+            Generate {title}
+          </h1>
+          <h3 className="text-sm ">
+            Optimize your Thumbnails for greater visibility and higher engagement.
+          </h3>
+          <form onSubmit={(e) => e.preventDefault()} className="my-4">
+            <div className="relative mt-4">
+              <h3 className="text-lg my-3 ">
+                What&apos;s your post about? <span className='text-red-500'>*</span>
+              </h3>
+              <input
+                className=" outline-none w-full px-2 py-2 rounded-lg  dark:bg-[#1B1D21] bg-[#FFFFFF]"
+                type="text"
+                placeholder="gaming, fashion, animals etc."
+                value={input}
+                onChange={(e) => {
+                  setInput(e.target.value), handlePostAboutChange(e);
+                }}
+              ></input>
+              <p className="text-gray-700 text-xs absolute right-0 top-[18px]">
+                {postAboutCount}/800
+              </p>
+            </div>
+  
+            <h3 className="text-lg my-3 ">Tone <span className='text-red-500'>*</span></h3>
+            <Autocomplete
+              value={value}
+              onChange={(event: any, newValue: string | null) => {
+                setValue(newValue);
+              }}
+              inputValue={inputValue}
+              onInputChange={(event, newInputValue) => {
+                setInputValue(newInputValue);
+              }}
+              id="controllable-states-demo"
+              options={options}
+              className="dark:bg-[#1B1D21] bg-white rounded-md"
+              sx={{ width: "60%" }}
+              renderInput={(params) => (
+                <TextField
+                  {...params}
+                  label="Select Tone"
+                  InputLabelProps={{
+                    style: {
+                      fontSize: "14px",
+                      color: "#7D818B", 
+                    },
+                  }}
+                  InputProps={{
+                    ...params.InputProps,
+                    style: {
+                      fontSize: "14px",
+                      color: "white",
+                    },
+                  }}
+                />
+              )}
+            />
+            {inputValue === "Describe a tone" ? <TextInput /> : null}
+  
+            <div className="relative">
+              <h3 className="text-lg my-3 ">Target audience <span className='text-red-500'>*</span></h3>
+              <input
+                className="w-full px-2 py-2 rounded-lg dark:bg-[#1B1D21] bg-[#FFFFFF] outline-none"
+                type="text"
+                placeholder="travellers, gamers etc."
+                value={targetAudience}
+                onChange={(e) => {
+                  setTargetAudience(e.target.value), handleTargetAudienceChange(e);
+                }}
+              ></input>
+              <p className="text-gray-700 text-xs absolute right-0 top-[18px]">
+                {targetAudienceCount}/200
+              </p>
+            </div>
+  
+            <button
+              disabled={disabled(value, input, targetAudience, inputValue)}
+              onClick={generateResponse}
+              className={`w-full h-10 bg-black mt-10 rounded-lg bg-gradient-to-l from-[#009FFD] to-[#2A2A72] ${
+                disabled(value, input, targetAudience, inputValue) &&
+                "cursor-not-allowed"
+              }`}
+            >
+              <h1 className="text-white">
+                {" "}
+                {loading ? "Genarating..." : "Generate (5 tokens)"}
+              </h1>
+            </button>
+          </form>
+        </div>
+        <Modal
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <Box sx={StyleModal}>
+            <PopUpCard></PopUpCard>
+          </Box>
+        </Modal>
+        
+      </div>
+      // <input
+      //   className="w-full px-2 py-4 rounded-lg border border-gray-300 text-gray-500 mt-2"
+      //   placeholder="Describe a tone"
+      //   type="text"
+      // ></input>
     );
   };
 

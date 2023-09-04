@@ -7,6 +7,8 @@ import { useRouter } from "next/router";
 import { Logout } from "../../../auth";
 import { Auth } from "firebase/auth";
 import { auth } from "@/firebase";
+// import { firestore } from "firebase-admin";
+import classes from "./index.module.css";
 import { firestore } from "firebase-admin";
 import { useState, useEffect } from "react";
 import LoginNavBar from "@/components/LoginNavBar";
@@ -50,6 +52,8 @@ const HeaderMenu = (props: Props) => {
     });
     return () => unsubscribe();
   }, [user]);
+
+  console.log(auth.currentUser);
 
   return (
     <>{auth.currentUser? <LoginNavBar></LoginNavBar>: 

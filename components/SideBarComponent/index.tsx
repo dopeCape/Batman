@@ -12,6 +12,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import { Input } from "@mui/material";
 import MainSelector from "../ContentForm/mainSelector";
 // import InstagramIcon from '../../public/platformIcons/InstagramIcon.svg'
+
 export default function SideBar() {
   const [focusedItem, setFocusedItem] = useState<string | null>(null);
   const [focusedButton, setFocusedButton] = useState(null);
