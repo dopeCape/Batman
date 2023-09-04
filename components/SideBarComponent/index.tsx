@@ -19,7 +19,7 @@ export default function SideBar() {
   const [openStates, setOpenStates] = React.useState(
     platforms.map(() => false)
   );
-  const [option, setOption] = useState("Youtube Video");
+  const [option, setOption] = useState("YouTube Video");
   const [searchText, setSearchText] = useState("");
   const [form, setForm] = useState("");
   const handleSearchChange = (event: any) => {

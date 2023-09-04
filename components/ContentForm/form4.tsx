@@ -33,7 +33,7 @@ export const disabled = (...args: any[]) => {
   );
 };
 type MainSelectorProps = {
-  title: string; // Adjust the type according to your use case
+  title: string; 
 };
 export default function Form4({ title }: MainSelectorProps) {
   const [value, setValue] = useState<string | null>("");
@@ -49,6 +49,7 @@ export default function Form4({ title }: MainSelectorProps) {
   const [loading, setLoading] = useState(false);
   const [word1, setWord1] = useState<string>("");
   const [tokensRequired, setTokensRequired] = useState<string>("");
+  const [mainTitle, setMainTitle] = useState("")
   let token: number = 20;
   const user = auth.currentUser;
   const router = useRouter();
@@ -56,18 +57,16 @@ export default function Form4({ title }: MainSelectorProps) {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  // const [prompt , setPrompts] = useState<string | undefined>()
+ 
   const { theme, setTheme } = useTheme();
   useEffect(() => {
-    // Set the state to null on page load
-
     setResponse("");
   }, [setResponse]);
 
   useEffect(() => {
     const word = title.split(" ");
     const x = TokensNeeded(title);
-
+    setMainTitle(title)
     setTokensRequired(x);
 
     setWord1(word[1]);
@@ -76,9 +75,22 @@ export default function Form4({ title }: MainSelectorProps) {
     setTargetAudience("");
     setValue("");
     setKeywords("");
-    // const data = setPrompt(title,input,targetAudience, value, keywords)
-    // setPrompts(data)
+    
   }, [title]);
+  useEffect(() => {
+    const word = title.split(" ");
+    const x = TokensNeeded(title);
+    setMainTitle(title)
+    setTokensRequired(x);
+
+    setWord1(word[1]);
+    setResponse("");
+    setInput("");
+    setTargetAudience("");
+    setValue("");
+    setKeywords("");
+    
+  }, []);
   const handleKeyword = (event: ChangeEvent<HTMLInputElement>) => {
     setWord(event.target.value);
   };
@@ -93,8 +105,7 @@ export default function Form4({ title }: MainSelectorProps) {
     );
   };
 
-  // const prompt = `Generate one ${title} about ${input} ${keywords?`and should inclue keywords like ${keywords}`: null} ${value?`with ${value} tone`:null} ${targetAudience?`and with target audience ${targetAudience}`:null}`
-  // const prompt = `Generate 5 ${title} for a video about ${input}. Use the following keywords: ${keywords}. The tone should be ${value}, targeting a ${targetAudience}.`
+ 
   const handlePostAboutChange = (event: ChangeEvent<HTMLInputElement>) => {
     let value = event.target.value;
     const count = value.length;
