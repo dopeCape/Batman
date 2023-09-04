@@ -307,9 +307,7 @@ export default function Form4({ title }: MainSelectorProps) {
           <PopUpCard></PopUpCard>
         </Box>
       </Modal>
-      {/* <div className=" h-screen w-screen flex bg-white">
-        {/* <GPTResponseVideo></GPTResponseVideo> */}
-      {/* </div> */}
+    
     </div>
   );
 }
