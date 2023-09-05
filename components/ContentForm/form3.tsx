@@ -14,7 +14,7 @@ import { StyleModal } from "@/components/modalStyle";
 import PopUpCard from "@/components/PopUpCard";
 import { disabled } from "./form4";
 import { useTheme } from "next-themes";
-import { setPrompt, TokensNeeded } from "@/hooks/function";
+import { Descriptions, setPrompt, TokensNeeded } from "@/hooks/function";
 const options = [
   "Conversational",
   "Enthusiastic",
@@ -44,7 +44,7 @@ export default function Form3({ title }: MainSelectorProps) {
   const { theme, setTheme } = useTheme();
   const [word1, setWord1] = useState<string>("");
   const [tokensRequired, setTokensRequired] = useState<string>("");
-
+  const [desc, setDesc]  = useState<string>("")
   useEffect(() => {
     // Set the state to null on page load
     setResponse("");
@@ -54,6 +54,8 @@ export default function Form3({ title }: MainSelectorProps) {
     const word = title.split(" ");
     setWord1(word[1]);
     const x = TokensNeeded(title);
+    const y = Descriptions(title)
+    setDesc(y)
 
     setTokensRequired(x);
   }, [title]);
@@ -66,7 +68,7 @@ export default function Form3({ title }: MainSelectorProps) {
             Generate {title}
           </h1>
           <h3 className="text-sm ">
-            Optimize your Thumbnails for greater visibility and higher engagement.
+          {desc.replace(/'/g, "&rsquo;")}
           </h3>
           <form onSubmit={(e) => e.preventDefault()} className="my-4">
             <div className="relative mt-4">
@@ -166,15 +168,11 @@ export default function Form3({ title }: MainSelectorProps) {
         </Modal>
         
       </div>
-      // <input
-      //   className="w-full px-2 py-4 rounded-lg border border-gray-300 text-gray-500 mt-2"
-      //   placeholder="Describe a tone"
-      //   type="text"
-      // ></input>
+      
     );
   };
 
-  // const prompt = `Generate a ${title} about ${input} with tone ${value} with target audience ${targetAudience}  and every idea should be seperated.`;
+  
 
   const handlePostAboutChange = (event: ChangeEvent<HTMLInputElement>) => {
     let value = event.target.value;

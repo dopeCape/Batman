@@ -15,7 +15,7 @@ import { Modal, Box, OutlinedInput } from "@mui/material";
 import { StyleModal } from "@/components/modalStyle";
 import PopUpCard from "@/components/PopUpCard";
 import { useTheme } from "next-themes";
-import { setPrompt, TokensNeeded } from "@/hooks/function";
+import { Descriptions, setPrompt, TokensNeeded } from "@/hooks/function";
 
 const options = [
   "Conversational",
@@ -49,6 +49,7 @@ export default function Form4({ title }: MainSelectorProps) {
   const [loading, setLoading] = useState(false);
   const [word1, setWord1] = useState<string>("");
   const [tokensRequired, setTokensRequired] = useState<string>("");
+  const [desc, setDesc]= useState<string>("")
   const [mainTitle, setMainTitle] = useState("")
   let token: number = 20;
   const user = auth.currentUser;
@@ -66,9 +67,10 @@ export default function Form4({ title }: MainSelectorProps) {
   useEffect(() => {
     const word = title.split(" ");
     const x = TokensNeeded(title);
+    const y = Descriptions(title)
     setMainTitle(title)
     setTokensRequired(x);
-
+    setDesc(y)
     setWord1(word[1]);
     setResponse("");
     setInput("");
@@ -77,20 +79,7 @@ export default function Form4({ title }: MainSelectorProps) {
     setKeywords("");
     
   }, [title]);
-  useEffect(() => {
-    const word = title.split(" ");
-    const x = TokensNeeded(title);
-    setMainTitle(title)
-    setTokensRequired(x);
-
-    setWord1(word[1]);
-    setResponse("");
-    setInput("");
-    setTargetAudience("");
-    setValue("");
-    setKeywords("");
-    
-  }, []);
+ 
   const handleKeyword = (event: ChangeEvent<HTMLInputElement>) => {
     setWord(event.target.value);
   };
@@ -193,7 +182,7 @@ export default function Form4({ title }: MainSelectorProps) {
           Generate {title.replace(/'/g, "&rsquo;")} idea
         </h1>
         <h3 className="text-sm  ">
-          Optimize your content for greater visibility and higher engagement.
+         {desc.replace(/'/g, "&rsquo;")}
         </h3>
         <form
           id="generate-form"
@@ -210,7 +199,7 @@ export default function Form4({ title }: MainSelectorProps) {
               className="outline-none w-full px-2 py-4 rounded-lg dark:bg-[#1B1D21] bg-[#FFFFFF] placeholder-[#7D818B]"
               type="text"
               value={input}
-              placeholder="gaming, fashion, animals etc."
+              placeholder={title=="LinkedIn Profile Optimization"?"tech, career advice, industry trend etc.":"gaming, music, fashion etc"}
               onChange={(e) => {
                 setInput(e.target.value), handlePostAboutChange(e);
               }}
@@ -229,7 +218,7 @@ export default function Form4({ title }: MainSelectorProps) {
             value={keywords}
             className="w-full px-2 py-4 borderoutline-none dark:bg-[#1B1D21] outline-none  rounded-lg placeholder-[#7D818B]"
             type="text"
-            placeholder="gaming, fashion, animals"
+            placeholder={title=="LinkedIn Profile Optimization"?"AI, future, responsible etc.":"gaming, music, fashion etc"}
           ></input>
 
           <h3 className=" text-lg mt-3 mb-1 dark:text-[#D2D2D2]">Tone </h3>
@@ -279,7 +268,7 @@ export default function Form4({ title }: MainSelectorProps) {
               className="outline-none w-full px-2 py-4 rounded-lg  dark:bg-[#1B1D21] bg-[#FFFFFF] placeholder-[#7D818B]"
               type="text"
               value={targetAudience}
-              placeholder="travellers, gamers etc."
+              placeholder={title=="LinkedIn Profile Optimization"?"prospective employee/employer etc.":"gaming, music, fashion etc"}
               onChange={(e) => {
                 setTargetAudience(e.target.value),
                   handleTargetAudienceChange(e);

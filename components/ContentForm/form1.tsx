@@ -9,7 +9,7 @@ import { responseAtom } from "@/utils/store";
 import { auth } from "@/firebase";
 import { Modal, Box } from "@mui/material";
 import { StyleModal } from "@/components/modalStyle";
-import { setPrompt, TokensNeeded } from "@/hooks/function";
+import { Descriptions, setPrompt, TokensNeeded } from "@/hooks/function";
 import PopUpCard from "@/components/PopUpCard";
 type MainSelectorProps = {
   title: string; // Adjust the type according to your use case
@@ -50,6 +50,7 @@ export default function Form1({ title }: MainSelectorProps) {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const [desc, setDesc] = useState<string>("")
   const [word1, setWord1] = useState<string>("");
   useEffect(() => {
     // Set the state to null on page load
@@ -59,7 +60,8 @@ export default function Form1({ title }: MainSelectorProps) {
     const word = title.split(" ");
     setWord1(word[1]);
     const x = TokensNeeded(title);
-
+    const y = Descriptions(title)
+    setDesc(y)
     setTokensRequired(x);
   }, [title]);
 
@@ -156,7 +158,7 @@ export default function Form1({ title }: MainSelectorProps) {
       <div className="w-full h-screen flex dark:bg-[#232529] bg-[#F2F2F2] px-10 py-16 flex-col">
         <h1 className=" font-sans text-2xl font-bold">Generate {title} idea</h1>
         <h3 className=" text-sm ">
-          Optimize your content for greater visibility and higher engagement.
+        {desc.replace(/'/g, "&rsquo;")}
         </h3>
         <form onSubmit={(e) => e.preventDefault()} className="my-4">
           <div className="relative">

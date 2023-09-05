@@ -15,7 +15,7 @@ import { StyleModal } from "@/components/modalStyle";
 import PopUpCard from "@/components/PopUpCard";
 import { disabled } from "./form4";
 import { useTheme } from "next-themes";
-import { setPrompt, TokensNeeded } from "@/hooks/function";
+import { Descriptions, setPrompt, TokensNeeded } from "@/hooks/function";
 
 type MainSelectorProps = {
   title: string; // Adjust the type according to your use case
@@ -64,6 +64,7 @@ export default function Form2({ title }: MainSelectorProps) {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const { theme, setTheme } = useTheme();
+  const [desc, setDesc]  = useState<string>("")
   const [tokensRequired, setTokensRequired] = useState<string>("");
   let token: number = 10;
   const user = auth.currentUser;
@@ -77,6 +78,8 @@ export default function Form2({ title }: MainSelectorProps) {
   useEffect(() => {
     const word = title.split(" ");
     setWord1(word[1]);
+    const y = Descriptions(title)
+    setDesc(y)
     setResponse("");
     setInput("");
     setTargetAudience("");
@@ -191,8 +194,7 @@ export default function Form2({ title }: MainSelectorProps) {
           Generate {title.replace(/'/g, "&rsquo;")} idea
         </h1>
         <h3 className="text-sm ">
-          Optimize your LinkedIn post for greater visibility and higher
-          engagement.
+        {desc.replace(/'/g, "&rsquo;")}
         </h3>
         <form onSubmit={(e) => e.preventDefault()} className="my-4">
           <div className="relative">
@@ -203,7 +205,7 @@ export default function Form2({ title }: MainSelectorProps) {
             <input
               className="outline-none w-full px-2 py-4 rounded-lg dark:bg-[#1B1D21] placeholder-[#7D818B]"
               type="text"
-              placeholder="gaming, fashion, animals etc."
+              placeholder="Tech, Career Advice, Industry Trend etc."
               onChange={(e) => {
                 setInput(e.target.value);
                 handlePostAboutChange(e);
@@ -266,7 +268,7 @@ export default function Form2({ title }: MainSelectorProps) {
             renderInput={(params) => (
               <TextField
                 {...params}
-                label="Select Industry"
+                label="Select Post Type"
                 InputLabelProps={{
                   style: {
                     fontSize: "15px",
@@ -292,7 +294,7 @@ export default function Form2({ title }: MainSelectorProps) {
               }}
               className="w-full px-2 py-4 borderoutline-none dark:bg-[#1B1D21]  rounded-lg placeholder-[#7D818B]"
               type="text"
-              placeholder="gaming, fashion, animals"
+              placeholder="AI, future, responsible etc"
             ></input>
           </div>
 
@@ -339,7 +341,7 @@ export default function Form2({ title }: MainSelectorProps) {
             <input
               className="w-full px-2 py-4 outline-none dark:bg-[#1B1D21]  rounded-lg placeholder-[#7D818B] "
               type="text"
-              placeholder="travellers, gamers etc."
+              placeholder="prospective employee/employer etc."
               value={targetAudience}
               onChange={(e) => {
                 setTargetAudience(e.target.value), handleTargetAudienceChange;
