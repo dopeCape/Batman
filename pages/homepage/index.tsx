@@ -8,11 +8,11 @@ import GPTResponseVideo from '@/components/GPTResponseVideo'
 export default function HomePage() {
   const [platformAt] = useAtom(platformAtom)
   return (
-    <div className='flex flex-row w-screen h-screen'>
-        <div className='flex w-6/12 h-full'>
+    <div className='flex flex-col w-screen h-screen md:flex-row'>
+        <div className='flex md:w-6/12 w-screen  h-full'>
           <SideBar></SideBar>
         </div>
-        <div className='flex w-6/12 h-full'>
+        <div className='flex md:w-6/12 w-screen h-full'>
           {/* {platformAt=="Youtube Video" || platformAt=="Youtube Shorts" || platformAt=="Instagram Reels" || platformAt=="TikTok Video"?<GPTResponseVideo></GPTResponseVideo>: */}
           <GPTResponse></GPTResponse>
         </div>
