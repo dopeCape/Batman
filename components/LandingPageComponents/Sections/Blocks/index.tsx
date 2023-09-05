@@ -45,7 +45,7 @@ const Blocks = () => {
     }
   }
   return (
-    <div className="bg-[#3247CF] flex pl-[7%] pb-5 w-full md:flex-row flex-col items-center">
+    <div className="bg-[#3247CF] flex pl-[7%] pb-5 w-full md:flex-row flex-col items-center overflow-ellipsis">
       <motion.div
         ref={ref}
         variants={textScrollVariants}
@@ -56,7 +56,7 @@ const Blocks = () => {
         <h1 className="font-semibold text-[60px] leading-[92%] w-[408px] text-white mt-4">
           Say BYE-BYE to creative blocks!
         </h1>
-        <p className="text-white w-[447px] font-normal text-[24px] leading-[28px]">
+        <p className="text-white self-center text-left font-normal text-[24px] leading-[28px]">
           Generate personalized content ideas for your social media, blogs,
           websites and more.
         </p>

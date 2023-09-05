@@ -177,7 +177,7 @@ export default function Form4({ title }: MainSelectorProps) {
 
   return (
     <div className="flex flex-col md:flex-row	justify-center items-center w-full h-full">
-      <div className="w-full h-screen flex dark:bg-[#232529] bg-[#F2F2F2] px-10 py-16 flex-col">
+      <div className="w-full h-screen flex dark:bg-[#232529] bg-[#F2F2F2] md:px-10 px-4 md:py-16 py-8 flex-col">
         <h1 className=" font-sans text-2xl font-bold">
           Generate {title.replace(/'/g, "&rsquo;")} idea
         </h1>
@@ -209,7 +209,7 @@ export default function Form4({ title }: MainSelectorProps) {
             </p>
           </div>
 
-          <h3 className="text-lg my-3 dark:text-[#A7A7A7]">Keywords</h3>
+          <h3 className="text-lg mt-3 mb-1 dark:text-[#D2D2D2]">Keywords</h3>
 
           <input
             onChange={(e) => {

@@ -63,7 +63,7 @@ export default function Form3({ title }: MainSelectorProps) {
   const TextInput = () => {
     return (
       <div className="flex flex-col md:flex-row justify-center items-center">
-        <div className="md:w-full h-screen flex  dark:bg-[#232529]  bg-[#F2F2F2] px-10 py-16 flex-col">
+        <div className="md:w-full h-screen flex  dark:bg-[#232529]  bg-[#F2F2F2] md:px-10 px-4 md:py-16 py-8 flex-col">
           <h1 className="font-sans text-2xl font-bold text-blue">
             Generate {title}
           </h1>
@@ -72,7 +72,7 @@ export default function Form3({ title }: MainSelectorProps) {
           </h3>
           <form onSubmit={(e) => e.preventDefault()} className="my-4">
             <div className="relative mt-4">
-              <h3 className="text-lg my-3 ">
+              <h3 className="text-lg mt-3 mb-1 dark:text-[#D2D2D2] ">
                 What&apos;s your post about? <span className='text-red-500'>*</span>
               </h3>
               <input
@@ -89,7 +89,7 @@ export default function Form3({ title }: MainSelectorProps) {
               </p>
             </div>
   
-            <h3 className="text-lg my-3 ">Tone <span className='text-red-500'>*</span></h3>
+            <h3 className="text-lg mt-3 mb-1 dark:text-[#D2D2D2] ">Tone <span className='text-red-500'>*</span></h3>
             <Autocomplete
               value={value}
               onChange={(event: any, newValue: string | null) => {
@@ -126,7 +126,7 @@ export default function Form3({ title }: MainSelectorProps) {
             {inputValue === "Describe a tone" ? <TextInput /> : null}
   
             <div className="relative">
-              <h3 className="text-lg my-3 ">Target audience <span className='text-red-500'>*</span></h3>
+              <h3 className="text-lg mt-3 mb-1 dark:text-[#D2D2D2] ">Target audience <span className='text-red-500'>*</span></h3>
               <input
                 className="w-full px-2 py-2 rounded-lg dark:bg-[#1B1D21] bg-[#FFFFFF] outline-none"
                 type="text"

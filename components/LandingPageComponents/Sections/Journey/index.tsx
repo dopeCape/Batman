@@ -23,7 +23,7 @@ const Journey = () => {
     }
   }, [controls, inView]);
   return (
-    <>
+    <div className="flex w-full flex-col">
       <div className="bg-[#3247CF] h-[587px] flex flex-col gap-y-10 justify-center items-center">
         <motion.h1
           ref={ref}
@@ -89,7 +89,7 @@ const Journey = () => {
           Copyright {year} Metridash
         </p>
       </div>
-    </>
+    </div>
   );
 };
 

@@ -43,8 +43,8 @@ export default function SideBar() {
   };
   return (
     <div className="flex w-full bg-black h-full ">
-      <div className="flex w-1/3 h-full dark:bg-[#1B1D21] bg-[#FFFFFF] flex-col overflow-scroll">
-        <div className="h-8 flex flex-row mt-4 w-11/12 self-center dark:bg-[#232529] bg-[#F2F2F2] rounded-md mb-2">
+      <div className="flex md:w-1/3 w-1/5  h-full dark:bg-[#1B1D21] bg-[#FFFFFF] flex-col overflow-scroll">
+        <div className="h-8 md:flex hidden flex-row mt-4 w-11/12 self-center dark:bg-[#232529] bg-[#F2F2F2] rounded-md mb-2">
           <SearchIcon htmlColor="#A8AAB0" className=" my-1 ml-2" />
           <input
             onChange={handleSearchChange}
@@ -74,7 +74,7 @@ export default function SideBar() {
                     src={platform.icon}
                   />
                   <h1
-                    className={`dark:text-white text-black py-2 pl-4 flex-row flex w-full text-left mb-4 text-sm ${
+                    className={`dark:text-white text-black py-2 pl-4 flex-row flex w-full text-left mb-4 md:text-sm text-xs ${
                       focusedItem === item ? "text-black" : ""
                     }`}
                   >
@@ -88,10 +88,10 @@ export default function SideBar() {
         {platforms.map((platform, i) => (
           <List key={i}>
             <div
-              className="flex flex-row items-center justify-around pr-6 mt-2 w-full cursor-pointer	"
+              className="flex flex-row items-center md:justify-around justify-start md:pr-6 pr-0 mt-2 w-full cursor-pointer	"
               onClick={() => handleClick(i)}
             >
-              <div className="flex w-full h-full  py-2 px-4">
+              <div className="flex w-full h-full  md:py-2 py-1 md:px-4 px-0">
                 <ListItemIcon className="flex flex-row justify-center ">
                   <Image
                     className="object-contain"
@@ -101,7 +101,7 @@ export default function SideBar() {
                     src={platform.icon}
                   />
                 </ListItemIcon>
-                <h1 className=" dark:text-white justify-center text-base font-medium">
+                <h1 className=" md:flex hidden dark:text-white justify-center text-base font-medium">
                   {platform.name}
                 </h1>
               </div>
@@ -116,7 +116,7 @@ export default function SideBar() {
                 {platform.items.map((item, j) => (
                   <button
                     onClick={() => handleItemClick(item)}
-                    className={`flex  w-full  pl-20 ${
+                    className={`flex  w-full  md:pl-20 pl-0 ${
                       focusedItem === item
                         ? "bg-[#F2F2F2] border-r-4 dark:border-gray-50 border-[#3247CF] dark:bg-[#232529]"
                         : "hover:bg-[#F2F2F2] hover:border-r-4 dark:border-gray-50 border-[#3247CF] dark:hover:bg-[#232529]"
@@ -137,7 +137,7 @@ export default function SideBar() {
           </List>
         ))}
       </div>
-      <div className="flex w-2/3 dark:bg-[#232529] bg-[#F2F2F2]">
+      <div className="flex md:w-2/3 w-4/5 dark:bg-[#232529] bg-[#F2F2F2]">
         <MainSelector platform={option} />
       </div>
     </div>

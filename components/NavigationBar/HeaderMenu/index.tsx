@@ -156,7 +156,7 @@ const HeaderMenu = (props: Props) => {
                   Home
                 </Link>
                 <Link
-                  href="/profile"
+                  href="/features"
                   className="dropdown_link"
                   onClick={() => {
                     setToggleDropdown(false);
@@ -176,7 +176,7 @@ const HeaderMenu = (props: Props) => {
                   Pricing
                 </Link>
                 <Link
-                  href="/profile"
+                  href="/contact"
                   className="dropdown_link"
                   onClick={() => {
                     setToggleDropdown(false);
@@ -195,16 +195,7 @@ const HeaderMenu = (props: Props) => {
                 >
                   Sign in
                 </Link>
-                <Link
-                  href="/auth/signup"
-                  className="dropdown_link"
-                  onClick={() => {
-                    setToggleDropdown(false);
-                    handleClick(4);
-                  }}
-                >
-                  Sign up
-                </Link>
+                
               </div>
             )}
           </div>
