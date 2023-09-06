@@ -56,7 +56,7 @@ const Preview = () => {
         ref={ref}
         variants={textScrollVariants}
         initial="hidden"
-        className="w-[50%] mt-[5%] relative right-[-50px] transition-all duration-1000 ease-in-out"
+        className="w-screen mt-[5%] relative  transition-all duration-1000 ease-in-out"
         animate={controls}
       >
         <Image src={PreviewImg} alt="Preview" className="sm:flex hidden" />

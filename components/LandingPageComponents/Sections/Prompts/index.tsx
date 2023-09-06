@@ -82,7 +82,7 @@ const Prompts = () => {
           ref={ref2}
           variants={textScrollVariants}
           initial="hidden"
-          className="w-[50%] mt-[5%] flex relative right-[-200px] transition-all duration-1000 ease-in-out md:flex hidden"
+          className="w-[50%] mt-[5%]  relative right-[-200px] transition-all duration-1000 ease-in-out md:flex hidden"
           animate={controls2}
         >
           <Image
