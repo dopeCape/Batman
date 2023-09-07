@@ -34,24 +34,24 @@ const Journey = () => {
         >
           CREATED FOR YOU, WITH YOU!
         </motion.h1>
-        <div className="flex ">
+        <div className="flex items-center justify-center gap-x-8 ">
           <Image
             className="w-[36px] h-[36px] absolute"
             src={Image7}
             alt="JourneyImg"
           />
           <Image
-            className="w-[36px] h-[36px] absolute ml-[22px]"
+            className="w-[36px] h-[36px] absolute ml-[32px]"
             src={Image8}
             alt="JourneyImg"
           />
           <Image
-            className="w-[36px] h-[36px] absolute ml-[45px]"
+            className="w-[36px] h-[36px] absolute ml-[55px]"
             src={Image9}
             alt="JourneyImg"
           />
           <Image
-            className="w-[36px] h-[36px] absolute ml-[70px]"
+            className="w-[36px] h-[36px] absolute ml-[80px]"
             src={Image10}
             alt="JourneyImg"
           />

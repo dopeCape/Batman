@@ -13,15 +13,7 @@ const SignIn = () => {
 
   const router = useRouter();
 
-  useEffect(() => {
-    auth.onAuthStateChanged((user) => {
-      setUser(user);
-      if (user && user.uid) {
-        window.location.href = "/homepage";
-      }
-    });
-  }, [user]);
-
+ 
   const handleEmailChange = (event: ChangeEvent<HTMLInputElement>) => {
     setEmail(event.target.value);
   };
@@ -34,7 +26,7 @@ const SignIn = () => {
     try {
       await signInWithEmail(email, password);
       setMessage("User signed in successfully");
-      router.push("/homepage");
+      router.push("/homepage/ContentCreation");
     } catch (error) {
       setMessage(`Error signing in: ${error}`);
     }

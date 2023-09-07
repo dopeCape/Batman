@@ -5,7 +5,7 @@ import { platformAtom } from '@/utils/store'
 import { useAtom } from 'jotai'
 import GPTResponseVideo from '@/components/GPTResponseVideo'
 
-export default function HomePage() {
+export default function  ContentCreation() {
   const [platformAt] = useAtom(platformAtom)
   return (
     <div className='flex flex-col w-screen h-screen md:flex-row'>

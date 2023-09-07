@@ -47,13 +47,11 @@ const Prompts = () => {
               alt="Preview"
             />
           </div>
-          <h1 className="text-[#1E1E1E] font-semibold text-[48px] leading-[48px] w-[300px]">
-            No more bad prompts.
+          <h1 className="text-[#1E1E1E] font-semibold md:text-[48px] text-4xl leading-[48px] w-[380px]">
+          No More Bad Prompts, Only Great Ideas
           </h1>
           <p className="font-normal text-[16px] leading-[18.75px] text-justify text-[#494949] w-[387px]">
-            You only need to select and type in some details about yourself, the
-            target audience, etc and we create the best prompt for you, for the
-            best results.
+          With Metridash, generating content ideas is as simple as selecting a few key details about yourself, your target audience, and more. We'll instantly craft the perfect prompt tailored to your needs, ensuring you get the best results every time.
           </p>
         </motion.div>
         <motion.div
@@ -75,7 +73,7 @@ const Prompts = () => {
           />
         </motion.div>
       </div>
-      <div className="bg-white h-[500px] flex pl-[7%] mr-[3%] md:flex-row flex-col">
+      <div className="bg-white md:h-[500px] h-[600px] flex pl-[7%] mr-[3%] md:flex-row flex-col">
         <motion.div
           ref={ref2}
           variants={textScrollVariants}
@@ -99,7 +97,7 @@ const Prompts = () => {
           ref={ref2}
           variants={textScrollVariants}
           initial="hidden"
-          className="w-[50%] flex flex-col gap-y-5 justify-center relative right-[-50px] transition-all duration-1000 ease-in-out"
+          className="w-[50%] py-4 flex flex-col gap-y-5 justify-center relative right-[-50px] transition-all duration-1000 ease-in-out"
           animate={controls2}
         >
           <Image
@@ -107,13 +105,11 @@ const Prompts = () => {
             src={RImage5}
             alt="Preview"
           />
-          <h1 className="text-[#1E1E1E] font-semibold text-[48px] leading-[48px] w-[300px]">
-            Focus on the big picture!
+          <h1 className="text-[#1E1E1E] font-semibold md:text-[48px] text-4xl leading-[48px] w-[380px]">
+          Focus on Your Growth, We Handle the Rest
           </h1>
           <p className="font-normal text-[16px] leading-[18.75px] text-justify text-[#494949] w-[387px] align-center">
-            Metridash helps you reduce the time taken to genrate content ideas
-            in turn giving you more time to work on the strategies and your
-            growth.
+          Imagine having more time to focus on your strategies and business growth, while Metridash handles the heavy lifting of content generation. We'll significantly reduce the time it takes to generate content ideas, giving you the freedom to concentrate on the big picture.
           </p>
         </motion.div>
       </div>

@@ -14,14 +14,14 @@ const SignUp = () => {
 
   const router = useRouter();
 
-  useEffect(() => {
-    auth.onAuthStateChanged((user) => {
-      setUser(user);
-      if (user && user.uid) {
-        window.location.href = "/homepage";
-      }
-    });
-  }, [user]);
+  // useEffect(() => {
+  //   auth.onAuthStateChanged((user) => {
+  //     setUser(user);
+  //     if (user && user.uid) {
+  //       window.location.href = "/homepage";
+  //     }
+  //   });
+  // }, [user]);
 
   const handleEmailChange = (event: ChangeEvent<HTMLInputElement>) => {
     setEmail(event.target.value);
@@ -35,7 +35,7 @@ const SignUp = () => {
     try {
       await createUserWithEmail(email, password);
       setMessage("User signed up successfully");
-      window.location.href = "/homepage";
+      window.location.href = "/homepage/ContentCreation";
     } catch (error) {
       setMessage(`Error signing up: ${error}`);
     }
@@ -45,7 +45,7 @@ const SignUp = () => {
     try {
       await signInWithGoogle();
       setMessage("User signed in with Google successfully");
-      window.location.href = "/homepage";
+      window.location.href = "/homepage/ContentCreation";
     } catch (error) {
       setMessage(`Error signing in with Google: ${error}`);
     }

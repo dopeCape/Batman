@@ -43,13 +43,13 @@ const Preview = () => {
           />
         </motion.div>
         <h1 className="text-[#3247CF]  text-[48px] font-semibold leading-[48px] w-[300px] ">
-          We help you stay on top of your game!
+        Tailored Content Ideas to Fuel Your Creativity!
         </h1>
         <p className="font-normal text-[16px] leading-[18.75px] text-justify text-[#494949] w-[387px]">
-          We have added our own proprietary <br className="sm:hidden flex"></br>
-          algorithm to ChatGPT and taken out
-          <br className="sm:hidden flex"></br> the headache of finding a good
-          prompt.
+        Our advanced AI-driven platform is <br className="sm:hidden flex"></br>
+        designed to provide you with content
+          <br className="sm:hidden flex"></br>  ideas perfectly tailored to your needs
+          sparking your creativity like never before.
         </p>
       </motion.div>
       <motion.div
