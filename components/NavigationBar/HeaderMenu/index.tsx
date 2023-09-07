@@ -60,7 +60,7 @@ const HeaderMenu = (props: Props) => {
       {auth.currentUser ? (
         <LoginNavBar></LoginNavBar>
       ) : (
-        <div className="bg-[#3247CF] flex justify-between px-[7%] items-center h-10 py-10 w-screen">
+        <div className="bg-[#3247CF] flex justify-between px-[7%] items-center h-10 py-10 w-full">
           <h1 className="font-semibold text-[20px] leading-[23px] text-black">
             <Link href={"/"}>Metridash</Link>
           </h1>
