@@ -1,4 +1,4 @@
-import Instagram from "@/components/GenerateComponents/PlatformContent/Instagram"
+
 
 
 

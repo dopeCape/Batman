@@ -64,7 +64,7 @@ const SignUp = () => {
       >
        <div className="flex w-full h-20 flex-col mt-80 px-10 items-center">
           <h1 className="text-white font-mono text-2xl font-extrabold text-center">
-          Metridash:<br/> Your Ultimate Content Creation Companion"
+          Metridash:<br/> Your Ultimate Content Creation Companion
           </h1>
         </div>
         <div className="flex justify-start items-start h-screen flex-col px-10">
@@ -75,7 +75,7 @@ const SignUp = () => {
                   "Fuel Your Creativity ",
                   "Metridash empowers creators with powerful content creation tools, igniting your creative spark like never before.",
                   "Craft, Share, and Thrive ",
-                  "Unleash your content potential effortlessly with Metridash – from creation to sharing, we've got you covered",
+                  "Unleash your content potential effortlessly with Metridash – from creation to sharing, we&apos;ve got you covered",
                   "Join the Creator Revolution",
                   "Ready to revolutionize your content? Join the Metridash community today and watch your creative journey soar"
                 ],
