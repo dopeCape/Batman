@@ -1,35 +1,35 @@
-import Image from "next/image";
-import React, { useEffect } from "react";
-import { useAnimation, motion } from "framer-motion";
-import { useInView } from "react-intersection-observer";
-import Image1 from "../../../../public/Images/3.png";
-import RImage1 from "../../../../public/Images/3(1).png";
-import Image2 from "../../../../public/Images/4.png";
-import Image3 from "../../../../public/Images/5.png";
-import Image4 from "../../../../public/Images/6.png";
-import RImage5 from "../../../../public/Images/5(1).png";
+import Image from "next/image"
+import React, { useEffect } from "react"
+import { useAnimation, motion } from "framer-motion"
+import { useInView } from "react-intersection-observer"
+import Image1 from "../../../../public/Images/3.png"
+import RImage1 from "../../../../public/Images/3(1).png"
+import Image2 from "../../../../public/Images/4.png"
+import Image3 from "../../../../public/Images/5.png"
+import Image4 from "../../../../public/Images/6.png"
+import RImage5 from "../../../../public/Images/5(1).png"
 
 const Prompts = () => {
   const textScrollVariants = {
     visible: { opacity: 1, right: 0 },
     hidden: { opacity: 0 },
-  };
+  }
 
-  const controls = useAnimation();
-  const [ref, inView] = useInView();
-  const controls2 = useAnimation();
-  const [ref2, inView2] = useInView();
+  const controls = useAnimation()
+  const [ref, inView] = useInView()
+  const controls2 = useAnimation()
+  const [ref2, inView2] = useInView()
 
   useEffect(() => {
     if (inView) {
-      controls.start("visible");
+      controls.start("visible")
     }
-  }, [controls, inView]);
+  }, [controls, inView])
   useEffect(() => {
     if (inView2) {
-      controls2.start("visible");
+      controls2.start("visible")
     }
-  }, [controls2, inView2]);
+  }, [controls2, inView2])
   return (
     <div className="pb-10">
       <div className="bg-white h-[500px] flex md:px-10 px-16 mr-[3%]">
@@ -41,13 +41,11 @@ const Prompts = () => {
           animate={controls}
         >
           <div className="md:hidden flex justify-center  ">
-          <Image
-            className=" w-[678px] h-[180px] "
-            src={RImage1}
-            alt="Preview"
-          />
-          
-
+            <Image
+              className=" w-[678px] h-[180px] "
+              src={RImage1}
+              alt="Preview"
+            />
           </div>
           <h1 className="text-[#1E1E1E] font-semibold text-[48px] leading-[48px] w-[300px]">
             No more bad prompts.
@@ -96,12 +94,12 @@ const Prompts = () => {
             alt="Preview"
           />
         </motion.div>
-       
+
         <motion.div
           ref={ref2}
           variants={textScrollVariants}
           initial="hidden"
-          className="w-[50%] flex flex-col gap-y-5 justify-center relative right-[-200px] transition-all duration-1000 ease-in-out"
+          className="w-[50%] flex flex-col gap-y-5 justify-center relative right-[-50px] transition-all duration-1000 ease-in-out"
           animate={controls2}
         >
           <Image
@@ -120,7 +118,7 @@ const Prompts = () => {
         </motion.div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Prompts;
+export default Prompts
