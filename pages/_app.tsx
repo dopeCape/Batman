@@ -5,7 +5,7 @@ import "@/styles/globals.css"
 import type { AppProps } from "next/app"
 import { SessionProvider, useSession } from "next-auth/react"
 import { Children, useEffect } from "react"
-
+import Script from "next/script"
 import NavigationBar from "@/components/NavigationBar"
 import HeaderMenu from "@/components/NavigationBar/HeaderMenu"
 import Head from "next/head"
@@ -14,13 +14,14 @@ import { ThemeProvider } from "next-themes"
 import LoginNavBar from "@/components/LoginNavBar"
 
 export default function App({ Component, pageProps }: AppProps) {
-  useEffect(() => {}, [pageProps.session])
+  useEffect(() => { }, [pageProps.session])
 
   return (
     <>
       <Head>
+
         <title>Metridash-Say BYE-BYE to creative blocks!</title>
-        <link rel="shortcut icon" href="/tabIcon.png" />
+        <link rel="shortcut icon" href="/tabIconM.png" />
       </Head>
       <ThemeProvider attribute="class">
         <SessionProvider session={pageProps.session}>
