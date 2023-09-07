@@ -21,7 +21,7 @@ export default function App({ Component, pageProps }: AppProps) {
       <Head>
 
         <title>Metridash-Say BYE-BYE to creative blocks!</title>
-        <link rel="shortcut icon" href="/tabIconM.png" />
+        <link rel="shortcut icon" href="/tab-icon.png" />
       </Head>
       <ThemeProvider attribute="class">
         <SessionProvider session={pageProps.session}>
