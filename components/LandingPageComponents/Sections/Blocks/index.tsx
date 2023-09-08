@@ -5,6 +5,7 @@ import { useInView } from "react-intersection-observer"
 import { collection, addDoc, serverTimestamp } from "firebase/firestore"
 import { db } from "@/firebase"
 import DashBoard from "../../../../public/Images/1.png"
+import DashboardNew from "../../../../public/Images/DashboardNew.png"
 import Link from "next/link"
 import checkUser from "@/utils/checkUser"
 
@@ -65,7 +66,7 @@ const Blocks = () => {
       >
         <Image
           className="lg:flex hidden w-full object-cover"
-          src={DashBoard}
+          src={DashboardNew}
           alt="DashBoard"
         />
       </motion.div>
