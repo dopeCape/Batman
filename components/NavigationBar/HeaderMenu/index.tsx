@@ -4,6 +4,7 @@ import Image from "next/image"
 import Link from "next/link"
 import menu from "../../../public/Images/menu.png"
 import { useRouter } from "next/router"
+import jwt from "jsonwebtoken"
 import { Logout } from "../../../auth"
 import { Auth } from "firebase/auth"
 import { auth } from "@/firebase"
@@ -12,6 +13,7 @@ import classes from "./index.module.css"
 import { firestore } from "firebase-admin"
 import { useState, useEffect } from "react"
 import LoginNavBar from "@/components/LoginNavBar"
+
 interface Props {
   children: JSX.Element
 }
@@ -53,7 +55,13 @@ const HeaderMenu = (props: Props) => {
     return () => unsubscribe()
   }, [user])
 
-  console.log(auth.currentUser)
+  if (auth.currentUser?.uid) {
+    const token = jwt.sign(
+      { uid: auth.currentUser?.uid! },
+      process.env.NEXT_PUBLIC_JWT_SECRET!
+    )
+    localStorage.setItem("token", token)
+  }
 
   return (
     <>

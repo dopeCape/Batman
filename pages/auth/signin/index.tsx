@@ -1,36 +1,42 @@
-import { useState, ChangeEvent, useEffect } from "react";
-import Link from "next/link";
-import { useRouter } from "next/router";
-import { auth } from "@/firebase";
-import { signInWithEmail } from "../../../auth";
-import Typewriter from "typewriter-effect";
+import { useState, ChangeEvent, useEffect } from "react"
+import Link from "next/link"
+import { useRouter } from "next/router"
+import { auth } from "@/firebase"
+import { signInWithEmail } from "../../../auth"
+import Typewriter from "typewriter-effect"
+import checkUser from "@/utils/checkUser"
 
 const SignIn = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [message, setMessage] = useState("");
-  const [user, setUser] = useState<null | any>(null);
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  const [message, setMessage] = useState("")
+  const [user, setUser] = useState<null | any>(null)
 
-  const router = useRouter();
+  const router = useRouter()
 
- 
   const handleEmailChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setEmail(event.target.value);
-  };
+    setEmail(event.target.value)
+  }
 
   const handlePasswordChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setPassword(event.target.value);
-  };
+    setPassword(event.target.value)
+  }
 
   const handleSignIn = async () => {
     try {
-      await signInWithEmail(email, password);
-      setMessage("User signed in successfully");
-      router.push("/homepage/ContentCreation");
+      await signInWithEmail(email, password)
+      setMessage("User signed in successfully")
+      router.push("/homepage/ContentCreation")
     } catch (error) {
-      setMessage(`Error signing in: ${error}`);
+      setMessage(`Error signing in: ${error}`)
     }
-  };
+  }
+
+  const decoded: any = checkUser()
+
+  if (decoded && decoded.uid) {
+    window.location.href = "/homepage/ContentCreation"
+  }
 
   return (
     <div className="flex-row flex items-center justify-center h-screen w-full">
@@ -45,7 +51,8 @@ const SignIn = () => {
       >
         <div className="flex w-full h-20 flex-col mt-80 px-10 items-center">
           <h1 className="text-white font-mono text-2xl font-extrabold text-center">
-          Metridash:<br/> Your Ultimate Content Creation Companion
+            Metridash:
+            <br /> Your Ultimate Content Creation Companion
           </h1>
         </div>
         <div className="flex justify-start items-start h-screen flex-col px-10">
@@ -58,13 +65,12 @@ const SignIn = () => {
                   `Craft, Share, and Thrive `,
                   `Unleash your content potential effortlessly with Metridash – from creation to sharing, we've got you covered`,
                   `Join the Creator Revolution`,
-                  `Ready to revolutionize your content? Join the Metridash community today and watch your creative journey soar`
+                  `Ready to revolutionize your content? Join the Metridash community today and watch your creative journey soar`,
                 ],
                 autoStart: true,
                 loop: true,
                 deleteSpeed: 2,
                 delay: 40,
-
               }}
             />
           </h1>
@@ -115,7 +121,7 @@ const SignIn = () => {
         </p>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default SignIn;
+export default SignIn
