@@ -48,10 +48,13 @@ const Prompts = () => {
             />
           </div>
           <h1 className="text-[#1E1E1E] font-semibold md:text-[48px] text-4xl leading-[48px] w-[380px]">
-          No More Bad Prompts, Only Great Ideas
+            No More Bad Prompts, Only Great Ideas
           </h1>
           <p className="font-normal text-[16px] leading-[18.75px] text-justify text-[#494949] w-[387px]">
-          With Metridash, generating content ideas is as simple as selecting a few key details about yourself, your target audience, and more. We'll instantly craft the perfect prompt tailored to your needs, ensuring you get the best results every time.
+            With Metridash, generating content ideas is as simple as selecting a
+            few key details about yourself, your target audience, and more.
+            We&apos;ll instantly craft the perfect prompt tailored to your
+            needs, ensuring you get the best results every time.
           </p>
         </motion.div>
         <motion.div
@@ -106,10 +109,14 @@ const Prompts = () => {
             alt="Preview"
           />
           <h1 className="text-[#1E1E1E] font-semibold md:text-[48px] text-4xl leading-[48px] w-[380px]">
-          Focus on Your Growth, We Handle the Rest
+            Focus on Your Growth, We Handle the Rest
           </h1>
           <p className="font-normal text-[16px] leading-[18.75px] text-justify text-[#494949] w-[387px] align-center">
-          Imagine having more time to focus on your strategies and business growth, while Metridash handles the heavy lifting of content generation. We'll significantly reduce the time it takes to generate content ideas, giving you the freedom to concentrate on the big picture.
+            Imagine having more time to focus on your strategies and business
+            growth, while Metridash handles the heavy lifting of content
+            generation. We&apos;ll significantly reduce the time it takes to
+            generate content ideas, giving you the freedom to concentrate on the
+            big picture.
           </p>
         </motion.div>
       </div>
