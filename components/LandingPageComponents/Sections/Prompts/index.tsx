@@ -47,14 +47,13 @@ const Prompts = () => {
               alt="Preview"
             />
           </div>
-          <h1 className="text-[#1E1E1E] font-semibold md:text-[48px] text-4xl leading-[48px] w-[380px]">
+          <h1 className="text-[#3247CF] font-semibold md:text-[48px] text-4xl leading-[48px] w-[380px]">
             No More Bad Prompts, Only Great Ideas
           </h1>
           <p className="font-normal text-[16px] leading-[18.75px] text-justify text-[#494949] w-[387px]">
-            With Metridash, generating content ideas is as simple as selecting a
-            few key details about yourself, your target audience, and more.
-            We&apos;ll instantly craft the perfect prompt tailored to your
-            needs, ensuring you get the best results every time.
+            Metridash makes content generation easy. Just tell us a bit about
+            yourself and your audience, and we will create a customized prompt
+            that guarantees top-notch results instantly.
           </p>
         </motion.div>
         <motion.div
@@ -108,15 +107,14 @@ const Prompts = () => {
             src={RImage5}
             alt="Preview"
           />
-          <h1 className="text-[#1E1E1E] font-semibold md:text-[48px] text-4xl leading-[48px] w-[380px]">
+          <h1 className="text-[#3247CF]  font-semibold md:text-[48px] text-4xl leading-[48px] w-[380px]">
             Focus on Your Growth, We Handle the Rest
           </h1>
           <p className="font-normal text-[16px] leading-[18.75px] text-justify text-[#494949] w-[387px] align-center">
-            Imagine having more time to focus on your strategies and business
-            growth, while Metridash handles the heavy lifting of content
-            generation. We&apos;ll significantly reduce the time it takes to
-            generate content ideas, giving you the freedom to concentrate on the
-            big picture.
+            Metridash does the content generation work for you, so you can
+            invest more time in your strategies and business growth. We will
+            speed up content idea creation, letting you focus on the important
+            stuff.
           </p>
         </motion.div>
       </div>
