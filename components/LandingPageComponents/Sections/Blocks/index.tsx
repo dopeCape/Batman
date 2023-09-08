@@ -6,6 +6,8 @@ import { collection, addDoc, serverTimestamp } from "firebase/firestore"
 import { db } from "@/firebase"
 import DashBoard from "../../../../public/Images/1.png"
 import Link from "next/link"
+import checkUser from "@/utils/checkUser"
+
 const Blocks = () => {
   const textScrollVariants = {
     visible: { opacity: 1, top: 0 },
@@ -22,7 +24,9 @@ const Blocks = () => {
       controls.start("visible")
     }
   }, [controls, inView])
-  
+
+  const user: any = checkUser()
+
   return (
     <div className="bg-[#3247CF] flex pl-[7%] pb-5 w-full md:flex-row flex-col items-center  ">
       <motion.div
@@ -33,16 +37,24 @@ const Blocks = () => {
         animate={controls}
       >
         <h1 className="font-semibold text-6xl leading-[92%] w-[408px] text-white mt-4">
-        Never Face Creative Blocks Again!
+          Never Face Creative Blocks Again!
         </h1>
         <p className="text-white self-center text-left font-normal text-md leading-[28px] mt-4">
-        Are you tired of staring at a blank screen, struggling to come up with content ideas for your social media?<br/>  Look no further! Metridash is here to revolutionize your creative process.
+          Are you tired of staring at a blank screen, struggling to come up with
+          content ideas for your social media?
+          <br /> Look no further! Metridash is here to revolutionize your
+          creative process.
         </p>
         {response && <p>{response}</p>}
 
-       <Link href={'/auth/signup'} className="flex w-40 px-2 py-2 mt-4 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-xl items-center justify-center">
-              <h1>Sign up</h1>
-       </Link>
+        <Link
+          href={`${
+            user && user.uid ? "/homepage/ContentCreation" : "/auth/signup"
+          }`}
+          className="flex w-40 px-2 py-2 mt-4 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-xl items-center justify-center"
+        >
+          <h1 className="text-lg font-semibold">Get Started</h1>
+        </Link>
       </motion.div>
       <motion.div
         ref={ref}
