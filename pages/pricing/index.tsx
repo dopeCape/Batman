@@ -9,7 +9,7 @@ function pricing() {
   return (
     <div className={`${classes.pricing} flex justify-center bg-white gap-y-5 flex-wrap`}>
       <FreeTrial />
-      <LongForm />
+      {/* <LongForm /> */}
       <CustomPlan />
     </div>
   )
