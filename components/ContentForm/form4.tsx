@@ -288,7 +288,7 @@ export default function Form4({ title }: MainSelectorProps) {
           >
             <h1 className="text-white">
               {" "}
-              {loading ? "Genarating..." : `Generate`}
+              {loading ? "Generating..." : `Generate`}
             </h1>
           </button>
           <div className="flex w-full h-4 items-center justify-center my-2">
