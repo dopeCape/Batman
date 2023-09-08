@@ -29,7 +29,7 @@ const Blocks = () => {
   const user: any = checkUser()
 
   return (
-    <div className="bg-[#3247CF] flex pl-[7%] pb-5 w-full md:flex-row flex-col items-center  ">
+    <div className="bg-[#3247CF] flex pl-[7%] pb-5 w-full md:flex-row gap-x-4 flex-col items-center  ">
       <motion.div
         ref={ref}
         variants={textScrollVariants}
@@ -37,7 +37,7 @@ const Blocks = () => {
         className="flex flex-col gap-y-5 justify-center relative top-[-50px] transition-all duration-1000 ease-in-out"
         animate={controls}
       >
-        <h1 className="font-semibold text-6xl leading-[92%] w-[408px] text-white mt-4">
+        <h1 className="font-semibold text-5xl md:text-6xl leading-[92%] w-[408px] text-white mt-4">
           Never Face Creative Blocks Again!
         </h1>
         <p className="text-white self-center text-left font-normal text-md leading-[28px] mt-4">
