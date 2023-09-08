@@ -1,28 +1,33 @@
-import Image from "next/image";
-import idea from "../../public/icons/idea.png";
-import caption from "../../public/icons/caption.png";
-import hashtag from "../../public/icons/hashtag.png";
-import thumbnail from "../../public/icons/thumbnail.png";
-import magic from "../../public/icons/magic.png";
-import React, { useEffect } from "react";
-import { useAnimation, motion } from "framer-motion";
-import { useInView } from "react-intersection-observer";
-import classes from "./features.module.css";
+import Image from "next/image"
+import idea from "../../public/icons/idea.png"
+import caption from "../../public/icons/caption.png"
+import hashtag from "../../public/icons/hashtag.png"
+import thumbnail from "../../public/icons/thumbnail.png"
+import magic from "../../public/icons/magic.png"
+import React, { useEffect } from "react"
+import { useAnimation, motion } from "framer-motion"
+import { useInView } from "react-intersection-observer"
+import classes from "./features.module.css"
+import { useRouter } from "next/router"
 
 const Features = () => {
   const textScrollVariants = {
     visible: { opacity: 1, top: 0 },
     hidden: { opacity: 0 },
-  };
+  }
 
-  const controls = useAnimation();
-  const [ref, inView] = useInView();
+  const router = useRouter()
+
+  console.log(router.pathname)
+
+  const controls = useAnimation()
+  const [ref, inView] = useInView()
 
   useEffect(() => {
     if (inView) {
-      controls.start("visible");
+      controls.start("visible")
     }
-  }, [controls, inView]);
+  }, [controls, inView])
 
   return (
     <div className={`${classes.content_container} bg-gray-50 h-screen`}>
@@ -132,7 +137,7 @@ const Features = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Features;
+export default Features

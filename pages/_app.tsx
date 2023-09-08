@@ -9,6 +9,7 @@ import Head from "next/head"
 import { auth } from "@/firebase"
 import { ThemeProvider } from "next-themes"
 import LoginNavBar from "@/components/LoginNavBar"
+import Footer from "@/components/Footer"
 
 export default function App({ Component, pageProps }: AppProps) {
   useEffect(() => {}, [pageProps.session])
@@ -22,7 +23,10 @@ export default function App({ Component, pageProps }: AppProps) {
       <ThemeProvider attribute="class">
         <SessionProvider session={pageProps.session}>
           <NavigationBar>
-            <Component {...pageProps} />
+            <>
+              <Component {...pageProps} />
+              <Footer />
+            </>
           </NavigationBar>
         </SessionProvider>
       </ThemeProvider>
