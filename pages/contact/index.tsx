@@ -1,22 +1,20 @@
-import React, { useState } from "react";
-import EmailIcon from "@mui/icons-material/Email";
-import TextField from "@mui/material/TextField";
-import Button from "@mui/material/Button";
-import { collection, addDoc, serverTimestamp } from "firebase/firestore";
-import { db } from "@/firebase";
-import classes from "./contact.module.css";
+import React, { useState } from "react"
+import EmailIcon from "@mui/icons-material/Email"
+import TextField from "@mui/material/TextField"
+import Button from "@mui/material/Button"
+import { collection, addDoc, serverTimestamp } from "firebase/firestore"
+import { db } from "@/firebase"
+import classes from "./contact.module.css"
 
 export default function Contact() {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [message, setMessage] = useState("");
-  const [response, setResponse] = useState("");
+  const [name, setName] = useState("")
+  const [email, setEmail] = useState("")
+  const [message, setMessage] = useState("")
+  const [response, setResponse] = useState("")
 
   const disabled = () => {
-    return (
-      !name.trim().length || !email.trim().length || !message.trim().length
-    );
-  };
+    return !name.trim().length || !email.trim().length || !message.trim().length
+  }
 
   const addFirestoreData = async () => {
     await addDoc(collection(db, "contactUs"), {
@@ -24,35 +22,35 @@ export default function Contact() {
       email,
       message,
       createdAt: serverTimestamp(),
-    });
-  };
+    })
+  }
 
   const dataAfterSubmit = () => {
-    setName("");
-    setEmail("");
-    setMessage("");
+    setName("")
+    setEmail("")
+    setMessage("")
     setResponse(
       "You have successfully submitted the form. We will get back to you as soon as possible."
-    );
+    )
     setTimeout(() => {
-      setResponse("");
-    }, 5000);
-  };
+      setResponse("")
+    }, 5000)
+  }
 
   const addData = async () => {
     try {
-      await addFirestoreData();
-      dataAfterSubmit();
+      await addFirestoreData()
+      dataAfterSubmit()
     } catch (ex) {
-      console.log("Something went wrong", ex);
+      console.log("Something went wrong", ex)
     }
-  };
+  }
 
   const doSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    if (disabled()) return;
-    await addData();
-  };
+    event.preventDefault()
+    if (disabled()) return
+    await addData()
+  }
 
   return (
     <div className={`${classes.contact__container} bg-gray-50`}>
@@ -69,7 +67,7 @@ export default function Contact() {
         </p>
         <div className="flex flex-row self-start">
           <EmailIcon color="primary" className="self-start mr-2"></EmailIcon>
-          <p className=" underline  text-gray-600">contact@metridash.com</p>
+          <p className=" underline  text-gray-600">info@metridash.com</p>
         </div>
       </div>
       <div
@@ -86,7 +84,7 @@ export default function Contact() {
             label="Name"
             value={name}
             onChange={(event) => {
-              setName(event.target.value);
+              setName(event.target.value)
             }}
             fullWidth
           />
@@ -101,7 +99,7 @@ export default function Contact() {
             value={email}
             fullWidth
             onChange={(event) => {
-              setEmail(event.target.value);
+              setEmail(event.target.value)
             }}
           />
           <TextField
@@ -132,5 +130,5 @@ export default function Contact() {
         {response && <p className="text-green-700 mt-5">{response}</p>}
       </div>
     </div>
-  );
+  )
 }
