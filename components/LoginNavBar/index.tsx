@@ -1,58 +1,58 @@
-import React from "react";
-import Link from "next/link";
-import Image from "next/image";
-import { useRouter } from "next/router";
-import { useState, useEffect } from "react";
-import { Logout } from "@/auth";
-import { useTheme } from "next-themes";
-import { styled } from "@mui/material/styles";
-import { auth } from "@/firebase";
-import { useAtom } from "jotai";
-import { responseAtom } from "@/utils/store";
-import { generateRealTimeToken } from "@/auth";
-import FormGroup from "@mui/material/FormGroup";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Switch, { SwitchProps } from "@mui/material/Switch";
-import Stack from "@mui/material/Stack";
-import Typography from "@mui/material/Typography";
-import coins from "../../public/navbarIcons/coins.png";
-import content from "../../public/navbarIcons/content-creation.png";
-import dashboard from "../../public/navbarIcons/dashboard.png";
-import draft from "../../public/navbarIcons/draft.png";
-import profile from "../../public/navbarIcons/profile-dropdown.png";
-import schedule from "../../public/navbarIcons/schedule.png";
-import user from "../../public/navbarIcons/user.png";
-import Badge from "@mui/material/Badge";
+import React from "react"
+import Link from "next/link"
+import Image from "next/image"
+import { useRouter } from "next/router"
+import { useState, useEffect } from "react"
+import { Logout } from "@/auth"
+import { useTheme } from "next-themes"
+import { styled } from "@mui/material/styles"
+import { auth } from "@/firebase"
+import { useAtom } from "jotai"
+import { responseAtom } from "@/utils/store"
+import { generateRealTimeToken } from "@/auth"
+import FormGroup from "@mui/material/FormGroup"
+import FormControlLabel from "@mui/material/FormControlLabel"
+import Switch, { SwitchProps } from "@mui/material/Switch"
+import Stack from "@mui/material/Stack"
+import Typography from "@mui/material/Typography"
+import coins from "../../public/navbarIcons/coins.png"
+import content from "../../public/navbarIcons/content-creation.png"
+import dashboard from "../../public/navbarIcons/dashboard.png"
+import draft from "../../public/navbarIcons/draft.png"
+import profile from "../../public/navbarIcons/profile-dropdown.png"
+import schedule from "../../public/navbarIcons/schedule.png"
+import user from "../../public/navbarIcons/user.png"
+import Badge from "@mui/material/Badge"
 
 export default function LoginNavBar() {
-  const [showSettings, setShowSettings] = useState(false);
-  const User = auth.currentUser;
-  const [toggle, setToggle] = useState(true);
-  const [client, setClient] = useState<typeof User | null>(null);
-  const [token, setToken] = useState();
-  const [response] = useAtom(responseAtom);
+  const [showSettings, setShowSettings] = useState(false)
+  const User = auth.currentUser
+  const [toggle, setToggle] = useState(true)
+  const [client, setClient] = useState<typeof User | null>(null)
+  const [token, setToken] = useState()
+  const [response] = useAtom(responseAtom)
 
   useEffect(() => {
-    auth.onAuthStateChanged((user:any) => {
-      setClient(user);
-    });
-  }, [client]);
+    auth.onAuthStateChanged((user: any) => {
+      setClient(user)
+    })
+  }, [client])
 
   useEffect(() => {
-    (async () => {
-      const tk = await generateRealTimeToken(client);
-      setToken(tk);
-    })();
-  }, [response, client]);
+    ;(async () => {
+      const tk = await generateRealTimeToken(client)
+      setToken(tk)
+    })()
+  }, [response, client])
 
   const toggleLogout = () => {
-    setShowSettings((prev) => !prev);
-  };
+    setShowSettings((prev) => !prev)
+  }
 
   const NavLink = ({ href, d, stroke, className, children }: any) => {
-    const { asPath } = useRouter();
+    const { asPath } = useRouter()
 
-    const isActive = asPath === href;
+    const isActive = asPath === href
 
     return (
       <div className="flex h-full items-center">
@@ -121,13 +121,13 @@ export default function LoginNavBar() {
           {children}
         </Link>
       </div>
-    );
-  };
-  const { theme, setTheme } = useTheme();
+    )
+  }
+  const { theme, setTheme } = useTheme()
   const handleThemeChange = () => {
-    setTheme(theme === "dark" ? "light" : "dark"); // Toggle between 'dark' and 'light';
-    setToggle((prev) => !prev);
-  };
+    setTheme(theme === "dark" ? "light" : "dark") // Toggle between 'dark' and 'light';
+    setToggle((prev) => !prev)
+  }
 
   const IOSSwitch = styled((props: SwitchProps) => (
     <Switch
@@ -184,21 +184,21 @@ export default function LoginNavBar() {
         duration: 500,
       }),
     },
-  }));
-  const router = useRouter();
+  }))
+  const router = useRouter()
   const handleLogout = async () => {
     try {
-      await Logout();
-      alert("User logged out successfully!");
-      router.replace("/");
+      await Logout()
+      alert("User logged out successfully!")
+      router.replace("/")
     } catch (err) {
-      console.error(err);
+      console.error(err)
     }
-  };
+  }
 
-  const profileHandler = (link:any) => {
-    router.push(link);
-    toggleLogout();
+  const profileHandler = (link: any) => {
+    router.push(link)
+    toggleLogout()
   }
 
   return (
@@ -219,7 +219,6 @@ export default function LoginNavBar() {
         <NavLink
           href="/homepage/drafts"
           d="M16.7874 8.7991L12.8039 4.81556L4.66881 12.9517L4.55039 13.0812C4.36207 13.3054 4.22464 13.5679 4.14759 13.8504L3.02823 17.9544L3.01305 18.0353C3.00449 18.1172 3.01606 18.2 3.04675 18.2764C3.07744 18.3529 3.12632 18.4207 3.18915 18.4739C3.25198 18.5272 3.32685 18.5643 3.40728 18.582C3.4877 18.5998 3.57125 18.5976 3.65066 18.5758L7.75362 17.4564L7.92062 17.4028C8.19489 17.3016 8.44487 17.1427 8.65235 16.9352L16.7874 8.7991ZM18.3744 3.22963C18.1128 2.96805 17.8023 2.76055 17.4606 2.61898C17.1188 2.47741 16.7525 2.40454 16.3826 2.40454C16.0127 2.40454 15.6464 2.47741 15.3047 2.61898C14.9629 2.76055 14.6524 2.96805 14.3908 3.22963L13.5194 4.10002L17.503 8.08356L18.3734 7.21317L18.5059 7.07148C18.9747 6.53354 19.2219 5.83774 19.1974 5.12462C19.173 4.41151 18.8789 3.73424 18.3744 3.22963ZM12.7745 3.41484H3.51605C3.38184 3.41484 3.25313 3.46816 3.15823 3.56306C3.06332 3.65796 3.01001 3.78667 3.01001 3.92088C3.01001 4.05509 3.06332 4.1838 3.15823 4.27871C3.25313 4.37361 3.38184 4.42692 3.51605 4.42692H11.7625L12.7745 3.41484ZM9.73831 6.45108H3.51605C3.38184 6.45108 3.25313 6.50439 3.15823 6.59929C3.06332 6.6942 3.01001 6.82291 3.01001 6.95712C3.01001 7.09133 3.06332 7.22004 3.15823 7.31494C3.25313 7.40984 3.38184 7.46316 3.51605 7.46316H8.72623L9.73831 6.45108ZM6.70207 9.48731L5.68999 10.4994H3.51605C3.38184 10.4994 3.25313 10.4461 3.15823 10.3512C3.06332 10.2563 3.01001 10.1276 3.01001 9.99335C3.01001 9.85914 3.06332 9.73043 3.15823 9.63553C3.25313 9.54063 3.38184 9.48731 3.51605 9.48731H6.70207Z"
-         
         >
           <p className="ms-1">Drafts</p>
         </NavLink>
@@ -227,7 +226,6 @@ export default function LoginNavBar() {
         <NavLink
           href="/homepage/Dashboard"
           d="M11.8139 21.6085H5.74144C4.62816 21.6085 3.71729 20.6977 3.71729 19.5844V5.41527C3.71729 4.30198 4.62816 3.39111 5.74144 3.39111H11.8139V21.6085ZM13.8381 21.6085H19.9105C21.0238 21.6085 21.9347 20.6977 21.9347 19.5844V12.4998H13.8381V21.6085ZM21.9347 10.4757V5.41527C21.9347 4.30198 21.0238 3.39111 19.9105 3.39111H13.8381V10.4757H21.9347Z"
-          
         >
           <Badge badgeContent={"soon"} color="secondary">
             <p className="ms-1">Dashboard</p>
@@ -236,10 +234,8 @@ export default function LoginNavBar() {
         <NavLink
           href="/homepage/schedule"
           className="mt-1"
-         
           d="M11.8139 21.6085H5.74144C4.62816 21.6085 3.71729 20.6977 3.71729 19.5844V5.41527C3.71729 4.30198 4.62816 3.39111 5.74144 3.39111H11.8139V21.6085ZM13.8381 21.6085H19.9105C21.0238 21.6085 21.9347 20.6977 21.9347 19.5844V12.4998H13.8381V21.6085ZM21.9347 10.4757V5.41527C21.9347 4.30198 21.0238 3.39111 19.9105 3.39111H13.8381V10.4757H21.9347Z"
           stroke="#A8AAB0"
-          
         >
           <Badge badgeContent={"soon"} color="secondary">
             <p className="ms-1">Schedule</p>
@@ -274,10 +270,16 @@ export default function LoginNavBar() {
           </div>
           {showSettings && (
             <div
-              className={`flex flex-col absolute  p-2 mr-20 mt-44 w-32  md:h-38 h-50 bg-gray-600 z-10`}
+              className={`${
+                theme === "light"
+                  ? "flex flex-col absolute  p-2 mr-20 mt-44 w-32  md:h-38 h-50 bg-white z-10"
+                  : "flex flex-col absolute  p-2 mr-20 mt-44 w-32  md:h-38 h-50 bg-black z-10"
+              }`}
             >
-             
-              <button className="flex flex-row items-center mb-2" onClick={profileHandler.bind(null, "/homepage/profile")}>
+              <button
+                className="flex flex-row items-center mb-2"
+                onClick={profileHandler.bind(null, "/homepage/profile")}
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="16"
@@ -291,7 +293,10 @@ export default function LoginNavBar() {
                 </svg>
                 <span className="ms-2">Profile</span>
               </button>
-              <button className="flex flex-row items-center mb-2" onClick={profileHandler.bind(null, "/pricing")}>
+              <button
+                className="flex flex-row items-center mb-2"
+                onClick={profileHandler.bind(null, "/pricing")}
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="16"
@@ -305,7 +310,10 @@ export default function LoginNavBar() {
                 </svg>
                 <span className="ms-2">Buy Tokens</span>
               </button>
-              <button className="flex flex-row items-center mb-2" onClick={profileHandler.bind(null, "/contact")}>
+              <button
+                className="flex flex-row items-center mb-2"
+                onClick={profileHandler.bind(null, "/contact")}
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="16"
@@ -322,7 +330,7 @@ export default function LoginNavBar() {
               <div
                 className="flex flex-row border-t-2 items-center cursor-pointer w-full h-full"
                 onClick={() => {
-                  handleLogout();
+                  handleLogout()
                 }}
               >
                 <svg
@@ -349,7 +357,7 @@ export default function LoginNavBar() {
         </div>
       </div>
       <div className="md:hidden flex">
-      <div className="relative bg-slate-300  w-10 rounded-full items-center justify-center flex">
+        <div className="relative bg-slate-300  w-10 rounded-full items-center justify-center flex">
           <div
             onClick={toggleLogout}
             className="rounded-full p-1 flex items-center justify-center cursor-pointer"
@@ -362,57 +370,65 @@ export default function LoginNavBar() {
             <div
               className={`flex flex-col absolute  p-2 mr-20 mt-52 w-32  md:h-32 h-44 bg-gray-600 z-10`}
             >
-              <button className="flex flex-row items-center mb-2" onClick={profileHandler.bind(null, "/homepage/ContentCreation")}>
-               
-                  <path d="M6.5 2a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1h-3zM11 8a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
-                  <path d="M4.5 0A2.5 2.5 0 0 0 2 2.5V14a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2.5A2.5 2.5 0 0 0 11.5 0h-7zM3 2.5A1.5 1.5 0 0 1 4.5 1h7A1.5 1.5 0 0 1 13 2.5v10.795a4.2 4.2 0 0 0-.776-.492C11.392 12.387 10.063 12 8 12s-3.392.387-4.224.803a4.2 4.2 0 0 0-.776.492V2.5z" />
-               
-                <span className="ms-2 text-sm text-left">AI Creator Studio</span>
+              <button
+                className="flex flex-row items-center mb-2"
+                onClick={profileHandler.bind(null, "/homepage/ContentCreation")}
+              >
+                <path d="M6.5 2a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1h-3zM11 8a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
+                <path d="M4.5 0A2.5 2.5 0 0 0 2 2.5V14a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2.5A2.5 2.5 0 0 0 11.5 0h-7zM3 2.5A1.5 1.5 0 0 1 4.5 1h7A1.5 1.5 0 0 1 13 2.5v10.795a4.2 4.2 0 0 0-.776-.492C11.392 12.387 10.063 12 8 12s-3.392.387-4.224.803a4.2 4.2 0 0 0-.776.492V2.5z" />
+
+                <span className="ms-2 text-sm text-left">
+                  AI Creator Studio
+                </span>
               </button>
-              <button className="flex flex-row items-center mb-2" onClick={profileHandler.bind(null, "/homepage/drafts")}>
-                
-                  <path d="M6.5 2a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1h-3zM11 8a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
-                  <path d="M4.5 0A2.5 2.5 0 0 0 2 2.5V14a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2.5A2.5 2.5 0 0 0 11.5 0h-7zM3 2.5A1.5 1.5 0 0 1 4.5 1h7A1.5 1.5 0 0 1 13 2.5v10.795a4.2 4.2 0 0 0-.776-.492C11.392 12.387 10.063 12 8 12s-3.392.387-4.224.803a4.2 4.2 0 0 0-.776.492V2.5z" />
-               
+              <button
+                className="flex flex-row items-center mb-2"
+                onClick={profileHandler.bind(null, "/homepage/drafts")}
+              >
+                <path d="M6.5 2a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1h-3zM11 8a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
+                <path d="M4.5 0A2.5 2.5 0 0 0 2 2.5V14a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2.5A2.5 2.5 0 0 0 11.5 0h-7zM3 2.5A1.5 1.5 0 0 1 4.5 1h7A1.5 1.5 0 0 1 13 2.5v10.795a4.2 4.2 0 0 0-.776-.492C11.392 12.387 10.063 12 8 12s-3.392.387-4.224.803a4.2 4.2 0 0 0-.776.492V2.5z" />
+
                 <span className="ms-2">Drafts</span>
               </button>
-              <button className="flex flex-row items-center mb-2" onClick={profileHandler.bind(null, "/homepage/profile")}>
-               
-                  <path d="M6.5 2a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1h-3zM11 8a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
-                  <path d="M4.5 0A2.5 2.5 0 0 0 2 2.5V14a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2.5A2.5 2.5 0 0 0 11.5 0h-7zM3 2.5A1.5 1.5 0 0 1 4.5 1h7A1.5 1.5 0 0 1 13 2.5v10.795a4.2 4.2 0 0 0-.776-.492C11.392 12.387 10.063 12 8 12s-3.392.387-4.224.803a4.2 4.2 0 0 0-.776.492V2.5z" />
-               
+              <button
+                className="flex flex-row items-center mb-2"
+                onClick={profileHandler.bind(null, "/homepage/profile")}
+              >
+                <path d="M6.5 2a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1h-3zM11 8a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
+                <path d="M4.5 0A2.5 2.5 0 0 0 2 2.5V14a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2.5A2.5 2.5 0 0 0 11.5 0h-7zM3 2.5A1.5 1.5 0 0 1 4.5 1h7A1.5 1.5 0 0 1 13 2.5v10.795a4.2 4.2 0 0 0-.776-.492C11.392 12.387 10.063 12 8 12s-3.392.387-4.224.803a4.2 4.2 0 0 0-.776.492V2.5z" />
+
                 <span className="ms-2">Profile</span>
               </button>
-              <button className="flex flex-row items-center mb-2" onClick={profileHandler.bind(null, "/contact")}>
-               
-                  <path d="M6.5 2a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1h-3zM11 8a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
-                  <path d="M4.5 0A2.5 2.5 0 0 0 2 2.5V14a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2.5A2.5 2.5 0 0 0 11.5 0h-7zM3 2.5A1.5 1.5 0 0 1 4.5 1h7A1.5 1.5 0 0 1 13 2.5v10.795a4.2 4.2 0 0 0-.776-.492C11.392 12.387 10.063 12 8 12s-3.392.387-4.224.803a4.2 4.2 0 0 0-.776.492V2.5z" />
-                
+              <button
+                className="flex flex-row items-center mb-2"
+                onClick={profileHandler.bind(null, "/contact")}
+              >
+                <path d="M6.5 2a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1h-3zM11 8a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
+                <path d="M4.5 0A2.5 2.5 0 0 0 2 2.5V14a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2.5A2.5 2.5 0 0 0 11.5 0h-7zM3 2.5A1.5 1.5 0 0 1 4.5 1h7A1.5 1.5 0 0 1 13 2.5v10.795a4.2 4.2 0 0 0-.776-.492C11.392 12.387 10.063 12 8 12s-3.392.387-4.224.803a4.2 4.2 0 0 0-.776.492V2.5z" />
+
                 <span className="ms-2">Contact us</span>
               </button>
               <div
                 className="flex flex-row border-t-2 items-center cursor-pointer w-full h-full"
                 onClick={() => {
-                  handleLogout();
+                  handleLogout()
                 }}
               >
-               
-                  <path
-                    fill-rule="evenodd"
-                    d="M6 12.5a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 1-1 0v-2A1.5 1.5 0 0 1 6.5 2h8A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 5 12.5v-2a.5.5 0 0 1 1 0v2z"
-                  />
-                  <path
-                    fill-rule="evenodd"
-                    d="M.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L1.707 7.5H10.5a.5.5 0 0 1 0 1H1.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3z"
-                  />
-                
+                <path
+                  fill-rule="evenodd"
+                  d="M6 12.5a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 1-1 0v-2A1.5 1.5 0 0 1 6.5 2h8A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 5 12.5v-2a.5.5 0 0 1 1 0v2z"
+                />
+                <path
+                  fill-rule="evenodd"
+                  d="M.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L1.707 7.5H10.5a.5.5 0 0 1 0 1H1.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3z"
+                />
+
                 <p className="ms-2">Log out</p>
               </div>
             </div>
           )}
         </div>
       </div>
-     
     </div>
-  );
+  )
 }
