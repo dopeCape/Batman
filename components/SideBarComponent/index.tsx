@@ -56,7 +56,7 @@ export default function SideBar() {
         {searchText !== "" &&
           filteredPlatforms.map((platform, i) => (
             <List key={i}>
-              {platform.items.map((item, j) => (
+              {platform.title.map((item, j) => (
                 <button
                   onClick={() => handleItemClick(item)}
                   className={`flex w-full  pl-14 ${
@@ -113,7 +113,7 @@ export default function SideBar() {
             </div>
             <Collapse in={openStates[i]} timeout="auto" unmountOnExit>
               <List component="div" disablePadding>
-                {platform.items.map((item, j) => (
+                {platform.title.map((item, j) => (
                   <button
                     onClick={() => handleItemClick(item)}
                     className={`flex  w-full  md:pl-20 pl-0 ${

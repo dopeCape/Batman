@@ -43,7 +43,7 @@ function FreeTrial() {
       </div>
       {/* <div className='border-gray-200 cursor-pointer text-[20px] text-[#a99efa] font-bold border-[1px] p-5 px-10 rounded-[10px] '> */}
       <button
-        className={`border-gray-200 cursor-pointer text-[20px] text-[#a99efa] font-bold border-[1px] py-5 px-10 rounded-[10px]`}
+        className={`border-gray-200 cursor-pointer text-[20px] text-[#705cf6] font-bold border-[1px] py-5 px-10 rounded-[10px]`}
       >
         <Link href="/auth/signup">Start your free trial now</Link>
       </button>

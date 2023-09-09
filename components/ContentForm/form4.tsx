@@ -179,7 +179,7 @@ export default function Form4({ title }: MainSelectorProps) {
     <div className="flex flex-col md:flex-row	justify-center items-center w-full h-full">
       <div className="w-full h-screen flex dark:bg-[#232529] bg-[#F2F2F2] md:px-10 px-4 md:py-16 py-8 flex-col">
         <h1 className=" font-sans text-2xl font-bold">
-          Generate {title.replace(/'/g, "&rsquo;")} idea
+          Generate {title.replace(/'/g, "&rsquo;")} 
         </h1>
         <h3 className="text-sm  ">
          {desc.replace(/'/g, "&rsquo;")}
