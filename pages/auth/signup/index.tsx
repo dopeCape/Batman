@@ -60,7 +60,7 @@ const SignUp = () => {
   1
 
   return (
-    <div className="flex-row flex items-center justify-center h-screen w-full">
+    <div className="flex-row flex items-center justify-center h-screen w-screen">
       <div
         className=" flex-col w-full md:w-1/2 h-full items-center justify-center  md:flex hidden"
         style={{
