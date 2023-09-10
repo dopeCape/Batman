@@ -5,11 +5,13 @@ import { auth } from "@/firebase"
 import { useAtom } from "jotai"
 import Image from "next/image"
 import { draftAtom } from "@/utils/store"
+
 export default function DraftSidebar() {
   const [drafts, setDrafts] = useState<string[]>([])
   const user = auth.currentUser
   const [_draft, setDraft] = useAtom(draftAtom)
   const [searchText, setSearchText] = useState("")
+
   useEffect(() => {
     fetchUserDrafts(user)
       .then((userDrafts) => {
