@@ -19,12 +19,12 @@ const Preview = () => {
     }
   }, [controls, inView])
   return (
-    <div className="bg-white flex md:px-10 px-4 md:px-16 items-center justify-center py-20 mr-[3%]">
+    <div className="bg-white md:flex md:px-10 px-4 md:px-16 items-center justify-center py-20 mr-[3%] md:gap-x-5">
       <motion.div
         ref={ref}
         variants={textScrollVariants}
         initial="hidden"
-        className="w-[50%] flex flex-col gap-y-5 justify-center relative md:right-[-50px] transition-all duration-1000 ease-in-out"
+        className="flex flex-col gap-y-5 justify-center relative md:right-[-50px] transition-all duration-1000 ease-in-out"
         animate={controls}
       >
         <motion.div
@@ -42,10 +42,10 @@ const Preview = () => {
             height={450}
           />
         </motion.div>
-        <h1 className="text-[#3247CF] font-semibold md:text-[48px] text-4xl leading-[48px] w-[380px]">
+        <h1 className="text-[#3247CF] font-semibold md:text-[48px] text-4xl leading-[48px] md:w-[380px]">
           Tailored Content Ideas to Fuel Your Creativity!
         </h1>
-        <p className="font-normal text-[16px] leading-[18.75px] text-justify text-[#494949] w-[387px]">
+        <p className="font-normal text-[16px] leading-[18.75px] text-justify text-[#494949] md:w-[387px]">
           Our advanced AI-driven platform is{" "}
           <br className="sm:hidden flex"></br>
           designed to provide you with content

@@ -59,7 +59,7 @@ const Journey = () => {
           ref={ref}
           variants={textScrollVariants}
           initial="hidden"
-          className="font-semibold text-[48px] leading-[48px] text-center relative md:right-[-50px] transition-all duration-1000 ease-in-out"
+          className="font-semibold text-4xl md:text-[48px] leading-[48px] text-center relative md:right-[-50px] transition-all duration-1000 ease-in-out"
           animate={controls}
         >
           CREATED FOR YOU, WITH YOU!

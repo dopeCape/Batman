@@ -29,7 +29,7 @@ const Blocks = () => {
   const user: any = checkUser()
 
   return (
-    <div className="bg-[#3247CF] flex pl-[7%] py-10 w-full md:flex-row gap-x-4 flex-col items-center  ">
+    <div className="bg-[#3247CF] flex px-2 md:px-10 py-10 w-full md:flex-row gap-x-4 flex-col items-center  ">
       <motion.div
         ref={ref}
         variants={textScrollVariants}
