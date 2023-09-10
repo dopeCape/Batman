@@ -98,7 +98,7 @@ export const updateModel = async (user, newModelValue) => {
 }
 
 export const addDraft = async (user, data) => {
-  const userRef = doc(firestore, "users", user.uid)
+  const userRef = doc(db, "users", user.uid)
 
   try {
     const userDoc = await getDoc(userRef)
@@ -117,7 +117,7 @@ export const addDraft = async (user, data) => {
 }
 
 export const fetchUserDrafts = async (user) => {
-  const userRef = doc(firestore, "users", user.uid)
+  const userRef = doc(db, "users", user.uid)
 
   try {
     const docSnap = await getDoc(userRef)
