@@ -32,12 +32,12 @@ const Prompts = () => {
   }, [controls2, inView2])
   return (
     <div className="pb-10">
-      <div className="bg-white h-[500px] flex md:px-10 px-16 mr-[3%]">
+      <div className="bg-white h-[500px] flex px-4  md:px-16 mr-[3%]">
         <motion.div
           ref={ref}
           variants={textScrollVariants}
           initial="hidden"
-          className="w-[50%] flex flex-col gap-y-5 justify-center relative right-[-200px] transition-all duration-1000 ease-in-out"
+          className="w-[50%] flex flex-col gap-y-5 justify-center relative md:right-[-200px] transition-all duration-1000 ease-in-out"
           animate={controls}
         >
           <div className="md:hidden flex justify-center  ">
@@ -60,7 +60,7 @@ const Prompts = () => {
           ref={ref}
           variants={textScrollVariants}
           initial="hidden"
-          className="w-[50%] mt-[5%] flex relative justify-center mr-10 right-[200px] transition-all duration-1000 ease-in-out"
+          className="w-[50%] mt-[5%] flex relative justify-center mr-10 md:right-[200px] transition-all duration-1000 ease-in-out"
           animate={controls}
         >
           <Image
@@ -80,7 +80,7 @@ const Prompts = () => {
           ref={ref2}
           variants={textScrollVariants}
           initial="hidden"
-          className="w-[50%] mt-[5%]  relative right-[-200px] transition-all duration-1000 ease-in-out md:flex hidden"
+          className="w-[50%] mt-[5%]  relative md:right-[-200px] transition-all duration-1000 ease-in-out md:flex hidden"
           animate={controls2}
         >
           <Image
@@ -99,7 +99,7 @@ const Prompts = () => {
           ref={ref2}
           variants={textScrollVariants}
           initial="hidden"
-          className="w-[50%] py-4 flex flex-col gap-y-5 justify-center relative right-[-50px] transition-all duration-1000 ease-in-out"
+          className="w-[50%] py-4 flex flex-col gap-y-5 justify-center relative md:right-[-50px] transition-all duration-1000 ease-in-out"
           animate={controls2}
         >
           <Image

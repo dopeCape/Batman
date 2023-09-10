@@ -59,7 +59,7 @@ const Journey = () => {
           ref={ref}
           variants={textScrollVariants}
           initial="hidden"
-          className="font-semibold text-[48px] leading-[48px] text-center w-[425px] relative right-[-200px] transition-all duration-1000 ease-in-out"
+          className="font-semibold text-[48px] leading-[48px] text-center relative md:right-[-50px] transition-all duration-1000 ease-in-out"
           animate={controls}
         >
           CREATED FOR YOU, WITH YOU!
@@ -90,7 +90,7 @@ const Journey = () => {
           ref={ref}
           variants={textScrollVariants}
           initial="hidden"
-          className="text-[16px] leading-[18.75px] font-normal text-white mt-10 w-[280px] text-center relative right-[200px] transition-all duration-1000 ease-in-out"
+          className="text-[16px] leading-[18.75px] font-normal text-white mt-10 text-center relative md:right-[-50px] transition-all duration-1000 ease-in-out"
           animate={controls}
         >
           Join us on our journey of simplifying social media and get early
@@ -103,12 +103,12 @@ const Journey = () => {
           ref={ref}
           variants={textScrollVariants}
           initial="hidden"
-          className="flex gap-x-5 relative right-[-200px] transition-all duration-1000 ease-in-out md:flex-row flex-col"
+          className="flex gap-x-5 relative md:right-[-50px] transition-all duration-1000 ease-in-out md:flex-row flex-col"
           animate={controls}
         >
           <input
             placeholder="Enter your Email here"
-            className="bg-[#3247CF] border-white border-[1px] border-t-0 border-r-0 w-[400px] text-white border-l-0 h-12 focus:outline-none"
+            className="bg-[#3247CF] border-white border-[1px] border-t-0 border-r-0 text-white border-l-0 h-12 focus:outline-none"
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
