@@ -1,5 +1,6 @@
 import Image from "next/image"
 import React, { useState, useEffect } from "react"
+import Link from "next/link"
 import { useAnimation, motion } from "framer-motion"
 import { collection, addDoc, serverTimestamp } from "firebase/firestore"
 import { db } from "@/firebase"
@@ -126,11 +127,34 @@ const Journey = () => {
           </form>
         </motion.div>
       </div>
-      <div className="h-10 bg-blue-800 flex justify-center items-center">
-        <p className="text-[#FFFFFF7B] text-[16px] font-normal ">
-          Copyright {year} Metridash
-        </p>
-      </div>
+      <footer className="bg-white rounded-lg shadow m-4 dark:bg-gray-800 mt-5">
+        <div className="w-full mx-auto max-w-screen-xl p-4 md:flex md:items-center md:justify-between">
+          <span className="text-sm text-gray-500 sm:text-center dark:text-gray-400">
+            © {year}{" "}
+            <Link href="/" className="hover:underline">
+              Metridash
+            </Link>
+            . All Rights Reserved.
+          </span>
+          <ul className="flex flex-wrap items-center mt-3 text-sm font-medium text-gray-500 dark:text-gray-400 sm:mt-0">
+            <li>
+              <Link href="/privacy" className="mr-4 hover:underline md:mr-6">
+                Privacy Policy
+              </Link>
+            </li>
+            <li>
+              <Link href="/terms" className="mr-4 hover:underline md:mr-6">
+                Terms of Service
+              </Link>
+            </li>
+            <li>
+              <Link href="/contact" className="hover:underline">
+                Contact Us
+              </Link>
+            </li>
+          </ul>
+        </div>
+      </footer>
     </>
   )
 }
