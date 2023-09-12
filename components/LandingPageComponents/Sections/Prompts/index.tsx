@@ -107,7 +107,7 @@ const Prompts = () => {
             src={RImage5}
             alt="Preview"
           />
-          <h1 className="text-[#1E1E1E] font-semibold text-[48px] leading-[48px] ">
+          <h1 className="text-[#1E1E1E] font-semibold text-[48px] leading-[48px] mt-20 md:mt-0">
             Focus on the big picture!
           </h1>
           <p className="font-normal text-[16px] leading-[18.75px] text-justify text-[#494949] align-center my-8 md:my-0">
