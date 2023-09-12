@@ -1,10 +1,13 @@
 import Image from "next/image"
 import React, { useState, useEffect } from "react"
+import Link from "next/link"
 import { useAnimation, motion } from "framer-motion"
 import { useInView } from "react-intersection-observer"
 import { collection, addDoc, serverTimestamp } from "firebase/firestore"
 import { db } from "@/firebase"
 import DashBoard from "../../../../public/Images/1.png"
+import checkUser from "@/utils/checkUser"
+
 const Blocks = () => {
   const textScrollVariants = {
     visible: { opacity: 1, top: 0 },
@@ -16,34 +19,14 @@ const Blocks = () => {
   const controls = useAnimation()
   const [ref, inView] = useInView()
 
+  const user: any = checkUser()
+
   useEffect(() => {
     if (inView) {
       controls.start("visible")
     }
   }, [controls, inView])
-  const joinTheWaitList = async (e: any) => {
-    e.preventDefault()
-    if (email.length === 0) return
-    try {
-      setDisabled(true)
-      await addDoc(collection(db, "waitList"), {
-        email,
-        createdAt: serverTimestamp(),
-      })
-      setDisabled(false)
-      setEmail("")
-      setResponse("Thank you! You have successfully submitted your email.")
-      setTimeout(() => {
-        setResponse("")
-      }, 5000)
-    } catch (ex) {
-      setEmail("")
-      setResponse("Sorry, something went wrong.")
-      setTimeout(() => {
-        setResponse("")
-      }, 5000)
-    }
-  }
+
   return (
     <div className="bg-[#3247CF] flex md:px-0 px-3 pb-5 w-full md:flex-row flex-col items-center">
       <motion.div
@@ -59,6 +42,14 @@ const Blocks = () => {
         <p className="text-white md:w-[447px] font-normal text-[24px] leading-[28px] md:pl-5">
           Metridash is here to revolutionize your creative process.
         </p>
+        <div className="btn-hero md:ml-5">
+          <Link
+            href={`${user && user.uid ? "/homepage" : "/auth/signup"}`}
+            className="flex w-40 px-2 py-2 mt-4 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-xl items-center justify-center"
+          >
+            <h1 className="text-lg font-semibold">Get Started</h1>
+          </Link>
+        </div>
       </motion.div>
       <motion.div
         ref={ref}

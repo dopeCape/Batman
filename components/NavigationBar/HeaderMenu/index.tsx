@@ -2,6 +2,7 @@ import { FirebaseParameters } from "@/constants/firebaseParameters"
 import { getConfigValue } from "@/services/firebase/remoteConfig"
 import Image from "next/image"
 import Link from "next/link"
+import jwt from "jsonwebtoken"
 import menu from "../../../public/Images/menu.png"
 import { useRouter } from "next/router"
 import { Logout } from "../../../auth"
@@ -44,12 +45,20 @@ const HeaderMenu = (props: Props) => {
     setActive(index.toString())
   }
 
-  useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((user) => {
-      setUser(user)
-    })
-    return () => unsubscribe()
-  }, [user])
+  // useEffect(() => {
+  //   const unsubscribe = auth.onAuthStateChanged((user) => {
+  //     setUser(user)
+  //   })
+  //   return () => unsubscribe()
+  // }, [user])
+
+  if (auth.currentUser?.uid) {
+    const token = jwt.sign(
+      { uid: auth.currentUser?.uid! },
+      process.env.NEXT_PUBLIC_JWT_SECRET!
+    )
+    localStorage.setItem("token", token)
+  }
 
   return (
     <>
