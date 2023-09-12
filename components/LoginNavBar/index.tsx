@@ -241,16 +241,6 @@ export default function LoginNavBar() {
             <p className="ms-1">Schedule</p>
           </Badge>
         </NavLink>
-        <FormControlLabel
-          control={
-            <IOSSwitch
-              onChange={handleThemeChange}
-              defaultChecked={theme === "dark"}
-              sx={{ m: 1 }}
-            />
-          }
-          label=""
-        />
 
         <Link
           href="/pricing"
@@ -351,7 +341,7 @@ export default function LoginNavBar() {
           </div>
           {showSettings && (
             <div
-              className={`flex flex-col absolute  p-2 mr-20 mt-52 w-32  md:h-32 h-44 bg-gray-600 z-10`}
+              className={`flex flex-col absolute  p-2 mr-20 mt-52 w-32  md:h-32 h-44 bg-gray-600 z-10 bg-white`}
             >
               <button
                 className="flex flex-row items-center mb-2"
