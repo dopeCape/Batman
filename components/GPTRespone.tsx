@@ -4,7 +4,7 @@ import { useAtom } from "jotai"
 import ClickAwayListener from "@mui/material/ClickAwayListener"
 import Tooltip from "@mui/material/Tooltip"
 import Button from "@mui/material/Button"
-import { responseAtom, platformAtom, draftTitle } from "@/utils/store"
+import { responseAtom, platformAtom } from "@/utils/store"
 import { auth } from "@/firebase"
 import { generateRealTimeToken } from "../auth"
 import tokens from "../public/icons/coins.png"
@@ -24,8 +24,6 @@ import { addDraft } from "../auth"
 import Snackbar from "@mui/material/Snackbar"
 import Alert from "@mui/material/Alert"
 import Stack from "@mui/material/Stack"
-import { draftAtom } from "@/utils/store"
-
 type StaticImport = StaticImageData | string
 
 export default function GPTResponse({
@@ -45,8 +43,6 @@ export default function GPTResponse({
   const [_response, setResponse] = useState("")
   const [loading, setLoading] = useState(false)
   const [fullData, setFullData] = useState("")
-  const [title] = useAtom(draftTitle)
-
   const currentUser = auth.currentUser
   let finalToken = 20
   const handleOpen = () => {
@@ -147,8 +143,7 @@ export default function GPTResponse({
 
   const handleAddDraft = async (data: any) => {
     try {
-      await addDraft(currentUser, `${title}:${data}`)
-
+      await addDraft(currentUser, data)
       setAlert({ severity: "success", message: "Draft added successfully" })
     } catch (error) {
       setAlert({ severity: "error", message: "Error adding draft" })
@@ -174,8 +169,8 @@ export default function GPTResponse({
   }
 
   return (
-    <div className="dark:bg-[#232529] bg-[#F2F2F2] px-4  w-full h-screen overflow-scroll items-center pt-14 flex flex-col">
-      <div className="flex flex-col items-center w-full dark:bg-[#1B1D21] pb-6 bg-white h-4/5 rounded-md overflow-scroll">
+    <div className="dark:bg-[#232529] bg-[#F2F2F2] w-full h-screen overflow-scroll items-center flex flex-col h-screen bg-white">
+      <div className="flex flex-col items-center w-full dark:bg-[#1B1D21] pb-6 bg-white rounded-md">
         {response ? (
           response
             .split("\n")

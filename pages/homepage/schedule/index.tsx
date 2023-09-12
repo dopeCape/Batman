@@ -1,13 +1,15 @@
 import React from "react"
+import checkUser from "@/utils/checkUser"
 
 export default function Schedule() {
+  const user: any = checkUser()
+  if (!user) {
+    window.location.href = "/auth/signin"
+    return
+  }
   return (
-    <div>
-      <div className="flex flex-col gap-6 w-screen h-screen items-center justify-center ">
-        <h1 className="font-extrabold text-transparent text-6xl  pb-4 bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">
-          Coming Soon!
-        </h1>
-      </div>
-    </div>
+    <h3 className="font-semibold mt-4 text-5xl flex justify-center items-center min-h-[calc(100vh-8rem)]">
+      Coming Soon...
+    </h3>
   )
 }

@@ -19,12 +19,12 @@ const Preview = () => {
     }
   }, [controls, inView])
   return (
-    <div className="bg-white md:flex md:px-10 px-4 md:px-16 items-center justify-center py-20 mr-[3%] md:gap-x-5">
+    <div className="bg-white flex px-3 md:px-16 items-center justify-center py-20 md:mr-[3%]">
       <motion.div
         ref={ref}
         variants={textScrollVariants}
         initial="hidden"
-        className="flex flex-col gap-y-5 justify-center relative md:right-[-50px] transition-all duration-1000 ease-in-out"
+        className="md:w-[50%] flex flex-col gap-y-5 justify-center relative md:right-[-50px] transition-all duration-1000 ease-in-out"
         animate={controls}
       >
         <motion.div
@@ -42,22 +42,19 @@ const Preview = () => {
             height={450}
           />
         </motion.div>
-        <h1 className="text-[#3247CF] font-semibold md:text-[48px] text-4xl leading-[48px] md:w-[380px]">
-          Tailored Content Ideas to Fuel Your Creativity!
+        <h1 className="text-[#1E1E1E]  text-[48px] font-semibold leading-[48px] md:w-[300px] ">
+          We help you stay on top of your game!
         </h1>
-        <p className="font-normal text-[16px] leading-[18.75px] text-justify text-[#494949] md:w-[387px]">
-          Our advanced AI-driven platform is{" "}
-          <br className="sm:hidden flex"></br>
-          designed to provide you with content
-          <br className="sm:hidden flex"></br> ideas perfectly tailored to your
-          needs sparking your creativity like never before.
+        <p className="font-normal text-[16px] leading-[18.75px] text-justify text-[#494949]">
+          We have added our own proprietary algorithm to ChatGPT and taken out
+          the headache of finding a good prompt.
         </p>
       </motion.div>
       <motion.div
         ref={ref}
         variants={textScrollVariants}
         initial="hidden"
-        className="w-screen mt-[5%] relative  transition-all duration-1000 ease-in-out"
+        className="md:w-[50%] mt-[5%] relative md:right-[-50px] transition-all duration-1000 ease-in-out"
         animate={controls}
       >
         <Image src={PreviewImg} alt="Preview" className="sm:flex hidden" />

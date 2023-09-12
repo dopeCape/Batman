@@ -15,8 +15,7 @@ import { Modal, Box, OutlinedInput } from "@mui/material"
 import { StyleModal } from "@/components/modalStyle"
 import PopUpCard from "@/components/PopUpCard"
 import { useTheme } from "next-themes"
-import { Descriptions, setPrompt, TokensNeeded } from "@/hooks/function"
-import { draftTitle } from "@/utils/store"
+import { setPrompt, TokensNeeded } from "@/hooks/function"
 
 const options = [
   "Conversational",
@@ -34,10 +33,10 @@ export const disabled = (...args: any[]) => {
   )
 }
 type MainSelectorProps = {
-  title: string
+  title: string // Adjust the type according to your use case
 }
 export default function Form4({ title }: MainSelectorProps) {
-  const [value, setValue] = useState<string | null>("")
+  const [value, setValue] = useState<any>("")
   const [keywords, setKeywords] = useState<string>()
   const [word, setWord] = useState("")
   const [inputValue, setInputValue] = useState("")
@@ -50,8 +49,6 @@ export default function Form4({ title }: MainSelectorProps) {
   const [loading, setLoading] = useState(false)
   const [word1, setWord1] = useState<string>("")
   const [tokensRequired, setTokensRequired] = useState<string>("")
-  const [desc, setDesc] = useState<string>("")
-  const [mainTitle, setMainTitle] = useState("")
   let token: number = 20
   const user = auth.currentUser
   const router = useRouter()
@@ -59,29 +56,29 @@ export default function Form4({ title }: MainSelectorProps) {
   const [open, setOpen] = useState(false)
   const handleOpen = () => setOpen(true)
   const handleClose = () => setOpen(false)
-  const [theTitle, setTitle] = useAtom(draftTitle)
-
+  // const [prompt , setPrompts] = useState<string | undefined>()
   const { theme, setTheme } = useTheme()
   useEffect(() => {
+    // Set the state to null on page load
+
     setResponse("")
   }, [setResponse])
 
   useEffect(() => {
     const word = title.split(" ")
     const x = TokensNeeded(title)
-    const y = Descriptions(title)
-    setMainTitle(title)
+
     setTokensRequired(x)
-    setDesc(y)
+
     setWord1(word[1])
     setResponse("")
     setInput("")
     setTargetAudience("")
     setValue("")
     setKeywords("")
-    setTitle(title)
+    // const data = setPrompt(title,input,targetAudience, value, keywords)
+    // setPrompts(data)
   }, [title])
-
   const handleKeyword = (event: ChangeEvent<HTMLInputElement>) => {
     setWord(event.target.value)
   }
@@ -96,6 +93,8 @@ export default function Form4({ title }: MainSelectorProps) {
     )
   }
 
+  // const prompt = `Generate one ${title} about ${input} ${keywords?`and should inclue keywords like ${keywords}`: null} ${value?`with ${value} tone`:null} ${targetAudience?`and with target audience ${targetAudience}`:null}`
+  // const prompt = `Generate 5 ${title} for a video about ${input}. Use the following keywords: ${keywords}. The tone should be ${value}, targeting a ${targetAudience}.`
   const handlePostAboutChange = (event: ChangeEvent<HTMLInputElement>) => {
     let value = event.target.value
     const count = value.length
@@ -128,17 +127,15 @@ export default function Form4({ title }: MainSelectorProps) {
     e.preventDefault()
     if (disabled(input)) return
     setLoading(true)
+    setResponse("")
     const tk = await getUserToken(user)
     if (Number(tk) < token) {
       handleOpen()
       setLoading(false)
       return
     } else {
+      let usertk: number = Number(tk) - Number(token)
       const prompt = setPrompt(title, input, targetAudience, value, keywords)
-      let usertk: number = Number(tk) - Number(tokensRequired)
-      // e.preventDefault();
-      setResponse("")
-      setPlatform(title)
       await updateTokens(user, usertk)
       const res = await fetch("/api/promptChatGPT", {
         method: "POST",
@@ -153,7 +150,6 @@ export default function Form4({ title }: MainSelectorProps) {
       if (!res.ok) throw new Error(res.statusText)
 
       const data = res.body
-
       if (!data) return
 
       const reader = data.getReader()
@@ -178,11 +174,13 @@ export default function Form4({ title }: MainSelectorProps) {
 
   return (
     <div className="flex flex-col md:flex-row	justify-center items-center w-full h-full">
-      <div className="w-full h-screen flex dark:bg-[#232529] bg-[#F2F2F2] md:px-10 px-4 md:py-16 py-8 flex-col">
+      <div className="w-full h-screen flex dark:bg-[#232529] bg-[#F2F2F2] px-10 mt-3 flex-col">
         <h1 className=" font-sans text-2xl font-bold">
-          Generate {title.replace(/'/g, "&rsquo;")}
+          Generate {title.replace(/'/g, "&rsquo;")} idea
         </h1>
-        <h3 className="text-sm  ">{desc.replace(/'/g, "&rsquo;")}</h3>
+        <h3 className="text-sm  ">
+          Optimize your content for greater visibility and higher engagement.
+        </h3>
         <form
           id="generate-form"
           onSubmit={(e) => e.preventDefault()}
@@ -198,11 +196,7 @@ export default function Form4({ title }: MainSelectorProps) {
               className="outline-none w-full px-2 py-4 rounded-lg dark:bg-[#1B1D21] bg-[#FFFFFF] placeholder-[#7D818B]"
               type="text"
               value={input}
-              placeholder={
-                title == "LinkedIn Profile Optimization"
-                  ? "tech, career advice, industry trend etc."
-                  : "gaming, music, fashion etc"
-              }
+              placeholder="gaming, fashion, animals etc."
               onChange={(e) => {
                 setInput(e.target.value), handlePostAboutChange(e)
               }}
@@ -212,7 +206,7 @@ export default function Form4({ title }: MainSelectorProps) {
             </p>
           </div>
 
-          <h3 className="text-lg mt-3 mb-1 dark:text-[#D2D2D2]">Keywords</h3>
+          <h3 className="text-lg my-3 dark:text-[#A7A7A7]">Keywords</h3>
 
           <input
             onChange={(e) => {
@@ -221,11 +215,7 @@ export default function Form4({ title }: MainSelectorProps) {
             value={keywords}
             className="w-full px-2 py-4 borderoutline-none dark:bg-[#1B1D21] outline-none  rounded-lg placeholder-[#7D818B]"
             type="text"
-            placeholder={
-              title == "LinkedIn Profile Optimization"
-                ? "AI, future, responsible etc."
-                : "gaming, music, fashion etc"
-            }
+            placeholder="gaming, fashion, animals"
           ></input>
 
           <h3 className=" text-lg mt-3 mb-1 dark:text-[#D2D2D2]">Tone </h3>
@@ -274,11 +264,7 @@ export default function Form4({ title }: MainSelectorProps) {
               className="outline-none w-full px-2 py-4 rounded-lg  dark:bg-[#1B1D21] bg-[#FFFFFF] placeholder-[#7D818B]"
               type="text"
               value={targetAudience}
-              placeholder={
-                title == "LinkedIn Profile Optimization"
-                  ? "prospective employee/employer etc."
-                  : "gaming, music, fashion etc"
-              }
+              placeholder="travellers, gamers etc."
               onChange={(e) => {
                 setTargetAudience(e.target.value), handleTargetAudienceChange(e)
               }}
@@ -297,7 +283,7 @@ export default function Form4({ title }: MainSelectorProps) {
           >
             <h1 className="text-white">
               {" "}
-              {loading ? "Generating..." : `Generate`}
+              {loading ? "Genarating..." : `Generate`}
             </h1>
           </button>
           <div className="flex w-full h-4 items-center justify-center my-2">
@@ -317,6 +303,9 @@ export default function Form4({ title }: MainSelectorProps) {
           <PopUpCard></PopUpCard>
         </Box>
       </Modal>
+      {/* <div className=" h-screen w-screen flex bg-white">
+        {/* <GPTResponseVideo></GPTResponseVideo> */}
+      {/* </div> */}
     </div>
   )
 }
