@@ -37,7 +37,7 @@ const Prompts = () => {
           ref={ref}
           variants={textScrollVariants}
           initial="hidden"
-          className="md:w-[50%] flex flex-col gap-y-5 justify-center relative md:right-[-200px] transition-all duration-1000 ease-in-out px-3"
+          className="md:w-[50%] flex flex-col gap-y-5 justify-center relative md:right-[-50px] transition-all duration-1000 ease-in-out px-3"
           animate={controls}
         >
           <div className="md:hidden flex justify-center  ">
@@ -60,7 +60,7 @@ const Prompts = () => {
           ref={ref}
           variants={textScrollVariants}
           initial="hidden"
-          className="md:w-[50%] mt-[5%] flex relative justify-center md:mr-10 md:right-[200px] transition-all duration-1000 ease-in-out"
+          className="md:w-[50%] mt-[5%] flex relative justify-center md:mr-10 md:right-[50px] transition-all duration-1000 ease-in-out"
           animate={controls}
         >
           <Image
@@ -80,7 +80,7 @@ const Prompts = () => {
           ref={ref2}
           variants={textScrollVariants}
           initial="hidden"
-          className="md:w-[50%] mt-[5%] flex relative md:right-[-200px] transition-all duration-1000 ease-in-out md:flex hidden"
+          className="md:w-[50%] mt-[5%] flex relative md:right-[-50px] transition-all duration-1000 ease-in-out md:flex hidden"
           animate={controls2}
         >
           <Image
@@ -99,7 +99,7 @@ const Prompts = () => {
           ref={ref2}
           variants={textScrollVariants}
           initial="hidden"
-          className="md:w-[50%] flex flex-col gap-y-5 justify-center relative md:right-[-200px] transition-all duration-1000 ease-in-out px-3"
+          className="md:w-[50%] flex flex-col gap-y-5 justify-center relative md:right-[-50px] transition-all duration-1000 ease-in-out px-3"
           animate={controls2}
         >
           <Image

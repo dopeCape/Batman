@@ -59,7 +59,7 @@ const Journey = () => {
           ref={ref}
           variants={textScrollVariants}
           initial="hidden"
-          className="font-semibold text-[48px] leading-[48px] text-center md:w-[425px] relative md:right-[-200px] transition-all duration-1000 ease-in-out"
+          className="font-semibold text-[48px] leading-[48px] text-center md:w-[425px] relative md:right-[-50px] transition-all duration-1000 ease-in-out"
           animate={controls}
         >
           CREATED FOR YOU, WITH YOU!
@@ -101,7 +101,7 @@ const Journey = () => {
           ref={ref}
           variants={textScrollVariants}
           initial="hidden"
-          className="flex gap-x-5 relative md:right-[-200px] transition-all duration-1000 ease-in-out md:flex-row flex-col"
+          className="flex gap-x-5 relative md:right-[-50px] transition-all duration-1000 ease-in-out md:flex-row flex-col"
           animate={controls}
         >
           <form onSubmit={subscribe}>
