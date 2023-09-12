@@ -206,8 +206,6 @@ export const onUserSignedIn = async (user, router) => {
     router.push("/")
   }
 }
-<<<<<<< HEAD
-=======
 
 // import {
 //   getAuth,
@@ -417,4 +415,3 @@ export const onUserSignedIn = async (user, router) => {
 //     router.push("/");
 //   }
 // };
->>>>>>> bk
