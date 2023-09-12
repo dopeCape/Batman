@@ -1,12 +1,9 @@
-import React from 'react'
-import SideBar from '@/components/SideBarComponent'
+import React from "react"
+import SideBar from "@/components/SideBarComponent"
 export default function Dashboard() {
   return (
-    <div className='flex flex-row w-screen h-screen'>
-        <div className='flex w-7/12 h-full'>
-          {/* <SideBar></SideBar> */}
-
-        </div>
-    </div>
-  );
+    <h3 className="font-semibold mt-4 text-5xl flex justify-center items-center min-h-[calc(100vh-8rem)]">
+      Coming Soon...
+    </h3>
+  )
 }
