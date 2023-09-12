@@ -1,68 +1,60 @@
-import { useState, ChangeEvent, useEffect } from "react"
-import Link from "next/link"
-import { useRouter, redirect } from "next/navigation"
-import { auth } from "@/firebase"
-import { createUserWithEmail, signInWithGoogle } from "../../../auth"
-import Typewriter from "typewriter-effect"
-import classes from "./signup.module.css"
-import checkUser from "@/utils/checkUser"
+import { useState, ChangeEvent, useEffect } from "react";
+import Link from "next/link";
+import { useRouter, redirect } from "next/navigation";
+import { auth } from "@/firebase";
+import { createUserWithEmail, signInWithGoogle } from "../../../auth";
+
+import classes from "./signup.module.css";
 
 const SignUp = () => {
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
-  const [message, setMessage] = useState("")
-  const [user, setUser] = useState<null | any>(null)
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [message, setMessage] = useState("");
+  const [user, setUser] = useState<null | any>(null);
 
-  const router = useRouter()
+  const router = useRouter();
 
-  // useEffect(() => {
-  //   auth.onAuthStateChanged((user) => {
-  //     setUser(user);
-  //     if (user && user.uid) {
-  //       window.location.href = "/homepage";
-  //     }
-  //   });
-  // }, [user]);
+  useEffect(() => {
+    auth.onAuthStateChanged((user) => {
+      setUser(user);
+      if (user && user.uid) {
+        window.location.href = "/homepage";
+      }
+    });
+  }, [user]);
 
   const handleEmailChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setEmail(event.target.value)
-  }
+    setEmail(event.target.value);
+  };
 
   const handlePasswordChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setPassword(event.target.value)
-  }
+    setPassword(event.target.value);
+  };
 
   const handleSignUp = async () => {
     try {
-      await createUserWithEmail(email, password)
-      setMessage("User signed up successfully")
-      window.location.href = "/homepage/ContentCreation"
+      await createUserWithEmail(email, password);
+      setMessage("User signed up successfully");
+      window.location.href = "/homepage";
     } catch (error) {
-      setMessage(`Error signing up: ${error}`)
+      setMessage(`Error signing up: ${error}`);
     }
-  }
+  };
 
   const handleGoogleSignIn = async () => {
     try {
-      await signInWithGoogle()
-      setMessage("User signed in with Google successfully")
-      window.location.href = "/homepage/ContentCreation"
+      await signInWithGoogle();
+      setMessage("User signed in with Google successfully");
+      window.location.href = "/homepage";
     } catch (error) {
-      setMessage(`Error signing in with Google: ${error}`)
+      setMessage(`Error signing in with Google: ${error}`);
     }
-  }
-
-  const decoded: any = checkUser()
-
-  if (decoded && decoded.uid) {
-    window.location.href = "/homepage/ContentCreation"
-  }
-  1
+  };
 
   return (
-    <div className="flex-row flex items-center justify-center h-screen w-screen">
+    <div className="flex-row flex items-center justify-center h-screen w-full">
       <div
-        className=" flex-col w-full md:w-1/2 h-full items-center justify-center  md:flex hidden"
+        className=" flex-row w-full md:w-1/2 h-full items-center justify-center  md:flex hidden"
         style={{
           backgroundImage:
             "url('https://images.rawpixel.com/image_1300/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvcGYtbWlzYzE0LWFkajAwODU1LWFkai1hXzEuanBn.jpg')",
@@ -70,30 +62,9 @@ const SignUp = () => {
           backgroundRepeat: "no-repeat",
         }}
       >
-        <div className="flex w-full h-20 flex-col mt-80 px-10 items-center">
-          <h1 className="text-white font-mono text-2xl font-extrabold text-center">
-            Metridash:
-            <br /> Your Ultimate Content Creation Companion
-          </h1>
-        </div>
-        <div className="flex justify-start items-start h-screen flex-col px-10">
-          <h1 className="text-white font-mono text-xl font-light  w-full text-center">
-            <Typewriter
-              options={{
-                strings: [
-                  "Fuel Your Creativity ",
-                  "Metridash empowers creators with powerful content creation tools, igniting your creative spark like never before.",
-                  "Craft, Share, and Thrive ",
-                  "Unleash your content potential effortlessly with Metridash – from creation to sharing, we&apos;ve got you covered",
-                  "Join the Creator Revolution",
-                  "Ready to revolutionize your content? Join the Metridash community today and watch your creative journey soar",
-                ],
-                autoStart: true,
-                loop: true,
-                deleteSpeed: 2,
-                delay: 40,
-              }}
-            />
+        <div className="flex justify-center items-center h-screen">
+          <h1 className="text-white font-mono text-2xl font-extrabold">
+            Metridash is live!
           </h1>
         </div>
       </div>
@@ -151,7 +122,7 @@ const SignUp = () => {
         </p>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default SignUp
+export default SignUp;

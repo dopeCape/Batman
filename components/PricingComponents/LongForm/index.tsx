@@ -1,32 +1,31 @@
-"use client"
-import React, { useState } from "react"
-import Slider from "rc-slider"
-import "rc-slider/assets/index.css"
-import { AiFillAlert } from "react-icons/ai"
-import { set } from "firebase/database"
-import { loadStripe, Stripe } from "@stripe/stripe-js"
-import { auth } from "@/firebase"
-import { useRouter } from "next/router"
+"use client";
+import React, { useState } from "react";
+import Slider from "rc-slider";
+import "rc-slider/assets/index.css";
+import { AiFillAlert } from "react-icons/ai";
+import { set } from "firebase/database";
+import {loadStripe, Stripe} from '@stripe/stripe-js';
+import { auth } from "@/firebase";
+import { useRouter } from "next/router";
 
 function LongForm() {
-  const [value, setValue] = useState<number[]>([10000])
-  const [price, setPrice] = useState<number>(19)
-  const [words, setWords] = useState<number>(10000)
-  const [token, setToken] = useState<number>(100)
+  const [value, setValue] = useState<number[]>([10000]);
+  const [price, setPrice] = useState<number>(19);
+  const [words, setWords] = useState<number>(10000);
+  const [token, setToken] = useState<number>(100);
   const router = useRouter()
   const handleSliderChange = (value: number | number[]) => {
-    handlePriceChange(value)
+    handlePriceChange(value);
     if (Array.isArray(value)) {
-      setValue(value)
+      setValue(value);
     }
-  }
+  };
 
   const makePayment = async () => {
-    try {
-      const stripe = await loadStripe(
-        "pk_test_51JmCDKSG74X9iofA5TPFlDLSImjimmiWFC8m2BKFjaNQxRt8GkTes5n8o99JgGKohkjgkpgOlKdD7VouKr9pks9400gBrxpcM9"
-      ) //This key is just for testing and not for final product//
-      const data = { tokens: token, prices: price, words: words }
+    try{
+
+      const stripe = await loadStripe("pk_test_51JmCDKSG74X9iofA5TPFlDLSImjimmiWFC8m2BKFjaNQxRt8GkTes5n8o99JgGKohkjgkpgOlKdD7VouKr9pks9400gBrxpcM9"); //This key is just for testing and not for final product//
+      const data={tokens: token, prices: price, words: words}
       const body = {
         products: data,
       }
@@ -37,56 +36,58 @@ function LongForm() {
         method: "POST",
         headers: headers,
         body: JSON.stringify(body),
-      })
-
-      const session = await response.json()
-
+      });
+  
+      const session = await response.json();
+  
       if (stripe) {
         const result = await stripe.redirectToCheckout({
           sessionId: session.id,
-        })
-
+        });
+  
         if (result.error) {
-          console.log(result.error)
+          console.log(result.error);
         }
       }
-    } catch (e) {
+    }
+    catch(e){
       alert(e)
+      console.log(e)
     }
   }
 
-  const PaymentHandler = () => {
-    auth.currentUser ? makePayment() : router.push("/auth/signup")
+  const PaymentHandler=()=>{
+      auth.currentUser? makePayment(): router.push('/auth/signup')
   }
 
   const handlePriceChange = (value: number | number[]) => {
     if (value == 10000) {
-      setPrice(19)
-      setWords(10000)
-      setToken(100)
+      setPrice(19);
+      setWords(10000);
+      setToken(100);
     } else if (value == 20000) {
-      setPrice(79)
-      setWords(50000)
-      setToken(500)
+      setPrice(79);
+      setWords(50000);
+      setToken(500);
     } else if (value == 30000) {
-      setPrice(149)
-      setWords(100000)
-      setToken(1000)
+      setPrice(149);
+      setWords(100000);
+      setToken(1000);
     } else if (value == 40000) {
-      setPrice(279)
-      setWords(200000)
-      setToken(2000)
+      setPrice(279);
+      setWords(200000);
+      setToken(2000);
     } else if (value == 50000) {
-      setPrice(599)
-      setWords(500000)
-      setToken(5000)
+      setPrice(599);
+      setWords(500000);
+      setToken(5000);
     }
-  }
+  };
 
   const railStyle = {
     backgroundColor: "#e5e7eb",
     height: 5,
-  }
+  };
 
   const handleStyle = {
     backgroundColor: "#374151",
@@ -101,16 +102,16 @@ function LongForm() {
     "&:focus, &:hover": {
       outline: "none",
     },
-  }
+  };
 
   const trackStyle = {
     backgroundColor: "#4A5568",
     height: 5,
-  }
+  };
 
   const styleDot = {
     backgroundColor: "blue",
-  }
+  };
   return (
     <div className="flex flex-col w-[500px] h-[100%] py-10 pb-20 items-center rounded-[40px] border-[#6969ee] border-[3px] ">
       {/* <div className='flex flex-col h-[100%] py-10 mx-3 my-10 pb-20 items-center rounded-[40px] border-[#6969ee] border-[3px]'> */}
@@ -164,14 +165,11 @@ function LongForm() {
           </div>
         </div>
       </div>
-      <div
-        onClick={PaymentHandler}
-        className=" cursor-pointer text-[20px] font-bold bg-[#705cf6] text-white p-5 px-10 rounded-[10px] relative top-10 "
-      >
+      <div onClick={PaymentHandler} className=" cursor-pointer text-[20px] font-bold bg-[#705cf6] text-white p-5 px-10 rounded-[10px] relative top-10 ">
         Upgrade
       </div>
     </div>
-  )
+  );
 }
 
-export default LongForm
+export default LongForm;

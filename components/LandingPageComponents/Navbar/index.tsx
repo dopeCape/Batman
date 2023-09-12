@@ -11,8 +11,8 @@ const Navbar = (props:Props) => {
     setActive(index.toString());
   };
   return (
-    <div className="flex w-screen">
-      <div className="bg-[#3247CF] w-full flex justify-between px-[7%] items-center h-10 py-10">
+    <>
+      <div className="bg-[#3247CF] flex justify-between px-[7%] items-center h-10 py-10">
         <h1 className="font-semibold text-[20px] leading-[23px] text-black">
           Metridash
         </h1>
@@ -52,7 +52,7 @@ const Navbar = (props:Props) => {
         </ul>
       </div>
       <main>{props.children}</main>
-    </div>
+    </>
   );
 };
 

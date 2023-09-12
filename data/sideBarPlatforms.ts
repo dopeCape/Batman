@@ -19,21 +19,12 @@ const platforms = [
       "YouTube Tag",
       "YouTube Thumbnail",
     ],
-    title:[
-      "YouTube Video Ideas",
-      "YouTube Short Ideas",
-      "YouTube Title",
-      "YouTube Description",
-      "YouTube Tag",
-      "YouTube Thumbnail Ideas",
-    ]
   },
   {
     name: "Twitter",
     icon: "/platformIcons/twitterHQ.png",
     color: "#1DA1F2",
     items: ["Twitter Tweet", "Twitter Hashtag", "Twitter Bio"],
-    title:["Twitter Tweet", "Twitter Hashtag", "Twitter Bio"]
   },
   {
     name: "Instagram",
@@ -41,12 +32,6 @@ const platforms = [
     color: "#C13584",
     items: [
       "Instagram Reel",
-      "Instagram Caption",
-      "Instagram Bio",
-      "Instagram Hashtag",
-    ],
-    title: [
-      "Instagram Reel Ideas",
       "Instagram Caption",
       "Instagram Bio",
       "Instagram Hashtag",
@@ -59,12 +44,7 @@ const platforms = [
     items: [
       "LinkedIn Post",
       "LinkedIn Profile Optimization",
-      
-    ],
-    title: [
-      "LinkedIn Post",
-      "LinkedIn Profile Optimization",
-      
+      "LinkedIn Articles",
     ],
   },
 
@@ -73,14 +53,12 @@ const platforms = [
     icon: "/platformIcons/facebookHiQ.png",
     color: "#4267B2",
     items: ["Facebook Post", "Facebook Ad Copy", "Facebook Page Description"],
-    title: ["Facebook Post", "Facebook Ad Copy", "Facebook Page Description"],
   },
   {
     name: "TikTok",
     icon: "/platformIcons/tiktokHQ.png",
     color: "#FE2C55",
     items: ["TikTok Video", "TikTok Hashtag", "TikTok Caption"],
-    title: ["TikTok Video Ideas", "TikTok Hashtag", "TikTok Caption"],
   },
   // {
   //   name: "General",

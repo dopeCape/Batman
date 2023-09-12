@@ -1,32 +1,32 @@
-import { useState, ChangeEvent, useEffect } from "react";
-import { useRouter } from "next/router";
-import { useBeforeunload } from "react-beforeunload";
-import AddCircle from "@mui/icons-material/AddCircleOutlineTwoTone";
-import Cancel from "@mui/icons-material/Cancel";
-import TextField from "@mui/material/TextField";
-import Autocomplete from "@mui/material/Autocomplete";
-import GPTResponse from "@/components/GPTRespone";
-import { auth } from "@/firebase";
-import { updateTokens, readTokens, getUserToken } from "../../auth";
-import { useAtom } from "jotai";
-import { responseAtom } from "@/utils/store";
-import { Modal, Box } from "@mui/material";
-import { StyleModal } from "@/components/modalStyle";
-import PopUpCard from "@/components/PopUpCard";
-import { disabled } from "./form4";
-import { useTheme } from "next-themes";
-import { Descriptions, setPrompt, TokensNeeded } from "@/hooks/function";
+import { useState, ChangeEvent, useEffect } from "react"
+import { useRouter } from "next/router"
+import { useBeforeunload } from "react-beforeunload"
+import AddCircle from "@mui/icons-material/AddCircleOutlineTwoTone"
+import Cancel from "@mui/icons-material/Cancel"
+import TextField from "@mui/material/TextField"
+import Autocomplete from "@mui/material/Autocomplete"
+import GPTResponse from "@/components/GPTRespone"
+import { auth } from "@/firebase"
+import { updateTokens, readTokens, getUserToken } from "../../auth"
+import { useAtom } from "jotai"
+import { responseAtom } from "@/utils/store"
+import { Modal, Box } from "@mui/material"
+import { StyleModal } from "@/components/modalStyle"
+import PopUpCard from "@/components/PopUpCard"
+import { disabled } from "./form4"
+import { useTheme } from "next-themes"
+import { setPrompt, TokensNeeded } from "@/hooks/function"
 
 type MainSelectorProps = {
-  title: string; // Adjust the type according to your use case
-};
+  title: string // Adjust the type according to your use case
+}
 const options = [
   "Conversational",
   "Enthusiastic",
   "Funny",
   "Professional",
   "Describe a tone",
-];
+]
 
 const industries = [
   "Finance",
@@ -36,63 +36,60 @@ const industries = [
   "Education",
   "Consulting",
   "Manufacturing",
-];
+]
 const post = [
   "Industry Insights",
   "Expert Interviews",
   "Career Advice",
   "Case Studies",
   "Thought Leadership Articles",
-];
+]
 
 export default function Form2({ title }: MainSelectorProps) {
-  const [value, setValue] = useState<string | null>();
-  const [value1, setValue1] = useState<string | null>();
-  const [value2, setValue2] = useState<string | null>();
-  const [keywords, setKeywords] = useState<string>();
-  const [word, setWord] = useState("");
-  const [inputValue, setInputValue] = useState("");
-  const [postType, setPostType] = useState("");
-  const [industry, setIndustry] = useState("");
-  const [postAboutCount, setPostAboutCount] = useState(0);
-  const [targetAudienceCount, setTargetAudienceCount] = useState(0);
-  const [targetAudience, setTargetAudience] = useState("");
-  const [_response, setResponse] = useAtom(responseAtom);
-  const [input, setInput] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
-  const { theme, setTheme } = useTheme();
-  const [desc, setDesc]  = useState<string>("")
-  const [tokensRequired, setTokensRequired] = useState<string>("");
-  let token: number = 10;
-  const user = auth.currentUser;
-  const router = useRouter();
-  const [word1, setWord1] = useState<string>("");
+  const [value, setValue] = useState<string | null>()
+  const [value1, setValue1] = useState<string | null>()
+  const [value2, setValue2] = useState<string | null>()
+  const [keywords, setKeywords] = useState<string>()
+  const [word, setWord] = useState("")
+  const [inputValue, setInputValue] = useState("")
+  const [postType, setPostType] = useState("")
+  const [industry, setIndustry] = useState("")
+  const [postAboutCount, setPostAboutCount] = useState(0)
+  const [targetAudienceCount, setTargetAudienceCount] = useState(0)
+  const [targetAudience, setTargetAudience] = useState("")
+  const [_response, setResponse] = useAtom(responseAtom)
+  const [input, setInput] = useState("")
+  const [loading, setLoading] = useState(false)
+  const [open, setOpen] = useState(false)
+  const handleOpen = () => setOpen(true)
+  const handleClose = () => setOpen(false)
+  const { theme, setTheme } = useTheme()
+  const [tokensRequired, setTokensRequired] = useState<string>("")
+  let token: number = 10
+  const user = auth.currentUser
+  const router = useRouter()
+  const [word1, setWord1] = useState<string>("")
 
   useEffect(() => {
     // Set the state to null on page load
-    setResponse("");
-  }, [setResponse]);
+    setResponse("")
+  }, [setResponse])
   useEffect(() => {
-    const word = title.split(" ");
-    setWord1(word[1]);
-    const y = Descriptions(title)
-    setDesc(y)
-    setResponse("");
-    setInput("");
-    setTargetAudience("");
-    setValue("");
-    setKeywords("");
-    const x = TokensNeeded(title);
+    const word = title.split(" ")
+    setWord1(word[1])
+    setResponse("")
+    setInput("")
+    setTargetAudience("")
+    setValue("")
+    setKeywords("")
+    const x = TokensNeeded(title)
 
-    setTokensRequired(x);
-  }, [title]);
+    setTokensRequired(x)
+  }, [title])
 
   const handleKeyword = (event: ChangeEvent<HTMLInputElement>) => {
-    setWord(event.target.value);
-  };
+    setWord(event.target.value)
+  }
 
   const TextInput = () => {
     return (
@@ -101,51 +98,51 @@ export default function Form2({ title }: MainSelectorProps) {
         placeholder="Describe a tone"
         type="text"
       ></input>
-    );
-  };
+    )
+  }
 
   // const prompt = `Generate ${title} about ${input} which is related to ${value1} industry, the post type is ${value2}  with keywords ${keywords} with tone ${value} and my target audience is ${targetAudience}.`;
 
   const handlePostAboutChange = (event: ChangeEvent<HTMLInputElement>) => {
-    let value = event.target.value;
-    const count = value.length;
-    setPostAboutCount(count);
+    let value = event.target.value
+    const count = value.length
+    setPostAboutCount(count)
 
     if (count > 800) {
-      value = value.slice(0, 800);
-      setPostAboutCount(800);
+      value = value.slice(0, 800)
+      setPostAboutCount(800)
     }
 
-    event.target.value = value;
-  };
+    event.target.value = value
+  }
 
   const handleTargetAudienceChange = (event: ChangeEvent<HTMLInputElement>) => {
-    let value = event.target.value;
-    const count = value.length;
-    setTargetAudienceCount(count);
+    let value = event.target.value
+    const count = value.length
+    setTargetAudienceCount(count)
 
     if (count > 200) {
-      value = value.slice(0, 200);
-      setTargetAudienceCount(200);
+      value = value.slice(0, 200)
+      setTargetAudienceCount(200)
     }
 
-    event.target.value = value;
-  };
+    event.target.value = value
+  }
 
   const generateResponse = async (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
-    e.preventDefault();
-    if (disabled(input)) return;
-    setLoading(true);
-    setResponse("");
-    const tk = await getUserToken(user);
-    if (Number(tk) < Number(tokensRequired)) {
-      handleOpen();
-      setLoading(false);
-      return;
+    e.preventDefault()
+    if (disabled(input)) return
+    setLoading(true)
+    setResponse("")
+    const tk = await getUserToken(user)
+    if (Number(tk) < token) {
+      handleOpen()
+      setLoading(false)
+      return
     } else {
-      let usertk: number = Number(tk) - Number(tokensRequired);
+      let usertk: number = Number(tk) - Number(token)
       const prompt = setPrompt(
         title,
         input,
@@ -154,8 +151,8 @@ export default function Form2({ title }: MainSelectorProps) {
         keywords,
         value1,
         value2
-      );
-      await updateTokens(user, usertk);
+      )
+      await updateTokens(user, usertk)
       const res = await fetch("/api/promptChatGPT", {
         method: "POST",
         headers: {
@@ -164,51 +161,61 @@ export default function Form2({ title }: MainSelectorProps) {
         body: JSON.stringify({
           data: prompt,
         }),
-      });
+      })
 
-      if (!res.ok) throw new Error(res.statusText);
+      if (!res.ok) throw new Error(res.statusText)
 
-      const data = res.body;
-      if (!data) return;
+      const data = res.body
+      if (!data) return
 
-      const reader = data.getReader();
-      const decoder = new TextDecoder();
-      let done = false;
+      const reader = data.getReader()
+      const decoder = new TextDecoder()
+      let done = false
 
       while (!done) {
-        const { value, done: doneReading } = await reader.read();
-        done = doneReading;
-        const chunkValue = decoder.decode(value);
-        setResponse((prev) => prev + chunkValue);
+        const { value, done: doneReading } = await reader.read()
+        done = doneReading
+        const chunkValue = decoder.decode(value)
+        setResponse((prev) => prev + chunkValue)
       }
-      setLoading(false);
+      setLoading(false)
     }
-  };
+  }
 
-
+  useBeforeunload(
+    value !== "" ||
+      value1 !== "" ||
+      value2 !== "" ||
+      postType !== "" ||
+      industry !== "" ||
+      targetAudience !== ""
+      ? (event) => event.preventDefault()
+      : undefined
+  )
 
   return (
     <div className="flex justify-center items-cente h-screen w-screen">
-      <div className=" h-full flex dark:bg-[#232529] bg-[#F2F2F2] md:px-10 px-5 md:py-14 py-4 flex-col overflow-scroll">
+      <div className=" h-full flex dark:bg-[#232529] bg-[#F2F2F2] px-10 py-14 flex-col overflow-scroll">
         <h1 className="font-sans text-2xl font-bold">
           Generate {title.replace(/'/g, "&rsquo;")} idea
         </h1>
         <h3 className="text-sm ">
-        {desc.replace(/'/g, "&rsquo;")}
+          Optimize your LinkedIn post for greater visibility and higher
+          engagement.
         </h3>
         <form onSubmit={(e) => e.preventDefault()} className="my-4">
           <div className="relative">
-            <h3 className="text-lg mt-3 mb-1 dark:text-[#D2D2D2]">
+            <h3 className="text-lg my-3 dark:text-[#A7A7A7]">
               What&apos;s your post about?{" "}
               <span className="text-red-500">*</span>
             </h3>
             <input
               className="outline-none w-full px-2 py-4 rounded-lg dark:bg-[#1B1D21] placeholder-[#7D818B]"
               type="text"
-              placeholder="Tech, Career Advice, Industry Trend etc."
+              placeholder="gaming, fashion, animals etc."
               onChange={(e) => {
-                setInput(e.target.value);
-                handlePostAboutChange(e);
+                setInput(e.target.value)
+                handlePostAboutChange(e)
               }}
             ></input>
             <p className="text-gray-700 text-xs absolute right-0 top-[18px]">
@@ -216,15 +223,15 @@ export default function Form2({ title }: MainSelectorProps) {
             </p>
           </div>
 
-          <h3 className="text-lg mt-3 mb-1 dark:text-[#D2D2D2]">Industry </h3>
+          <h3 className="text-lg my-3 dark:text-[#A7A7A7]">Industry </h3>
           <Autocomplete
             value={value1}
             onChange={(event: any, newValue: string | null) => {
-              setValue1(newValue);
+              setValue1(newValue)
             }}
             inputValue={industry}
             onInputChange={(event, newInputValue) => {
-              setIndustry(newInputValue);
+              setIndustry(newInputValue)
             }}
             id="controllable-states-demo"
             options={industries}
@@ -251,15 +258,15 @@ export default function Form2({ title }: MainSelectorProps) {
             )}
           />
 
-          <h3 className="text-lg mt-3 mb-1 dark:text-[#D2D2D2]">Post Type </h3>
+          <h3 className="text-lg my-3 dark:text-[#A7A7A7]">Post Type </h3>
           <Autocomplete
             value={value2}
             onChange={(event: any, newValue: string | null) => {
-              setValue2(newValue);
+              setValue2(newValue)
             }}
             inputValue={postType}
             onInputChange={(event, newInputValue) => {
-              setPostType(newInputValue);
+              setPostType(newInputValue)
             }}
             id="controllable-states-demo"
             options={post}
@@ -268,7 +275,7 @@ export default function Form2({ title }: MainSelectorProps) {
             renderInput={(params) => (
               <TextField
                 {...params}
-                label="Select Post Type"
+                label="Select Industry"
                 InputLabelProps={{
                   style: {
                     fontSize: "15px",
@@ -286,28 +293,28 @@ export default function Form2({ title }: MainSelectorProps) {
             )}
           />
 
-          <h3 className="text-lg mt-3 mb-1 dark:text-[#D2D2D2]">Keywords</h3>
+          <h3 className="text-lg my-3 dark:text-[#A7A7A7]">Keywords</h3>
           <div className="flex flex-row">
             <input
               onChange={(e) => {
-                setKeywords(e.target.value);
+                setKeywords(e.target.value)
               }}
               className="w-full px-2 py-4 borderoutline-none dark:bg-[#1B1D21]  rounded-lg placeholder-[#7D818B]"
               type="text"
-              placeholder="AI, future, responsible etc"
+              placeholder="gaming, fashion, animals"
             ></input>
           </div>
 
-          <h3 className="text-lg mt-3 mb-1 dark:text-[#D2D2D2]">Tone </h3>
+          <h3 className="text-lg my-3 dark:text-[#A7A7A7]">Tone </h3>
           <Autocomplete
             className="dark:bg-[#1B1D21] bg-white rounded-md"
             value={value}
             onChange={(event: any, newValue: string | null) => {
-              setValue(newValue);
+              setValue(newValue)
             }}
             inputValue={inputValue}
             onInputChange={(event, newInputValue) => {
-              setInputValue(newInputValue);
+              setInputValue(newInputValue)
             }}
             id="controllable-states-demo"
             options={options}
@@ -319,7 +326,7 @@ export default function Form2({ title }: MainSelectorProps) {
                 InputLabelProps={{
                   style: {
                     fontSize: "15px",
-                    color: "#7D818B", 
+                    color: "#7D818B", // Change the color here
                   },
                 }}
                 InputProps={{
@@ -335,16 +342,16 @@ export default function Form2({ title }: MainSelectorProps) {
           {inputValue === "Describe a tone" ? <TextInput /> : null}
 
           <div className="relative">
-            <h3 className="text-lg mt-3 mb-1 dark:text-[#D2D2D2]">
+            <h3 className="text-lg my-3 dark:text-[#A7A7A7]">
               Target audience{" "}
             </h3>
             <input
               className="w-full px-2 py-4 outline-none dark:bg-[#1B1D21]  rounded-lg placeholder-[#7D818B] "
               type="text"
-              placeholder="prospective employee/employer etc."
+              placeholder="travellers, gamers etc."
               value={targetAudience}
               onChange={(e) => {
-                setTargetAudience(e.target.value), handleTargetAudienceChange;
+                setTargetAudience(e.target.value), handleTargetAudienceChange
               }}
             ></input>
             <p className="text-gray-700 text-xs absolute right-0 top-[18px]">
@@ -361,7 +368,7 @@ export default function Form2({ title }: MainSelectorProps) {
           >
             <h1 className="text-white">
               {" "}
-              {loading ? "Generating..." : "Generate"}
+              {loading ? "Genarating..." : "Generate"}
             </h1>
           </button>
           <div className="flex w-full h-4 items-center justify-center my-2">
@@ -382,5 +389,5 @@ export default function Form2({ title }: MainSelectorProps) {
         </Box>
       </Modal>
     </div>
-  );
+  )
 }

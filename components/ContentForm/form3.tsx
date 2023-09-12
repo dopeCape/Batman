@@ -14,7 +14,7 @@ import { StyleModal } from "@/components/modalStyle";
 import PopUpCard from "@/components/PopUpCard";
 import { disabled } from "./form4";
 import { useTheme } from "next-themes";
-import { Descriptions, setPrompt, TokensNeeded } from "@/hooks/function";
+import { setPrompt, TokensNeeded } from "@/hooks/function";
 const options = [
   "Conversational",
   "Enthusiastic",
@@ -44,7 +44,7 @@ export default function Form3({ title }: MainSelectorProps) {
   const { theme, setTheme } = useTheme();
   const [word1, setWord1] = useState<string>("");
   const [tokensRequired, setTokensRequired] = useState<string>("");
-  const [desc, setDesc]  = useState<string>("")
+
   useEffect(() => {
     // Set the state to null on page load
     setResponse("");
@@ -54,125 +54,21 @@ export default function Form3({ title }: MainSelectorProps) {
     const word = title.split(" ");
     setWord1(word[1]);
     const x = TokensNeeded(title);
-    const y = Descriptions(title)
-    setDesc(y)
 
     setTokensRequired(x);
   }, [title]);
 
   const TextInput = () => {
     return (
-      <div className="flex flex-col md:flex-row justify-center items-center">
-        <div className="md:w-full h-screen flex  dark:bg-[#232529]  bg-[#F2F2F2] md:px-10 px-4 md:py-16 py-8 flex-col">
-          <h1 className="font-sans text-2xl font-bold text-blue">
-            Generate {title}
-          </h1>
-          <h3 className="text-sm ">
-          {desc.replace(/'/g, "&rsquo;")}
-          </h3>
-          <form onSubmit={(e) => e.preventDefault()} className="my-4">
-            <div className="relative mt-4">
-              <h3 className="text-lg mt-3 mb-1 dark:text-[#D2D2D2] ">
-                What&apos;s your post about? <span className='text-red-500'>*</span>
-              </h3>
-              <input
-                className=" outline-none w-full px-2 py-2 rounded-lg  dark:bg-[#1B1D21] bg-[#FFFFFF]"
-                type="text"
-                placeholder="gaming, fashion, animals etc."
-                value={input}
-                onChange={(e) => {
-                  setInput(e.target.value), handlePostAboutChange(e);
-                }}
-              ></input>
-              <p className="text-gray-700 text-xs absolute right-0 top-[18px]">
-                {postAboutCount}/800
-              </p>
-            </div>
-  
-            <h3 className="text-lg mt-3 mb-1 dark:text-[#D2D2D2] ">Tone <span className='text-red-500'>*</span></h3>
-            <Autocomplete
-              value={value}
-              onChange={(event: any, newValue: string | null) => {
-                setValue(newValue);
-              }}
-              inputValue={inputValue}
-              onInputChange={(event, newInputValue) => {
-                setInputValue(newInputValue);
-              }}
-              id="controllable-states-demo"
-              options={options}
-              className="dark:bg-[#1B1D21] bg-white rounded-md"
-              sx={{ width: "60%" }}
-              renderInput={(params) => (
-                <TextField
-                  {...params}
-                  label="Select Tone"
-                  InputLabelProps={{
-                    style: {
-                      fontSize: "14px",
-                      color: "#7D818B", 
-                    },
-                  }}
-                  InputProps={{
-                    ...params.InputProps,
-                    style: {
-                      fontSize: "14px",
-                      color: "white",
-                    },
-                  }}
-                />
-              )}
-            />
-            {inputValue === "Describe a tone" ? <TextInput /> : null}
-  
-            <div className="relative">
-              <h3 className="text-lg mt-3 mb-1 dark:text-[#D2D2D2] ">Target audience <span className='text-red-500'>*</span></h3>
-              <input
-                className="w-full px-2 py-2 rounded-lg dark:bg-[#1B1D21] bg-[#FFFFFF] outline-none"
-                type="text"
-                placeholder="travellers, gamers etc."
-                value={targetAudience}
-                onChange={(e) => {
-                  setTargetAudience(e.target.value), handleTargetAudienceChange(e);
-                }}
-              ></input>
-              <p className="text-gray-700 text-xs absolute right-0 top-[18px]">
-                {targetAudienceCount}/200
-              </p>
-            </div>
-  
-            <button
-              disabled={disabled(value, input, targetAudience, inputValue)}
-              onClick={generateResponse}
-              className={`w-full h-10 bg-black mt-10 rounded-lg bg-gradient-to-l from-[#009FFD] to-[#2A2A72] ${
-                disabled(value, input, targetAudience, inputValue) &&
-                "cursor-not-allowed"
-              }`}
-            >
-              <h1 className="text-white">
-                {" "}
-                {loading ? "Generating..." : "Generate (5 tokens)"}
-              </h1>
-            </button>
-          </form>
-        </div>
-        <Modal
-          open={open}
-          onClose={handleClose}
-          aria-labelledby="modal-modal-title"
-          aria-describedby="modal-modal-description"
-        >
-          <Box sx={StyleModal}>
-            <PopUpCard></PopUpCard>
-          </Box>
-        </Modal>
-        
-      </div>
-      
+      <input
+        className="w-full px-2 py-4 rounded-lg border border-gray-300 text-gray-500 mt-2"
+        placeholder="Describe a tone"
+        type="text"
+      ></input>
     );
   };
 
-  
+  // const prompt = `Generate a ${title} about ${input} with tone ${value} with target audience ${targetAudience}  and every idea should be seperated.`;
 
   const handlePostAboutChange = (event: ChangeEvent<HTMLInputElement>) => {
     let value = event.target.value;
@@ -207,13 +103,12 @@ export default function Form3({ title }: MainSelectorProps) {
     if (disabled(value, input, targetAudience, inputValue)) return;
     setLoading(true);
     const tk = await getUserToken(user);
-    if (Number(tk) < Number(tokensRequired)) {
+    if (Number(tk) < token) {
       handleOpen();
       setLoading(false);
       return;
     } else {
-      
-      let usertk: number = Number(tk) - Number(tokensRequired);
+      let usertk: number = Number(tk) - Number(token);
       // e.preventDefault();
       const prompt = setPrompt(title, input, targetAudience, value);
 
@@ -354,7 +249,7 @@ export default function Form3({ title }: MainSelectorProps) {
           >
             <h1 className="text-white">
               {" "}
-              {loading ? "Generating..." : "Generate"}
+              {loading ? "Genarating..." : "Generate"}
             </h1>
           </button>
           <div className="flex w-full h-4 items-center justify-center my-2">

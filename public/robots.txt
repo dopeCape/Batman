@@ -1,7 +1,7 @@
 # Block all crawlers for /home
 User-agent: *
-Disallow: /homepage/ContentCreation
-Disallow: /homepage/ContentCreation/
+Disallow: /homepage
+Disallow: /homepage/
 
 # Allow all crawlers
 User-agent: *
