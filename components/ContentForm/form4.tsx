@@ -1,21 +1,21 @@
-import React from "react";
-import { useState, ChangeEvent, useEffect } from "react";
-import { useRouter } from "next/router";
-import { useBeforeunload } from "react-beforeunload";
-import AddCircle from "@mui/icons-material/AddCircleOutlineTwoTone";
-import Cancel from "@mui/icons-material/Cancel";
-import TextField from "@mui/material/TextField";
-import Autocomplete from "@mui/material/Autocomplete";
-import GPTResponseVideo from "@/components/GPTResponseVideo";
-import { useAtom } from "jotai";
-import { updateTokens, readTokens, getUserToken } from "../../auth";
-import { platformAtom, responseAtom } from "@/utils/store";
-import { auth } from "@/firebase";
-import { Modal, Box, OutlinedInput } from "@mui/material";
-import { StyleModal } from "@/components/modalStyle";
-import PopUpCard from "@/components/PopUpCard";
-import { useTheme } from "next-themes";
-import { setPrompt, TokensNeeded } from "@/hooks/function";
+import React from "react"
+import { useState, ChangeEvent, useEffect } from "react"
+import { useRouter } from "next/router"
+import { useBeforeunload } from "react-beforeunload"
+import AddCircle from "@mui/icons-material/AddCircleOutlineTwoTone"
+import Cancel from "@mui/icons-material/Cancel"
+import TextField from "@mui/material/TextField"
+import Autocomplete from "@mui/material/Autocomplete"
+import GPTResponseVideo from "@/components/GPTResponseVideo"
+import { useAtom } from "jotai"
+import { updateTokens, readTokens, getUserToken } from "../../auth"
+import { platformAtom, responseAtom } from "@/utils/store"
+import { auth } from "@/firebase"
+import { Modal, Box, OutlinedInput } from "@mui/material"
+import { StyleModal } from "@/components/modalStyle"
+import PopUpCard from "@/components/PopUpCard"
+import { useTheme } from "next-themes"
+import { setPrompt, TokensNeeded } from "@/hooks/function"
 
 const options = [
   "Conversational",
@@ -23,65 +23,65 @@ const options = [
   "Funny",
   "Professional",
   "Describe a tone",
-];
+]
 
 export const disabled = (...args: any[]) => {
   return args.some(
     (arg) =>
       (typeof arg === "string" && arg?.trim().length === 0) ||
       (typeof arg === "object" && arg?.length === 0)
-  );
-};
+  )
+}
 type MainSelectorProps = {
-  title: string; // Adjust the type according to your use case
-};
+  title: string // Adjust the type according to your use case
+}
 export default function Form4({ title }: MainSelectorProps) {
-  const [value, setValue] = useState<string | null>("");
-  const [keywords, setKeywords] = useState<string>();
-  const [word, setWord] = useState("");
-  const [inputValue, setInputValue] = useState("");
-  const [postAboutCount, setPostAboutCount] = useState(0);
-  const [targetAudienceCount, setTargetAudienceCount] = useState(0);
-  const [targetAudience, setTargetAudience] = useState("");
-  const [input, setInput] = useState("");
-  const [_response, setResponse] = useAtom(responseAtom);
-  const [_platform, setPlatform] = useAtom(platformAtom);
-  const [loading, setLoading] = useState(false);
-  const [word1, setWord1] = useState<string>("");
-  const [tokensRequired, setTokensRequired] = useState<string>("");
-  let token: number = 20;
-  const user = auth.currentUser;
-  const router = useRouter();
-  const [getToken, setgetToken] = useState("");
-  const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const [value, setValue] = useState<string | null>("")
+  const [keywords, setKeywords] = useState<string>()
+  const [word, setWord] = useState("")
+  const [inputValue, setInputValue] = useState("")
+  const [postAboutCount, setPostAboutCount] = useState(0)
+  const [targetAudienceCount, setTargetAudienceCount] = useState(0)
+  const [targetAudience, setTargetAudience] = useState("")
+  const [input, setInput] = useState("")
+  const [_response, setResponse] = useAtom(responseAtom)
+  const [_platform, setPlatform] = useAtom(platformAtom)
+  const [loading, setLoading] = useState(false)
+  const [word1, setWord1] = useState<string>("")
+  const [tokensRequired, setTokensRequired] = useState<string>("")
+  let token: number = 20
+  const user = auth.currentUser
+  const router = useRouter()
+  const [getToken, setgetToken] = useState("")
+  const [open, setOpen] = useState(false)
+  const handleOpen = () => setOpen(true)
+  const handleClose = () => setOpen(false)
   // const [prompt , setPrompts] = useState<string | undefined>()
-  const { theme, setTheme } = useTheme();
+  const { theme, setTheme } = useTheme()
   useEffect(() => {
     // Set the state to null on page load
 
-    setResponse("");
-  }, [setResponse]);
+    setResponse("")
+  }, [setResponse])
 
   useEffect(() => {
-    const word = title.split(" ");
-    const x = TokensNeeded(title);
+    const word = title.split(" ")
+    const x = TokensNeeded(title)
 
-    setTokensRequired(x);
+    setTokensRequired(x)
 
-    setWord1(word[1]);
-    setResponse("");
-    setInput("");
-    setTargetAudience("");
-    setValue("");
-    setKeywords("");
+    setWord1(word[1])
+    setResponse("")
+    setInput("")
+    setTargetAudience("")
+    setValue("")
+    setKeywords("")
     // const data = setPrompt(title,input,targetAudience, value, keywords)
     // setPrompts(data)
-  }, [title]);
+  }, [title])
   const handleKeyword = (event: ChangeEvent<HTMLInputElement>) => {
-    setWord(event.target.value);
-  };
+    setWord(event.target.value)
+  }
 
   const TextInput = () => {
     return (
@@ -90,55 +90,55 @@ export default function Form4({ title }: MainSelectorProps) {
         placeholder="Describe a tone"
         type="text"
       ></input>
-    );
-  };
+    )
+  }
 
   // const prompt = `Generate one ${title} about ${input} ${keywords?`and should inclue keywords like ${keywords}`: null} ${value?`with ${value} tone`:null} ${targetAudience?`and with target audience ${targetAudience}`:null}`
   // const prompt = `Generate 5 ${title} for a video about ${input}. Use the following keywords: ${keywords}. The tone should be ${value}, targeting a ${targetAudience}.`
   const handlePostAboutChange = (event: ChangeEvent<HTMLInputElement>) => {
-    let value = event.target.value;
-    const count = value.length;
-    setPostAboutCount(count);
+    let value = event.target.value
+    const count = value.length
+    setPostAboutCount(count)
 
     if (count > 800) {
-      value = value.slice(0, 800);
-      setPostAboutCount(800);
+      value = value.slice(0, 800)
+      setPostAboutCount(800)
     }
 
-    event.target.value = value;
-  };
+    event.target.value = value
+  }
 
   const handleTargetAudienceChange = (event: ChangeEvent<HTMLInputElement>) => {
-    let value = event.target.value;
-    const count = value.length;
-    setTargetAudienceCount(count);
+    let value = event.target.value
+    const count = value.length
+    setTargetAudienceCount(count)
 
     if (count > 200) {
-      value = value.slice(0, 200);
-      setTargetAudienceCount(200);
+      value = value.slice(0, 200)
+      setTargetAudienceCount(200)
     }
 
-    event.target.value = value;
-  };
+    event.target.value = value
+  }
 
   const generateResponse = async (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
-    e.preventDefault();
-    if (disabled(input)) return;
-    setLoading(true);
-    const tk = await getUserToken(user);
+    e.preventDefault()
+    if (disabled(input)) return
+    setLoading(true)
+    const tk = await getUserToken(user)
     if (Number(tk) < token) {
-      handleOpen();
-      setLoading(false);
-      return;
+      handleOpen()
+      setLoading(false)
+      return
     } else {
-      const prompt = setPrompt(title, input, targetAudience, value, keywords);
-      let usertk: number = Number(tk) - Number(token);
+      const prompt = setPrompt(title, input, targetAudience, value, keywords)
+      let usertk: number = Number(tk) - Number(token)
       // e.preventDefault();
-      setResponse("");
-      setPlatform(title);
-      await updateTokens(user, usertk);
+      setResponse("")
+      setPlatform(title)
+      await updateTokens(user, usertk)
       const res = await fetch("/api/promptChatGPT", {
         method: "POST",
         headers: {
@@ -147,37 +147,37 @@ export default function Form4({ title }: MainSelectorProps) {
         body: JSON.stringify({
           data: prompt,
         }),
-      });
+      })
 
-      if (!res.ok) throw new Error(res.statusText);
+      if (!res.ok) throw new Error(res.statusText)
 
-      const data = res.body;
+      const data = res.body
 
-      if (!data) return;
+      if (!data) return
 
-      const reader = data.getReader();
-      const decoder = new TextDecoder();
-      let done = false;
+      const reader = data.getReader()
+      const decoder = new TextDecoder()
+      let done = false
 
       while (!done) {
-        const { value, done: doneReading } = await reader.read();
-        done = doneReading;
-        const chunkValue = decoder.decode(value);
-        setResponse((prev) => prev + chunkValue);
+        const { value, done: doneReading } = await reader.read()
+        done = doneReading
+        const chunkValue = decoder.decode(value)
+        setResponse((prev) => prev + chunkValue)
       }
-      setLoading(false);
+      setLoading(false)
     }
-  };
+  }
 
   useBeforeunload(
     input !== "" || keywords !== "" || value !== "" || targetAudience !== ""
       ? (event) => event.preventDefault()
       : undefined
-  );
+  )
 
   return (
     <div className="flex flex-col md:flex-row	justify-center items-center w-full h-full">
-      <div className="w-full h-screen flex dark:bg-[#232529] bg-[#F2F2F2] px-10 py-16 flex-col">
+      <div className="w-full h-screen flex dark:bg-[#232529] bg-[#F2F2F2] px-10 mt-3 flex-col">
         <h1 className=" font-sans text-2xl font-bold">
           Generate {title.replace(/'/g, "&rsquo;")} idea
         </h1>
@@ -201,7 +201,7 @@ export default function Form4({ title }: MainSelectorProps) {
               value={input}
               placeholder="gaming, fashion, animals etc."
               onChange={(e) => {
-                setInput(e.target.value), handlePostAboutChange(e);
+                setInput(e.target.value), handlePostAboutChange(e)
               }}
             ></input>
             <p className="text-gray-700 text-xs absolute right-0 top-[18px]">
@@ -213,7 +213,7 @@ export default function Form4({ title }: MainSelectorProps) {
 
           <input
             onChange={(e) => {
-              setKeywords(e.target.value);
+              setKeywords(e.target.value)
             }}
             value={keywords}
             className="w-full px-2 py-4 borderoutline-none dark:bg-[#1B1D21] outline-none  rounded-lg placeholder-[#7D818B]"
@@ -225,11 +225,11 @@ export default function Form4({ title }: MainSelectorProps) {
           <Autocomplete
             value={value}
             onChange={(event: any, newValue: string | null) => {
-              setValue(newValue);
+              setValue(newValue)
             }}
             inputValue={inputValue}
             onInputChange={(event, newInputValue) => {
-              setInputValue(newInputValue);
+              setInputValue(newInputValue)
             }}
             id="controllable-states-demo"
             options={options}
@@ -269,8 +269,7 @@ export default function Form4({ title }: MainSelectorProps) {
               value={targetAudience}
               placeholder="travellers, gamers etc."
               onChange={(e) => {
-                setTargetAudience(e.target.value),
-                  handleTargetAudienceChange(e);
+                setTargetAudience(e.target.value), handleTargetAudienceChange(e)
               }}
             ></input>
             <p className="text-gray-700 text-xs absolute right-0 top-[18px]">
@@ -311,5 +310,5 @@ export default function Form4({ title }: MainSelectorProps) {
         {/* <GPTResponseVideo></GPTResponseVideo> */}
       {/* </div> */}
     </div>
-  );
+  )
 }

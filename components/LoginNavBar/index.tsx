@@ -1,59 +1,59 @@
-import React from "react";
-import Link from "next/link";
-import Image from "next/image";
-import { useRouter } from "next/router";
-import { useState, useEffect } from "react";
-import { Logout } from "@/auth";
-import { useTheme } from "next-themes";
-import { styled } from "@mui/material/styles";
-import { auth } from "@/firebase";
-import { useAtom } from "jotai";
-import { responseAtom } from "@/utils/store";
-import { generateRealTimeToken } from "@/auth";
-import FormGroup from "@mui/material/FormGroup";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Switch, { SwitchProps } from "@mui/material/Switch";
-import Stack from "@mui/material/Stack";
-import Typography from "@mui/material/Typography";
-import coins from "../../public/navbarIcons/coins.png";
-import content from "../../public/navbarIcons/content-creation.png";
-import dashboard from "../../public/navbarIcons/dashboard.png";
-import draft from "../../public/navbarIcons/draft.png";
-import profile from "../../public/navbarIcons/profile-dropdown.png";
-import schedule from "../../public/navbarIcons/schedule.png";
-import user from "../../public/navbarIcons/user.png";
-import Badge from "@mui/material/Badge";
+import React from "react"
+import Link from "next/link"
+import Image from "next/image"
+import { useRouter } from "next/router"
+import { useState, useEffect } from "react"
+import { Logout } from "@/auth"
+import { useTheme } from "next-themes"
+import { styled } from "@mui/material/styles"
+import { auth } from "@/firebase"
+import { useAtom } from "jotai"
+import { responseAtom } from "@/utils/store"
+import { generateRealTimeToken } from "@/auth"
+import FormGroup from "@mui/material/FormGroup"
+import FormControlLabel from "@mui/material/FormControlLabel"
+import Switch, { SwitchProps } from "@mui/material/Switch"
+import Stack from "@mui/material/Stack"
+import Typography from "@mui/material/Typography"
+import coins from "../../public/navbarIcons/coins.png"
+import content from "../../public/navbarIcons/content-creation.png"
+import dashboard from "../../public/navbarIcons/dashboard.png"
+import draft from "../../public/navbarIcons/draft.png"
+import profile from "../../public/navbarIcons/profile-dropdown.png"
+import schedule from "../../public/navbarIcons/schedule.png"
+import user from "../../public/navbarIcons/user.png"
+import Badge from "@mui/material/Badge"
 
 export default function LoginNavBar() {
-  const [showSettings, setShowSettings] = useState(false);
-  const User = auth.currentUser;
-  const [toggle, setToggle] = useState(true);
-  const [client, setClient] = useState<typeof User | null>(null);
-  const [token, setToken] = useState();
-  const [response] = useAtom(responseAtom);
+  const [showSettings, setShowSettings] = useState(false)
+  const User = auth.currentUser
+  const [toggle, setToggle] = useState(true)
+  const [client, setClient] = useState<typeof User | null>(null)
+  const [token, setToken] = useState()
+  const [response] = useAtom(responseAtom)
 
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
-      setClient(user);
-    });
-  }, [client]);
+      setClient(user)
+    })
+  }, [client])
 
   useEffect(() => {
-    (async () => {
-      const tk = await generateRealTimeToken(client);
-      setToken(tk);
-    })();
-  }, [response, client]);
+    ;(async () => {
+      const tk = await generateRealTimeToken(client)
+      setToken(tk)
+    })()
+  }, [response, client])
 
   const toggleLogout = (e: any) => {
-    e.preventDefault();
-    setShowSettings((prev) => !prev);
-  };
+    e.preventDefault()
+    setShowSettings((prev) => !prev)
+  }
 
   const NavLink = ({ href, d, stroke, className, children }: any) => {
-    const { asPath } = useRouter();
+    const { asPath } = useRouter()
 
-    const isActive = asPath === href;
+    const isActive = asPath === href
 
     return (
       <div className="flex h-full items-center">
@@ -122,13 +122,13 @@ export default function LoginNavBar() {
           {children}
         </Link>
       </div>
-    );
-  };
-  const { theme, setTheme } = useTheme();
+    )
+  }
+  const { theme, setTheme } = useTheme()
   const handleThemeChange = () => {
-    setTheme(theme === "dark" ? "light" : "dark"); // Toggle between 'dark' and 'light';
-    setToggle((prev) => !prev);
-  };
+    setTheme(theme === "dark" ? "light" : "dark") // Toggle between 'dark' and 'light';
+    setToggle((prev) => !prev)
+  }
 
   const IOSSwitch = styled((props: SwitchProps) => (
     <Switch
@@ -185,19 +185,19 @@ export default function LoginNavBar() {
         duration: 500,
       }),
     },
-  }));
-  const router = useRouter();
+  }))
+  const router = useRouter()
   const handleLogout = async () => {
     try {
-      await Logout();
-      alert("User logged out successfully!");
-      router.replace("/");
+      await Logout()
+      alert("User logged out successfully!")
+      router.replace("/")
     } catch (err) {
-      console.error(err);
+      console.error(err)
     }
-  };
+  }
   return (
-    <div className="w-full h-20 dark:bg-[#1B1D21] flex bg-[#fff] flex-row items-center justify-around border-b-[#A8AAB0] border-b-2 border-opacity-20 ">
+    <div className="w-full h-20 dark:bg-[#1B1D21] flex bg-[#fff] flex-row items-center justify-around border-b-[#A8AAB0] border-b-2 border-opacity-20">
       <Link
         href="/homepage"
         className="font-bold text-3xl bg-gradient-to-r text-transparent from-[#00C5D7] to-[#0077BE] bg-clip-text w-1/4 text-center"
@@ -284,7 +284,7 @@ export default function LoginNavBar() {
               <div
                 className="flex flex-row items-center cursor-pointer w-full h-full"
                 onClick={() => {
-                  handleLogout();
+                  handleLogout()
                 }}
               >
                 <svg
@@ -319,5 +319,5 @@ export default function LoginNavBar() {
         <Link href="/">Log out</Link>
       </div> */}
     </div>
-  );
+  )
 }
