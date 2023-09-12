@@ -36,7 +36,7 @@ type MainSelectorProps = {
   title: string // Adjust the type according to your use case
 }
 export default function Form4({ title }: MainSelectorProps) {
-  const [value, setValue] = useState<string | null>("")
+  const [value, setValue] = useState<any>("")
   const [keywords, setKeywords] = useState<string>()
   const [word, setWord] = useState("")
   const [inputValue, setInputValue] = useState("")
@@ -127,17 +127,15 @@ export default function Form4({ title }: MainSelectorProps) {
     e.preventDefault()
     if (disabled(input)) return
     setLoading(true)
+    setResponse("")
     const tk = await getUserToken(user)
     if (Number(tk) < token) {
       handleOpen()
       setLoading(false)
       return
     } else {
-      const prompt = setPrompt(title, input, targetAudience, value, keywords)
       let usertk: number = Number(tk) - Number(token)
-      // e.preventDefault();
-      setResponse("")
-      setPlatform(title)
+      const prompt = setPrompt(title, input, targetAudience, value, keywords)
       await updateTokens(user, usertk)
       const res = await fetch("/api/promptChatGPT", {
         method: "POST",
@@ -152,7 +150,6 @@ export default function Form4({ title }: MainSelectorProps) {
       if (!res.ok) throw new Error(res.statusText)
 
       const data = res.body
-
       if (!data) return
 
       const reader = data.getReader()
