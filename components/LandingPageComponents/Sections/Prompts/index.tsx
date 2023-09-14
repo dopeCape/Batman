@@ -2,12 +2,12 @@ import Image from "next/image"
 import React, { useEffect } from "react"
 import { useAnimation, motion } from "framer-motion"
 import { useInView } from "react-intersection-observer"
-import Image1 from "../../../../public/Images/3.png"
-import RImage1 from "../../../../public/Images/3(1).png"
+import Image1 from "../../../../public/Images/post.png"
+import RImage1 from "../../../../public/Images/post.png"
 import Image2 from "../../../../public/Images/4.png"
-import Image3 from "../../../../public/Images/5.png"
-import Image4 from "../../../../public/Images/6.png"
-import RImage5 from "../../../../public/Images/5(1).png"
+import Image3 from "../../../../public/Images/ai.png"
+import Image4 from "../../../../public/Images/calender.png"
+import RImage5 from "../../../../public/Images/calender.png"
 
 const Prompts = () => {
   const textScrollVariants = {
@@ -45,11 +45,7 @@ const Prompts = () => {
             src={Image3}
             alt="Preview"
           />
-          <Image
-            className="absolute md:w-[238px] h-[209px] md:ml-[10.5%] mt-[11.8%] object-contain"
-            src={Image4}
-            alt="Preview"
-          />
+         
         </motion.div>
 
         <motion.div
@@ -60,7 +56,7 @@ const Prompts = () => {
           animate={controls2}
         >
           <Image
-            className=" md:w-[278px] h-[209px] md:ml-[10.5%] mt-[11.8%] md:hidden flex"
+            className=" md:w-[278px]  w-[249px] h-[249px] self-center  md:ml-[10.5%] mt-[11.8%] md:hidden flex"
             src={RImage5}
             alt="Preview"
           />
@@ -84,7 +80,7 @@ const Prompts = () => {
         >
           <div className="md:hidden flex justify-center  ">
             <Image
-              className=" w-[678px] h-[180px] "
+              className="  w-[249px] h-[249px] self-center  "
               src={RImage1}
               alt="Preview"
             />
@@ -109,11 +105,7 @@ const Prompts = () => {
             src={Image1}
             alt="Preview"
           />
-          <Image
-            className="absolute md:w-[238px] h-[209px] md:ml-[54%] mt-[25%] md:flex hidden object-contain"
-            src={Image2}
-            alt="Preview"
-          />
+         
         </motion.div>
       
       </div> 
@@ -122,19 +114,15 @@ const Prompts = () => {
           ref={ref2}
           variants={textScrollVariants}
           initial="hidden"
-          className="md:w-[50%] mt-[5%] flex relative md:right-[-50px] transition-all duration-1000 ease-in-out md:flex hidden"
+          className="md:w-[50%] mt-[5%]  relative md:right-[-50px] transition-all duration-1000 ease-in-out md:flex hidden"
           animate={controls2}
         >
           <Image
             className="absolute w-[329px] h-[333px] object-contain"
-            src={Image3}
-            alt="Preview"
-          />
-          <Image
-            className="absolute md:w-[238px] h-[209px] md:ml-[10.5%] mt-[11.8%] object-contain"
             src={Image4}
             alt="Preview"
           />
+         
         </motion.div>
 
         <motion.div
@@ -145,11 +133,11 @@ const Prompts = () => {
           animate={controls2}
         >
           <Image
-            className=" md:w-[278px] h-[209px] md:ml-[10.5%] mt-[11.8%] md:hidden flex"
+            className=" md:w-[278px] w-[249px] h-[249px] self-center md:ml-[10.5%] mt-[11.8%] md:hidden flex"
             src={RImage5}
             alt="Preview"
           />
-          <h1 className="text-[#1E1E1E] font-semibold text-[48px] leading-[48px] mt-20 md:mt-0">
+          <h1 className="text-[#1E1E1E] font-semibold text-[48px] leading-[48px] mt-10 md:mt-0">
           Content Calendar & Analytics
           </h1>
           <p className="font-normal text-[16px] leading-[18.75px] text-justify text-[#494949] align-center my-8 md:my-0">
