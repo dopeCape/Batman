@@ -5,7 +5,7 @@ import {
   Preview,
   Prompts,
   Questions,
-
+  Testimonials
 } from "@/components/LandingPageComponents/Sections"
 
 import React from "react"
@@ -17,6 +17,7 @@ const Home = () => {
       <Growing />
       <Preview />
       <Prompts />
+      <Testimonials/>
       <Questions/>
       <Journey />
     </>

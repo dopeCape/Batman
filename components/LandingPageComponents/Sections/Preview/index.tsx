@@ -2,8 +2,8 @@ import Image from "next/image"
 import React, { useEffect } from "react"
 import { useAnimation, motion } from "framer-motion"
 import { useInView } from "react-intersection-observer"
-import PreviewImg from "../../../../public/Images/2.png"
-import RPreviewImg from "../../../../public/Images/2(1).png"
+import PreviewImg from "../../../../public/Images/idea.png"
+import RPreviewImg from "../../../../public/Images/idea.png"
 const Preview = () => {
   const textScrollVariants = {
     visible: { opacity: 1, right: 0 },
@@ -38,8 +38,7 @@ const Preview = () => {
             src={RPreviewImg}
             alt="Preview"
             className="sm:hidden flex object-contain"
-            width={800}
-            height={450}
+           
           />
         </motion.div>
         <h1 className="text-[#1E1E1E]  text-[48px] font-semibold leading-[48px] md:w-[300px] ">
@@ -57,7 +56,7 @@ const Preview = () => {
         className="md:w-[50%] mt-[5%] relative md:right-[-50px] transition-all duration-1000 ease-in-out"
         animate={controls}
       >
-        <Image src={PreviewImg} alt="Preview" className="sm:flex hidden" />
+        <Image src={PreviewImg} alt="Preview" className="sm:flex hidden object-contain" />
       </motion.div>
     </div>
   )

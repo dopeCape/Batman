@@ -34,10 +34,10 @@ const Prompts = () => {
     <div className="pb-10 bg-white">
       <div className="bg-white md:h-[500px] flex md:pl-[7%] md:mr-[3%] md:flex-row flex-col">
         <motion.div
-          ref={ref2}
+          ref={ref}
           variants={textScrollVariants}
           initial="hidden"
-          className="md:w-[50%] mt-[5%] flex relative md:right-[-50px] transition-all duration-1000 ease-in-out md:flex hidden"
+          className="md:w-[50%] mt-[5%]  relative md:right-[-50px] transition-all  ease-in-out md:flex hidden"
           animate={controls2}
         >
           <Image
@@ -49,7 +49,7 @@ const Prompts = () => {
         </motion.div>
 
         <motion.div
-          ref={ref2}
+          ref={ref}
           variants={textScrollVariants}
           initial="hidden"
           className="md:w-[50%] flex flex-col gap-y-5 justify-center relative md:right-[-50px] transition-all duration-1000 ease-in-out px-3"
