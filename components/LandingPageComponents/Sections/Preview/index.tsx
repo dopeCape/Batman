@@ -43,11 +43,11 @@ const Preview = () => {
           />
         </motion.div>
         <h1 className="text-[#1E1E1E]  text-[48px] font-semibold leading-[48px] md:w-[300px] ">
-          We help you stay on top of your game!
+        Personalized Content Ideas
         </h1>
         <p className="font-normal text-[16px] leading-[18.75px] text-justify text-[#494949]">
-          We have added our own proprietary algorithm to ChatGPT and taken out
-          the headache of finding a good prompt.
+        Say goodbye to creative blocks. Metridash sparks your creativity with personalized content ideas tailored to your unique style and audience.
+
         </p>
       </motion.div>
       <motion.div

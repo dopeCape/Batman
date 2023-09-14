@@ -63,9 +63,9 @@ const Journey = () => {
           className="font-semibold text-[48px] leading-[48px] text-center md:w-[425px] relative md:right-[-50px] transition-all duration-1000 ease-in-out"
           animate={controls}
         >
-          CREATED FOR YOU, WITH YOU!
+        Ready to Get Started?
         </motion.h1>
-        <div className="hidden md:flex mr-[5%]">
+        {/* <div className="hidden md:flex mr-[5%]">
           <Image
             className="w-[36px] h-[36px] absolute"
             src={Image7}
@@ -86,7 +86,7 @@ const Journey = () => {
             src={Image10}
             alt="JourneyImg"
           />
-        </div>
+        </div> */}
         <motion.p
           ref={ref}
           variants={textScrollVariants}
@@ -94,8 +94,7 @@ const Journey = () => {
           className="text-[16px] leading-[18.75px] font-normal text-white mt-10 w-[280px] text-center relative md:right-[200px] transition-all duration-1000 ease-in-out"
           animate={controls}
         >
-          Join us on our journey of simplifying social media and get early
-          access to new, game-changing features.
+         Join thousands of creators who have already unlocked their potential with Metridash.
         </motion.p>
         {response && <p className="text-center">{response}</p>}
         <motion.div

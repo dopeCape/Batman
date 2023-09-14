@@ -5,7 +5,7 @@ import { useAnimation, motion } from "framer-motion"
 import { useInView } from "react-intersection-observer"
 import { collection, addDoc, serverTimestamp } from "firebase/firestore"
 import { db } from "@/firebase"
-import DashBoard from "../../../../public/Images/1.png"
+import DashBoard from "../../../../public/Images/image3.png"
 import checkUser from "@/utils/checkUser"
 
 const Blocks = () => {
@@ -39,15 +39,15 @@ const Blocks = () => {
         <h1 className="font-semibold text-[48px] md:text-[64px] leading-[92%] md:w-[408px] text-white mt-4 md:pl-5">
           Never Face Creative Blocks Again!
         </h1>
-        <p className="text-white md:w-[447px] font-normal text-[24px] leading-[28px] md:pl-5">
-          Metridash is here to revolutionize your creative process.
+        <p className="text-white md:w-[447px] font-normal text-[20px] leading-[28px] md:pl-5">
+        Are you tired of staring at a blank screen, struggling to come up with content ideas for your social media? Look no further! Metridash is here to revolutionise your creative process.
         </p>
         <div className="btn-hero md:ml-5">
           <Link
             href={`${user && user.uid ? "/homepage" : "/auth/signup"}`}
             className="flex w-40 px-2 py-2 mt-4 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-xl items-center justify-center"
           >
-            <h1 className="text-lg font-semibold">Get Started</h1>
+            <h1 className="text-lg font-semibold">Try For Free</h1>
           </Link>
         </div>
       </motion.div>

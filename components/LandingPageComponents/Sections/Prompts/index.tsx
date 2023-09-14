@@ -32,49 +32,6 @@ const Prompts = () => {
   }, [controls2, inView2])
   return (
     <div className="pb-10 bg-white">
-      <div className="bg-white h-[500px] flex  md:px-16 md:mr-[3%]">
-        <motion.div
-          ref={ref}
-          variants={textScrollVariants}
-          initial="hidden"
-          className="md:w-[50%] flex flex-col gap-y-5 justify-center relative md:right-[-50px] transition-all duration-1000 ease-in-out px-3"
-          animate={controls}
-        >
-          <div className="md:hidden flex justify-center  ">
-            <Image
-              className=" w-[678px] h-[180px] "
-              src={RImage1}
-              alt="Preview"
-            />
-          </div>
-          <h1 className="text-[#1E1E1E] font-semibold text-[48px] leading-[48px] md:w-[300px]">
-            No more bad prompts.
-          </h1>
-          <p className="font-normal text-[16px] leading-[18.75px] text-justify text-[#494949] md:w-[387px]">
-            You only need to select and type in some details about yourself, the
-            target audience, etc and we create the best prompt for you, for the
-            best results.
-          </p>
-        </motion.div>
-        <motion.div
-          ref={ref}
-          variants={textScrollVariants}
-          initial="hidden"
-          className="md:w-[50%] mt-[5%] flex relative justify-center md:mr-10 md:right-[50px] transition-all duration-1000 ease-in-out"
-          animate={controls}
-        >
-          <Image
-            className="absolute md:w-[329px] h-[333px] md:flex hidden object-contain"
-            src={Image1}
-            alt="Preview"
-          />
-          <Image
-            className="absolute md:w-[238px] h-[209px] md:ml-[54%] mt-[25%] md:flex hidden object-contain"
-            src={Image2}
-            alt="Preview"
-          />
-        </motion.div>
-      </div>
       <div className="bg-white md:h-[500px] flex md:pl-[7%] md:mr-[3%] md:flex-row flex-col">
         <motion.div
           ref={ref2}
@@ -108,15 +65,100 @@ const Prompts = () => {
             alt="Preview"
           />
           <h1 className="text-[#1E1E1E] font-semibold text-[48px] leading-[48px] mt-20 md:mt-0">
-            Focus on the big picture!
+          AI-Powered Prompts
           </h1>
           <p className="font-normal text-[16px] leading-[18.75px] text-justify text-[#494949] align-center my-8 md:my-0">
-            Metridash helps you reduce the time taken to genrate content ideas
-            in turn giving you more time to work on the strategies and your
-            growth.
+          Our cutting-edge AI eliminates the guesswork. We craft the perfect prompts so you can focus on bringing your vision to life.
+
+
           </p>
         </motion.div>
       </div>
+      <div className="bg-white h-[500px] flex  md:px-16 md:mr-[3%]">
+      <motion.div
+          ref={ref}
+          variants={textScrollVariants}
+          initial="hidden"
+          className="md:w-[50%] flex flex-col gap-y-5 justify-center relative md:right-[-50px] transition-all duration-1000 ease-in-out px-3"
+          animate={controls}
+        >
+          <div className="md:hidden flex justify-center  ">
+            <Image
+              className=" w-[678px] h-[180px] "
+              src={RImage1}
+              alt="Preview"
+            />
+          </div>
+          <h1 className="text-[#1E1E1E] font-semibold text-[48px] leading-[48px] md:w-[300px]">
+          Seamless Multichannel Publishing
+          </h1>
+          <p className="font-normal text-[16px] leading-[18.75px] text-justify text-[#494949] md:w-[387px]">
+          Reach your audience wherever they are. From YouTube to Instagram, Metridash simplifies content creation across platforms.
+
+          </p>
+        </motion.div> 
+        <motion.div
+          ref={ref}
+          variants={textScrollVariants}
+          initial="hidden"
+          className="md:w-[50%] mt-[5%] flex relative justify-center md:mr-10 md:right-[50px] transition-all duration-1000 ease-in-out"
+          animate={controls}
+        >
+          <Image
+            className="absolute md:w-[329px] h-[333px] md:flex hidden object-contain"
+            src={Image1}
+            alt="Preview"
+          />
+          <Image
+            className="absolute md:w-[238px] h-[209px] md:ml-[54%] mt-[25%] md:flex hidden object-contain"
+            src={Image2}
+            alt="Preview"
+          />
+        </motion.div>
+      
+      </div> 
+      <div className="bg-white md:h-[500px] flex md:pl-[7%] md:mr-[3%] md:flex-row flex-col">
+        <motion.div
+          ref={ref2}
+          variants={textScrollVariants}
+          initial="hidden"
+          className="md:w-[50%] mt-[5%] flex relative md:right-[-50px] transition-all duration-1000 ease-in-out md:flex hidden"
+          animate={controls2}
+        >
+          <Image
+            className="absolute w-[329px] h-[333px] object-contain"
+            src={Image3}
+            alt="Preview"
+          />
+          <Image
+            className="absolute md:w-[238px] h-[209px] md:ml-[10.5%] mt-[11.8%] object-contain"
+            src={Image4}
+            alt="Preview"
+          />
+        </motion.div>
+
+        <motion.div
+          ref={ref2}
+          variants={textScrollVariants}
+          initial="hidden"
+          className="md:w-[50%] flex flex-col gap-y-5 justify-center relative md:right-[-50px] transition-all duration-1000 ease-in-out px-3"
+          animate={controls2}
+        >
+          <Image
+            className=" md:w-[278px] h-[209px] md:ml-[10.5%] mt-[11.8%] md:hidden flex"
+            src={RImage5}
+            alt="Preview"
+          />
+          <h1 className="text-[#1E1E1E] font-semibold text-[48px] leading-[48px] mt-20 md:mt-0">
+          Content Calendar & Analytics
+          </h1>
+          <p className="font-normal text-[16px] leading-[18.75px] text-justify text-[#494949] align-center my-8 md:my-0">
+          Plan, schedule, and optimize your content strategy with ease. Our real-time analytics dashboard offers actionable insights for growth.
+
+          </p>
+        </motion.div>
+      </div>
+    
     </div>
   )
 }
