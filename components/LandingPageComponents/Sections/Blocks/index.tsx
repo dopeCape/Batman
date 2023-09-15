@@ -33,10 +33,10 @@ const Blocks = () => {
         ref={ref}
         variants={textScrollVariants}
         initial="hidden"
-        className="flex flex-col gap-y-5 justify-center relative top-[-50px] transition-all duration-1000 ease-in-out"
+        className="flex flex-col gap-y-8 justify-center relative top-[-30px] transition-all duration-1000 ease-in-out"
         animate={controls}
       >
-        <h1 className="font-semibold text-[48px] md:text-[64px] leading-[92%] md:w-[408px] text-white mt-4 md:pl-5">
+        <h1 className="font-semibold text-[48px] md:text-[64px] leading-[92%] md:w-[408px] text-white mt-0 md:pl-5">
           Never Face Creative Blocks Again!
         </h1>
         <p className="text-white md:w-[447px] font-normal text-[20px] leading-[28px] md:pl-5">
@@ -47,9 +47,9 @@ const Blocks = () => {
             href={`${user && user.uid ? "/homepage" : "/auth/signup"}`}
             className="flex  px-2 py-2 mt-4 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-xl items-center justify-center"
           >
-            <h1 className="text-lg font-semibold">Try Writing for Free</h1>
+            <h1 className="text-lg font-semibold">Try Creating For Free</h1>
           </Link>
-          <h1 className="text-xs font-light text-gray-300">7 day trial. No credit card required.</h1>
+          <h1 className="text-xs font-light text-gray-300">30 day trial. No credit card required.</h1>
         </div>
       </motion.div>
       <motion.div

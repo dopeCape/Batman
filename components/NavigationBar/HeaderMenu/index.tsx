@@ -11,6 +11,8 @@ import { auth } from "@/firebase"
 import { firestore } from "firebase-admin"
 import { useState, useEffect } from "react"
 import LoginNavBar from "@/components/LoginNavBar"
+import { BsArrow90DegRight } from "react-icons/bs"
+import { BsArrowRightSquare, BsArrowBarRight } from "react-icons/bs"
 interface Props {
   children: JSX.Element
 }
@@ -124,16 +126,10 @@ const HeaderMenu = (props: Props) => {
               <Link href="/auth/signin">Sign in</Link>
             </li>
 
-            {/* <li
-              className={`cursor-pointer mr-4 ${
-                active === "0" ? "text-[#fff]" : "text-[#8E9CF3]"
-              }`}
-              onClick={() => {
-                handleClick(0), handleLogout();
-              }}
-            >
-              <Link href="/">Log out</Link>
-            </li> */}
+           <Link href={'/auth/signup'} className="flex flex-row items-center justify-center gap-x-1 px-4 py-1 bg-blue-400 rounded-xl">
+            <h1>Try it free</h1>
+            <BsArrowBarRight></BsArrowBarRight>
+           </Link>
           </ul>
 
           <div className="md:hidden flex relative">

@@ -185,14 +185,14 @@ export default function Form1({ title }: MainSelectorProps) {
           >
             <h1 className="text-white">
               {" "}
-              {loading ? "Genarating..." : "Generate"}
+              {loading ? "Genarating..." : `Generate (${tokensRequired} Tokens`}
             </h1>
           </button>
-          <div className="flex w-full h-4 items-center justify-center my-2">
+          {/* <div className="flex w-full h-4 items-center justify-center my-2">
             <h1 className="self-center flex text-sm text-[#7D818B]">
               ({tokensRequired} tokens)
             </h1>
-          </div>
+          </div> */}
         </form>
       </div>
       <Modal
