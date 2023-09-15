@@ -2,7 +2,9 @@ import { useSession } from "next-auth/react";
 import React from "react";
 import HeaderMenu from "./HeaderMenu";
 import SideBar from "./SideBar";
-
+import LoginNavBar from "../LoginNavBar";
+import { auth } from "@/firebase"
+import { firebaseConfig } from "@/firebase";
 interface Props {
   children: JSX.Element;
 }
@@ -44,7 +46,7 @@ const NavigationBar = ({ children }: Props): JSX.Element => {
       </HeaderMenu>
     );
   }
-
+ 
   return (
     <SideBar>
       <main className="flex-1">{children}</main>

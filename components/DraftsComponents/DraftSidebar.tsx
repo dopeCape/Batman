@@ -48,7 +48,7 @@ export default function DraftSidebar() {
       const shortenedDraft = extractFirstFourWords(draft);
 
       currentRow.push(
-      <div onClick={()=>handleDraft(draft)} className='flex w-1/3 h-40 mr-2 dark:bg-[#1C1C1C] bg-[#A7A7A7] flex-col border-[#2B2B2B] dark:border overflow-hidden cursor-pointer '>
+      <div onClick={()=>handleDraft(draft)} className='flex w-1/3 h-40 mr-2 dark:bg-[#1C1C1C] bg-[#D2D2D2] flex-col border-[#2B2B2B] dark:border overflow-hidden cursor-pointer '>
         <div className='flex w-full h-3/4 items-center justify-center' >
         <Image className='object-contain mt-1' width={36} height={32} src={'/icons/document.png'} alt='document' />
         </div>
@@ -86,7 +86,7 @@ export default function DraftSidebar() {
       currentRow.push(
         <div
           onClick={() => handleDraft(draft)}
-          className='flex w-1/3 h-40 mr-2 dark:bg-[#1C1C1C] bg-[#A7A7A7] flex-col border-[#2B2B2B] dark:border overflow-hidden cursor-pointer'
+          className='flex w-1/3 h-40 mr-2 dark:bg-[#1C1C1C] bg-[#D2D2D2] flex-col border-[#2B2B2B] dark:border overflow-hidden cursor-pointer'
           key={index}
         >
           <div className='flex w-full h-3/4 items-center justify-center'>

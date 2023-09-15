@@ -9,13 +9,13 @@ type MainSelectorProps = {
   };
   
 export default function MinSelector({ platform }: MainSelectorProps) {
-    if (platform === 'Youtube Tag'|| platform === 'Twitter Hashtag' || platform === 'TikTok Hashtag' || platform === 'Instagram Hashtag') {
+    if (platform === 'YouTube Tag'|| platform === 'Twitter Hashtag' || platform === 'TikTok Hashtag' || platform === 'Instagram Hashtag') {
         return <Form1 title={platform} />
     }
     if (platform === 'LinkedIn Post'|| platform === 'LinkedIn Articles') {
         return <Form2 title={platform}/>
     }
-    if (platform === 'Youtube Thumbnail') {
+    if (platform === 'YouTube Thumbnail') {
         return <Form3 title={platform}/>
     }
     else{

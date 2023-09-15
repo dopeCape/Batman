@@ -16,7 +16,7 @@ export default function SideBar() {
   const [focusedItem, setFocusedItem] = useState<string | null>(null)
   const [focusedButton, setFocusedButton] = useState(null)
   const [openStates, setOpenStates] = React.useState(platforms.map(() => false))
-  const [option, setOption] = useState("Youtube Video")
+  const [option, setOption] = useState("YouTube Video")
   const [searchText, setSearchText] = useState("")
   const [form, setForm] = useState("")
   const handleSearchChange = (event: any) => {
@@ -40,8 +40,8 @@ export default function SideBar() {
   }
   return (
     <div className="flex w-full bg-black h-full ">
-      <div className="flex w-1/3 h-full dark:bg-[#1B1D21] bg-[#FFFFFF] flex-col overflow-scroll">
-        <div className="h-8 flex flex-row mt-4 w-11/12 self-center dark:bg-[#232529] bg-[#F2F2F2] rounded-md mb-2">
+      <div className="flex md:w-1/3 w-1/4 h-full dark:bg-[#1B1D21] bg-[#FFFFFF] flex-col overflow-scroll">
+        <div className=" md:flex hidden h-8  flex-row mt-4 w-11/12 self-center dark:bg-[#232529] bg-[#F2F2F2] rounded-md mb-2">
           <SearchIcon htmlColor="#A8AAB0" className=" my-1 ml-2" />
           <input
             onChange={handleSearchChange}
@@ -98,7 +98,7 @@ export default function SideBar() {
                     src={platform.icon}
                   />
                 </ListItemIcon>
-                <h1 className=" dark:text-white justify-center text-base font-medium">
+                <h1 className=" md:flex hidden dark:text-white justify-center text-base font-medium">
                   {platform.name}
                 </h1>
               </div>
@@ -121,7 +121,7 @@ export default function SideBar() {
                     key={j}
                   >
                     <h1
-                      className={`dark:text-white text-black py-1 pl-4 flex-row flex w-full text-left my-4 text-sm ${
+                      className={`dark:text-white text-black py-1 md:pl-20 pl-4 flex-row flex w-full text-left my-4 text-sm ${
                         focusedItem === item ? "text-black" : ""
                       }`}
                     >
@@ -134,7 +134,7 @@ export default function SideBar() {
           </List>
         ))}
       </div>
-      <div className="flex w-2/3 dark:bg-[#232529] bg-[#F2F2F2]">
+      <div className="flex md:w-2/3 w-3/4 dark:bg-[#232529] bg-[#F2F2F2]">
         <MainSelector platform={option} />
       </div>
     </div>

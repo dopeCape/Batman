@@ -195,7 +195,7 @@ export default function Form2({ title }: MainSelectorProps) {
 
   return (
     <div className="flex justify-center items-cente h-screen w-screen">
-      <div className=" h-full flex dark:bg-[#232529] bg-[#F2F2F2] px-10 py-14 flex-col overflow-scroll">
+      <div className=" h-full flex dark:bg-[#232529] bg-[#F2F2F2] md:px-10 px-4 pt-12 py-14 flex-col overflow-scroll">
         <h1 className="font-sans text-2xl font-bold">
           Generate {title.replace(/'/g, "&rsquo;")} idea
         </h1>
@@ -205,7 +205,7 @@ export default function Form2({ title }: MainSelectorProps) {
         </h3>
         <form onSubmit={(e) => e.preventDefault()} className="my-4">
           <div className="relative">
-            <h3 className="text-lg my-3 dark:text-[#A7A7A7]">
+            <h3 className="text-lg my-3 dark:text-[#D2D2D2]">
               What&apos;s your post about?{" "}
               <span className="text-red-500">*</span>
             </h3>
@@ -223,7 +223,7 @@ export default function Form2({ title }: MainSelectorProps) {
             </p>
           </div>
 
-          <h3 className="text-lg my-3 dark:text-[#A7A7A7]">Industry </h3>
+          <h3 className="text-lg my-3 dark:text-[#D2D2D2]">Industry </h3>
           <Autocomplete
             value={value1}
             onChange={(event: any, newValue: string | null) => {
@@ -258,7 +258,7 @@ export default function Form2({ title }: MainSelectorProps) {
             )}
           />
 
-          <h3 className="text-lg my-3 dark:text-[#A7A7A7]">Post Type </h3>
+          <h3 className="text-lg my-3 dark:text-[#D2D2D2]">Post Type </h3>
           <Autocomplete
             value={value2}
             onChange={(event: any, newValue: string | null) => {
@@ -293,7 +293,7 @@ export default function Form2({ title }: MainSelectorProps) {
             )}
           />
 
-          <h3 className="text-lg my-3 dark:text-[#A7A7A7]">Keywords</h3>
+          <h3 className="text-lg my-3 dark:text-[#D2D2D2]">Keywords</h3>
           <div className="flex flex-row">
             <input
               onChange={(e) => {
@@ -305,7 +305,7 @@ export default function Form2({ title }: MainSelectorProps) {
             ></input>
           </div>
 
-          <h3 className="text-lg my-3 dark:text-[#A7A7A7]">Tone </h3>
+          <h3 className="text-lg my-3 dark:text-[#D2D2D2]">Tone </h3>
           <Autocomplete
             className="dark:bg-[#1B1D21] bg-white rounded-md"
             value={value}
@@ -342,7 +342,7 @@ export default function Form2({ title }: MainSelectorProps) {
           {inputValue === "Describe a tone" ? <TextInput /> : null}
 
           <div className="relative">
-            <h3 className="text-lg my-3 dark:text-[#A7A7A7]">
+            <h3 className="text-lg my-3 dark:text-[#D2D2D2]">
               Target audience{" "}
             </h3>
             <input

@@ -10,9 +10,9 @@ export function setPrompt(
   postType?: string | null
 ) {
   if (
-    title == "Youtube Video" ||
     title == "YouTube Video" ||
-    title == "Youtube Short" ||
+    title == "YouTube Video" ||
+    title == "YouTube Short" ||
     title == "YouTube Short" ||
     title == "TikTok Video" ||
     title == "Instagram reel"
@@ -21,28 +21,28 @@ export function setPrompt(
       targetAudience ? `for target audience ${targetAudience}` : null
     }. ${tone ? `The post should have the tone ${tone}` : null} ${
       keywords ? `and focus on the following keywords: ${keywords}` : null
-    }. Get creative and come up with fun, informative, and captivating ideas that will resonate with the target audience! The output should be in the below form. 1.Title 2.Descriptio 3.Hashtags 4.Thumbnail Ideas`
+    }. Get creative and come up with fun, informative, and captivating ideas that will resonate with the target audience! The output should be in the below form. 1.Title 2.Descriptio 3.Hashtags 4.Thumbnail Ideas `
   } else if (title == "Instagram Caption" || title == "TikTok Caption") {
     return `Generate scroll-stopping ${title} for the topic ${input}, ${
       keywords ? `for the keywords ${keywords}` : null
     }, ${tone ? `with the tone ${tone}` : null} ${
       targetAudience ? `for the target audience ${targetAudience}` : null
     } that makes them stop, look, and like.`
-  } else if (title == "Youtube Description") {
-    return `Generate an impressive Youtube video description that showcases ${input} ${
+  } else if (title == "YouTube Description") {
+    return `Generate an impressive YouTube video description that showcases ${input} ${
       tone ? `in a tone [Tone]` : null
     },  ${keywords ? `with ${keywords}` : null} ${
       targetAudience ? `targeting the audience ${targetAudience}` : null
     } that entice viewers to click and watch your videos.`
   } else if (
-    title == "Youtube Tag" ||
+    title == "YouTube Tag" ||
     title == "Instagram Hashtag" ||
     title == "TikTok Hashtag" ||
     title == "Twitter Hashtag"
   ) {
     return `Generate 30 perfect ${title} for ${input} to boost the posts' reach and engagement`
   } else if (
-    title == "Youtube Title" ||
+    title == "YouTube Title" ||
     title == "Instagram caption" ||
     title == "TikTok Caption"
   ) {
@@ -51,8 +51,8 @@ export function setPrompt(
     }.${tone ? `with the tone ${tone}` : null}, ${
       targetAudience ? `targetting a target audience ${targetAudience}` : null
     }`
-  } else if (title == "Youtube Thumbnail") {
-    return `Generate 1 Youtube Thumbnail Ideas for ${input},${
+  } else if (title == "YouTube Thumbnail") {
+    return `Generate 1 YouTube Thumbnail Ideas for ${input},${
       tone ? `with the tone [Tone]` : null
     }  , ${
       targetAudience ? `targetting a target audience ${targetAudience}` : null
@@ -110,10 +110,10 @@ export function setPrompt(
 
 export function TokensNeeded(title: string) {
   if (
-    title == "Youtube Video" ||
-    title == "Youtube Short" ||
+    title == "YouTube Video" ||
+    title == "YouTube Short" ||
     title == "TikTok Video" ||
-    title == "Instagram reel"
+    title == "Instagram Reel"
   ) {
     return `20`
   } else if (
@@ -129,13 +129,13 @@ export function TokensNeeded(title: string) {
     title == "TikTok Hashtag" ||
     title == "Instagram Hashtag" ||
     title == "TikTok Caption" ||
-    title == "Youtube Title" ||
-    title == "Youtube Description"
+    title == "YouTube Title" ||
+    title == "YouTube Description"
   ) {
     return `5`
   } else if (
-    title == "Youtube Tag" ||
-    title == "Youtube Thumbnail" ||
+    title == "YouTube Tag" ||
+    title == "YouTube Thumbnail" ||
     title == "Facebook Page Description" ||
     title == "Twitter Tweet" ||
     title == "Twitter Hashtag" ||

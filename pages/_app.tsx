@@ -15,6 +15,7 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <>
       <Head>
+      <link rel="shortcut icon" href="/tab-icon.png" />
         <title>Metridash - Never Face Creative Blocks Again!</title>
       </Head>
       <ThemeProvider attribute="class">

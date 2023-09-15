@@ -75,8 +75,7 @@ export default function Form1({ title }: MainSelectorProps) {
     )
   }
 
-  const prompt = `Generate 30 hashtags about ${input} in one sentence`
-
+ 
   const handlePostAboutChange = (event: ChangeEvent<HTMLInputElement>) => {
     let value = event.target.value
     const count = value.length
@@ -115,7 +114,7 @@ export default function Form1({ title }: MainSelectorProps) {
       setLoading(false)
       return
     } else {
-      // const prompt = setPrompt(title, input )
+      const prompt = `Generate 30 hashtags about ${input} in one sentence`
       let usertk: number = Number(tk) - Number(token)
       // e.preventDefault();
       setResponse("")
@@ -153,7 +152,7 @@ export default function Form1({ title }: MainSelectorProps) {
 
   return (
     <div className="  flex flex-col md:flex-row	justify-center items-center w-full h-full">
-      <div className="w-full h-screen flex dark:bg-[#232529] bg-[#F2F2F2] px-10 flex-col mt-3">
+      <div className="w-full h-screen flex dark:bg-[#232529] bg-[#F2F2F2] md:px-10 px-4 pt-12 flex-col mt-3">
         <h1 className=" font-sans text-2xl font-bold">Generate {title} idea</h1>
         <h3 className=" text-sm ">
           Optimize your content for greater visibility and higher engagement.
@@ -186,7 +185,7 @@ export default function Form1({ title }: MainSelectorProps) {
           >
             <h1 className="text-white">
               {" "}
-              {loading ? "Genarating..." : "Generate (20 tokens)"}
+              {loading ? "Genarating..." : "Generate"}
             </h1>
           </button>
           <div className="flex w-full h-4 items-center justify-center my-2">

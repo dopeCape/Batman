@@ -44,7 +44,7 @@ const platforms = [
     items: [
       "LinkedIn Post",
       "LinkedIn Profile Optimization",
-      "LinkedIn Articles",
+      
     ],
   },
 

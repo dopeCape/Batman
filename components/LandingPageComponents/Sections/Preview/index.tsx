@@ -11,7 +11,7 @@ const Preview = () => {
   }
 
   const controls = useAnimation()
-  const [ref, inView] = useInView()
+  const [jef, inView] = useInView()
 
   useEffect(() => {
     if (inView) {
@@ -21,14 +21,14 @@ const Preview = () => {
   return (
     <div className="bg-white flex px-3 md:px-16 items-center justify-center py-20 md:mr-[3%]">
       <motion.div
-        ref={ref}
+        ref={jef}
         variants={textScrollVariants}
         initial="hidden"
         className="md:w-[50%] flex flex-col gap-y-5 justify-center relative md:right-[-50px] transition-all duration-1000 ease-in-out"
         animate={controls}
       >
         <motion.div
-          ref={ref}
+          ref={jef}
           variants={textScrollVariants}
           initial="hidden"
           className="w-[100%] h-[100%] mt-[5%] relative md:right-[-50px] transition-all duration-1000 ease-in-out"
@@ -50,7 +50,7 @@ const Preview = () => {
         </p>
       </motion.div>
       <motion.div
-        ref={ref}
+        ref={jef}
         variants={textScrollVariants}
         initial="hidden"
         className="md:w-[50%] mt-[5%] relative md:right-[-50px] transition-all duration-1000 ease-in-out"

@@ -17,6 +17,7 @@ const Prompts = () => {
 
   const controls = useAnimation()
   const [ref, inView] = useInView()
+  const [ref3, inView3] = useInView()
   const controls2 = useAnimation()
   const [ref2, inView2] = useInView()
 
@@ -30,11 +31,16 @@ const Prompts = () => {
       controls2.start("visible")
     }
   }, [controls2, inView2])
+  useEffect(() => {
+    if (inView3) {
+      controls2.start("visible")
+    }
+  }, [controls2, inView3])
   return (
     <div className="pb-10 bg-white">
       <div className="bg-white md:h-[500px] flex md:pl-[7%] md:mr-[3%] md:flex-row flex-col">
         <motion.div
-          ref={ref}
+          ref={ref3}
           variants={textScrollVariants}
           initial="hidden"
           className="md:w-[50%] mt-[5%]  relative md:right-[-50px] transition-all  ease-in-out md:flex hidden"
@@ -49,7 +55,7 @@ const Prompts = () => {
         </motion.div>
 
         <motion.div
-          ref={ref}
+          ref={ref3}
           variants={textScrollVariants}
           initial="hidden"
           className="md:w-[50%] flex flex-col gap-y-5 justify-center relative md:right-[-50px] transition-all duration-1000 ease-in-out px-3"

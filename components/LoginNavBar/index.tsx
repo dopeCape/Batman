@@ -178,7 +178,7 @@ export default function LoginNavBar() {
     "& .MuiSwitch-track": {
       borderRadius: 26 / 2,
 
-      backgroundColor: theme.palette.mode === "light" ? "#A7A7A7" : "#A7A7A7",
+      backgroundColor: theme.palette.mode === "light" ? "#D2D2D2" : "#D2D2D2",
       opacity: 1,
       transition: theme.transitions.create(["background-color"], {
         duration: 500,
@@ -241,7 +241,7 @@ export default function LoginNavBar() {
             <p className="ms-1">Schedule</p>
           </Badge>
         </NavLink>
-
+        
         <Link
           href="/pricing"
           className={`bg-gradient-to-r  from-[#00C5D7] to-[#0077BE] rounded-md p-2 flex flex-row justify-between text-white`}
