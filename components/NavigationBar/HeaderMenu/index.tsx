@@ -99,14 +99,14 @@ const HeaderMenu = (props: Props) => {
               <Link href="/pricing">Pricing</Link>
             </li>
 
-            <li
+            {/* <li
               className={`cursor-pointer mr-4 ${
                 active === "3" ? "text-[#fff]" : "text-[#8E9CF3]"
               }`}
               onClick={() => handleClick(3)}
             >
               <Link href="/contact">Contact Us</Link>
-            </li>
+            </li> */}
 
             {/* <li
               className={`cursor-pointer mr-4 ${
@@ -128,7 +128,7 @@ const HeaderMenu = (props: Props) => {
 
            <Link href={'/auth/signup'} className="flex flex-row items-center justify-center gap-x-1 px-4 py-1 bg-blue-400 rounded-xl">
             <h1>Try it free</h1>
-            <BsArrowBarRight></BsArrowBarRight>
+           
            </Link>
           </ul>
 
@@ -175,7 +175,7 @@ const HeaderMenu = (props: Props) => {
                   >
                     Pricing
                   </Link>
-                  <Link
+                  {/* <Link
                     href="/profile"
                     className="text-white dropdown_link"
                     onClick={() => {
@@ -184,7 +184,7 @@ const HeaderMenu = (props: Props) => {
                     }}
                   >
                     Contact Us
-                  </Link>
+                  </Link> */}
                   <Link
                     href="/auth/signin"
                     className="text-white dropdown_link"
