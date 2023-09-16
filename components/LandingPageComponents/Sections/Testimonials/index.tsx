@@ -4,7 +4,7 @@ import Image from "next/image"
 import Link from "next/link"
 export default function Testimonials() {
   return (
-    <div className='flex w-full md:px-20 px-4 pt-20 pb-10 border-b-2 border-gray-600 gap-y-4  items-center flex-col'>
+    <div className='flex w-full bg-[#0D0D0D] md:px-20 px-4 pt-20 pb-10 border-b-2 border-gray-600 gap-y-4  items-center flex-col'>
         <h1 className='text-white text-3xl font-semibold'>Join a Thriving Community of Creators</h1>
         <p>Connect. Collaborate. Grow Together.</p>
         <Image

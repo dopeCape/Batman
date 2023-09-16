@@ -14,7 +14,7 @@ export default function Questions() {
       }));
 
   return (
-    <div className='flex flex-col items-center w-full py-20 md:px-28 px-4'>
+    <div className='flex flex-col bg-[#0D0D0D]  items-center w-full py-20 md:px-28 px-4'>
         <h1 className='text-3xl font-semibold'><span className="font-semibold text-[48px] leading-[54px] text-center text-transparent bg-clip-text bg-gradient-to-r from-[#009FFD] to-[#2A2A72] pb-2">Have Questions?</span>We've Got Answers.</h1>
         <h1 className='text-lg my-2'>Explore our FAQs or contact our support team. We're here to help.</h1>
         <Box sx={{ width: '100%' }}>
