@@ -15,7 +15,8 @@ export default function Testimonials() {
           />
           <div className="btn-hero md:ml-5">
           <Link
-            href={`/auth/signup`}
+            rel="noopener noreferrer" target="_blank"
+            href={`https://discord.com/invite/UEa2QUMH`}
             className="flex px-2 py-2 mt-4 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-xl items-center justify-center"
           >
             <h1 className="text-lg font-semibold">Join the Community</h1>
