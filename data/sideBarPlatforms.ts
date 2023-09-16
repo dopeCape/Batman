@@ -21,10 +21,10 @@ const platforms = [
     ],
   },
   {
-    name: "Twitter",
+    name: "Twitter(X)",
     icon: "/platformIcons/twitterHQ.png",
     color: "#1DA1F2",
-    items: ["Twitter Tweet", "Twitter Hashtag", "Twitter Bio"],
+    items: ["Twitter(X) Tweet", "Twitter(X) Hashtag", "Twitter(X) Bio"],
   },
   {
     name: "Instagram",

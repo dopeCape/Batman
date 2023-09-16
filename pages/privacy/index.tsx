@@ -43,7 +43,7 @@ const Privacy = () => {
       <h3>Social Media Authors</h3>
       <p className="py-5">
         Metridash receives personal data from third parties such as Facebook,
-        Twitter, Instagram, and YouTube for our legitimate interests of serving
+        Twitter(X), Instagram, and YouTube for our legitimate interests of serving
         our customers. We are fully compliant with their public terms and
         conditions and trust them to protect Social Media Authors through their
         robust privacy policies.

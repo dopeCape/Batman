@@ -15,7 +15,7 @@ import { Modal, Box, OutlinedInput } from "@mui/material"
 import { StyleModal } from "@/components/modalStyle"
 import PopUpCard from "@/components/PopUpCard"
 import { useTheme } from "next-themes"
-import { setPrompt, TokensNeeded } from "@/hooks/function"
+import { setPrompt, TokensNeeded, InputTitle } from "@/hooks/function"
 
 const options = [
   "Conversational",
@@ -56,6 +56,7 @@ export default function Form4({ title }: MainSelectorProps) {
   const [open, setOpen] = useState(false)
   const handleOpen = () => setOpen(true)
   const handleClose = () => setOpen(false)
+  const [titleInput, setTitleInput] = useState("")
   // const [prompt , setPrompts] = useState<string | undefined>()
   const { theme, setTheme } = useTheme()
   useEffect(() => {
@@ -67,7 +68,8 @@ export default function Form4({ title }: MainSelectorProps) {
   useEffect(() => {
     const word = title.split(" ")
     const x = TokensNeeded(title)
-
+    const y = InputTitle(title)
+    setTitleInput(y)
     setTokensRequired(x)
 
     setWord1(word[1])
@@ -129,12 +131,12 @@ export default function Form4({ title }: MainSelectorProps) {
     setLoading(true)
     setResponse("")
     const tk = await getUserToken(user)
-    if (Number(tk) < token) {
+    if (Number(tk) <  Number(tokensRequired)) {
       handleOpen()
       setLoading(false)
       return
     } else {
-      let usertk: number = Number(tk) - Number(token)
+      let usertk: number = Number(tk) -  Number(tokensRequired)
       const prompt = setPrompt(title, input, targetAudience, value, keywords)
       await updateTokens(user, usertk)
       const res = await fetch("/api/promptChatGPT", {
@@ -188,8 +190,7 @@ export default function Form4({ title }: MainSelectorProps) {
         >
           <div className="relative">
             <h3 className=" text-lg mt-3 mb-1 dark:text-[#D2D2D2]">
-              What&apos;s your{" "}
-              {word1?.toLowerCase() ? word1.toLowerCase() : "post"} about?{" "}
+             {titleInput}
               <span className="text-red-500">*</span>
             </h3>
             <input

@@ -9,7 +9,7 @@ import { responseAtom } from "@/utils/store"
 import { auth } from "@/firebase"
 import { Modal, Box } from "@mui/material"
 import { StyleModal } from "@/components/modalStyle"
-import { setPrompt, TokensNeeded } from "@/hooks/function"
+import { setPrompt, TokensNeeded , InputTitle} from "@/hooks/function"
 import PopUpCard from "@/components/PopUpCard"
 type MainSelectorProps = {
   title: string // Adjust the type according to your use case
@@ -50,6 +50,7 @@ export default function Form1({ title }: MainSelectorProps) {
   const [open, setOpen] = useState(false)
   const handleOpen = () => setOpen(true)
   const handleClose = () => setOpen(false)
+  const [titleInput, setTitleInput] = useState("")
   const [word1, setWord1] = useState<string>("")
   useEffect(() => {
     // Set the state to null on page load
@@ -59,7 +60,8 @@ export default function Form1({ title }: MainSelectorProps) {
     const word = title.split(" ")
     setWord1(word[1])
     const x = TokensNeeded(title)
-
+    const y = InputTitle(title)
+    setTitleInput(y)
     setTokensRequired(x)
   }, [title])
 
@@ -109,13 +111,13 @@ export default function Form1({ title }: MainSelectorProps) {
     if (disabled(input)) return
     setLoading(true)
     const tk = await getUserToken(user)
-    if (Number(tk) < token) {
+    if (Number(tk) < Number(tokensRequired)) {
       handleOpen()
       setLoading(false)
       return
     } else {
       const prompt = `Generate 30 hashtags about ${input} in one sentence`
-      let usertk: number = Number(tk) - Number(token)
+      let usertk: number = Number(tk) - Number(tokensRequired)
       // e.preventDefault();
       setResponse("")
 
@@ -160,7 +162,8 @@ export default function Form1({ title }: MainSelectorProps) {
         <form onSubmit={(e) => e.preventDefault()} className="my-4">
           <div className="relative">
             <h3 className=" text-lg my-3 dark:text-[#D2D2D2]">
-              What&apos;s your {word1.toLowerCase()} about?{" "}
+              {/* What&apos;s your {word1.toLowerCase()} about?{" "} */}
+              {titleInput}
               <span className="text-red-500">*</span>
             </h3>
             <input
@@ -185,7 +188,7 @@ export default function Form1({ title }: MainSelectorProps) {
           >
             <h1 className="text-white">
               {" "}
-              {loading ? "Genarating..." : `Generate (${tokensRequired} Tokens`}
+              {loading ? "Genarating..." : `Generate (${tokensRequired} Tokens)`}
             </h1>
           </button>
           {/* <div className="flex w-full h-4 items-center justify-center my-2">

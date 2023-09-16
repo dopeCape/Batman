@@ -82,7 +82,7 @@ const SignIn = () => {
           <h1 className="text-pink text-blue-500">*</h1>
         </div>
         <input
-          className="text-black mb-6 px-4 py-2 w-full rounded-md"
+          className=" mb-6 px-4 py-2 w-full rounded-md"
           type="email"
           placeholder="Enter your email"
           value={email}
@@ -93,7 +93,7 @@ const SignIn = () => {
           <h1 className="text-pink text-blue-500">*</h1>
         </div>
         <input
-          className="text-black mb-6 px-4 py-2 w-full rounded-md"
+          className=" mb-6 px-4 py-2 w-full rounded-md"
           type="password"
           placeholder="Enter your password"
           value={password}

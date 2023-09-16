@@ -38,7 +38,7 @@ export function setPrompt(
     title == "YouTube Tag" ||
     title == "Instagram Hashtag" ||
     title == "TikTok Hashtag" ||
-    title == "Twitter Hashtag"
+    title == "Twitter(X) Hashtag"
   ) {
     return `Generate 30 perfect ${title} for ${input} to boost the posts' reach and engagement`
   } else if (
@@ -59,7 +59,7 @@ export function setPrompt(
     } that captures the viewers' attention and increase click-through rates that makes the YouTube video stand out.`
   } else if (
     title == "Instagram Bio" ||
-    title == "Twitter Bio" ||
+    title == "Twitter(X) Bio" ||
     title == "LinkedIn Profile Optimization"
   ) {
     return `Generate an impressive ${title}  that showcases ${input} ${
@@ -77,7 +77,7 @@ export function setPrompt(
     },  ${keywords ? `with keywords ${keywords}` : null} ${
       targetAudience ? `targetting a target audience ${targetAudience}` : null
     }. `
-  } else if (title == "Twitter Tweet") {
+  } else if (title == "Twitter(X) Tweet") {
     return `Generate an attention-grabbing Tweet on the topic ${input}, ${
       targetAudience ? `for the target audience [Target Audience]` : null
     }, ${tone ? `with the tone ${tone}` : null},${
@@ -124,7 +124,7 @@ export function TokensNeeded(title: string) {
     return `10`
   } else if (
     title == "Instagram Bio" ||
-    title == "Twitter Bio" ||
+    title == "Twitter(X) Bio" ||
     title == "Instagram Caption" ||
     title == "TikTok Hashtag" ||
     title == "Instagram Hashtag" ||
@@ -137,13 +137,59 @@ export function TokensNeeded(title: string) {
     title == "YouTube Tag" ||
     title == "YouTube Thumbnail" ||
     title == "Facebook Page Description" ||
-    title == "Twitter Tweet" ||
-    title == "Twitter Hashtag" ||
-    title == "Twitter Bio" ||
+    title == "Twitter(X) Tweet" ||
+    title == "Twitter(X) Hashtag" ||
+    title == "Twitter(X) Bio" ||
     title == "LinkedIn Profile Optimization"
   ) {
     return `5`
   } else {
     return `0`
+  }
+}
+
+export function InputTitle(title:string){
+  if (
+    title == "YouTube Video" ||
+    title == "YouTube Title" ||
+   
+
+    title == "YouTube Short" ||
+    title == "YouTube Description" ||
+    title == "YouTube Tag" ||
+    title == "YouTube Thumbnail"
+  ) {
+    return `What's your Video about?`
+  } 
+  else if (
+   
+    title == "Twitter(X) Tweet" ||
+    title == "Twitter(X) Hashtag" ||
+    title == "Twitter(X) Bio" 
+    
+  ){
+    return `What's your Tweet about?`
+  }
+ 
+  else if (
+   
+    title == "Instagram Caption" ||
+    title == "Instagram Hashtag" 
+    
+    
+  ){
+    return `What's your post about?`
+  }
+  else if (
+    title == "TikTok Video" ||
+    title == "TikTok Hashtag" ||
+    title == "TikTok Caption" 
+    
+    
+  ){
+    return `What's your TikTok about?`
+  }
+  else{
+    return "What's your post about?"
   }
 }

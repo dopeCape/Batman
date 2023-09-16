@@ -15,7 +15,7 @@ import { StyleModal } from "@/components/modalStyle"
 import PopUpCard from "@/components/PopUpCard"
 import { disabled } from "./form4"
 import { useTheme } from "next-themes"
-import { setPrompt, TokensNeeded } from "@/hooks/function"
+import { setPrompt, TokensNeeded, InputTitle } from "@/hooks/function"
 
 type MainSelectorProps = {
   title: string // Adjust the type according to your use case
@@ -68,6 +68,7 @@ export default function Form2({ title }: MainSelectorProps) {
   let token: number = 10
   const user = auth.currentUser
   const router = useRouter()
+  const [titleInput, setTitleInput] = useState("")
   const [word1, setWord1] = useState<string>("")
 
   useEffect(() => {
@@ -83,7 +84,8 @@ export default function Form2({ title }: MainSelectorProps) {
     setValue("")
     setKeywords("")
     const x = TokensNeeded(title)
-
+    const y = InputTitle(title)
+    setTitleInput(y)
     setTokensRequired(x)
   }, [title])
 
@@ -137,12 +139,12 @@ export default function Form2({ title }: MainSelectorProps) {
     setLoading(true)
     setResponse("")
     const tk = await getUserToken(user)
-    if (Number(tk) < token) {
+    if (Number(tk) <  Number(tokensRequired)) {
       handleOpen()
       setLoading(false)
       return
     } else {
-      let usertk: number = Number(tk) - Number(token)
+      let usertk: number = Number(tk) - Number(tokensRequired)
       const prompt = setPrompt(
         title,
         input,
@@ -206,7 +208,8 @@ export default function Form2({ title }: MainSelectorProps) {
         <form onSubmit={(e) => e.preventDefault()} className="my-4">
           <div className="relative">
             <h3 className="text-lg my-3 dark:text-[#D2D2D2]">
-              What&apos;s your post about?{" "}
+              {/* What&apos;s your post about?{" "} */}
+              {titleInput}
               <span className="text-red-500">*</span>
             </h3>
             <input
@@ -368,7 +371,7 @@ export default function Form2({ title }: MainSelectorProps) {
           >
             <h1 className="text-white">
               {" "}
-              {loading ? "Genarating..." : `Generate (${tokensRequired} Tokens`}
+              {loading ? "Genarating..." : `Generate (${tokensRequired} Tokens)`}
             </h1>
           </button>
           {/* <div className="flex w-full h-4 items-center justify-center my-2">

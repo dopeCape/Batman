@@ -14,7 +14,7 @@ import { StyleModal } from "@/components/modalStyle";
 import PopUpCard from "@/components/PopUpCard";
 import { disabled } from "./form4";
 import { useTheme } from "next-themes";
-import { setPrompt, TokensNeeded } from "@/hooks/function";
+import { setPrompt, TokensNeeded, InputTitle } from "@/hooks/function";
 const options = [
   "Conversational",
   "Enthusiastic",
@@ -43,6 +43,7 @@ export default function Form3({ title }: MainSelectorProps) {
   const handleClose = () => setOpen(false);
   const { theme, setTheme } = useTheme();
   const [word1, setWord1] = useState<string>("");
+  const [titleInput, setTitleInput] = useState("")
   const [tokensRequired, setTokensRequired] = useState<string>("");
 
   useEffect(() => {
@@ -54,7 +55,8 @@ export default function Form3({ title }: MainSelectorProps) {
     const word = title.split(" ");
     setWord1(word[1]);
     const x = TokensNeeded(title);
-
+    const y = InputTitle(title)
+    setTitleInput(y)
     setTokensRequired(x);
   }, [title]);
 
@@ -103,12 +105,12 @@ export default function Form3({ title }: MainSelectorProps) {
     if (disabled(value, input, targetAudience, inputValue)) return;
     setLoading(true);
     const tk = await getUserToken(user);
-    if (Number(tk) < token) {
+    if (Number(tk) <  Number(tokensRequired)) {
       handleOpen();
       setLoading(false);
       return;
     } else {
-      let usertk: number = Number(tk) - Number(token);
+      let usertk: number = Number(tk) -  Number(tokensRequired);
       // e.preventDefault();
       const prompt = setPrompt(title, input, targetAudience, value);
 
@@ -167,7 +169,7 @@ export default function Form3({ title }: MainSelectorProps) {
         <form onSubmit={(e) => e.preventDefault()} className="my-4">
           <div className="relative mt-4">
             <h3 className="text-lg mt-3 mb-1 dark:text-[#D2D2D2] ">
-              What&apos;s your {word1.toLowerCase()} about?{" "}
+              What&apos;s your video about?{" "}
               <span className="text-red-500">*</span>
             </h3>
             <input
@@ -249,7 +251,7 @@ export default function Form3({ title }: MainSelectorProps) {
           >
             <h1 className="text-white">
               {" "}
-              {loading ? "Genarating..." : `Generate (${tokensRequired} Tokens`}
+              {loading ? "Genarating..." : `Generate (${tokensRequired} Tokens)`}
             </h1>
           </button>
           {/* <div className="flex w-full h-4 items-center justify-center my-2">
