@@ -5,7 +5,7 @@ import { useAnimation, motion } from "framer-motion"
 import { useInView } from "react-intersection-observer"
 import { collection, addDoc, serverTimestamp } from "firebase/firestore"
 import { db } from "@/firebase"
-import DashBoard from "../../../../public/Images/image4.png"
+import DashBoard from "../../../../public/Images/Desktop.png"
 import checkUser from "@/utils/checkUser"
 
 const Blocks = () => {
