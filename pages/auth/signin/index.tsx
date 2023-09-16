@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import { auth } from "@/firebase";
 import { signInWithEmail } from "../../../auth";
 import Typewriter from "typewriter-effect";
-
+import LeftImage from "../../../public/Images/LeftImage.jpeg"
 const SignIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -46,14 +46,15 @@ const SignIn = () => {
         className=" flex-col w-full md:w-1/2 h-full items-center justify-center  md:flex hidden"
         style={{
           backgroundImage:
-            "url('https://images.rawpixel.com/image_1300/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvcGYtbWlzYzE0LWFkajAwODU1LWFkai1hXzEuanBn.jpg')",
+            "url('https://img.freepik.com/free-photo/coworkers-office-with-photo-cameras-computer_329181-12002.jpg?w=2000&t=st=1694872346~exp=1694872946~hmac=218f45abed30e19f7aafbd878df73d4b6ff924a3033b3d4b594a088780b49352')",
           backgroundSize: "cover",
           backgroundRepeat: "no-repeat",
         }}
       >
-        <div className="flex w-full h-20 flex-col mt-80 px-10 items-center">
-          <h1 className="text-white font-mono text-2xl font-extrabold">
-            Metridash is live!
+        <div className="flex w-full h-20 flex-col gap-y-2 mt-80 px-10 items-center">
+        <h1 className=" font-mono text-2xl font-extrabold  w-full text-center text-transparent bg-clip-text bg-gradient-to-r from-[#7EE8FA] to-[#EEC0C6]">
+           
+        Metridash: Your Ultimate Content Creation Companion
           </h1>
         </div>
         <div className="flex justify-start items-start h-screen flex-col px-10">
@@ -61,8 +62,12 @@ const SignIn = () => {
             <Typewriter
               options={{
                 strings: [
-                  "Providing automated social media analytics to creators.",
-                  "We help you track Twitter, Instagram, Youtube, and Facebook #hashtags, keywords, @accounts, and URLs with ease.",
+                  "Fuel Your Creativity",
+                  "Metridash empowers creators with powerful content creation tools, igniting your creative spark like never before.",
+                  "Craft, Share, and Thrive",
+                  "Unleash your content potential effortlessly with Metridash – from creation to sharing, we've got you covered.",
+                  "Join the Creator Revolution",
+                  "Ready to revolutionize your content? Join the Metridash community today and watch your creative journey soar." 
                 ],
                 autoStart: true,
                 loop: true,
