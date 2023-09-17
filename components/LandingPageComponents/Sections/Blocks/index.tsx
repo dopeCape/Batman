@@ -52,19 +52,19 @@ const Blocks = () => {
           <h1 className="text-xs font-light text-gray-300">30 day trial. No credit card required.</h1>
         </div>
       </motion.div>
-      <motion.div
+      <div
         ref={ref}
-        variants={textScrollVariants}
-        initial="hidden"
-        className="w-full mt-5 relative top-[-50px] transition-all duration-1000 ease-in-out"
-        animate={controls}
+        
+       
+        className="w-full mt-8 relative top-[-50px] transition-all duration-1000 ease-in-out"
+       
       >
         <Image
           className="lg:flex hidden w-full object-cover"
           src={DashBoard}
           alt="DashBoard"
         />
-      </motion.div>
+      </div>
     </div>
   )
 }

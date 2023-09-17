@@ -54,41 +54,42 @@ const SignUp = () => {
   return (
     <div className="flex-row flex items-center justify-center h-screen w-full">
      <div
-        className=" flex-col w-full md:w-1/2 h-full items-center justify-center  md:flex hidden"
-        style={{
-          backgroundImage:
-            "url('https://img.freepik.com/free-photo/coworkers-office-with-photo-cameras-computer_329181-12002.jpg?w=2000&t=st=1694872346~exp=1694872946~hmac=218f45abed30e19f7aafbd878df73d4b6ff924a3033b3d4b594a088780b49352')",
-          backgroundSize: "cover",
-          backgroundRepeat: "no-repeat",
-        }}
-      >
-        <div className="flex w-full h-20 flex-col gap-y-2 mt-80 px-10 items-center">
-        <h1 className="text-white font-mono text-2xl font-semibold  w-full text-center">
-           
+    className="absolute inset-0 w-full h-full blur-sm"
+    style={{
+      backgroundImage:
+        "url('https://img.freepik.com/free-photo/coworkers-office-with-photo-cameras-computer_329181-12002.jpg?w=2000&t=st=1694872346~exp=1694872946~hmac=218f45abed30e19f7aafbd878df73d4b6ff924a3033b3d4b594a088780b49352')",
+      backgroundSize: "cover",
+      backdropFilter: "blur(10px)",
+      zIndex: -1
+    }}
+  ></div>
+  <div className="flex w-1/2 h-full flex-col z-10  mt-96 pt-20">
+    <div className="bg-transparent ">
+      <h1 className="font-mono text-2xl font-extrabold w-full text-center text-transparent bg-clip-text bg-gradient-to-r from-[#7EE8FA] to-[#EEC0C6]">
         Metridash: Your Ultimate Content Creation Companion
-          </h1>
-        </div>
-        <div className="flex justify-start items-start h-screen flex-col px-10">
-          <h1 className="text-white font-mono text-xl font-light  w-full text-center">
-            <Typewriter
-              options={{
-                strings: [
-                  "Fuel Your Creativity",
-                  "Metridash empowers creators with powerful content creation tools, igniting your creative spark like never before.",
-                  "Craft, Share, and Thrive",
-                  "Unleash your content potential effortlessly with Metridash – from creation to sharing, we've got you covered.",
-                  "Join the Creator Revolution",
-                  "Ready to revolutionize your content? Join the Metridash community today and watch your creative journey soar." 
-                ],
-                autoStart: true,
-                loop: true,
-                deleteSpeed: 2,
-                delay: 40,
-              }}
-            />
-          </h1>
-          </div>
-      </div>
+      </h1>
+    </div>
+    <div className="flex justify-start items-start h-screen flex-col px-10">
+      <h1 className="text-white font-mono text-xl font-light w-full text-center">
+        <Typewriter
+          options={{
+            strings: [
+              "Fuel Your Creativity",
+              "Metridash empowers creators with powerful content creation tools, igniting your creative spark like never before.",
+              "Craft, Share, and Thrive",
+              "Unleash your content potential effortlessly with Metridash – from creation to sharing, we've got you covered.",
+              "Join the Creator Revolution",
+              "Ready to revolutionize your content? Join the Metridash community today and watch your creative journey soar."
+            ],
+            autoStart: true,
+            loop: true,
+            deleteSpeed: 2,
+            delay: 40
+          }}
+        />
+      </h1>
+    </div>
+  </div>
       <div className=" bg-gradient-to-t from-[#0C0C0C] to-[#090947] flex flex-col items-center justify-center h-full md:px-28 px-10 w-full md:w-1/2">
         <h1 className="text-center font-sans mb-10 font-semibold text-[30px] leading-[23px] text-white self-start">
           👋 Create Account
