@@ -14,7 +14,7 @@ import { StyleModal } from "@/components/modalStyle";
 import PopUpCard from "@/components/PopUpCard";
 import { disabled } from "./form4";
 import { useTheme } from "next-themes";
-import { setPrompt, TokensNeeded, InputTitle } from "@/hooks/function";
+import { setPrompt, TokensNeeded, InputTitle, Descriptions } from "@/hooks/function";
 const options = [
   "Conversational",
   "Enthusiastic",
@@ -45,7 +45,7 @@ export default function Form3({ title }: MainSelectorProps) {
   const [word1, setWord1] = useState<string>("");
   const [titleInput, setTitleInput] = useState("")
   const [tokensRequired, setTokensRequired] = useState<string>("");
-
+  const [description, setDescription] = useState("")
   useEffect(() => {
     // Set the state to null on page load
     setResponse("");
@@ -56,6 +56,8 @@ export default function Form3({ title }: MainSelectorProps) {
     setWord1(word[1]);
     const x = TokensNeeded(title);
     const y = InputTitle(title)
+    const z = Descriptions(title)
+    setDescription(z)
     setTitleInput(y)
     setTokensRequired(x);
   }, [title]);
@@ -160,7 +162,7 @@ export default function Form3({ title }: MainSelectorProps) {
     <div className="flex flex-col md:flex-row justify-center items-center">
       <div className="md:w-full h-screen flex  dark:bg-[#232529]  bg-[#F2F2F2] md:px-10 px-4 pt-12 py-16 flex-col">
         <h1 className="font-sans text-2xl font-bold">
-          Generate {title.replace(/'/g, "&rsquo;")} idea
+          Generate {title.replace(/'/g, "&rsquo;")} 
         </h1>
         <h3 className="text-sm ">
           Grab viewers&apos; attention and increase click-through rates with

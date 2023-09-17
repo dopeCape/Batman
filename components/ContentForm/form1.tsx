@@ -9,7 +9,7 @@ import { responseAtom } from "@/utils/store"
 import { auth } from "@/firebase"
 import { Modal, Box } from "@mui/material"
 import { StyleModal } from "@/components/modalStyle"
-import { setPrompt, TokensNeeded , InputTitle} from "@/hooks/function"
+import { setPrompt, TokensNeeded , InputTitle, Descriptions} from "@/hooks/function"
 import PopUpCard from "@/components/PopUpCard"
 type MainSelectorProps = {
   title: string // Adjust the type according to your use case
@@ -43,6 +43,7 @@ export default function Form1({ title }: MainSelectorProps) {
   const [_response, setResponse] = useAtom(responseAtom)
   const [loading, setLoading] = useState(false)
   const [tokensRequired, setTokensRequired] = useState<string>("")
+  const [description , setDescription] = useState("")
   let token: number = 20
   const user = auth.currentUser
   const router = useRouter()
@@ -61,6 +62,8 @@ export default function Form1({ title }: MainSelectorProps) {
     setWord1(word[1])
     const x = TokensNeeded(title)
     const y = InputTitle(title)
+    const z = Descriptions(title)
+    setDescription(z)
     setTitleInput(y)
     setTokensRequired(x)
   }, [title])
@@ -155,9 +158,9 @@ export default function Form1({ title }: MainSelectorProps) {
   return (
     <div className="  flex flex-col md:flex-row	justify-center items-center w-full h-full">
       <div className="w-full h-screen flex dark:bg-[#232529] bg-[#F2F2F2] md:px-10 px-4 pt-12 flex-col mt-3">
-        <h1 className=" font-sans text-2xl font-bold">Generate {title} idea</h1>
+        <h1 className=" font-sans text-2xl font-bold">Generate {title}</h1>
         <h3 className=" text-sm ">
-          Optimize your content for greater visibility and higher engagement.
+          {description}
         </h3>
         <form onSubmit={(e) => e.preventDefault()} className="my-4">
           <div className="relative">

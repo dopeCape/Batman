@@ -15,7 +15,7 @@ import { Modal, Box, OutlinedInput } from "@mui/material"
 import { StyleModal } from "@/components/modalStyle"
 import PopUpCard from "@/components/PopUpCard"
 import { useTheme } from "next-themes"
-import { setPrompt, TokensNeeded, InputTitle } from "@/hooks/function"
+import { setPrompt, TokensNeeded, InputTitle, Descriptions } from "@/hooks/function"
 
 const options = [
   "Conversational",
@@ -57,7 +57,7 @@ export default function Form4({ title }: MainSelectorProps) {
   const handleOpen = () => setOpen(true)
   const handleClose = () => setOpen(false)
   const [titleInput, setTitleInput] = useState("")
-  // const [prompt , setPrompts] = useState<string | undefined>()
+  const [description, setDescription] = useState("")
   const { theme, setTheme } = useTheme()
   useEffect(() => {
     // Set the state to null on page load
@@ -69,18 +69,18 @@ export default function Form4({ title }: MainSelectorProps) {
     const word = title.split(" ")
     const x = TokensNeeded(title)
     const y = InputTitle(title)
+    const z = Descriptions(title)
     setTitleInput(y)
     setTokensRequired(x)
-
+    setDescription(z)
     setWord1(word[1])
     setResponse("")
     setInput("")
     setTargetAudience("")
     setValue("")
     setKeywords("")
-    // const data = setPrompt(title,input,targetAudience, value, keywords)
-    // setPrompts(data)
-  }, [title])
+   
+  }, [setResponse, title])
   const handleKeyword = (event: ChangeEvent<HTMLInputElement>) => {
     setWord(event.target.value)
   }
@@ -178,10 +178,10 @@ export default function Form4({ title }: MainSelectorProps) {
     <div className="flex flex-col md:flex-row	justify-center items-center w-full h-full">
       <div className="w-full h-screen flex dark:bg-[#232529] bg-[#F2F2F2] md:px-10 px-4 pt-12 flex-col">
         <h1 className=" font-sans text-2xl font-bold">
-          Generate {title.replace(/'/g, "&rsquo;")} idea
+          Generate {title.replace(/'/g, "&rsquo;")} 
         </h1>
         <h3 className="text-sm  ">
-          Optimize your content for greater visibility and higher engagement.
+          {description}
         </h3>
         <form
           id="generate-form"

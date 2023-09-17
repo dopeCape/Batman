@@ -164,11 +164,19 @@ export function InputTitle(title:string){
   else if (
    
     title == "Twitter(X) Tweet" ||
-    title == "Twitter(X) Hashtag" ||
-    title == "Twitter(X) Bio" 
+    title == "Twitter(X) Hashtag" 
+    
     
   ){
     return `What's your Tweet about?`
+  }
+  else if (
+   
+    
+    title == "Twitter(X) Bio" 
+    
+  ){
+    return `What's your Bio about?`
   }
  
   else if (
@@ -193,3 +201,76 @@ export function InputTitle(title:string){
     return "What's your post about?"
   }
 }
+export function Descriptions(title:string){
+  if(title == "Instagram Reel"){
+    return `Ignite your creativity and engage your audience with captivating Instagram Reel Ideas`
+  }
+  else if(title == "Instagram Caption"){
+    return `Write scroll-stopping captions that encourage people to stop, look, and like.`
+  }
+  else if(title == "Instagram Hashtag"){
+    return `Discover the perfect hashtags to boost your posts' reach and engagement.`
+  }
+  else if(title == "Instagram Bio"){
+    return `Create an impressive bio that showcases your personality and attracts followers.`
+  }
+  else if(title == "TikTok Video"){
+    return `Unleash your creativity with trending video ideas that captivate your audience.`
+  }
+  else if(title == "TikTok Hashtag"){
+    return `Find the right hashtags to amplify your content and gain more visibility.`
+  }
+  else if(title == "TikTok Caption"){
+    return `Write scroll-stopping captions that encourage people to stop, look, and like.`
+  }
+  else if(title == "YouTube Video"){
+    return `Unlock a treasure trove of creative video concepts to captivate and grow your YouTube audience.`
+  }
+  else if(title == "YouTube Short"){
+    return `Dive into bite-sized content creation with compelling ideas for YouTube Shorts that leave a lasting impact.`
+  }
+  else if(title == "YouTube Title"){
+    return `Optimize your video titles to attract more viewers and enhance engagement.`
+  }
+  else if(title == "YouTube Description"){
+    return `Write compelling descriptions that entice viewers to click and watch your videos.`
+  }
+  else if(title == "YouTube Tag"){
+    return `Discover relevant tags to optimize your videos for better search rankings.`
+  }
+  else if(title == "Youtube Thumbnail"){
+    return `Grab viewers' attention and increase click-through rates with eye-catching thumbnail ideas that make your YouTube videos stand out.`
+  }
+  else if(title == "Facebook Post"){
+    return `Generate engaging post ideas that spark conversations and drive interactions.`
+  }
+  else if(title == "Facebook Ad Copy"){
+    return `Create compelling ad copy that compels your target audience to take action.`
+  }
+  else if(title == "Facebook Page Description"){
+    return `Craft an enticing page description that accurately represents your brand.`
+  }
+  else if(title == "Twitter(X) Tweet"){
+    return `Compose attention-grabbing tweets that resonate with your followers and gain retweets.`
+  }
+  else if(title == "Twitter(X) Hashtag"){
+    return `Discover popular hashtags to increase your tweets' visibility and reach.`
+  }
+  else if(title == "Twitter(X) Bio"){
+    return `Create a compelling bio that showcases your uniqueness and attracts followers.`
+  }
+  else if(title == "LinkedIn Post"){
+    return `Generate professional post ideas to share industry insights and build connections.`
+  }
+  else if(title == "LinkedIn Profile Optimization"){
+    return `Optimize your profile to impress potential employers or clients and stand out.`
+  }
+  else{
+    return `Optimize your content for greater visibility and higher engagement.`
+  }
+
+}
+
+
+
+

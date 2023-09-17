@@ -15,7 +15,7 @@ import { StyleModal } from "@/components/modalStyle"
 import PopUpCard from "@/components/PopUpCard"
 import { disabled } from "./form4"
 import { useTheme } from "next-themes"
-import { setPrompt, TokensNeeded, InputTitle } from "@/hooks/function"
+import { setPrompt, TokensNeeded, InputTitle, Descriptions } from "@/hooks/function"
 
 type MainSelectorProps = {
   title: string // Adjust the type according to your use case
@@ -65,6 +65,7 @@ export default function Form2({ title }: MainSelectorProps) {
   const handleClose = () => setOpen(false)
   const { theme, setTheme } = useTheme()
   const [tokensRequired, setTokensRequired] = useState<string>("")
+  const [description, setDescription] = useState("")
   let token: number = 10
   const user = auth.currentUser
   const router = useRouter()
@@ -85,9 +86,11 @@ export default function Form2({ title }: MainSelectorProps) {
     setKeywords("")
     const x = TokensNeeded(title)
     const y = InputTitle(title)
+    const z = Descriptions(title)
+    setDescription(z)
     setTitleInput(y)
     setTokensRequired(x)
-  }, [title])
+  }, [setResponse, title])
 
   const handleKeyword = (event: ChangeEvent<HTMLInputElement>) => {
     setWord(event.target.value)
@@ -199,11 +202,10 @@ export default function Form2({ title }: MainSelectorProps) {
     <div className="flex justify-center items-cente h-screen w-screen">
       <div className=" h-full flex dark:bg-[#232529] bg-[#F2F2F2] md:px-10 px-4 pt-12 py-14 flex-col overflow-scroll">
         <h1 className="font-sans text-2xl font-bold">
-          Generate {title.replace(/'/g, "&rsquo;")} idea
+          Generate {title.replace(/'/g, "&rsquo;")} 
         </h1>
         <h3 className="text-sm ">
-          Optimize your LinkedIn post for greater visibility and higher
-          engagement.
+          {description}
         </h3>
         <form onSubmit={(e) => e.preventDefault()} className="my-4">
           <div className="relative">
