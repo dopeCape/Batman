@@ -9,7 +9,7 @@ import GPTResponse from "@/components/GPTRespone"
 import { auth } from "@/firebase"
 import { updateTokens, readTokens, getUserToken } from "../../auth"
 import { useAtom } from "jotai"
-import { responseAtom } from "@/utils/store"
+import { responseAtom, platformAtom } from "@/utils/store"
 import { Modal, Box } from "@mui/material"
 import { StyleModal } from "@/components/modalStyle"
 import PopUpCard from "@/components/PopUpCard"
@@ -71,6 +71,7 @@ export default function Form2({ title }: MainSelectorProps) {
   const router = useRouter()
   const [titleInput, setTitleInput] = useState("")
   const [word1, setWord1] = useState<string>("")
+  const [_platform, setPlatform] = useAtom(platformAtom)
 
   useEffect(() => {
     // Set the state to null on page load
@@ -87,6 +88,7 @@ export default function Form2({ title }: MainSelectorProps) {
     const x = TokensNeeded(title)
     const y = InputTitle(title)
     const z = Descriptions(title)
+    setPlatform(title)
     setDescription(z)
     setTitleInput(y)
     setTokensRequired(x)

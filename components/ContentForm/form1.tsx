@@ -5,7 +5,7 @@ import { useRouter } from "next/router"
 import { useAtom } from "jotai"
 import { useBeforeunload } from "react-beforeunload"
 import { updateTokens, readTokens, getUserToken } from "../../auth"
-import { responseAtom } from "@/utils/store"
+import { responseAtom, platformAtom } from "@/utils/store"
 import { auth } from "@/firebase"
 import { Modal, Box } from "@mui/material"
 import { StyleModal } from "@/components/modalStyle"
@@ -45,6 +45,7 @@ export default function Form1({ title }: MainSelectorProps) {
   const [tokensRequired, setTokensRequired] = useState<string>("")
   const [description , setDescription] = useState("")
   let token: number = 20
+  const [_platform, setPlatform] = useAtom(platformAtom)
   const user = auth.currentUser
   const router = useRouter()
   const [getToken, setgetToken] = useState("")
@@ -66,6 +67,7 @@ export default function Form1({ title }: MainSelectorProps) {
     setDescription(z)
     setTitleInput(y)
     setTokensRequired(x)
+    setPlatform(title)
   }, [title])
 
   useBeforeunload(input !== "" ? (event) => event.preventDefault() : undefined)

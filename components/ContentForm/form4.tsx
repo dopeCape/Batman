@@ -70,6 +70,7 @@ export default function Form4({ title }: MainSelectorProps) {
     const x = TokensNeeded(title)
     const y = InputTitle(title)
     const z = Descriptions(title)
+    setPlatform(title)
     setTitleInput(y)
     setTokensRequired(x)
     setDescription(z)

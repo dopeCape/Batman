@@ -7,7 +7,7 @@ import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
 import GPTResponse from "@/components/GPTRespone";
 import { useAtom } from "jotai";
-import { responseAtom } from "@/utils/store";
+import { responseAtom , platformAtom} from "@/utils/store";
 import { updateTokens, readTokens, getUserToken } from "../../auth";
 import { Modal, Box } from "@mui/material";
 import { StyleModal } from "@/components/modalStyle";
@@ -46,6 +46,7 @@ export default function Form3({ title }: MainSelectorProps) {
   const [titleInput, setTitleInput] = useState("")
   const [tokensRequired, setTokensRequired] = useState<string>("");
   const [description, setDescription] = useState("")
+  const [_platform, setPlatform] = useAtom(platformAtom)
   useEffect(() => {
     // Set the state to null on page load
     setResponse("");
@@ -57,6 +58,7 @@ export default function Form3({ title }: MainSelectorProps) {
     const x = TokensNeeded(title);
     const y = InputTitle(title)
     const z = Descriptions(title)
+    setPlatform(title)
     setDescription(z)
     setTitleInput(y)
     setTokensRequired(x);

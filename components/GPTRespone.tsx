@@ -143,7 +143,7 @@ export default function GPTResponse({
 
   const handleAddDraft = async (data: any) => {
     try {
-      await addDraft(currentUser, data)
+      await addDraft(currentUser, data, platformAt)
       setAlert({ severity: "success", message: "Draft added successfully" })
     } catch (error) {
       setAlert({ severity: "error", message: "Error adding draft" })

@@ -139,7 +139,7 @@ export function TokensNeeded(title: string) {
     title == "Facebook Page Description" ||
     title == "Twitter(X) Tweet" ||
     title == "Twitter(X) Hashtag" ||
-    title == "Twitter(X) Bio" ||
+   
     title == "LinkedIn Profile Optimization"
   ) {
     return `5`
@@ -159,7 +159,7 @@ export function InputTitle(title:string){
     title == "YouTube Tag" ||
     title == "YouTube Thumbnail"
   ) {
-    return `What's your Video about?`
+    return `What's your video about?`
   } 
   else if (
    
@@ -168,15 +168,16 @@ export function InputTitle(title:string){
     
     
   ){
-    return `What's your Tweet about?`
+    return `What's your tweet about?`
   }
   else if (
    
     
-    title == "Twitter(X) Bio" 
-    
+    title == "Twitter(X) Bio" ||
+    title == "LinkedIn Profile Optimization"||
+    title == "Instagram Bio"
   ){
-    return `What's your Bio about?`
+    return `What's your profile about?`
   }
  
   else if (

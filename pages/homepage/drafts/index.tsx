@@ -10,7 +10,7 @@ export default function Drafts() {
     return
   }
   return (
-    <div className="flex flex-col md:flex-row w-screen h-screen flex-row">
+    <div className="flex flex-col md:flex-row w-screen h-screen ">
       <div className="flex w-full md:w-2/5 h-full">
         <DraftSidebar></DraftSidebar>
       </div>
