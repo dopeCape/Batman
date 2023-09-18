@@ -54,7 +54,7 @@ const SignUp = () => {
   return (
     <div className="flex-row flex items-center justify-center h-screen w-full">
      <div
-    className="absolute inset-0 w-full h-full blur-sm"
+    className="md:flex hidden absolute inset-0 w-full h-full blur-sm"
     style={{
       backgroundImage:
         "url('https://img.freepik.com/free-photo/coworkers-office-with-photo-cameras-computer_329181-12002.jpg?w=2000&t=st=1694872346~exp=1694872946~hmac=218f45abed30e19f7aafbd878df73d4b6ff924a3033b3d4b594a088780b49352')",
@@ -63,7 +63,7 @@ const SignUp = () => {
       zIndex: -1
     }}
   ></div>
-  <div className="flex w-1/2 h-full flex-col z-10  mt-96 pt-20">
+  <div className="md:flex hidden w-1/2 h-full flex-col z-10  mt-96 pt-20">
     <div className="bg-transparent ">
       <h1 className="font-mono text-2xl font-extrabold w-full text-center text-transparent bg-clip-text bg-gradient-to-r from-[#7EE8FA] to-[#EEC0C6]">
         Metridash: Your Ultimate Content Creation Companion
