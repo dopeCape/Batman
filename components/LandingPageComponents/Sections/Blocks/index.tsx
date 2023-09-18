@@ -56,7 +56,7 @@ const Blocks = () => {
         ref={ref}
         
        
-        className="w-full mt-8 relative top-[-50px] transition-all duration-1000 ease-in-out"
+        className="w-full mt-12 relative top-[-50px] transition-all duration-1000 ease-in-out"
        
       >
         <Image
