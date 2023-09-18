@@ -153,7 +153,7 @@ export function InputTitle(title:string){
     title == "YouTube Video" ||
     title == "YouTube Title" ||
    
-
+    title == "Instagram Reel"||
     title == "YouTube Short" ||
     title == "YouTube Description" ||
     title == "YouTube Tag" ||
@@ -197,6 +197,14 @@ export function InputTitle(title:string){
     
   ){
     return `What's your TikTok about?`
+  }
+  else if (
+    title == "Facebook Ad Copy"
+    
+    
+    
+  ){
+    return `What's your ad about?`
   }
   else{
     return "What's your post about?"
