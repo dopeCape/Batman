@@ -33,16 +33,16 @@ const Blocks = () => {
         ref={ref}
         variants={textScrollVariants}
         initial="hidden"
-        className="flex flex-col gap-y-8 justify-center relative top-[-30px] transition-all duration-1000 ease-in-out"
+        className="flex flex-col gap-y-8 justify-center relative top-[-20px] transition-all duration-1000 z-10 w-full ease-in-out"
         animate={controls}
       >
-        <h1 className="font-semibold text-[48px] md:text-[64px] leading-[92%] md:w-[408px] text-white mt-0 md:pl-5">
+        <h1 className="font-semibold text-[48px] md:text-[64px] leading-[90%] md:w-full text-white mt-0 md:pl-14">
           Never Face Creative Blocks Again!
         </h1>
-        <p className="text-white md:w-[447px] font-normal text-[20px] leading-[28px] md:pl-5">
+        <p className="text-white md:w-full font-normal text-[20px] leading-[28px] md:pl-14">
         Are you tired of staring at a blank screen, struggling to come up with content ideas for your social media? Look no further! Metridash is here to revolutionise your creative process.
         </p>
-        <div className="btn-hero md:ml-5 flex items-center justify-center flex-col gap-y-2 md:w-60 w-full">
+        <div className="btn-hero md:ml-10 flex items-center justify-center flex-col gap-y-2 md:w-60 w-full">
           <Link
             href={`${user && user.uid ? "/homepage" : "/auth/signup"}`}
             className="flex  px-4 py-2 mt-4 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-xl items-center justify-center"

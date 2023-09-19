@@ -13,6 +13,7 @@ import { useState, useEffect } from "react"
 import LoginNavBar from "@/components/LoginNavBar"
 import { BsArrow90DegRight } from "react-icons/bs"
 import { BsArrowRightSquare, BsArrowBarRight } from "react-icons/bs"
+import DashBoard from "../../../public/tab-icon.png"
 interface Props {
   children: JSX.Element
 }
@@ -68,9 +69,16 @@ const HeaderMenu = (props: Props) => {
         <LoginNavBar></LoginNavBar>
       ) : (
         <div className="bg-[#3247CF] flex justify-between px-[7%] items-center h-10 py-10 w-12/12">
-          <h1 className="font-semibold text-[20px] leading-[23px] text-black">
+          <div className="flex flex-row px-2 gap-x-2 items-center">
+          <Image
+          className="w-8 h-8"
+          src={DashBoard}
+          alt="DashBoard"
+        />
+          <h1 className="font-semibold text-[20px] leading-[23px] text-white">
             <Link href={"/"}>Metridash</Link>
           </h1>
+          </div>
           <ul className=" justify-center gap-x-10 md:flex hidden">
             <li
               className={`cursor-pointer mr-4 ${
