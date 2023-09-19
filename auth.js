@@ -76,10 +76,10 @@ export const generateRealTimeToken = (user) => {
 export const getUserToken = async (user) => {
   if (!user) return null
 
-  const tokenRef = doc(firestore, "users", user.uid)
+  const tokenRef = doc(db, "users", user.uid)
   const doc1 = await getDoc(tokenRef)
 
-  if (doc1.exists) {
+  if (doc1.exists()) {
     return doc1.data().tokens
   } else {
     return null
@@ -99,16 +99,19 @@ export const updateModel = async (user, newModelValue) => {
 
 export const addDraft = async (user, data, platform) => {
   const userRef = doc(db, "users", user.uid)
-  const newObject = {draft:data, platform: user}
-  const CurrentDate = new Date();
-  
- 
+  const newObject = { draft: data, platform: user }
+  const CurrentDate = new Date()
+
   try {
     const userDoc = await getDoc(userRef)
 
     if (userDoc.exists()) {
       await updateDoc(userRef, {
-        draft: arrayUnion({draft:data, platform: platform, date: CurrentDate}),
+        draft: arrayUnion({
+          draft: data,
+          platform: platform,
+          date: CurrentDate,
+        }),
       })
       ;<Alert severity="success">This is a success alert — check it out!</Alert>
     } else {
@@ -148,14 +151,14 @@ export const fetchUserDrafts = async (user) => {
 //     uid: user.uid,
 //     drafts: [],
 //   }
- 
+
 //   const data = await setDoc(doc(firestore, "users", user.uid), userData)
 //   return user, data
 // }
 
 export const createUserWithEmail = async (email, password) => {
   try {
-    const { user } = await createUserWithEmailAndPassword(auth, email, password);
+    const { user } = await createUserWithEmailAndPassword(auth, email, password)
 
     const userData = {
       email: email,
@@ -164,22 +167,17 @@ export const createUserWithEmail = async (email, password) => {
       isNewUser: true,
       uid: user.uid,
       drafts: [],
-    };
+    }
 
-    const userDocRef = doc(firestore, "users", user.uid);
-    await setDoc(userDocRef, userData);
+    const userDocRef = doc(db, "users", user.uid)
+    await setDoc(userDocRef, userData)
 
-    return { user, data: "Data successfully saved" }; // Return user and a success message
+    return { user, data: "Data successfully saved" } // Return user and a success message
   } catch (error) {
-    console.error("Error creating user:", error.message);
-    throw error; // Rethrow the error to handle it further if needed
+    console.error("Error creating user:", error.message)
+    throw error // Rethrow the error to handle it further if needed
   }
-};
-
-
-
-
-
+}
 
 export const signInWithEmail = async (email, password) => {
   try {
