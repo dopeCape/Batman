@@ -27,7 +27,7 @@ const SignUp = () => {
       await createUserWithEmail(email, password)
 
       setMessage("User signed up successfully")
-      router.push("/homepage")
+      window.location.href = "/homepage"
     } catch (error) {
       setMessage(`Error signing up: ${error}`)
     }
