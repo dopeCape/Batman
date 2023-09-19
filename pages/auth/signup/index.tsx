@@ -34,8 +34,9 @@ const SignUp = () => {
   const handleSignUp = async () => {
     try {
       await createUserWithEmail(email, password);
+      
       setMessage("User signed up successfully");
-      window.location.href = "/homepage";
+     router.push("/homepage");
     } catch (error) {
       setMessage(`Error signing up: ${error}`);
     }

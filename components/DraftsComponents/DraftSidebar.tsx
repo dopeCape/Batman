@@ -139,6 +139,7 @@ import { auth } from '@/firebase';
 import { useAtom } from 'jotai';
 import Image from 'next/image';
 import { draftAtom } from '@/utils/store';
+import Link from 'next/link';
 
 interface Draft {
   draft: string;
@@ -184,7 +185,7 @@ export default function DraftSidebar() {
   const renderDrafts = () => {
     const rows: JSX.Element[] = [];
     let currentRow: JSX.Element[] = [];
-
+    
     drafts.forEach((draft, index) => {
       const shortenedDraft = extractFirstFourWords(draft.draft);
 
@@ -282,11 +283,16 @@ export default function DraftSidebar() {
       {searchText !== '' ? searchDrafts() : null}
       {searchText === '' ? (
         <div className="flex w-full h-full flex-col overflow-scroll mt-4">
-          {drafts.length >= 0 ? (
+          {drafts.length>=1? 
             renderDrafts()
-          ) : (
-            <h1 className="self-center place-self-center text-gray-400">No drafts</h1>
-          )}
+           : 
+           <div className='flex w-full h-full items-center justify-center flex-col gap-y-2'>
+             <h1 className="flex self-center text-md">The draft is currently empty.</h1>
+              <Link href={'/homepage'} className='flex bg-blue-400 rounded-lg px-2 py-1'>
+                  <h1>Create content</h1>
+              </Link>
+           </div>
+          }
         </div>
       ) : null}
     </div>

@@ -138,19 +138,48 @@ export const fetchUserDrafts = async (user) => {
   }
 }
 
+// export const createUserWithEmail = async (email, password) => {
+//   const { user } = await createUserWithEmailAndPassword( auth, email, password)
+//   const userData = {
+//     email: email,
+//     tokens: 100,
+//     model: "text-davinci-002",
+//     isNewUser: true,
+//     uid: user.uid,
+//     drafts: [],
+//   }
+ 
+//   const data = await setDoc(doc(firestore, "users", user.uid), userData)
+//   return user, data
+// }
+
 export const createUserWithEmail = async (email, password) => {
-  const { user } = await createUserWithEmailAndPassword(auth, email, password)
-  const userData = {
-    email: user.email,
-    tokens: 100,
-    model: "text-davinci-002",
-    isNewUser: true,
-    uid: user.uid,
-    drafts: [],
+  try {
+    const { user } = await createUserWithEmailAndPassword(auth, email, password);
+
+    const userData = {
+      email: email,
+      tokens: 100,
+      model: "text-davinci-002",
+      isNewUser: true,
+      uid: user.uid,
+      drafts: [],
+    };
+
+    const userDocRef = doc(firestore, "users", user.uid);
+    await setDoc(userDocRef, userData);
+
+    return { user, data: "Data successfully saved" }; // Return user and a success message
+  } catch (error) {
+    console.error("Error creating user:", error.message);
+    throw error; // Rethrow the error to handle it further if needed
   }
-  await setDoc(doc(firestore, "users", user.uid), userData)
-  return user
-}
+};
+
+
+
+
+
 
 export const signInWithEmail = async (email, password) => {
   try {
