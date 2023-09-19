@@ -42,7 +42,7 @@ const Blocks = () => {
         <p className="text-white md:w-full font-normal text-[20px] leading-[28px] md:pl-14">
         Are you tired of staring at a blank screen, struggling to come up with content ideas for your social media? Look no further! Metridash is here to revolutionise your creative process.
         </p>
-        <div className="btn-hero md:ml-10 flex items-center justify-center flex-col gap-y-2 md:w-60 w-full">
+        <div className="btn-hero md:ml-10 flex items-start pl-[16px] justify-center flex-col gap-y-2 md:w-60 w-full">
           <Link
             href={`${user && user.uid ? "/homepage" : "/auth/signup"}`}
             className="flex  px-4 py-2 mt-4 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-xl items-center justify-center"
