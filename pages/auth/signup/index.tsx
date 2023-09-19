@@ -3,6 +3,7 @@ import Link from "next/link"
 import { useRouter, redirect } from "next/navigation"
 import { auth } from "@/firebase"
 import { createUserWithEmail, signInWithGoogle } from "../../../auth"
+import checkUser from "../../../utils/checkUser"
 import Typewriter from "typewriter-effect"
 import classes from "./signup.module.css"
 
@@ -10,9 +11,10 @@ const SignUp = () => {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [message, setMessage] = useState("")
-  const [user, setUser] = useState<null | any>(null)
 
   const router = useRouter()
+
+  const user: any = checkUser()
 
   const handleEmailChange = (event: ChangeEvent<HTMLInputElement>) => {
     setEmail(event.target.value)
@@ -27,7 +29,7 @@ const SignUp = () => {
       await createUserWithEmail(email, password)
 
       setMessage("User signed up successfully")
-      window.location.href = "/homepage"
+      //window.location.href = "/homepage"
     } catch (error) {
       setMessage(`Error signing up: ${error}`)
     }
@@ -41,6 +43,10 @@ const SignUp = () => {
     } catch (error) {
       setMessage(`Error signing in with Google: ${error}`)
     }
+  }
+
+  if (user && user.uid) {
+    window.location.href = "/homepage"
   }
 
   return (
