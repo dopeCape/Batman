@@ -96,16 +96,18 @@ export const updateModel = async (user, newModelValue) => {
   const userRef = doc(firestore, "users", user.uid)
   await updateDoc(userRef, { model: newModelValue })
 }
-
-export const addDraft = async (user, data) => {
-  const userRef = doc(firestore, "users", user.uid)
-
+export const addDraft = async (user, data, platform) => {
+  const userRef = doc(db, "users", user.uid)
+  const newObject = {draft:data, platform: user}
+  const CurrentDate = new Date();
+  
+ 
   try {
     const userDoc = await getDoc(userRef)
 
     if (userDoc.exists()) {
       await updateDoc(userRef, {
-        draft: arrayUnion(data),
+        draft: arrayUnion({draft:data, platform: platform, date: CurrentDate}),
       })
       ;<Alert severity="success">This is a success alert — check it out!</Alert>
     } else {
@@ -113,6 +115,7 @@ export const addDraft = async (user, data) => {
     }
   } catch (error) {
     alert("Error:", error)
+    console.log(error)
   }
 }
 
