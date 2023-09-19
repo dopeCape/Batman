@@ -47,7 +47,7 @@ const Prompts = () => {
           animate={controls2}
         >
           <Image
-            className="absolute w-[329px] h-[333px] object-contain"
+            className="absolute w-[329px]  object-contain"
             src={Image3}
             alt="Preview"
           />
@@ -58,7 +58,7 @@ const Prompts = () => {
           ref={ref3}
           variants={textScrollVariants}
           initial="hidden"
-          className="md:w-[50%] flex flex-col gap-y-5 justify-center relative md:right-[-50px] transition-all duration-1000 ease-in-out px-3"
+          className="md:w-[50%] flex flex-col md:gap-y-5 gap-y-0 justify-center relative md:right-[-50px] transition-all duration-1000 ease-in-out px-3"
           animate={controls2}
         >
           <Image
@@ -66,17 +66,20 @@ const Prompts = () => {
             src={RImage5}
             alt="Preview"
           />
-          <h1 className="text-[#1E1E1E] font-semibold text-[48px] leading-[48px] mt-20 md:mt-0">
+          <h1 className="text-[#1E1E1E] font-semibold md:text-[48px] text-[40px] leading-[48px] mt-20 md:mt-0">
           AI-Powered Prompts
           </h1>
-          <p className="font-normal text-[16px] leading-[18.75px] text-justify text-[#494949] align-center my-8 md:my-0">
-          Our cutting-edge AI eliminates the guesswork. We craft the perfect prompts so you can focus on bringing your vision to life.
+          <p className="font-normal text-[16px] md:text-[20px] leading-relaxed text-justify text-[#494949] align-center my-8 md:my-0">
+          -Ditch the guesswork, embrace AI magic!<br/>
+          -Cutting-edge AI crafts perfect prompts.<br/>
+            -Your vision takes center stage.<br/>
+            -More time for your creative genius.<br/>
 
 
           </p>
         </motion.div>
       </div>
-      <div className="bg-white h-[500px] flex  md:px-16 md:mr-[3%]">
+      <div className="bg-white md:h-[500px] flex  md:px-16 md:mr-[3%]">
       <motion.div
           ref={ref}
           variants={textScrollVariants}
@@ -91,11 +94,14 @@ const Prompts = () => {
               alt="Preview"
             />
           </div>
-          <h1 className="text-[#1E1E1E] font-semibold text-[48px] leading-[48px] md:w-[300px]">
+          <h1 className="text-[#1E1E1E] font-semibold md:text-[48px] text-[40px] leading-[48px] ">
           Seamless Multichannel Publishing
           </h1>
-          <p className="font-normal text-[16px] leading-[18.75px] text-justify text-[#494949] md:w-[387px]">
-          Reach your audience wherever they are. From YouTube to Instagram, Metridash simplifies content creation across platforms.
+          <p className="font-normal text-[16px] md:text-[20px] leading-relaxed text-justify text-[#494949] ">
+          -Your content, their screens—everywhere!<br/>
+          -Simplify content creation across platforms.<br/>
+          -Instagram to YouTube—Metridash has you covered.<br/>
+          -Reach and resonate, wherever your audience thrives.
 
           </p>
         </motion.div> 
@@ -139,15 +145,18 @@ const Prompts = () => {
           animate={controls2}
         >
           <Image
-            className=" md:w-[278px] w-[249px] h-[249px] self-center md:ml-[10.5%] mt-[11.8%] md:hidden flex"
+            className=" md:w-[278px] w-[249px] h-[249px] self-center  mt-[11.8%] md:hidden flex"
             src={RImage5}
             alt="Preview"
           />
-          <h1 className="text-[#1E1E1E] font-semibold text-[48px] leading-[48px] mt-10 md:mt-0">
+          <h1 className="text-[#1E1E1E] font-semibold md:text-[48px] text-[40px] leading-[48px] mt-10 md:mt-0">
           Content Calendar & Analytics
           </h1>
-          <p className="font-normal text-[16px] leading-[18.75px] text-justify text-[#494949] align-center my-8 md:my-0">
-          Plan, schedule, and optimize your content strategy with ease. Our real-time analytics dashboard offers actionable insights for growth.
+          <p className="font-normal text-[16px] md:text-[20px] leading-relaxed text-justify text-[#494949] align-center my-8 md:my-0">
+          -Master your content like a pro!<br/>
+          -Plan, schedule, and optimize effortlessly.<br/>
+          -Real-time analytics for actionable insights.<br/>
+          -Chart your growth journey with Metridash!
 
           </p>
         </motion.div>

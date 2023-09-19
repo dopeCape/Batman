@@ -41,11 +41,14 @@ const Preview = () => {
            
           />
         </motion.div>
-        <h1 className="text-[#1E1E1E]  text-[48px] font-semibold leading-[48px] md:w-[300px] ">
+        <h1 className="text-[#1E1E1E]  md:text-[48px] text-[40px] font-semibold leading-[48px] md:w-[300px] ">
         Personalized Content Ideas
         </h1>
-        <p className="font-normal text-[16px] leading-[18.75px] text-justify text-[#494949]">
-        Say goodbye to creative blocks. Metridash sparks your creativity with personalized content ideas tailored to your unique style and audience.
+        <p className="font-md md:text-[20px] text-[16px] leading-relaxed text-justify text-[#494949]">
+         -Tired of hitting that creative wall? Metridash is your secret weapon!<br/>
+        -Spark your creativity with personalized ideas.<br/>
+          -Tailored to your unique style.<br/>
+         -Targeted for your specific audience.<br/>
 
         </p>
       </motion.div>

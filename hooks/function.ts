@@ -21,7 +21,7 @@ export function setPrompt(
       targetAudience ? `for target audience ${targetAudience}` : null
     }. ${tone ? `The post should have the tone ${tone}` : null} ${
       keywords ? `and focus on the following keywords: ${keywords}` : null
-    }. Get creative and come up with fun, informative, and captivating ideas that will resonate with the target audience! The output should be in the below form. 1.Title 2.Descriptio 3.Hashtags 4.Thumbnail Ideas `
+    }. Get creative and come up with fun, informative, and captivating ideas that will resonate with the target audience! The output should be in the below form. 1.Title 2.Descriptio 3.Hashtags 4.Thumbnail Ideas 5.Script`
   } else if (title == "Instagram Caption" || title == "TikTok Caption") {
     return `Generate scroll-stopping ${title} for the topic ${input}, ${
       keywords ? `for the keywords ${keywords}` : null
