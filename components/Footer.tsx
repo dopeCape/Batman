@@ -13,7 +13,7 @@ const Footer = () => {
           : router.pathname === "/"
           ? "hidden"
           : router.pathname === "/homepage"
-          ? "bg-white rounded-lg shadow m-4 dark:bg-gray-800 mt-[1000px] md:mt-5"
+          ? "bg-white rounded-lg shadow m-4 dark:bg-gray-800 mt-[800px] md:mt-6"
           : "bg-white rounded-lg shadow m-4 dark:bg-gray-800 mt-[200px] md:mt-5"
       }  `}
     >
