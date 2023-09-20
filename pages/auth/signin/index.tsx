@@ -5,13 +5,16 @@ import { auth } from "@/firebase"
 import { signInWithEmail } from "../../../auth"
 import Typewriter from "typewriter-effect"
 import LeftImage from "../../../public/Images/LeftImage.jpeg"
+import checkUser from "@/utils/checkUser"
+
 const SignIn = () => {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [message, setMessage] = useState("")
-  const [user, setUser] = useState<null | any>(null)
 
   const router = useRouter()
+
+  const user: any = checkUser()
 
   const handleEmailChange = (event: ChangeEvent<HTMLInputElement>) => {
     setEmail(event.target.value)
@@ -25,10 +28,14 @@ const SignIn = () => {
     try {
       await signInWithEmail(email, password)
       setMessage("User signed in successfully")
-      router.push("/homepage")
+      window.location.href = "/homepage"
     } catch (error) {
       setMessage(`Error signing in: ${error}`)
     }
+  }
+
+  if (user && user.uid) {
+    window.location.href = "/homepage"
   }
 
   return (
