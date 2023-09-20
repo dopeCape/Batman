@@ -4,7 +4,7 @@ import Link from "next/link"
 import { auth } from "@/firebase"
 function FreeTrial() {
   return (
-    <div className="flex flex-col w-[500px] items-center ">
+    <div className={`flex flex-col w-[500px] items-center ${auth.currentUser?` border-2 border-[#705cf6] rounded-3xl`:``} `}>
       <div className="flex flex-col  w-[100%] py-10 items-center ">
         <h1 className="text-[#101827] font-bold text-3xl">Free Trial</h1>
         <p className="font-medium py-2 text-[#4b5563] text-[23px] w-[60%] text-center ">
@@ -34,7 +34,7 @@ function FreeTrial() {
       </div>
       {/* <div className='border-gray-200 cursor-pointer text-[20px] text-[#a99efa] font-bold border-[1px] p-5 px-10 rounded-[10px] '> */}
       {
-        auth.currentUser?<h1 className="text-[#705cf6] font-semibold">You are currently using the free trial</h1>:
+        auth.currentUser?<h1 className="text-[#705cf6] font-semibold mb-4 text-xl">You are currently using the free trial</h1>:
       <button
         className={`border-gray-200 cursor-pointer text-[20px] text-[#705cf6]  font-bold border-[1px] p-5 px-10 rounded-[10px]`}
       >

@@ -9,6 +9,7 @@ import Image7 from "../../../../public/Images/7.png"
 import Image8 from "../../../../public/Images/8.png"
 import Image9 from "../../../../public/Images/9.png"
 import Image10 from "../../../../public/Images/10.png"
+import Rocket from "../../../../public/homepageIcons/rocket.png"
 const Journey = () => {
   const [email, setEmail] = useState("")
   const [response, setResponse] = useState("")
@@ -55,7 +56,7 @@ const Journey = () => {
   }
   return (
     <>
-      <div className="bg-[#3247CF] h-[587px] flex flex-col gap-y-10 justify-center items-center">
+      <div className="bg-[#3247CF] h-[587px] flex flex-col gap-y-6 justify-center items-center">
         <motion.h1
           ref={ref}
           variants={textScrollVariants}
@@ -65,33 +66,25 @@ const Journey = () => {
         >
         Ready to Get Started?
         </motion.h1>
-        {/* <div className="hidden md:flex mr-[5%]">
+        <motion.div
+          ref={ref}
+          variants={textScrollVariants}
+          initial="hidden"
+          className=" relative transition-all duration-1000 ease-in-out"
+          animate={controls}
+        >
           <Image
-            className="w-[36px] h-[36px] absolute"
-            src={Image7}
-            alt="JourneyImg"
+            src={Rocket}
+            alt="Preview"
+            className="flex w-24 h-24 object-contain"
+           
           />
-          <Image
-            className="w-[36px] h-[36px] absolute ml-[22px]"
-            src={Image8}
-            alt="JourneyImg"
-          />
-          <Image
-            className="w-[36px] h-[36px] absolute ml-[45px]"
-            src={Image9}
-            alt="JourneyImg"
-          />
-          <Image
-            className="w-[36px] h-[36px] absolute ml-[70px]"
-            src={Image10}
-            alt="JourneyImg"
-          />
-        </div> */}
+        </motion.div>
         <motion.p
           ref={ref}
           variants={textScrollVariants}
           initial="hidden"
-          className="text-[16px] leading-[18.75px] font-normal text-white mt-10 w-[280px] text-center relative md:right-[200px] transition-all duration-1000 ease-in-out"
+          className="text-xl leading-6 font-light text-white mt-6 w-[280px] text-center relative md:right-[200px] transition-all duration-1000 ease-in-out"
           animate={controls}
         >
          Join thousands of creators who have already unlocked their potential with Metridash.
@@ -104,26 +97,17 @@ const Journey = () => {
           className="flex gap-x-5 relative md:right-[-50px] transition-all duration-1000 ease-in-out md:flex-row flex-col"
           animate={controls}
         >
-          <form onSubmit={subscribe}>
-            <input
-              placeholder="Enter your Email here"
-              className="bg-[#3247CF] border-white border-[1px] border-t-0 border-r-0 md:w-[400px] text-white border-l-0 h-12 focus:outline-none"
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.currentTarget.value)}
-            />
-            <button
-              disabled={disabled}
-              className={`w-full bg-[#1E1E1E] h-[51px] flex justify-center items-center  rounded-lg mt-5 ${
-                disabled && "cursor-not-allowed"
-              } `}
+          
+            <Link href={'/auth/signup'}
+              
+              className={`w-full bg-[#1E1E1E] px-4 py-2 flex justify-center items-center  rounded-lg mt-5 `}
               type="submit"
             >
-              <p className="text-white underline underline-offset-auto">
-                Subscribe
+              <p className="text-white text-xl underline underline-offset-auto">
+                Try for free
               </p>
-            </button>
-          </form>
+            </Link>
+    
         </motion.div>
       </div>
       <footer className="bg-white rounded-lg shadow m-4 dark:bg-gray-800 mt-5">
