@@ -33,7 +33,7 @@ const Blocks = () => {
         ref={ref}
         variants={textScrollVariants}
         initial="hidden"
-        className="flex flex-col gap-y-8 justify-center relative top-[-20px] transition-all duration-1000 z-10 w-full ease-in-out"
+        className="flex flex-col gap-y-8 justify-center relative top-[-20px] transition-all duration-1000 w-full ease-in-out"
         animate={controls}
       >
         <h1 className="font-semibold text-[48px] md:text-[64px] leading-[90%] md:w-full text-white mt-0 md:pl-14">
