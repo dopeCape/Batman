@@ -70,10 +70,10 @@ const Prompts = () => {
           AI-Powered Prompts
           </h1>
           <p className="font-normal text-[16px] md:text-[20px] leading-relaxed text-justify text-[#494949] align-center my-8 md:my-0">
-          -Ditch the guesswork, embrace AI magic!<br/>
-          -Cutting-edge AI crafts perfect prompts.<br/>
-            -Your vision takes center stage.<br/>
-            -More time for your creative genius.<br/>
+          ✅ Ditch the guesswork, embrace AI magic!<br/>
+          ✅ Cutting-edge AI crafts perfect prompts.<br/>
+          ✅ Your vision takes center stage.<br/>
+          ✅ More time for your creative genius.<br/>
 
 
           </p>
@@ -98,10 +98,10 @@ const Prompts = () => {
           Seamless Multichannel Publishing
           </h1>
           <p className="font-normal text-[16px] md:text-[20px] leading-relaxed text-justify text-[#494949] ">
-          -Your content, their screens—everywhere!<br/>
-          -Simplify content creation across platforms.<br/>
-          -Instagram to YouTube—Metridash has you covered.<br/>
-          -Reach and resonate, wherever your audience thrives.
+          ✅ Your content, their screens—everywhere!<br/>
+          ✅ Simplify content creation across platforms.<br/>
+          ✅ Instagram to YouTube—Metridash has you covered.<br/>
+          ✅ Reach and resonate, wherever your audience thrives.
 
           </p>
         </motion.div> 
@@ -153,10 +153,10 @@ const Prompts = () => {
           Content Calendar & Analytics
           </h1>
           <p className="font-normal text-[16px] md:text-[20px] leading-relaxed text-justify text-[#494949] align-center my-8 md:my-0">
-          -Master your content like a pro!<br/>
-          -Plan, schedule, and optimize effortlessly.<br/>
-          -Real-time analytics for actionable insights.<br/>
-          -Chart your growth journey with Metridash!
+          ✅ Master your content like a pro!<br/>
+          ✅ Plan, schedule, and optimize effortlessly.<br/>
+          ✅ Real-time analytics for actionable insights.<br/>
+          ✅ Chart your growth journey with Metridash!
 
           </p>
         </motion.div>
