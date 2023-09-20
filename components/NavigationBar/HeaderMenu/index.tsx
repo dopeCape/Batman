@@ -65,7 +65,7 @@ const HeaderMenu = (props: Props) => {
 
   return (
     <>
-      {user ? (
+      {user && user.uid ? (
         <LoginNavBar></LoginNavBar>
       ) : (
         <div className="bg-[#3247CF] flex justify-between px-[7%] items-center h-10 py-10 w-12/12">

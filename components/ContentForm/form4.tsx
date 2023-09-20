@@ -250,7 +250,7 @@ export default function Form4({ title }: MainSelectorProps) {
                   style: {
                     fontSize: "15px",
                     outlineStyle: "none",
-                    color: theme === "dark" ? "white" : "black",
+                    color:  "white" ,
                   },
                 }}
               />

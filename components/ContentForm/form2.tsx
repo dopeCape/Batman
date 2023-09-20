@@ -258,7 +258,7 @@ export default function Form2({ title }: MainSelectorProps) {
                   ...params.InputProps,
                   style: {
                     fontSize: "14px",
-                    color: theme === "dark" ? "white" : "black",
+                    color:  "white" ,
                   },
                 }}
               />
@@ -293,7 +293,7 @@ export default function Form2({ title }: MainSelectorProps) {
                   ...params.InputProps,
                   style: {
                     fontSize: "15px",
-                    color: theme === "dark" ? "white" : "black",
+                     color:  "white" ,
                   },
                 }}
               />
@@ -340,7 +340,7 @@ export default function Form2({ title }: MainSelectorProps) {
                   ...params.InputProps,
                   style: {
                     fontSize: "15px",
-                    color: theme === "dark" ? "white" : "black",
+                     color:  "white" ,
                   },
                 }}
               />
