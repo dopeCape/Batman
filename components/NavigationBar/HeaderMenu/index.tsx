@@ -134,8 +134,8 @@ const HeaderMenu = (props: Props) => {
               <Link href="/auth/signin">Sign in</Link>
             </li>
 
-           <Link href={'/auth/signup'} className="flex flex-row items-center justify-center gap-x-1 px-4 py-1 bg-blue-400 rounded-xl">
-            <h1>Try it free</h1>
+           <Link href={'/auth/signup'} className="flex flex-row items-center justify-center gap-x-1 px-4 py-1 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-xl">
+            <h1 className="font-semibold ">Try it free</h1>
            
            </Link>
           </ul>

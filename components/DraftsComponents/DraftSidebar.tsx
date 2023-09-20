@@ -287,9 +287,9 @@ export default function DraftSidebar() {
             renderDrafts()
            : 
            <div className='flex w-full h-full items-center justify-center flex-col gap-y-2'>
-             <h1 className="flex self-center text-md">The draft is currently empty.</h1>
-              <Link href={'/homepage'} className='flex bg-blue-400 rounded-lg px-2 py-1'>
-                  <h1>Create content</h1>
+             <h1 className="flex self-center text-lg font-thin">The draft is currently empty.</h1>
+              <Link href={'/homepage'} className='flex bg-gradient-to-r from-cyan-500 to-blue-500  rounded-xl px-4 py-2'>
+                  <h1 className='font-semibold'>Create content</h1>
               </Link>
            </div>
           }
