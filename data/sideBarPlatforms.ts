@@ -22,7 +22,7 @@ const platforms = [
   },
   {
     name: "Twitter(X)",
-    icon: "/platformIcons/twitterHQ.png",
+    icon: "/platformIcons/twitterx2.png",
     color: "#1DA1F2",
     items: ["Twitter(X) Tweet", "Twitter(X) Hashtag", "Twitter(X) Bio"],
   },

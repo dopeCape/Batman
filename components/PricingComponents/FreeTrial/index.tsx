@@ -1,7 +1,7 @@
 import React from "react"
 import classes from "./FreeTrial.module.css"
 import Link from "next/link"
-
+import { auth } from "@/firebase"
 function FreeTrial() {
   return (
     <div className="flex flex-col w-[500px] items-center ">
@@ -33,11 +33,14 @@ function FreeTrial() {
         </div>
       </div>
       {/* <div className='border-gray-200 cursor-pointer text-[20px] text-[#a99efa] font-bold border-[1px] p-5 px-10 rounded-[10px] '> */}
+      {
+        auth.currentUser?<h1 className="text-[#705cf6] font-semibold">You are currently using the free trial</h1>:
       <button
         className={`border-gray-200 cursor-pointer text-[20px] text-[#705cf6]  font-bold border-[1px] p-5 px-10 rounded-[10px]`}
       >
         <Link href="/auth/signup">Get Started Free</Link>
       </button>
+      }
     </div>
   )
 }
