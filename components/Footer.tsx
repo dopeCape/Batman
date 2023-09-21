@@ -9,11 +9,13 @@ const Footer = () => {
     <footer
       className={`${
         router.pathname === "/features"
-          ? "bg-white rounded-lg shadow m-4 dark:bg-gray-800 mt-[1200px] md:mt-5"
+          ? "bg-white rounded-lg shadow m-4 dark:bg-gray-800 mt-[1400px] md:mt-5"
           : router.pathname === "/"
           ? "hidden"
           : router.pathname === "/homepage"
           ? "bg-white rounded-lg shadow m-4 dark:bg-gray-800 mt-[800px] md:mt-10"
+          : router.pathname === "/auth/signin"
+          ? "bg-white rounded-lg shadow m-4 dark:bg-gray-800 mb-[-50px]"
           : "bg-white rounded-lg shadow m-4 dark:bg-gray-800 mt-[200px] md:mt-5"
       }  `}
     >
