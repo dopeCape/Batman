@@ -47,20 +47,20 @@ const SignIn = () => {
             // "url('https://c4.wallpaperflare.com/wallpaper/707/220/899/gradient-blue-pink-abstract-art-wallpaper-preview.jpg')",
             // "url('https://c4.wallpaperflare.com/wallpaper/29/995/620/digital-art-abstract-blue-yellow-wallpaper-preview.jpg')",
             "url('https://c4.wallpaperflare.com/wallpaper/448/699/737/abstract-digital-art-3d-abstract-lines-wallpaper-preview.jpg')",
-           
-            // "url('https://c4.wallpaperflare.com/wallpaper/428/477/203/digital-art-render-abstract-wallpaper-preview.jpg')",
+
+          // "url('https://c4.wallpaperflare.com/wallpaper/428/477/203/digital-art-render-abstract-wallpaper-preview.jpg')",
           backgroundSize: "cover",
           backdropFilter: "blur(10px)",
           zIndex: -1,
         }}
       ></div>
-      <div className=" md:flex hidden w-1/2 h-full flex-col z-10  mt-96 pt-20">
+      <div className=" md:flex hidden w-1/2 h-full flex-col z-10 justify-center">
         <div className="bg-transparent ">
           <h1 className="font-mono text-2xl font-extrabold w-full text-center text-white">
             Metridash: Your Ultimate Content Creation Companion
           </h1>
         </div>
-        <div className="flex justify-start items-start h-screen flex-col px-10">
+        <div>
           <h1 className="text-white mt-8 font-mono text-xl font-light w-full text-center">
             <Typewriter
               options={{
