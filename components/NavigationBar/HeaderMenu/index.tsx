@@ -70,14 +70,13 @@ const HeaderMenu = (props: Props) => {
       ) : (
         <div className="bg-[#3247CF] flex justify-between px-[7%] items-center h-10 py-10 w-12/12">
           <div className="flex flex-row px-2 gap-x-2 items-center">
-          <Image
-          className="w-8 h-8"
-          src={DashBoard}
-          alt="DashBoard"
-        />
-          <h1 className="md:flex hidden font-semibold text-[20px] leading-[23px] text-white">
-            <Link href={"/"}>Metridash</Link>
-          </h1>
+            <Link href={"/"}>
+              <Image className="w-8 h-8" src={DashBoard} alt="DashBoard" />
+            </Link>
+
+            <h1 className="md:flex hidden font-semibold text-[20px] leading-[23px] text-white">
+              <Link href={"/"}>Metridash</Link>
+            </h1>
           </div>
           <ul className=" justify-center gap-x-10 md:flex hidden">
             <li
@@ -134,10 +133,12 @@ const HeaderMenu = (props: Props) => {
               <Link href="/auth/signin">Sign in</Link>
             </li>
 
-           <Link href={'/auth/signup'} className="flex flex-row items-center justify-center gap-x-1 px-4 py-1 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-xl">
-            <h1 className="font-semibold ">Try for free</h1>
-           
-           </Link>
+            <Link
+              href={"/auth/signup"}
+              className="flex flex-row items-center justify-center gap-x-1 px-4 py-1 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-xl"
+            >
+              <h1 className="font-semibold ">Try for free</h1>
+            </Link>
           </ul>
 
           <div className="md:hidden flex relative">
