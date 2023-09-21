@@ -264,7 +264,7 @@ export default function LoginNavBar() {
               className={`${
                 theme === "light"
                   ? "flex flex-col absolute  p-2 mr-20 mt-44 w-32  md:h-38 h-50 bg-white z-10"
-                  : "flex flex-col absolute  p-2 mr-20 mt-44 w-32  md:h-38 h-50 bg-black z-10"
+                  : "flex flex-col absolute  p-2 mr-20 mt-44 w-32  md:h-38 h-50 bg-white z-10"
               }`}
             >
               <button
