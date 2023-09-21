@@ -169,85 +169,84 @@ export default function GPTResponse({
   }
 
   return (
-    <div className="dark:bg-[#232529] bg-[#F2F2F2] w-full px-10 pt-10 pb-20   items-center flex flex-col h-screen ">
+    <div className="dark:bg-[#232529] bg-[#F2F2F2] w-full px-10 pt-10 pb-20 mt-20 md:mt-0  items-center flex flex-col h-screen ">
       <div className="flex flex-col items-center h-full w-full dark:bg-[#1B1D21] pb-6 bg-white rounded-md overflow-scroll">
         <div>
-
-        {response ? (
-          response
-            .split("\n")
-            .filter((e) => e)
-            .map((e, i) => {
-              if (e) {
-                return (
-                  <div
-                    key={i}
-                    // className={`flex flex-col justify-between h-full w-full mx-5 ${
-                    //   e.match(/[0-9]\./) ? "mb-2" : "mb-4"
-                    // } ${
-                    //   i == 0 ? "mt-2" : "mt-0"
-                    // }  px-4 py-0 rounded-md justify-between w-full  `}
-                    className=" px-4 py-4"
-                  >
-                    <p className="">{e.replace(/"/g, "")}</p>
-                   
-                  </div>
-                )
-              }
-            })
-        ) : (
-          <div className="flex w-full h-full items-center justify-center mt-40">
-            <p className="text-[#D2D2D2]  text-center">Response shows here</p>
-          </div>
-        )}
+          {response ? (
+            response
+              .split("\n")
+              .filter((e) => e)
+              .map((e, i) => {
+                if (e) {
+                  return (
+                    <div
+                      key={i}
+                      // className={`flex flex-col justify-between h-full w-full mx-5 ${
+                      //   e.match(/[0-9]\./) ? "mb-2" : "mb-4"
+                      // } ${
+                      //   i == 0 ? "mt-2" : "mt-0"
+                      // }  px-4 py-0 rounded-md justify-between w-full  `}
+                      className=" px-4 py-4"
+                    >
+                      <p className="">{e.replace(/"/g, "")}</p>
+                    </div>
+                  )
+                }
+              })
+          ) : (
+            <div className="flex w-full h-full items-center justify-center mt-40">
+              <p className="text-[#D2D2D2]  text-center">Response shows here</p>
+            </div>
+          )}
         </div>
-        {response?
-        <div className="flex flex-row self-end bottom-0">
-                      <ClickAwayListener onClickAway={handleTooltipClose}>
-                        <div>
-                          <Tooltip
-                            PopperProps={{
-                              disablePortal: true,
-                            }}
-                            onClose={handleTooltipClose}
-                            open={open}
-                            disableFocusListener
-                            disableHoverListener
-                            disableTouchListener
-                            title="Saved To Drafts!"
-                          >
-                            <Button
-                              onClick={() => handleAddDraft(response)}
-                              className="mr-2"
-                            >
-                              <SaveTwoToneIcon></SaveTwoToneIcon>
-                            </Button>
-                          </Tooltip>
+        {response ? (
+          <div className="flex flex-row self-end bottom-0">
+            <ClickAwayListener onClickAway={handleTooltipClose}>
+              <div>
+                <Tooltip
+                  PopperProps={{
+                    disablePortal: true,
+                  }}
+                  onClose={handleTooltipClose}
+                  open={open}
+                  disableFocusListener
+                  disableHoverListener
+                  disableTouchListener
+                  title="Saved To Drafts!"
+                >
+                  <Button
+                    onClick={() => handleAddDraft(response)}
+                    className="mr-2"
+                  >
+                    <SaveTwoToneIcon></SaveTwoToneIcon>
+                  </Button>
+                </Tooltip>
 
-                          <Snackbar
-                            anchorOrigin={{
-                              vertical: "bottom",
-                              horizontal: "right",
-                            }}
-                            open={!!alert}
-                            autoHideDuration={3000}
-                            onClose={() => setAlert(null)}
-                          >
-                            <Alert
-                              onClose={() => setAlert(null)}
-                              severity={alert?.severity}
-                            >
-                              {alert?.message}
-                            </Alert>
-                          </Snackbar>
-                        </div>
-                      </ClickAwayListener>
-                      <div>
-                        <Button onClick={() => copyText(response)}>
-                          <ContentCopyIcon></ContentCopyIcon>
-                        </Button>
-                      </div>
-                    </div>:null}
+                <Snackbar
+                  anchorOrigin={{
+                    vertical: "bottom",
+                    horizontal: "right",
+                  }}
+                  open={!!alert}
+                  autoHideDuration={3000}
+                  onClose={() => setAlert(null)}
+                >
+                  <Alert
+                    onClose={() => setAlert(null)}
+                    severity={alert?.severity}
+                  >
+                    {alert?.message}
+                  </Alert>
+                </Snackbar>
+              </div>
+            </ClickAwayListener>
+            <div>
+              <Button onClick={() => copyText(response)}>
+                <ContentCopyIcon></ContentCopyIcon>
+              </Button>
+            </div>
+          </div>
+        ) : null}
       </div>
 
       <Modal
