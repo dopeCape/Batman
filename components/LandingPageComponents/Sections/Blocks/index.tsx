@@ -49,7 +49,8 @@ const Blocks = () => {
           >
             <h1 className="text-lg font-semibold">Try for free</h1>
           </Link>
-          <h1 className="text-xs font-light text-gray-300">30 day trial. No credit card required.</h1>
+          
+          <h1 className="text-xs font-light text-gray-300">No credit card required.</h1>
         </div>
       </motion.div>
       <div
