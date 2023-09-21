@@ -55,20 +55,19 @@ const SignUp = () => {
         className="md:flex hidden absolute inset-0 w-full h-full blur-md"
         style={{
           backgroundImage:
-            "url('https://img.freepik.com/free-photo/coworkers-office-with-photo-cameras-computer_329181-12002.jpg?w=2000&t=st=1694872346~exp=1694872946~hmac=218f45abed30e19f7aafbd878df73d4b6ff924a3033b3d4b594a088780b49352')",
-          backgroundSize: "cover",
+          "url('https://c4.wallpaperflare.com/wallpaper/448/699/737/abstract-digital-art-3d-abstract-lines-wallpaper-preview.jpg')",
           backdropFilter: "blur(10px)",
           zIndex: -1,
         }}
       ></div>
       <div className="md:flex hidden w-1/2 h-full flex-col z-10  mt-96 pt-20">
         <div className="bg-transparent ">
-          <h1 className="font-mono text-2xl font-extrabold w-full text-center text-[#0077eE]">
+          <h1 className="font-mono text-2xl font-extrabold w-full text-center text-white">
             Metridash: Your Ultimate Content Creation Companion
           </h1>
         </div>
         <div className="flex justify-start items-start h-screen flex-col px-10">
-          <h1 className="text-black font-mono text-xl font-light w-full text-center">
+          <h1 className="text-white font-mono text-xl font-light w-full text-center">
             <Typewriter
               options={{
                 strings: [
