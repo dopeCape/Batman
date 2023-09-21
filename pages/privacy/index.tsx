@@ -1,7 +1,7 @@
 const Privacy = () => {
   return (
     <div className="px-[7%]">
-      <h1 className="font-semibold text-6xl leading-[92%] w-[408px] text-black mt-4">
+      <h1 className="font-semibold text-6xl leading-[92%] text-black mt-4">
         Privacy Policy
       </h1>
       <p className="py-5">
@@ -43,10 +43,10 @@ const Privacy = () => {
       <h3>Social Media Authors</h3>
       <p className="py-5">
         Metridash receives personal data from third parties such as Facebook,
-        Twitter(X), Instagram, and YouTube for our legitimate interests of serving
-        our customers. We are fully compliant with their public terms and
-        conditions and trust them to protect Social Media Authors through their
-        robust privacy policies.
+        Twitter(X), Instagram, and YouTube for our legitimate interests of
+        serving our customers. We are fully compliant with their public terms
+        and conditions and trust them to protect Social Media Authors through
+        their robust privacy policies.
       </p>
       <ul className="list-disc">
         <li>
