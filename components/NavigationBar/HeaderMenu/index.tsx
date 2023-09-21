@@ -75,7 +75,7 @@ const HeaderMenu = (props: Props) => {
           src={DashBoard}
           alt="DashBoard"
         />
-          <h1 className="font-semibold text-[20px] leading-[23px] text-white">
+          <h1 className="md:flex hidden font-semibold text-[20px] leading-[23px] text-white">
             <Link href={"/"}>Metridash</Link>
           </h1>
           </div>
@@ -164,7 +164,7 @@ const HeaderMenu = (props: Props) => {
                     Home
                   </Link>
                   <Link
-                    href="/profile"
+                    href="/features"
                     className="text-white dropdown_link"
                     onClick={() => {
                       setToggleDropdown(false)
