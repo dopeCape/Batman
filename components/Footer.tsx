@@ -16,6 +16,8 @@ const Footer = () => {
           ? "bg-white rounded-lg shadow m-4 dark:bg-gray-800 mt-[800px] md:mt-10"
           : router.pathname === "/auth/signin"
           ? "bg-white rounded-lg shadow m-4 dark:bg-gray-800 mb-[-50px]"
+          : router.pathname === "/auth/signup"
+          ? "bg-white rounded-lg shadow m-4 dark:bg-gray-800 mb-[-50px]"
           : "bg-white rounded-lg shadow m-4 dark:bg-gray-800 mt-[200px] md:mt-5"
       }  `}
     >
