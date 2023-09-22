@@ -336,7 +336,7 @@ export default function LoginNavBar() {
                 theme === "light"
                   ? "text-black"
                   : "text-white"
-              } `}s>Log out</p>
+              } `}>Log out</p>
               </div>
             </div>
           )}
