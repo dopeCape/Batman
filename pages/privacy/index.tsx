@@ -118,9 +118,9 @@ const Privacy = () => {
         interaction with Metridash. The techniques our partners employ do not
         collect personal information such as your name, email address, postal
         address or telephone number. You can visit
-        http://www.networkadvertising.org/choices to opt out of our partners'
-        targeted advertising. It is your right to contact info@metridash.com and
-        request that we delete any cookies that link back to you and your online
+        networkadvertising.org/choices to opt out of our partners' targeted
+        advertising. It is your right to contact info@metridash.com and request
+        that we delete any cookies that link back to you and your online
         activity.
       </p>
       <h2 className="font-semibold text-4xl leading-[92%] text-black mt-4">
