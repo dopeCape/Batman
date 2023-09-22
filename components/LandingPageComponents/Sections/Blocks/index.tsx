@@ -36,7 +36,7 @@ const Blocks = () => {
         className="flex flex-col gap-y-8 justify-center relative top-[-20px] transition-all duration-1000 w-full ease-in-out"
         animate={controls}
       >
-        <h1 className="font-semibold text-[48px] md:text-[64px] leading-[90%] md:w-full text-white mt-0 pt-10 md:pt-0 md:pl-14">
+        <h1 className="font-semibold text-[48px] md:text-[64px] leading-[90%] md:w-full text-white mt-0 pt-1 md:pt-0 md:pl-14">
           Never Face Creative Blocks Again!
         </h1>
         <p className="text-white md:w-full font-normal text-[20px] leading-[28px] md:pl-14">
