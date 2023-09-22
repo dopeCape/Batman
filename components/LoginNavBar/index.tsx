@@ -354,7 +354,7 @@ export default function LoginNavBar() {
           </div>
           {showSettings && (
             <div
-              className={`flex flex-col absolute  p-2 mr-20 mt-52 w-32  md:h-32 h-44 bg-gray-600 z-10 bg-white`}
+              className={`flex flex-col absolute  p-2 mr-20 mt-52 w-32  md:h-32 h-44  z-10 bg-white`}
             >
               <Link
                 href="/pricing"
