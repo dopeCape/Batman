@@ -1,28 +1,28 @@
-import Image from "next/image";
-import idea from "../../public/icons/idea.png";
-import caption from "../../public/icons/caption.png";
-import hashtag from "../../public/icons/hashtag.png";
-import thumbnail from "../../public/icons/thumbnail.png";
-import magic from "../../public/icons/magic.png";
-import React, { useEffect } from "react";
-import { useAnimation, motion } from "framer-motion";
-import { useInView } from "react-intersection-observer";
-import classes from "./features.module.css";
+import Image from "next/image"
+import idea from "../../public/icons/idea.png"
+import caption from "../../public/icons/caption.png"
+import hashtag from "../../public/icons/hashtag.png"
+import thumbnail from "../../public/icons/thumbnail.png"
+import magic from "../../public/icons/magic.png"
+import React, { useEffect } from "react"
+import { useAnimation, motion } from "framer-motion"
+import { useInView } from "react-intersection-observer"
+import classes from "./features.module.css"
 
 const Features = () => {
   const textScrollVariants = {
     visible: { opacity: 1, top: 0 },
     hidden: { opacity: 0 },
-  };
+  }
 
-  const controls = useAnimation();
-  const [ref, inView] = useInView();
+  const controls = useAnimation()
+  const [ref, inView] = useInView()
 
   useEffect(() => {
     if (inView) {
-      controls.start("visible");
+      controls.start("visible")
     }
-  }, [controls, inView]);
+  }, [controls, inView])
 
   return (
     <div className={`${classes.content_container} bg-gray-50 h-screen`}>
@@ -61,7 +61,7 @@ const Features = () => {
               variants={textScrollVariants}
               initial="hidden"
               animate={controls}
-              className=" drop-shadow-lg w-80 h-96 bg-white my-5 mx-1 flex flex-col items-center justify-center px-6  top-[100px] transition-all duration-1000 ease-in-out"
+              className="drop-shadow-lg h-96 bg-white my-5 mx-1 flex flex-col items-center justify-center px-6  top-[100px] transition-all duration-1000 ease-in-out"
             >
               <Image
                 src={idea}
@@ -79,7 +79,7 @@ const Features = () => {
               variants={textScrollVariants}
               initial="hidden"
               animate={controls}
-              className="w-80 h-40 bg-white drop-shadow-lg my-1 mx-1 flex flex-col items-center justify-center px-2"
+              className="h-40 bg-white drop-shadow-lg my-1 mx-1 flex flex-col items-center justify-center px-2"
             >
               <Image
                 src={caption}
@@ -98,7 +98,7 @@ const Features = () => {
               variants={textScrollVariants}
               initial="hidden"
               animate={controls}
-              className="drop-shadow-lg w-80 h-40 bg-white my-5 mx-1 flex flex-col items-center justify-center px-2"
+              className="drop-shadow-lg h-40 bg-white my-5 mx-1 flex flex-col items-center justify-center px-2"
             >
               <Image
                 src={hashtag}
@@ -115,7 +115,7 @@ const Features = () => {
               variants={textScrollVariants}
               initial="hidden"
               animate={controls}
-              className="drop-shadow-lg w-80 h-96 bg-white my-1 mx-1 flex flex-col items-center justify-center px-6"
+              className="drop-shadow-lg h-96 bg-white my-1 mx-1 flex flex-col items-center justify-center px-6"
             >
               <Image
                 src={thumbnail}
@@ -132,7 +132,7 @@ const Features = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Features;
+export default Features
