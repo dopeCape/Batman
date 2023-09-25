@@ -120,7 +120,8 @@ export function TokensNeeded(title: string) {
   } else if (
     title == "Facebook Post" ||
     title == "Facebook Ad Copy" ||
-    title == "LinkedIn Post"
+    title == "LinkedIn Post"||
+    title == "Repurpose" 
   ) {
     return `10`
   } else if (
@@ -146,7 +147,7 @@ export function TokensNeeded(title: string) {
     return `5`
   } 
  else if (
-  title == "Repurpose" ||
+ 
   title=="Rewrite"
  
   
