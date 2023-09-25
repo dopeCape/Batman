@@ -17,4 +17,30 @@ const generalContent = [
   ];
   
 
+  export const DropDownOptions=[
+    "YouTube Video Ideas",
+    "YouTube Short Ideas",
+    "YouTube Descriptions",
+    "YouTube Title",
+    "YouTube Tags",
+    "YouTube Thumbnail Ideas",
+    "Twitter Tweet",
+    "Twitter HashTag",
+    "Twitter Bio",
+    "Instagram Reel Ideas",
+    "Instagram Caption",
+    "Instagram HashTag",
+    "Instagram Bio",
+    "Facebook Post Ideas",
+    "Facebook Ad Copy",
+    "Facebook Page Description",
+    "TikTok Video Ideas",
+    "TikTok HashTags",
+    "TikTok Captions",
+    "LinkedIn Post Ideas",
+    "LinkedIn Bio"
+
+  ]
+
+
   export default generalContent

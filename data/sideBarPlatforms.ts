@@ -64,7 +64,7 @@ const platforms = [
     name: "General",
     icon: '/platformIcons/general.png',
     color: "#FE2C55",
-    items: ["Rewrite", "Repurpose", "Content Calender"]
+    items: ["Rewrite", "Repurpose"]
   }
 ];
 

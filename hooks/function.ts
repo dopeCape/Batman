@@ -102,10 +102,11 @@ export function setPrompt(
       targetAudience ? `for targeting the audience ${targetAudience}` : null
     }, that compels the target audience to take action.`
   } else if (title == "Rewrite") {
-    return `Rewrite the post to .`
+    return `${targetAudience}  the ${input} with a tone ${tone} .`
   } else if (title == "Repurpose") {
-    return `Repurpose the post to .`
+    return `Repurpose the ${input} to ${targetAudience}s .`
   }
+  
 }
 
 export function TokensNeeded(title: string) {
@@ -143,7 +144,16 @@ export function TokensNeeded(title: string) {
     title == "LinkedIn Profile Optimization"
   ) {
     return `5`
-  } else {
+  } 
+ else if (
+  title == "Repurpose" ||
+  title=="Rewrite"
+ 
+  
+) {
+  return `5`
+}
+  else {
     return `0`
   }
 }
