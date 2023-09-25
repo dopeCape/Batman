@@ -15,7 +15,7 @@ export function setPrompt(
     title == "YouTube Short" ||
     title == "YouTube Short" ||
     title == "TikTok Video" ||
-    title == "Instagram reel"
+    title == "Instagram Reel"
   ) {
     return `Generate one engaging ${title} Idea for ${input} ${
       targetAudience ? `for target audience ${targetAudience}` : null
