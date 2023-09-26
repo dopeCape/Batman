@@ -58,7 +58,7 @@ export default function SideBar() {
                   onClick={() => handleItemClick(item)}
                   className={`flex w-full  pl-14 ${
                     focusedItem === item
-                      ? "bg-[#232529] border-r-4 dark:border-gray-50 border-[#3247CF] dark:bg-[#232529]"
+                      ? "bg-[#F2F2F2] border-r-4 dark:border-gray-50 border-[#3247CF] dark:bg-[#232529]"
                       : "hover:bg-[#F2F2F2] hover:border-r-4 dark:border-gray-50 border-[#3247CF] dark:hover:bg-[#232529]"
                   }`}
                   key={j}

@@ -218,7 +218,7 @@ export default function Form3({ title }: MainSelectorProps) {
                   ...params.InputProps,
                   style: {
                     fontSize: "15px",
-                    color:  "white" ,
+                    color:  `${theme==="light"?"black":"white"}`,
                   },
                 }}
               />

@@ -43,7 +43,7 @@ export default function Repurpose({ title }: MainSelectorProps) {
     const [_response, setResponse] = useAtom(responseAtom)
     const [_platform, setPlatform] = useAtom(platformAtom)
     const [tokensRequired, setTokensRequired] = useState<string>("")
-
+    const { theme, setTheme } = useTheme()
     const [open, setOpen] = useState(false)
     const handleOpen = () => setOpen(true)
     const handleClose = () => setOpen(false)
@@ -194,7 +194,7 @@ export default function Repurpose({ title }: MainSelectorProps) {
                   style: {
                     fontSize: "15px",
                     outlineStyle: "none",
-                    color:  "white" ,
+                    color:  `${theme==="light"?"black":"white"}`,
                   },
                 }}
               />

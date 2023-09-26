@@ -242,7 +242,16 @@ export default function LoginNavBar() {
             <p className="ms-1">Schedule</p>
           </Badge>
         </NavLink>
-
+        <FormControlLabel
+          control={
+            <IOSSwitch
+              onChange={handleThemeChange}
+              defaultChecked={theme === "dark"}
+              sx={{ m: 1 }}
+            />
+          }
+          label=""
+        />
         <Link
           href="/pricing"
           className={`bg-gradient-to-r  from-[#00C5D7] to-[#0077BE] rounded-md p-2 flex flex-row justify-between text-white`}
