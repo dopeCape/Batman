@@ -1,3 +1,4 @@
+import axios from "axios";
 function resultStringToArray(result: string): string[] {
   let textArray: string[] = [];
   const arrayLines = result.split("\n\n");
@@ -14,4 +15,17 @@ function resultStringToArray(result: string): string[] {
   return textArray;
 }
 
-export { resultStringToArray };
+async function getUserCountry() {
+  try {
+    const response = await axios.get(
+      `http://ip-api.com/json/?fields=status,message,countryCode,currency`
+    );
+    const data = await response.data;
+    const userCountry = data.currency;
+    return userCountry;
+  } catch (error) {
+    console.error("Error fetching IP data:", error);
+  }
+}
+
+export { resultStringToArray, getUserCountry };

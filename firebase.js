@@ -1,4 +1,4 @@
-import { initializeApp, getApps, getApp } from "firebase/app";
+import { initializeApp, getApp, getApps } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { getDatabase } from "firebase/database";
 import { getFirestore } from "firebase/firestore";
@@ -14,14 +14,24 @@ const firebaseConfig = {
 };
 
 let app;
+
 if (!getApps().length) {
   app = initializeApp(firebaseConfig);
 } else {
   app = getApp();
 }
+// try {
+//   app = getApp();
+// } catch (e) {
+//   try {
+//     console.log("Firebase initialized on the client.");
+//   } catch (error) {
+//     console.error("Error initializing Firebase on the client:", error);
+//   }
+// }
 
 const auth = getAuth(app);
 const database = getDatabase(app);
-
 const db = getFirestore(app);
+
 export { auth, database, db, firebaseConfig };

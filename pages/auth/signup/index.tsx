@@ -1,52 +1,51 @@
-import { useState, ChangeEvent, useEffect } from "react"
-import Link from "next/link"
-import { useRouter, redirect } from "next/navigation"
-import { auth } from "@/firebase"
-import { createUserWithEmail, signInWithGoogle } from "../../../auth"
-import checkUser from "../../../utils/checkUser"
-import Typewriter from "typewriter-effect"
-import classes from "./signup.module.css"
+import { useState, ChangeEvent, useEffect } from "react";
+import Link from "next/link";
+import { useRouter, redirect } from "next/navigation";
+import { auth } from "@/firebase";
+import { createUserWithEmail, signInWithGoogle } from "../../../auth";
+import checkUser from "../../../utils/checkUser";
+import Typewriter from "typewriter-effect";
+import classes from "./signup.module.css";
 
 const SignUp = () => {
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
-  const [message, setMessage] = useState("")
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [message, setMessage] = useState("");
 
-  const router = useRouter()
+  const router = useRouter();
 
-  const user: any = checkUser()
+  const user: any = checkUser();
 
   const handleEmailChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setEmail(event.target.value)
-  }
+    setEmail(event.target.value);
+  };
 
   const handlePasswordChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setPassword(event.target.value)
-  }
+    setPassword(event.target.value);
+  };
 
   const handleSignUp = async () => {
     try {
-      await createUserWithEmail(email, password)
-
-      setMessage("User signed up successfully")
+      await createUserWithEmail(email, password);
+      setMessage("User signed up successfully");
       //window.location.href = "/homepage"
     } catch (error) {
-      setMessage(`Error signing up: ${error}`)
+      setMessage(`Error signing up: ${error}`);
     }
-  }
+  };
 
   const handleGoogleSignIn = async () => {
     try {
-      await signInWithGoogle()
-      setMessage("User signed in with Google successfully")
-      window.location.href = "/homepage"
+      await signInWithGoogle();
+      setMessage("User signed in with Google successfully");
+      window.location.href = "/homepage";
     } catch (error) {
-      setMessage(`Error signing in with Google: ${error}`)
+      setMessage(`Error signing in with Google: ${error}`);
     }
-  }
+  };
 
   if (user && user.uid) {
-    window.location.href = "/homepage"
+    window.location.href = "/homepage";
   }
 
   return (
@@ -141,7 +140,7 @@ const SignUp = () => {
         </p>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default SignUp
+export default SignUp;

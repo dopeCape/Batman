@@ -1,0 +1,11 @@
+version: "3"
+services:
+  nextjs:
+    build:
+      context: .
+      dockerfile: dockerfile # Use Dockerfile.dev for development
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app
+    command: npm run dev
