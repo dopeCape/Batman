@@ -1,67 +1,66 @@
-import React from "react"
-import Link from "next/link"
-import Image from "next/image"
-import { useRouter } from "next/router"
-import { useState, useEffect } from "react"
-import { Logout } from "@/auth"
-import { useTheme } from "next-themes"
-import { styled } from "@mui/material/styles"
-import { auth } from "@/firebase"
-import { useAtom } from "jotai"
-import { responseAtom } from "@/utils/store"
-import { generateRealTimeToken } from "@/auth"
-import FormGroup from "@mui/material/FormGroup"
-import FormControlLabel from "@mui/material/FormControlLabel"
-import Switch, { SwitchProps } from "@mui/material/Switch"
-import Stack from "@mui/material/Stack"
-import Typography from "@mui/material/Typography"
-import coins from "../../public/navbarIcons/coins.png"
-import content from "../../public/navbarIcons/content-creation.png"
-import dashboard from "../../public/navbarIcons/dashboard.png"
-import draft from "../../public/navbarIcons/draft.png"
-import profile from "../../public/navbarIcons/profile-dropdown.png"
-import schedule from "../../public/navbarIcons/schedule.png"
-import user from "../../public/navbarIcons/user.png"
-import Badge from "@mui/material/Badge"
+import React from "react";
+import Link from "next/link";
+import Image from "next/image";
+import { useRouter } from "next/router";
+import { useState, useEffect } from "react";
+import { Logout } from "@/auth";
+import { useTheme } from "next-themes";
+import { styled } from "@mui/material/styles";
+import { auth } from "@/firebase";
+import { useAtom } from "jotai";
+import { responseAtom } from "@/utils/store";
+import { generateRealTimeToken } from "@/auth";
+import FormGroup from "@mui/material/FormGroup";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import Switch, { SwitchProps } from "@mui/material/Switch";
+import Stack from "@mui/material/Stack";
+import Typography from "@mui/material/Typography";
+import coins from "../../public/navbarIcons/coins.png";
+import content from "../../public/navbarIcons/content-creation.png";
+import dashboard from "../../public/navbarIcons/dashboard.png";
+import draft from "../../public/navbarIcons/draft.png";
+import profile from "../../public/navbarIcons/profile-dropdown.png";
+import schedule from "../../public/navbarIcons/schedule.png";
+import user from "../../public/navbarIcons/user.png";
+import Badge from "@mui/material/Badge";
 
 export default function LoginNavBar() {
-  const [showSettings, setShowSettings] = useState(false)
-  const User = auth.currentUser
-  const [toggle, setToggle] = useState(true)
-  const [client, setClient] = useState<typeof User | null>(null)
-  const [token, setToken] = useState()
-  const [response] = useAtom(responseAtom)
+  const [showSettings, setShowSettings] = useState(false);
+  const User = auth.currentUser;
+  const [toggle, setToggle] = useState(true);
+  const [client, setClient] = useState<typeof User | null>(null);
+  const [token, setToken] = useState(0);
+  const [response] = useAtom(responseAtom);
 
   useEffect(() => {
     auth.onAuthStateChanged((user: any) => {
-      setClient(user)
-    })
-  }, [client])
+      setClient(user);
+    });
+  }, [client]);
 
   useEffect(() => {
-    ;(async () => {
-      const tk = await generateRealTimeToken(client)
-      setToken(tk)
-    })()
-  }, [response, client])
+    (async () => {
+      const tk = await generateRealTimeToken(client);
+      setToken(tk);
+    })();
+  }, [response, client]);
 
   const toggleLogout = () => {
-    setShowSettings((prev) => !prev)
-  }
+    setShowSettings((prev) => !prev);
+  };
 
   const NavLink = ({ href, d, stroke, className, children }: any) => {
-    const { asPath } = useRouter()
+    const { asPath } = useRouter();
 
-    const isActive = asPath === href
+    const isActive = asPath === href;
 
     return (
       <div className="flex h-full items-center">
         <Link
-          className={`flex flex-row items-center ${
-            isActive
+          className={`flex flex-row items-center ${isActive
               ? "h-full items-center flex text-center px-3 dark:text-white border-b-4 dark:border-white border-[#3247CF] font-bold text-[#3247CF]"
               : "dark:text-white text-[#3E4045] font-normal"
-          } font-bold cursor-pointer`}
+            } font-bold cursor-pointer`}
           href={href}
         >
           {stroke && (
@@ -78,8 +77,8 @@ export default function LoginNavBar() {
                   theme === "dark" && isActive
                     ? "white"
                     : theme === "light" && isActive
-                    ? "#3247CF"
-                    : "#A8AAB0"
+                      ? "#3247CF"
+                      : "#A8AAB0"
                 }
                 stroke-width="2.02416"
                 stroke-linecap="round"
@@ -91,8 +90,8 @@ export default function LoginNavBar() {
                   theme === "dark" && isActive
                     ? "white"
                     : theme === "light" && isActive
-                    ? "#3247CF"
-                    : "#A8AAB0"
+                      ? "#3247CF"
+                      : "#A8AAB0"
                 }
                 stroke-width="2.02416"
                 stroke-linecap="round"
@@ -111,8 +110,8 @@ export default function LoginNavBar() {
                 theme === "dark" && isActive
                   ? "white"
                   : theme === "light" && isActive
-                  ? "#3247CF"
-                  : "#A8AAB0"
+                    ? "#3247CF"
+                    : "#A8AAB0"
               }
             >
               <path d={d} fill="" />
@@ -121,13 +120,13 @@ export default function LoginNavBar() {
           {children}
         </Link>
       </div>
-    )
-  }
-  const { theme, setTheme } = useTheme()
+    );
+  };
+  const { theme, setTheme } = useTheme();
   const handleThemeChange = () => {
-    setTheme(theme === "dark" ? "light" : "dark") // Toggle between 'dark' and 'light';
-    setToggle((prev) => !prev)
-  }
+    setTheme(theme === "dark" ? "light" : "dark"); // Toggle between 'dark' and 'light';
+    setToggle((prev) => !prev);
+  };
 
   const IOSSwitch = styled((props: SwitchProps) => (
     <Switch
@@ -184,23 +183,23 @@ export default function LoginNavBar() {
         duration: 500,
       }),
     },
-  }))
-  const router = useRouter()
+  }));
+  const router = useRouter();
   const handleLogout = async () => {
     try {
-      await Logout()
-      localStorage.removeItem("token")
-      alert("User logged out successfully!")
-      router.replace("/")
+      await Logout();
+      localStorage.removeItem("token");
+      alert("User logged out successfully!");
+      router.replace("/");
     } catch (err) {
-      console.error(err)
+      console.error(err);
     }
-  }
+  };
 
   const profileHandler = (link: any) => {
-    router.push(link)
-    toggleLogout()
-  }
+    router.push(link);
+    toggleLogout();
+  };
 
   return (
     <div className="w-full h-20 dark:bg-[#1B1D21] flex bg-[#fff] flex-row items-center md:justify-around  md:p-0 p-4 border-b-[#A8AAB0] border-b-2 border-opacity-20 ">
@@ -257,7 +256,9 @@ export default function LoginNavBar() {
           className={`bg-gradient-to-r  from-[#00C5D7] to-[#0077BE] rounded-md p-2 flex flex-row justify-between text-white`}
         >
           <Image src={coins} alt="coins" width={20} height={20} />
-          <span className="ms-1 text-sm  text-white">{token} Tokens</span>
+          <span className="ms-1 text-sm  text-white">
+            {token.toLocaleString()} Tokens
+          </span>
         </Link>
         <div className="relative bg-slate-300  w-10 rounded-full items-center justify-center flex">
           <div
@@ -270,11 +271,10 @@ export default function LoginNavBar() {
           </div>
           {showSettings && (
             <div
-              className={`${
-                theme === "light"
+              className={`${theme === "light"
                   ? "flex flex-col absolute  p-2 mr-20 mt-44 w-32  md:h-38 h-50 bg-white z-10"
                   : "flex flex-col absolute  p-2 mr-20 mt-44 w-32  md:h-38 h-50 bg-black z-10"
-              }`}
+                }`}
             >
               <button
                 className="flex flex-row items-center mb-2"
@@ -291,11 +291,12 @@ export default function LoginNavBar() {
                   <path d="M6.5 2a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1h-3zM11 8a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
                   <path d="M4.5 0A2.5 2.5 0 0 0 2 2.5V14a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2.5A2.5 2.5 0 0 0 11.5 0h-7zM3 2.5A1.5 1.5 0 0 1 4.5 1h7A1.5 1.5 0 0 1 13 2.5v10.795a4.2 4.2 0 0 0-.776-.492C11.392 12.387 10.063 12 8 12s-3.392.387-4.224.803a4.2 4.2 0 0 0-.776.492V2.5z" />
                 </svg>
-                <span className={`ms-2 ${
-                theme === "light"
-                  ? "text-black"
-                  : "text-white"
-              } `}>Buy Tokens</span>
+                <span
+                  className={`ms-2 ${theme === "light" ? "text-black" : "text-white"
+                    } `}
+                >
+                  Buy Tokens
+                </span>
               </button>
               <button
                 className="flex flex-row items-center mb-2"
@@ -312,16 +313,17 @@ export default function LoginNavBar() {
                   <path d="M6.5 2a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1h-3zM11 8a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
                   <path d="M4.5 0A2.5 2.5 0 0 0 2 2.5V14a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2.5A2.5 2.5 0 0 0 11.5 0h-7zM3 2.5A1.5 1.5 0 0 1 4.5 1h7A1.5 1.5 0 0 1 13 2.5v10.795a4.2 4.2 0 0 0-.776-.492C11.392 12.387 10.063 12 8 12s-3.392.387-4.224.803a4.2 4.2 0 0 0-.776.492V2.5z" />
                 </svg>
-                <span  className={`ms-2 ${
-                theme === "light"
-                  ? "text-black"
-                  : "text-white"
-              } `}>Contact us</span>
+                <span
+                  className={`ms-2 ${theme === "light" ? "text-black" : "text-white"
+                    } `}
+                >
+                  Contact us
+                </span>
               </button>
               <div
                 className="flex flex-row border-t-2 items-center cursor-pointer w-full h-full"
                 onClick={() => {
-                  handleLogout()
+                  handleLogout();
                 }}
               >
                 <svg
@@ -341,11 +343,12 @@ export default function LoginNavBar() {
                     d="M.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L1.707 7.5H10.5a.5.5 0 0 1 0 1H1.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3z"
                   />
                 </svg>
-                <p  className={`ms-2 ${
-                theme === "light"
-                  ? "text-black"
-                  : "text-white"
-              } `}>Log out</p>
+                <p
+                  className={`ms-2 ${theme === "light" ? "text-black" : "text-white"
+                    } `}
+                >
+                  Log out
+                </p>
               </div>
             </div>
           )}
@@ -395,7 +398,7 @@ export default function LoginNavBar() {
               <div
                 className="flex flex-row border-t-2 items-center cursor-pointer w-full h-full"
                 onClick={() => {
-                  handleLogout()
+                  handleLogout();
                 }}
               >
                 <path
@@ -414,5 +417,5 @@ export default function LoginNavBar() {
         </div>
       </div>
     </div>
-  )
+  );
 }
