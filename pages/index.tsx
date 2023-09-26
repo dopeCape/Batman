@@ -7,10 +7,13 @@ import {
   Questions,
   Testimonials
 } from "@/components/LandingPageComponents/Sections"
-
-import React from "react"
+import { auth } from "@/firebase"
+import React, { useEffect } from "react"
 
 const Home = () => {
+
+
+
   return (
     <>
       <Blocks />

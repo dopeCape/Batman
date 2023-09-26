@@ -4,6 +4,7 @@ import { useAnimation, motion } from "framer-motion"
 import { useInView } from "react-intersection-observer"
 import PreviewImg from "../../../../public/Images/idea.png"
 import RPreviewImg from "../../../../public/Images/idea.png"
+import Check from "../../../../public/icons/check.png"
 const Preview = () => {
   const textScrollVariants = {
     visible: { opacity: 1, right: 0 },
@@ -45,10 +46,19 @@ const Preview = () => {
         Personalized Content Ideas
         </h1>
         <p className="font-md md:text-[20px] text-[16px] leading-relaxed text-justify text-[#494949]">
-        ✅ Tired of hitting that creative wall? Metridash is your secret weapon!<br/>
-        ✅ Spark your creativity with personalized ideas.<br/>
-        ✅ Tailored to your unique style.<br/>
-        ✅ Targeted for your specific audience.<br/>
+          <div className="flex flex-row">
+
+        <Image className="flex w-6 h-6 md:self-center mr-1" src={Check} alt="tick"></Image> Tired of hitting that creative wall? Metridash is your secret weapon!<br/>
+          </div>
+        <div className="flex flex-row">
+        <Image className="flex w-6 h-6 self-center mr-1" src={Check} alt="tick"></Image> Spark your creativity with personalized ideas.<br/>
+        </div>
+        <div className="flex flex-row">
+        <Image className="flex w-6 h-6 self-center mr-1" src={Check} alt="tick"></Image> Tailored to your unique style.<br/>
+        </div>
+        <div className="flex flex-row">
+        <Image className="flex w-6 h-6 self-center mr-1" src={Check} alt="tick"></Image> Targeted for your specific audience.<br/>
+        </div>
 
         </p>
       </motion.div>

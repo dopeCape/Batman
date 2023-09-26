@@ -258,7 +258,7 @@ export default function Form2({ title }: MainSelectorProps) {
                   ...params.InputProps,
                   style: {
                     fontSize: "14px",
-                    color:  "white" ,
+                    color:  `${theme==="light"?"black":"white"}`,
                   },
                 }}
               />

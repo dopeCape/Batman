@@ -8,7 +8,7 @@ import Image2 from "../../../../public/Images/4.png"
 import Image3 from "../../../../public/Images/ai.png"
 import Image4 from "../../../../public/Images/calender.png"
 import RImage5 from "../../../../public/Images/calender.png"
-
+import Check from '../../../../public/icons/check.png'
 const Prompts = () => {
   const textScrollVariants = {
     visible: { opacity: 1, right: 0 },
@@ -70,11 +70,18 @@ const Prompts = () => {
           AI-Powered Prompts
           </h1>
           <p className="font-normal text-[16px] md:text-[20px] leading-relaxed text-justify text-[#494949] align-center my-8 md:my-0">
-          ✅ Ditch the guesswork, embrace AI magic!<br/>
-          ✅ Cutting-edge AI crafts perfect prompts.<br/>
-          ✅ Your vision takes center stage.<br/>
-          ✅ More time for your creative genius.<br/>
-
+          <div className="flex flex-row">
+          <Image className="flex w-6 h-6 self-center mr-1" src={Check} alt="tick"></Image>Ditch the guesswork, embrace AI magic!<br/>
+          </div>
+          <div className="flex flex-row">
+          <Image className="flex w-6 h-6 self-center mr-1" src={Check} alt="tick"></Image>Cutting-edge AI crafts perfect prompts.<br/>
+          </div>
+          <div className="flex flex-row">
+          <Image className="flex w-6 h-6 self-center mr-1" src={Check} alt="tick"></Image>Your vision takes center stage.<br/>
+          </div>
+          <div className="flex flex-row">
+          <Image className="flex w-6 h-6 self-center mr-1" src={Check} alt="tick"></Image>More time for your creative genius.<br/>
+          </div>
 
           </p>
         </motion.div>
@@ -98,10 +105,18 @@ const Prompts = () => {
           Seamless Multichannel Publishing
           </h1>
           <p className="font-normal text-[16px] md:text-[20px] leading-relaxed text-justify text-[#494949] ">
-          ✅ Your content, their screens—everywhere!<br/>
-          ✅ Simplify content creation across platforms.<br/>
-          ✅ Instagram to YouTube—Metridash has you covered.<br/>
-          ✅ Reach and resonate, wherever your audience thrives.
+          <div className="flex flex-row">
+          <Image className="flex w-6 h-6 self-center mr-1" src={Check} alt="tick"></Image>Your content, their screens—everywhere!<br/>
+          </div>
+          <div className="flex flex-row">
+          <Image className="flex w-6 h-6 md:self-center mr-1" src={Check} alt="tick"></Image>Simplify content creation across platforms.<br/>
+          </div>
+          <div className="flex flex-row">
+          <Image className="flex w-6 h-6 md:self-center mr-1" src={Check} alt="tick"></Image>Instagram to YouTube—Metridash has you covered.<br/>
+          </div>
+          <div className="flex flex-row">
+          <Image className="flex w-6 h-6 md:self-center mr-1" src={Check} alt="tick"></Image>Reach and resonate, wherever your audience thrives.
+          </div>
 
           </p>
         </motion.div> 
@@ -153,11 +168,18 @@ const Prompts = () => {
           Content Calendar & Analytics
           </h1>
           <p className="font-normal text-[16px] md:text-[20px] leading-relaxed text-justify text-[#494949] align-center my-8 md:my-0">
-          ✅ Master your content like a pro!<br/>
-          ✅ Plan, schedule, and optimize effortlessly.<br/>
-          ✅ Real-time analytics for actionable insights.<br/>
-          ✅ Chart your growth journey with Metridash!
-
+          <div className="flex flex-row">
+          <Image className="flex w-6 h-6 self-center mr-1" src={Check} alt="tick"></Image>Master your content like a pro!<br/>
+          </div>
+          <div className="flex flex-row">
+          <Image className="flex w-6 h-6 self-center mr-1" src={Check} alt="tick"></Image>Plan, schedule, and optimize effortlessly.<br/>
+          </div>
+          <div className="flex flex-row">
+          <Image className="flex w-6 h-6 self-center mr-1" src={Check} alt="tick"></Image>Real-time analytics for actionable insights.<br/>
+          </div>
+          <div className="flex flex-row">
+          <Image className="flex w-6 h-6 self-center mr-1" src={Check} alt="tick"></Image>Chart your growth journey with Metridash!
+           </div>
           </p>
         </motion.div>
       </div>

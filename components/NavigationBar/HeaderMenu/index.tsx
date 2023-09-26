@@ -129,7 +129,7 @@ const HeaderMenu = (props: Props) => {
               href={"/auth/signup"}
               className="flex flex-row items-center justify-center gap-x-1 px-4 py-1 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-xl"
             >
-              <h1 className="font-semibold ">Try for free</h1>
+              <h1 className="font-semibold text-white ">Try for free</h1>
             </Link>
           </ul>
 
